@@ -58,11 +58,11 @@ export default function Portfolio() {
       <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-xl font-semibold tracking-tight text-white">ABP.</div>
-          <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
+        <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <a href="#about" className="hover:text-white transition-colors">Tentang</a>
             <a href="#creator" className="hover:text-white transition-colors">Portofolio Kreator</a>
             <a href="#experience" className="hover:text-white transition-colors">Pengalaman</a>
-            <a href="#certificates" className="hover:text-white transition-colors">Sertifikat</a>
+            <a href="#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</a>
           </div>
           <a href="#contact" className="text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-neutral-200 transition-colors">Connect</a>
         </div>
