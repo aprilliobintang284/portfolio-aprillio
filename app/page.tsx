@@ -246,7 +246,7 @@ export default function Portfolio() {
 
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group border-b border-neutral-800 pb-12">
                 <div className="grid md:grid-cols-4 gap-6">
-                  <div className="col-span-1 text-neutral-500 font-mono text-sm pt-1 uppercase tracking-widest">2026 — Present</div>
+                  <div className="col-span-1 text-neutral-500 font-mono text-sm pt-1 uppercase tracking-widest">2025 — Present</div>
                   <div className="col-span-3">
                     <h4 className="text-2xl font-semibold text-white mb-2">Freelance Gaming Content Creator</h4>
                     <p className="text-neutral-400 mb-6 text-lg">Honor of Kings (Tencent / TikTok Project) • Remote</p>
