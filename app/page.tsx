@@ -197,19 +197,40 @@ export default function Portfolio() {
             </div>
 
             <h4 className="text-2xl font-bold text-white mb-8">Top Performing Campaigns</h4>
-            <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
                 {[
-                    { title: "Cinematic Review Milady Swaampser", views: "198,000", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063" },
-                    { title: "Epic Defeated Moment", views: "471,400", link: "https://vt.tiktok.com/ZSHhhM7mg/" },
-                    { title: "the charm of Onic HoK players", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528" }
+                    { 
+                        title: "Cinematic Review Milady Swaampser", views: "198,000", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063", 
+                        bgTheme: "bg-[#fe2c55]", textTheme: "text-[#fe2c55]", hoverTheme: "group-hover:text-[#fe2c55]", borderTheme: "hover:border-[#fe2c55]/50" 
+                    },
+                    { 
+                        title: "Epic Defeated Moment", views: "471,400", link: "https://vt.tiktok.com/ZSHhhM7mg/", 
+                        bgTheme: "bg-blue-600", textTheme: "text-blue-500", hoverTheme: "group-hover:text-blue-500", borderTheme: "hover:border-blue-500/50" 
+                    },
+                    { 
+                        title: "the charm of Onic HoK players", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528", 
+                        bgTheme: "bg-purple-600", textTheme: "text-purple-500", hoverTheme: "group-hover:text-purple-500", borderTheme: "hover:border-purple-500/50" 
+                    }
                 ].map((vid) => (
-                    <a href={vid.link} target="_blank" rel="noreferrer" key={vid.title} className="group block bg-neutral-900/50 border border-neutral-800 rounded-3xl p-6 hover:border-[#fe2c55]/50 transition-all">
-                        <div className="p-3 bg-neutral-950 rounded-2xl w-fit mb-6"><Video className="w-6 h-6 text-[#fe2c55]" /></div>
-                        <h5 className="text-xl font-bold text-white mb-2 group-hover:text-[#fe2c55] transition-colors">{vid.title}</h5>
+                    // Kotak luar sekarang jadi <div> biasa, bukan <a> lagi
+                    <div key={vid.title} className={`group bg-neutral-900/50 border border-neutral-800 rounded-3xl p-6 transition-all ${vid.borderTheme}`}>
+                        
+                        <div className="flex justify-between items-start mb-6">
+                            <div className="p-3 bg-neutral-950 rounded-2xl w-fit">
+                                <Video className={`w-6 h-6 ${vid.textTheme}`} />
+                            </div>
+                            
+                            {/* Tag <a> (link) dipindah KHUSUS ke bagian tombol ini saja */}
+                            <a href={vid.link} target="_blank" rel="noreferrer" className={`p-3 rounded-full text-white ${vid.bgTheme} hover:scale-110 hover:opacity-90 transition-all cursor-pointer`}>
+                                <ExternalLink className="w-5 h-5" />
+                            </a>
+                        </div>
+
+                        <h5 className={`text-xl font-bold text-white mb-2 transition-colors ${vid.hoverTheme}`}>{vid.title}</h5>
                         <div className="flex items-center gap-2 font-mono text-sm text-neutral-300 font-semibold bg-neutral-950 w-fit px-4 py-2 rounded-xl mt-4">
                             <PlayCircle className="w-4 h-4 text-neutral-500" /> {vid.views} Views
                         </div>
-                    </a>
+                    </div>
                 ))}
             </div>
           </motion.div>
@@ -388,7 +409,7 @@ export default function Portfolio() {
       </main>
 
       <footer className="border-t border-neutral-900 py-8 text-center text-neutral-600 text-sm bg-[#0a0a0a]">
-        <p>© {new Date().getFullYear()} Aprillio Bintang Perdana. Built with Next.js.</p>
+        <p>© {new Date().getFullYear()} Aprillio Bintang Perdana.</p>
       </footer>
     </div>
   );
