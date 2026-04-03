@@ -347,6 +347,30 @@ export default function Portfolio() {
                         <span className="font-bold text-black">Email Me</span>
                     </a>
                 </div>
+                
+                {/* Location / Map Section */}
+        <section id="location" className="py-32 px-6 max-w-7xl mx-auto border-t border-neutral-900">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-12">
+            <h3 className="text-4xl font-bold tracking-tight text-white mb-4">Base of Operations</h3>
+            <p className="text-neutral-400">Saat ini berlokasi di Kendal, Jawa Tengah dan terbuka untuk peluang kerja *remote* maupun *on-site*.</p>
+          </motion.div>
+          
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="w-full h-[400px] rounded-3xl overflow-hidden border border-neutral-800 relative bg-neutral-900">
+            {/* Google Maps iframe */}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.6091242787!2d110.11306352358826!3d-7.026544199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e705cd608726c65%3A0x37a7a372e352bcc!2sKabupaten%20Kendal%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1712123456789!5m2!1sid!2sid" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(83%)' }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0"
+            ></iframe>
+            {/* Overlay untuk menyesuaikan warna dengan tema gelap */}
+            <div className="absolute inset-0 bg-neutral-950/20 pointer-events-none"></div>
+          </motion.div>
+        </section>
 
                 <div className="pt-12 border-t border-neutral-900 flex justify-center">
                     <div className="flex items-center gap-3 text-neutral-500">
