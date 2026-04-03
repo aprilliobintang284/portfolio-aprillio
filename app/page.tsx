@@ -102,7 +102,7 @@ export default function Portfolio() {
         <section className="relative min-h-[90vh] flex items-center px-6 max-w-7xl mx-auto pt-10">
           <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.2 } } }} className="grid lg:grid-cols-2 gap-12 items-center w-full">
             <div>
-                <motion.p variants={fadeInUp} className="text-neutral-400 mb-4 text-sm font-mono tracking-wide uppercase">Portfolio Profesional</motion.p>
+                <motion.p variants={fadeInUp} className="text-neutral-400 mb-4 text-sm font-mono tracking-wide uppercase">Portofolio</motion.p>
                 <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-white">
                 Aprillio Bintang <br /><span className="text-neutral-500">Perdana.</span>
                 </motion.h1>
