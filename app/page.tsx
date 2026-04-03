@@ -172,7 +172,7 @@ export default function Portfolio() {
                 {[
                     { title: "Sir Pai Kontrak Darah", views: "581,600", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063" },
                     { title: "Epic Defeated Moment", views: "471,400", link: "https://vt.tiktok.com/ZSHhhM7mg/" },
-                    { title: "Yellowsphere Clip", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528" }
+                    { title: "the charm of Onic HoK players", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528" }
                 ].map((vid) => (
                     <a href={vid.link} target="_blank" rel="noreferrer" key={vid.title} className="group block bg-neutral-900/50 border border-neutral-800 rounded-3xl p-6 hover:border-[#fe2c55]/50 transition-all">
                         <div className="p-3 bg-neutral-950 rounded-2xl w-fit mb-6"><Video className="w-6 h-6 text-[#fe2c55]" /></div>
@@ -198,17 +198,24 @@ export default function Portfolio() {
                 <Activity className="w-4 h-4" /> Live Profile
               </a>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4 text-center">
+{/* Grid 6 Kotak (3 Kolom x 2 Baris) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
               {[
                   { icon: Keyboard, label: "Best WPM", value: stats.wpm },
+                  { icon: Zap, label: "Raw WPM", value: stats.raw },
                   { icon: Target, label: "Accuracy", value: `${stats.acc}%` },
+                  { icon: Activity, label: "Consistency", value: `${stats.cons}%` },
                   { icon: MousePointerClick, label: "Tests", value: stats.tests },
                   { icon: Clock, label: "Time", value: stats.time },
               ].map((item) => (
-                <div key={item.label} className="bg-[#121212] border border-[#222] p-5 rounded-2xl flex flex-col items-center gap-2">
-                    <item.icon className="w-6 h-6 text-neutral-500 mb-2"/>
-                    <h4 className="text-4xl font-bold text-white tracking-tighter">{item.value}</h4>
-                    <p className="text-sm font-medium text-neutral-400">{item.label}</p>
+                <div key={item.label} className="bg-[#121212] border border-[#222] p-5 rounded-2xl flex items-center gap-5 hover:border-neutral-700 transition-colors">
+                    <div className="p-3 bg-[#1e1e1e] rounded-xl">
+                        <item.icon className="w-6 h-6 text-neutral-300"/>
+                    </div>
+                    <div>
+                        <h4 className="text-3xl font-bold text-white tracking-tighter">{item.value}</h4>
+                        <p className="text-sm font-medium text-neutral-400">{item.label}</p>
+                    </div>
                 </div>
               ))}
             </div>
