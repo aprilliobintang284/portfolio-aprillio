@@ -60,6 +60,7 @@ export default function Portfolio() {
           <div className="text-xl font-semibold tracking-tight text-white">ABP.</div>
         <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <a href="#about" className="hover:text-white transition-colors">Tentang</a>
+            <a href="/projects" className="text-white border-b border-white pb-1">Projects</a>
             <a href="#creator" className="hover:text-white transition-colors">Portofolio Kreator</a>
             <a href="#experience" className="hover:text-white transition-colors">Pengalaman</a>
             <a href="#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</a>
@@ -170,7 +171,7 @@ export default function Portfolio() {
             <h4 className="text-2xl font-bold text-white mb-8">Top Performing Campaigns</h4>
             <div className="grid md:grid-cols-3 gap-6">
                 {[
-                    { title: "Sir Pai Kontrak Darah", views: "581,600", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063" },
+                    { title: "Cinematic Review Milady Swaampser", views: "198,000", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063" },
                     { title: "Epic Defeated Moment", views: "471,400", link: "https://vt.tiktok.com/ZSHhhM7mg/" },
                     { title: "the charm of Onic HoK players", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528" }
                 ].map((vid) => (
