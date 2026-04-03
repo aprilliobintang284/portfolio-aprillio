@@ -1,10 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, ShieldCheck, Bug, CheckCircle2, Server, Lock } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, ExternalLink, ShieldCheck, Bug, CheckCircle2, Server, Lock, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 export default function Projects() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Kata 'ease' dihapus agar TypeScript tidak error
   const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
@@ -14,21 +16,50 @@ export default function Projects() {
   return (
     <div className="bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-white selection:text-black">
       
-      {/* Navbar Khusus Page Project */}
+{/* Navbar Khusus Page Project */}
       <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</Link>
+          
+ {/* Menu Desktop */}
           <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <Link href="/#about" className="hover:text-white transition-colors">Tentang</Link>
             <Link href="/projects" className="text-white border-b border-white pb-1">Projects</Link>
             <Link href="/#creator" className="hover:text-white transition-colors">Portofolio Kreator</Link>
             <Link href="/#experience" className="hover:text-white transition-colors">Pengalaman</Link>
-            <a href="/#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</a>
+            <Link href="/#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</Link>
           </div>
-          <Link href="/" className="text-sm font-medium flex items-center gap-2 bg-neutral-900 border border-neutral-800 text-white px-4 py-2 rounded-full hover:bg-neutral-800 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Kembali
-          </Link>
+
+          <div className="flex items-center gap-4">
+            <Link href="/" className="hidden md:flex text-sm font-medium items-center gap-2 bg-neutral-900 border border-neutral-800 text-white px-4 py-2 rounded-full hover:bg-neutral-800 transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Kembali
+            </Link>
+
+            {/* Tombol Hamburger Khusus Mobile */}
+            <button className="md:hidden text-neutral-300 hover:text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
+
+        {/* Dropdown Menu Mobile */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+              className="md:hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 flex flex-col py-4 px-6 gap-4 shadow-xl"
+            >
+              <Link href="/#about" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Tentang</Link>
+              <Link href="/projects" className="text-white font-bold">Projects</Link>
+              <Link href="/#creator" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Portofolio Kreator</Link>
+              <Link href="/#experience" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pengalaman</Link>
+              <Link href="/#education" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pendidikan & Sertifikasi</Link>
+              <Link href="/" className="bg-white text-black flex items-center justify-center gap-2 py-2 rounded-full font-medium mt-2">
+                <ArrowLeft className="w-4 h-4" /> Kembali ke Home
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <main className="pt-32 pb-32 px-6 max-w-7xl mx-auto">

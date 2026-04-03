@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { Mail, Phone, MapPin, Link as LinkIcon, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, TrendingUp, Medal, Activity, Video, Smartphone, DollarSign, PlayCircle, Code, Camera } from "lucide-react";
+import { Mail, Phone, MapPin, Link as LinkIcon, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, TrendingUp, Medal, Activity, Video, Smartphone, DollarSign, PlayCircle, Code, Camera, Menu, X } from "lucide-react";
 
 export default function Portfolio() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [stats, setStats] = useState({
     wpm: 121, raw: 125, acc: 97, cons: 79, tests: 666, time: "9h 50m"
   });
@@ -54,19 +55,46 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
 
-      {/* Navbar */}
+{/* Navbar Utama (Home) */}
       <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-xl font-semibold tracking-tight text-white">ABP.</div>
-        <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
+          <a href="#" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</a>
+          
+          {/* Menu Desktop */}
+          <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <a href="#about" className="hover:text-white transition-colors">Tentang</a>
-            <a href="/projects" className="text-white border-b border-white pb-1">Projects</a>
+            <a href="/projects" className="hover:text-white transition-colors">Projects</a>
             <a href="#creator" className="hover:text-white transition-colors">Portofolio Kreator</a>
             <a href="#experience" className="hover:text-white transition-colors">Pengalaman</a>
             <a href="#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</a>
           </div>
-          <a href="#contact" className="text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-neutral-200 transition-colors">Connect</a>
+
+          <div className="flex items-center gap-4">
+            <a href="#contact" className="hidden md:block text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-neutral-200 transition-colors">Connect</a>
+            
+            {/* Tombol Hamburger Khusus Mobile */}
+            <button className="md:hidden text-neutral-300 hover:text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
+
+        {/* Dropdown Menu Mobile */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+              className="md:hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 flex flex-col py-4 px-6 gap-4 shadow-xl"
+            >
+              <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Tentang</a>
+              <a href="/projects" className="text-neutral-300 hover:text-white">Projects</a>
+              <a href="#creator" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Portofolio Kreator</a>
+              <a href="#experience" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pengalaman</a>
+              <a href="#education" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pendidikan & Sertifikasi</a>
+              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-white text-black text-center py-2 rounded-full font-medium mt-2">Connect</a>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <main className="pt-24">
