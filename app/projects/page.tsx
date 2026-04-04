@@ -7,21 +7,23 @@ import Link from "next/link";
 
 export default function Projects() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // Kata 'ease' dihapus agar TypeScript tidak error
+  
   const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
   return (
-    <div className="bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-white selection:text-black">
-      
-{/* Navbar Khusus Page Project */}
+<div className="relative bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-indigo-500/30 selection:text-white">
+      {/* Efek Spotlight Halus di Background */}
+      <div className="absolute top-0 z-0 h-[80vh] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),rgba(0,0,0,0))] pointer-events-none"></div>
+
+      {/* Navbar Khusus Page Project */}
       <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</Link>
           
- {/* Menu Desktop */}
+          {/* Menu Desktop */}
           <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <Link href="/#about" className="hover:text-white transition-colors">Tentang</Link>
             <Link href="/projects" className="text-white border-b border-white pb-1">Projects</Link>
@@ -63,11 +65,11 @@ export default function Projects() {
       </nav>
 
       <main className="pt-32 pb-32 px-6 max-w-7xl mx-auto">
-        {/* Header Section */}
+        {/* Header Section (Tema Soft Amethyst) */}
         <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="max-w-3xl mb-20">
           <div className="flex items-center gap-3 mb-6">
-            <ShieldCheck className="w-8 h-8 text-blue-500" />
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter text-white">QA Testing Projects.</h1>
+            <ShieldCheck className="w-8 h-8 text-indigo-400" />
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent pb-2">QA Testing Projects.</h1>
           </div>
           <p className="text-neutral-400 text-lg leading-relaxed">
             Sebagai seorang <strong>Quality Assurance Specialist</strong>, tanggung jawab utama saya adalah memastikan setiap fungsionalitas, alur sistem, dan <strong>User Interface</strong> berjalan tanpa hambatan sebelum menyentuh pengguna akhir. 
@@ -79,10 +81,10 @@ export default function Projects() {
         <div className="grid lg:grid-cols-2 gap-8">
           
           {/* Project 1: Tenar Events (Production) */}
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-[#121212] border border-neutral-800 rounded-3xl p-8 hover:border-blue-500/50 transition-all group flex flex-col">
+          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-[#121212] border border-neutral-800 rounded-3xl p-8 hover:border-indigo-500/40 hover:shadow-[0_8px_30px_rgb(99,102,241,0.08)] hover:-translate-y-1 transition-all duration-500 group flex flex-col">
             <div className="flex justify-between items-start mb-6">
               <span className="px-3 py-1 bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-mono uppercase tracking-widest rounded-full">Production Live</span>
-              <a href="https://tenar.events/" target="_blank" rel="noreferrer" className="p-3 bg-neutral-900 rounded-full group-hover:bg-blue-500 group-hover:text-white transition-colors">
+              <a href="https://tenar.events/" target="_blank" rel="noreferrer" className="p-3 bg-neutral-900 rounded-full group-hover:bg-indigo-500 group-hover:text-white transition-all duration-500">
                 <ExternalLink className="w-5 h-5" />
               </a>
             </div>
@@ -94,18 +96,18 @@ export default function Projects() {
             <div className="space-y-3 pt-6 border-t border-neutral-800">
               <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider mb-4">Fokus Pengujian (QA Scope):</h4>
               <ul className="space-y-2">
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" /> End-to-End Testing alur pembelian tiket.</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Bug className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" /> UI/UX Cross-browser testing (Mobile & Desktop).</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Server className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" /> Fungsionalitas filter pencarian event aktif.</li>
+                <li className="flex items-start gap-3 text-sm text-neutral-400"><CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> End-to-End Testing alur pembelian tiket.</li>
+                <li className="flex items-start gap-3 text-sm text-neutral-400"><Bug className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> UI/UX Cross-browser testing (Mobile & Desktop).</li>
+                <li className="flex items-start gap-3 text-sm text-neutral-400"><Server className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Fungsionalitas filter pencarian event aktif.</li>
               </ul>
             </div>
           </motion.div>
 
           {/* Project 2: Tenar Organizer */}
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-[#121212] border border-neutral-800 rounded-3xl p-8 hover:border-blue-500/50 transition-all group flex flex-col">
+          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-[#121212] border border-neutral-800 rounded-3xl p-8 hover:border-indigo-500/40 hover:shadow-[0_8px_30px_rgb(99,102,241,0.08)] hover:-translate-y-1 transition-all duration-500 group flex flex-col">
             <div className="flex justify-between items-start mb-6">
-                           <span className="px-3 py-1 bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-mono uppercase tracking-widest rounded-full">Production Live</span>
-              <a href="https://organizer.tenar.events/" target="_blank" rel="noreferrer" className="p-3 bg-neutral-900 rounded-full group-hover:bg-blue-500 group-hover:text-white transition-colors">
+              <span className="px-3 py-1 bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-mono uppercase tracking-widest rounded-full">Production Live</span>
+              <a href="https://organizer.tenar.events/" target="_blank" rel="noreferrer" className="p-3 bg-neutral-900 rounded-full group-hover:bg-indigo-500 group-hover:text-white transition-all duration-500">
                 <ExternalLink className="w-5 h-5" />
               </a>
             </div>
@@ -117,15 +119,15 @@ export default function Projects() {
             <div className="space-y-3 pt-6 border-t border-neutral-800">
               <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider mb-4">Fokus Pengujian (QA Scope):</h4>
               <ul className="space-y-2">
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" /> Validasi input pembuatan event (Form Validation).</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Bug className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" /> Reporting bug integrasi API melalui Plane.</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Lock className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" /> Pengujian Role-Based Access Control (RBAC).</li>
+                <li className="flex items-start gap-3 text-sm text-neutral-400"><CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Validasi input pembuatan event (Form Validation).</li>
+                <li className="flex items-start gap-3 text-sm text-neutral-400"><Bug className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Reporting bug integrasi API melalui Plane.</li>
+                <li className="flex items-start gap-3 text-sm text-neutral-400"><Lock className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Pengujian Role-Based Access Control (RBAC).</li>
               </ul>
             </div>
           </motion.div>
 
           {/* Project 3: Payment Gateway (Coming Soon) */}
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-neutral-950 border border-neutral-900 border-dashed rounded-3xl p-8 flex flex-col justify-center items-center text-center lg:col-span-2 py-16">
+          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-neutral-950 border border-neutral-800 border-dashed rounded-3xl p-8 hover:border-indigo-500/30 transition-colors duration-500 flex flex-col justify-center items-center text-center lg:col-span-2 py-16">
             <div className="p-4 bg-neutral-900 rounded-full mb-4">
               <Lock className="w-8 h-8 text-neutral-500" />
             </div>
