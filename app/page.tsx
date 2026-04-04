@@ -6,7 +6,6 @@ import { Mail, Phone, MapPin, Link as LinkIcon, ArrowRight, CheckCircle2, Award,
 import Link from "next/link"; // Tambahkan import Link dari next/link
 
 export default function Portfolio() {
-  const [isLoading, setIsLoading] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [stats, setStats] = useState({
     wpm: 121, raw: 125, acc: 97, cons: 79, tests: 666, time: "9h 50m"
@@ -35,7 +34,6 @@ export default function Portfolio() {
       } catch (err) { console.error(err); }
     };
     fetchStats();
-    setTimeout(() => setIsLoading(false), 1500);
   }, []);
 
   const fadeInUp: Variants = {
@@ -47,15 +45,6 @@ export default function Portfolio() {
     <div className="relative bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-blue-500/30 selection:text-white scroll-smooth">
       {/* Efek Spotlight Solid Blue */}
       <div className="absolute top-0 z-0 h-[80vh] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.25),rgba(0,0,0,0))] pointer-events-none"></div>
-      
-      {/* Preloader */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950">
-            <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 1.5 }} className="text-2xl font-light tracking-widest text-neutral-300">APRILLIO BINTANG</motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Navbar Utama (Home) */}
       <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
