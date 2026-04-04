@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Mail, Phone, MapPin, Link as LinkIcon, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, TrendingUp, Medal, Activity, Video, Smartphone, DollarSign, PlayCircle, Code, Camera, Menu, X } from "lucide-react";
+import Link from "next/link"; // Tambahkan import Link dari next/link
 
 export default function Portfolio() {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,8 +13,6 @@ export default function Portfolio() {
   });
 
   useEffect(() => {
-    // Efek Lenis Smooth Scroll sudah dihapus agar scroll touchpad laptop lancar.
-
     const fetchStats = async () => {
       try {
         const res = await fetch("https://api.monkeytype.com/users/Aprillio/profile");
@@ -48,6 +47,7 @@ export default function Portfolio() {
     <div className="relative bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-blue-500/30 selection:text-white scroll-smooth">
       {/* Efek Spotlight Solid Blue */}
       <div className="absolute top-0 z-0 h-[80vh] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.25),rgba(0,0,0,0))] pointer-events-none"></div>
+      
       {/* Preloader */}
       <AnimatePresence>
         {isLoading && (
@@ -60,13 +60,13 @@ export default function Portfolio() {
       {/* Navbar Utama (Home) */}
       <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</a>
+          <Link href="/" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</Link>
 
           {/* Menu Desktop */}
           <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <a href="#about" className="hover:text-white transition-colors">Tentang</a>
-            <a href="/projects" className="hover:text-white transition-colors">Projects</a>
-            <a href="#creator" className="hover:text-white transition-colors">Portofolio Kreator</a>
+            <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
+            <Link href="/creator" className="hover:text-white transition-colors">Portofolio Kreator</Link>
             <a href="#experience" className="hover:text-white transition-colors">Pengalaman</a>
             <a href="#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</a>
           </div>
@@ -90,8 +90,8 @@ export default function Portfolio() {
               className="md:hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 flex flex-col py-4 px-6 gap-4 shadow-xl"
             >
               <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Tentang</a>
-              <a href="/projects" className="text-neutral-300 hover:text-white">Projects</a>
-              <a href="#creator" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Portofolio Kreator</a>
+              <Link href="/projects" className="text-neutral-300 hover:text-white">Projects</Link>
+              <Link href="/creator" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Portofolio Kreator</Link>
               <a href="#experience" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pengalaman</a>
               <a href="#education" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pendidikan & Sertifikasi</a>
               <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-white text-black text-center py-2 rounded-full font-medium mt-2">Connect</a>
@@ -161,120 +161,6 @@ export default function Portfolio() {
           </motion.div>
         </section>
 
-        {/* Digital Content Portfolio Section */}
-        <section id="creator" className="py-32 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#121212] border-y border-neutral-900">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-7xl mx-auto">
-
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <PlayCircle className="w-8 h-8 text-[#00f2fe]" />
-                  <h3 className="text-4xl font-bold tracking-tight text-white">Digital Content Portfolio</h3>
-                </div>
-                <p className="text-neutral-400 max-w-2xl">
-                  Performa kampanye media sosial dan <i>freelance partnership</i> sebagai Creator Camp Member untuk game Honor of Kings.
-                </p>
-              </div>
-              <a href="https://www.tiktok.com/@scarawanderr" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#fe2c55] text-white px-6 py-3 rounded-full hover:bg-[#e0264b] transition-colors font-medium text-sm">
-                TikTok @scarawanderr <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-neutral-900/80 border border-neutral-800 p-8 rounded-3xl relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#fe2c55]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <p className="text-sm font-mono text-neutral-500 uppercase tracking-wider mb-2 relative z-10">Total Video Views</p>
-                <h4 className="text-6xl font-bold text-white mb-2 tracking-tighter relative z-10">3.8M</h4>
-                <p className="text-xs text-[#00f2fe] flex items-center gap-1 relative z-10"><Zap className="w-3 h-3" /> Massive Account Reach</p>
-              </div>
-              <div className="bg-neutral-900/80 border border-neutral-800 p-8 rounded-3xl">
-                <p className="text-sm font-mono text-neutral-500 uppercase tracking-wider mb-2">Total Likes</p>
-                <h4 className="text-5xl font-bold text-white mb-2">245K</h4>
-                <p className="text-xs text-[#fe2c55] flex items-center gap-1"><TrendingUp className="w-3 h-3" /> High Engagement</p>
-              </div>
-              <div className="bg-neutral-900/80 border border-neutral-800 p-8 rounded-3xl">
-                <p className="text-sm font-mono text-neutral-500 uppercase tracking-wider mb-2">Followers Base</p>
-                <h4 className="text-5xl font-bold text-white mb-2">2.1K</h4>
-                <p className="text-xs text-neutral-400 flex items-center gap-1"><Target className="w-3 h-3" /> Niche Gaming Community</p>
-              </div>
-            </div>
-
-            <h4 className="text-2xl font-bold text-white mb-8">Top Performing Campaigns</h4>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Cinematic Review Milady Swaampser", views: "198,000", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063",
-                  bgTheme: "bg-[#fe2c55]", textTheme: "text-[#fe2c55]", hoverTheme: "group-hover:text-[#fe2c55]", borderTheme: "hover:border-[#fe2c55]/50"
-                },
-                {
-                  title: "Epic Defeated Moment", views: "471,400", link: "https://vt.tiktok.com/ZSHhhM7mg/",
-                  bgTheme: "bg-blue-600", textTheme: "text-blue-500", hoverTheme: "group-hover:text-blue-500", borderTheme: "hover:border-blue-500/50"
-                },
-                {
-                  title: "the charm of Onic HoK players", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528",
-                  bgTheme: "bg-purple-600", textTheme: "text-purple-500", hoverTheme: "group-hover:text-purple-500", borderTheme: "hover:border-purple-500/50"
-                }
-              ].map((vid) => (
-                // Kotak luar sekarang jadi <div> biasa, bukan <a> lagi
-                <div key={vid.title} className={`group bg-neutral-900/50 border border-neutral-800 rounded-3xl p-6 transition-all ${vid.borderTheme}`}>
-
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="p-3 bg-neutral-950 rounded-2xl w-fit">
-                      <Video className={`w-6 h-6 ${vid.textTheme}`} />
-                    </div>
-
-                    {/* Tag <a> (link) dipindah KHUSUS ke bagian tombol ini saja */}
-                    <a href={vid.link} target="_blank" rel="noreferrer" className={`p-3 rounded-full text-white ${vid.bgTheme} hover:scale-110 hover:opacity-90 transition-all cursor-pointer`}>
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
-                  </div>
-
-                  <h5 className={`text-xl font-bold text-white mb-2 transition-colors ${vid.hoverTheme}`}>{vid.title}</h5>
-                  <div className="flex items-center gap-2 font-mono text-sm text-neutral-300 font-semibold bg-neutral-950 w-fit px-4 py-2 rounded-xl mt-4">
-                    <PlayCircle className="w-4 h-4 text-neutral-500" /> {vid.views} Views
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Monkeytype Dashboard */}
-        <section id="metrics" className="py-24 px-6 bg-[#0a0a0a] border-b border-neutral-900 overflow-hidden">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-end mb-10">
-              <div className="flex items-center gap-3">
-                <Keyboard className="w-6 h-6 text-neutral-400" />
-                <h3 className="text-2xl font-bold tracking-tight text-neutral-200">Typing Performance</h3>
-              </div>
-              <a href="https://monkeytype.com/profile/Aprillio" target="_blank" rel="noreferrer" className="text-sm font-mono text-neutral-400 bg-neutral-900 px-4 py-2 rounded-full border border-neutral-800 hover:text-white transition-all flex items-center gap-2">
-                <Activity className="w-4 h-4" /> Live Profile
-              </a>
-            </div>
-            {/* Grid 6 Kotak (3 Kolom x 2 Baris) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-              {[
-                { icon: Keyboard, label: "Best WPM", value: stats.wpm },
-                { icon: Zap, label: "Raw WPM", value: stats.raw },
-                { icon: Target, label: "Accuracy", value: `${stats.acc}%` },
-                { icon: Activity, label: "Consistency", value: `${stats.cons}%` },
-                { icon: MousePointerClick, label: "Tests", value: stats.tests },
-                { icon: Clock, label: "Time", value: stats.time },
-              ].map((item) => (
-                <div key={item.label} className="bg-[#121212] border border-[#222] p-5 rounded-2xl flex items-center gap-5 hover:border-neutral-700 transition-colors">
-                  <div className="p-3 bg-[#1e1e1e] rounded-xl">
-                    <item.icon className="w-6 h-6 text-neutral-300" />
-                  </div>
-                  <div>
-                    <h4 className="text-3xl font-bold text-white tracking-tighter">{item.value}</h4>
-                    <p className="text-sm font-medium text-neutral-400">{item.label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
         {/* Experience Section */}
         <section id="experience" className="py-32 px-6 bg-neutral-900/30 border-t border-neutral-900">
           <div className="max-w-7xl mx-auto">
@@ -333,19 +219,19 @@ export default function Portfolio() {
 
         {/* Education Section */}
         <section id="education" className="py-32 px-6 max-w-7xl mx-auto">
-          <motion.h3 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-4xl font-bold mb-16 tracking-tight">Pendidikan & Sertifikasi</motion.h3>
+          <motion.h3 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-4xl font-bold mb-16 tracking-tight text-white">Pendidikan & Sertifikasi</motion.h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl hover:border-neutral-600 transition-colors">
+            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-300">
               <div className="text-neutral-500 font-mono text-sm mb-4">Agu 2025 — Jul 2029 (Expected)</div>
               <h4 className="text-xl font-bold mb-2">S1 Sistem Informasi</h4>
               <p className="text-neutral-400">Universitas Terbuka</p>
             </motion.div>
-            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl hover:border-neutral-600 transition-colors">
+            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-300">
               <div className="text-neutral-500 font-mono text-sm mb-4">Jan 2026 — Jun 2030 (Expected)</div>
               <h4 className="text-xl font-bold mb-2">S1 Manajemen</h4>
               <p className="text-neutral-400">Univ. Siber Muhammadiyah</p>
             </motion.div>
-            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl hover:border-neutral-600 transition-colors">
+            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-300">
               <div className="text-neutral-500 font-mono text-sm mb-4">Jun 2022 — Jun 2024</div>
               <h4 className="text-xl font-bold mb-2">Rekayasa Perangkat Lunak</h4>
               <p className="text-neutral-400">SMK Negeri 4 Kendal</p>
@@ -373,8 +259,44 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* CONNECT WITH ME SECTION - FULL RESTORED */}
-        <section id="contact" className="py-32 px-6 bg-[#0a0a0a] border-t border-neutral-900">
+        {/* Monkeytype Dashboard (Dipindah ke sini) */}
+        <section id="metrics" className="py-24 px-6 bg-[#0a0a0a] border-y border-neutral-900 overflow-hidden">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-6xl mx-auto">
+            <div className="flex justify-between items-end mb-10">
+              <div className="flex items-center gap-3">
+                <Keyboard className="w-6 h-6 text-neutral-400" />
+                <h3 className="text-2xl font-bold tracking-tight text-neutral-200">Typing Performance</h3>
+              </div>
+              <a href="https://monkeytype.com/profile/Aprillio" target="_blank" rel="noreferrer" className="text-sm font-mono text-neutral-400 bg-neutral-900 px-4 py-2 rounded-full border border-neutral-800 hover:text-white transition-all flex items-center gap-2">
+                <Activity className="w-4 h-4" /> Live Profile
+              </a>
+            </div>
+            {/* Grid 6 Kotak (3 Kolom x 2 Baris) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+              {[
+                { icon: Keyboard, label: "Best WPM", value: stats.wpm },
+                { icon: Zap, label: "Raw WPM", value: stats.raw },
+                { icon: Target, label: "Accuracy", value: `${stats.acc}%` },
+                { icon: Activity, label: "Consistency", value: `${stats.cons}%` },
+                { icon: MousePointerClick, label: "Tests", value: stats.tests },
+                { icon: Clock, label: "Time", value: stats.time },
+              ].map((item) => (
+                <div key={item.label} className="bg-[#121212] border border-[#222] p-5 rounded-2xl flex items-center gap-5 hover:border-neutral-700 transition-colors">
+                  <div className="p-3 bg-[#1e1e1e] rounded-xl">
+                    <item.icon className="w-6 h-6 text-neutral-300" />
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold text-white tracking-tighter">{item.value}</h4>
+                    <p className="text-sm font-medium text-neutral-400">{item.label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </section>
+
+        {/* CONNECT WITH ME SECTION */}
+        <section id="contact" className="py-32 px-6 bg-neutral-950">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-4xl mx-auto text-center">
             <h3 className="text-5xl md:text-6xl font-bold mb-8 text-white tracking-tighter">Connect With Me.</h3>
             <p className="text-neutral-400 text-lg mb-12 max-w-2xl mx-auto">

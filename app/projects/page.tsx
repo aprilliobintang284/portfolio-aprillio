@@ -27,7 +27,7 @@ export default function Projects() {
           <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <Link href="/#about" className="hover:text-white transition-colors">Tentang</Link>
             <Link href="/projects" className="text-white border-b border-white pb-1">Projects</Link>
-            <Link href="/#creator" className="hover:text-white transition-colors">Portofolio Kreator</Link>
+            <Link href="/creator" className="hover:text-white transition-colors">Portofolio Kreator</Link>
             <Link href="/#experience" className="hover:text-white transition-colors">Pengalaman</Link>
             <Link href="/#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</Link>
           </div>
@@ -53,8 +53,7 @@ export default function Projects() {
             >
               <Link href="/#about" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Tentang</Link>
               <Link href="/projects" className="text-white font-bold">Projects</Link>
-              <Link href="/#creator" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Portofolio Kreator</Link>
-              <Link href="/#experience" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pengalaman</Link>
+              <Link href="/creator" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Portofolio Kreator</Link><Link href="/#experience" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pengalaman</Link>
               <Link href="/#education" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pendidikan & Sertifikasi</Link>
               <Link href="/" className="bg-white text-black flex items-center justify-center gap-2 py-2 rounded-full font-medium mt-2">
                 <ArrowLeft className="w-4 h-4" /> Kembali ke Home
