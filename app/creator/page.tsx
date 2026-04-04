@@ -24,13 +24,14 @@ export default function CreatorPortfolio() {
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                     <Link href="/" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</Link>
 
-                    {/* Menu Desktop */}
-                    <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
-                        <Link href="/#about" className="hover:text-white transition-colors">Tentang</Link>
-                        <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
-                        <Link href="/creator" className="text-white border-b border-white pb-1">Portofolio Kreator</Link>
-                        <Link href="/#experience" className="hover:text-white transition-colors">Pengalaman</Link>
-                        <Link href="/#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</Link>
+                    {/* Menu Desktop (Gaya Modern Pill) */}
+                    <div className="hidden md:flex items-center space-x-1 text-sm font-medium text-neutral-400">
+                        <Link href="/#about" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Tentang</Link>
+                        <Link href="/projects" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Projects</Link>
+                        {/* Active State: Portofolio Kreator */}
+                        <Link href="/creator" className="px-4 py-2 rounded-full bg-white/10 text-white border border-white/5 shadow-sm transition-all duration-300">Portofolio Kreator</Link>
+                        <Link href="/#experience" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pengalaman</Link>
+                        <Link href="/#education" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pendidikan & Sertifikasi</Link>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -50,14 +51,15 @@ export default function CreatorPortfolio() {
                     {isMobileMenuOpen && (
                         <motion.div
                             initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                            className="md:hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 flex flex-col py-4 px-6 gap-4 shadow-xl"
+                            className="md:hidden absolute top-full left-0 w-full bg-neutral-950 border-b border-neutral-800 flex flex-col py-6 px-6 gap-2 shadow-2xl"
                         >
-                            <Link href="/#about" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Tentang</Link>
-                            <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Projects</Link>
-                            <Link href="/creator" className="text-white font-bold">Portofolio Kreator</Link>
-                            <Link href="/#experience" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pengalaman</Link>
-                            <Link href="/#education" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pendidikan & Sertifikasi</Link>
-                            <Link href="/" className="bg-white text-black flex items-center justify-center gap-2 py-2 rounded-full font-medium mt-2">
+                            <Link href="/#about" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Tentang</Link>
+                            <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Projects</Link>
+                            {/* Di halaman ini, Portofolio Kreator yang 'aktif' */}
+                            <Link href="/creator" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 bg-neutral-800 text-white rounded-xl font-medium shadow-sm transition-all">Portofolio Kreator</Link>
+                            <Link href="/#experience" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Pengalaman</Link>
+                            <Link href="/#education" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Pendidikan & Sertifikasi</Link>
+                            <Link href="/" className="bg-white text-black flex items-center justify-center gap-2 py-3 rounded-xl font-medium mt-4 hover:bg-neutral-200 transition-all">
                                 <ArrowLeft className="w-4 h-4" /> Kembali ke Home
                             </Link>
                         </motion.div>

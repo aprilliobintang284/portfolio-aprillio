@@ -51,13 +51,13 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</Link>
 
-          {/* Menu Desktop */}
-          <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
-            <a href="#about" className="hover:text-white transition-colors">Tentang</a>
-            <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
-            <Link href="/creator" className="hover:text-white transition-colors">Portofolio Kreator</Link>
-            <a href="#experience" className="hover:text-white transition-colors">Pengalaman</a>
-            <a href="#education" className="hover:text-white transition-colors">Pendidikan & Sertifikasi</a>
+          {/* Menu Desktop (Gaya Modern Pill) */}
+          <div className="hidden md:flex items-center space-x-1 text-sm font-medium text-neutral-400">
+            <a href="#about" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Tentang</a>
+            <Link href="/projects" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Projects</Link>
+            <Link href="/creator" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Portofolio Kreator</Link>
+            <a href="#experience" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pengalaman</a>
+            <a href="#education" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pendidikan & Sertifikasi</a>
           </div>
 
           <div className="flex items-center gap-4">
@@ -284,7 +284,7 @@ export default function Portfolio() {
           </motion.div>
         </section>
 
-{/* CONNECT WITH ME SECTION */}
+        {/* CONNECT WITH ME SECTION */}
         <section id="contact" className="relative py-32 px-6 bg-neutral-950 overflow-hidden">
           {/* Efek Spotlight Biru Halus dari Bawah */}
           <div className="absolute bottom-0 left-0 z-0 h-full w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_120%,rgba(59,130,246,0.15),rgba(0,0,0,0))] pointer-events-none"></div>
