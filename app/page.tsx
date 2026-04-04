@@ -284,8 +284,10 @@ export default function Portfolio() {
           </motion.div>
         </section>
 
-        {/* CONNECT WITH ME SECTION */}
-        <section id="contact" className="py-32 px-6 bg-neutral-950">
+{/* CONNECT WITH ME SECTION */}
+        <section id="contact" className="relative py-32 px-6 bg-neutral-950 overflow-hidden">
+          {/* Efek Spotlight Biru Halus dari Bawah */}
+          <div className="absolute bottom-0 left-0 z-0 h-full w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_120%,rgba(59,130,246,0.15),rgba(0,0,0,0))] pointer-events-none"></div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-4xl mx-auto text-center">
             <h3 className="text-5xl md:text-6xl font-bold mb-8 text-white tracking-tighter">Connect With Me.</h3>
             <p className="text-neutral-400 text-lg mb-12 max-w-2xl mx-auto">
