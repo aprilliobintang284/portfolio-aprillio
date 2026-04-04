@@ -13,7 +13,7 @@ export default function Portfolio() {
 
   useEffect(() => {
     // Efek Lenis Smooth Scroll sudah dihapus agar scroll touchpad laptop lancar.
-    
+
     const fetchStats = async () => {
       try {
         const res = await fetch("https://api.monkeytype.com/users/Aprillio/profile");
@@ -45,7 +45,9 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-white selection:text-black scroll-smooth">
+    <div className="relative bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-blue-500/30 selection:text-white scroll-smooth">
+      {/* Efek Spotlight Solid Blue */}
+      <div className="absolute top-0 z-0 h-[80vh] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.25),rgba(0,0,0,0))] pointer-events-none"></div>
       {/* Preloader */}
       <AnimatePresence>
         {isLoading && (
@@ -55,11 +57,11 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
 
-{/* Navbar Utama (Home) */}
+      {/* Navbar Utama (Home) */}
       <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</a>
-          
+
           {/* Menu Desktop */}
           <div className="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
             <a href="#about" className="hover:text-white transition-colors">Tentang</a>
@@ -70,8 +72,9 @@ export default function Portfolio() {
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#contact" className="hidden md:block text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-neutral-200 transition-colors">Connect</a>
-            
+            <a href="#contact" className="hidden md:block text-sm font-medium bg-neutral-950/50 border border-neutral-700 text-neutral-300 px-6 py-2.5 rounded-full hover:border-blue-500 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300">
+              Connect
+            </a>
             {/* Tombol Hamburger Khusus Mobile */}
             <button className="md:hidden text-neutral-300 hover:text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -82,7 +85,7 @@ export default function Portfolio() {
         {/* Dropdown Menu Mobile */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
               className="md:hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 flex flex-col py-4 px-6 gap-4 shadow-xl"
             >
@@ -102,23 +105,23 @@ export default function Portfolio() {
         <section className="relative min-h-[90vh] flex items-center px-6 max-w-7xl mx-auto pt-10">
           <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.2 } } }} className="grid lg:grid-cols-2 gap-12 items-center w-full">
             <div>
-                <motion.p variants={fadeInUp} className="text-neutral-400 mb-4 text-sm font-mono tracking-wide uppercase">Portofolio</motion.p>
-                <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-white">
+              <motion.p variants={fadeInUp} className="text-neutral-400 mb-4 text-sm font-mono tracking-wide uppercase">Portofolio</motion.p>
+              <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-white pb-2">
                 Aprillio Bintang <br /><span className="text-neutral-500">Perdana.</span>
-                </motion.h1>
-                <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-light text-neutral-300 mb-8 leading-snug">
-                QA Specialist & <br/>Freelance Content Creator.
-                </motion.h2>
-                <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
+              </motion.h1>
+              <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-light text-neutral-300 mb-8 leading-snug">
+                QA Specialist & <br />Freelance Content Creator.
+              </motion.h2>
+              <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
                 <a href="#experience" className="flex items-center gap-2 border border-neutral-700 rounded-full px-6 py-3 hover:bg-neutral-800 transition-colors">
-                    Lihat Pekerjaan <ArrowRight className="w-4 h-4" />
+                  Lihat Pekerjaan <ArrowRight className="w-4 h-4" />
                 </a>
-                </motion.div>
+              </motion.div>
             </div>
-            
+
             <motion.div variants={fadeInUp} className="hidden lg:block relative w-full max-w-md mx-auto aspect-[4/5] rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-800 group">
-                <img src="/profile.jpg" alt="Aprillio Bintang" className="object-cover w-full h-full filter grayscale group-hover:grayscale-0 transition-all duration-700"/>
-                <div className="absolute inset-0 border border-white/10 rounded-3xl z-10 pointer-events-none"></div>
+              <img src="/profile.jpg" alt="Aprillio Bintang" className="object-cover w-full h-full filter grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <div className="absolute inset-0 border border-white/10 rounded-3xl z-10 pointer-events-none"></div>
             </motion.div>
           </motion.div>
         </section>
@@ -161,7 +164,7 @@ export default function Portfolio() {
         {/* Digital Content Portfolio Section */}
         <section id="creator" className="py-32 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#121212] border-y border-neutral-900">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-7xl mx-auto">
-            
+
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -182,56 +185,56 @@ export default function Portfolio() {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#fe2c55]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <p className="text-sm font-mono text-neutral-500 uppercase tracking-wider mb-2 relative z-10">Total Video Views</p>
                 <h4 className="text-6xl font-bold text-white mb-2 tracking-tighter relative z-10">3.8M</h4>
-                <p className="text-xs text-[#00f2fe] flex items-center gap-1 relative z-10"><Zap className="w-3 h-3"/> Massive Account Reach</p>
+                <p className="text-xs text-[#00f2fe] flex items-center gap-1 relative z-10"><Zap className="w-3 h-3" /> Massive Account Reach</p>
               </div>
               <div className="bg-neutral-900/80 border border-neutral-800 p-8 rounded-3xl">
                 <p className="text-sm font-mono text-neutral-500 uppercase tracking-wider mb-2">Total Likes</p>
                 <h4 className="text-5xl font-bold text-white mb-2">245K</h4>
-                <p className="text-xs text-[#fe2c55] flex items-center gap-1"><TrendingUp className="w-3 h-3"/> High Engagement</p>
+                <p className="text-xs text-[#fe2c55] flex items-center gap-1"><TrendingUp className="w-3 h-3" /> High Engagement</p>
               </div>
               <div className="bg-neutral-900/80 border border-neutral-800 p-8 rounded-3xl">
                 <p className="text-sm font-mono text-neutral-500 uppercase tracking-wider mb-2">Followers Base</p>
                 <h4 className="text-5xl font-bold text-white mb-2">2.1K</h4>
-                <p className="text-xs text-neutral-400 flex items-center gap-1"><Target className="w-3 h-3"/> Niche Gaming Community</p>
+                <p className="text-xs text-neutral-400 flex items-center gap-1"><Target className="w-3 h-3" /> Niche Gaming Community</p>
               </div>
             </div>
 
             <h4 className="text-2xl font-bold text-white mb-8">Top Performing Campaigns</h4>
-          <div className="grid md:grid-cols-3 gap-6">
-                {[
-                    { 
-                        title: "Cinematic Review Milady Swaampser", views: "198,000", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063", 
-                        bgTheme: "bg-[#fe2c55]", textTheme: "text-[#fe2c55]", hoverTheme: "group-hover:text-[#fe2c55]", borderTheme: "hover:border-[#fe2c55]/50" 
-                    },
-                    { 
-                        title: "Epic Defeated Moment", views: "471,400", link: "https://vt.tiktok.com/ZSHhhM7mg/", 
-                        bgTheme: "bg-blue-600", textTheme: "text-blue-500", hoverTheme: "group-hover:text-blue-500", borderTheme: "hover:border-blue-500/50" 
-                    },
-                    { 
-                        title: "the charm of Onic HoK players", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528", 
-                        bgTheme: "bg-purple-600", textTheme: "text-purple-500", hoverTheme: "group-hover:text-purple-500", borderTheme: "hover:border-purple-500/50" 
-                    }
-                ].map((vid) => (
-                    // Kotak luar sekarang jadi <div> biasa, bukan <a> lagi
-                    <div key={vid.title} className={`group bg-neutral-900/50 border border-neutral-800 rounded-3xl p-6 transition-all ${vid.borderTheme}`}>
-                        
-                        <div className="flex justify-between items-start mb-6">
-                            <div className="p-3 bg-neutral-950 rounded-2xl w-fit">
-                                <Video className={`w-6 h-6 ${vid.textTheme}`} />
-                            </div>
-                            
-                            {/* Tag <a> (link) dipindah KHUSUS ke bagian tombol ini saja */}
-                            <a href={vid.link} target="_blank" rel="noreferrer" className={`p-3 rounded-full text-white ${vid.bgTheme} hover:scale-110 hover:opacity-90 transition-all cursor-pointer`}>
-                                <ExternalLink className="w-5 h-5" />
-                            </a>
-                        </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Cinematic Review Milady Swaampser", views: "198,000", link: "https://www.tiktok.com/@scarawanderr/video/7565946037865549063",
+                  bgTheme: "bg-[#fe2c55]", textTheme: "text-[#fe2c55]", hoverTheme: "group-hover:text-[#fe2c55]", borderTheme: "hover:border-[#fe2c55]/50"
+                },
+                {
+                  title: "Epic Defeated Moment", views: "471,400", link: "https://vt.tiktok.com/ZSHhhM7mg/",
+                  bgTheme: "bg-blue-600", textTheme: "text-blue-500", hoverTheme: "group-hover:text-blue-500", borderTheme: "hover:border-blue-500/50"
+                },
+                {
+                  title: "the charm of Onic HoK players", views: "367,700", link: "https://www.tiktok.com/@scarawanderr/video/7510189240261643528",
+                  bgTheme: "bg-purple-600", textTheme: "text-purple-500", hoverTheme: "group-hover:text-purple-500", borderTheme: "hover:border-purple-500/50"
+                }
+              ].map((vid) => (
+                // Kotak luar sekarang jadi <div> biasa, bukan <a> lagi
+                <div key={vid.title} className={`group bg-neutral-900/50 border border-neutral-800 rounded-3xl p-6 transition-all ${vid.borderTheme}`}>
 
-                        <h5 className={`text-xl font-bold text-white mb-2 transition-colors ${vid.hoverTheme}`}>{vid.title}</h5>
-                        <div className="flex items-center gap-2 font-mono text-sm text-neutral-300 font-semibold bg-neutral-950 w-fit px-4 py-2 rounded-xl mt-4">
-                            <PlayCircle className="w-4 h-4 text-neutral-500" /> {vid.views} Views
-                        </div>
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="p-3 bg-neutral-950 rounded-2xl w-fit">
+                      <Video className={`w-6 h-6 ${vid.textTheme}`} />
                     </div>
-                ))}
+
+                    {/* Tag <a> (link) dipindah KHUSUS ke bagian tombol ini saja */}
+                    <a href={vid.link} target="_blank" rel="noreferrer" className={`p-3 rounded-full text-white ${vid.bgTheme} hover:scale-110 hover:opacity-90 transition-all cursor-pointer`}>
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  </div>
+
+                  <h5 className={`text-xl font-bold text-white mb-2 transition-colors ${vid.hoverTheme}`}>{vid.title}</h5>
+                  <div className="flex items-center gap-2 font-mono text-sm text-neutral-300 font-semibold bg-neutral-950 w-fit px-4 py-2 rounded-xl mt-4">
+                    <PlayCircle className="w-4 h-4 text-neutral-500" /> {vid.views} Views
+                  </div>
+                </div>
+              ))}
             </div>
           </motion.div>
         </section>
@@ -239,7 +242,7 @@ export default function Portfolio() {
         {/* Monkeytype Dashboard */}
         <section id="metrics" className="py-24 px-6 bg-[#0a0a0a] border-b border-neutral-900 overflow-hidden">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-6xl mx-auto">
-             <div className="flex justify-between items-end mb-10">
+            <div className="flex justify-between items-end mb-10">
               <div className="flex items-center gap-3">
                 <Keyboard className="w-6 h-6 text-neutral-400" />
                 <h3 className="text-2xl font-bold tracking-tight text-neutral-200">Typing Performance</h3>
@@ -248,24 +251,24 @@ export default function Portfolio() {
                 <Activity className="w-4 h-4" /> Live Profile
               </a>
             </div>
-{/* Grid 6 Kotak (3 Kolom x 2 Baris) */}
+            {/* Grid 6 Kotak (3 Kolom x 2 Baris) */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
               {[
-                  { icon: Keyboard, label: "Best WPM", value: stats.wpm },
-                  { icon: Zap, label: "Raw WPM", value: stats.raw },
-                  { icon: Target, label: "Accuracy", value: `${stats.acc}%` },
-                  { icon: Activity, label: "Consistency", value: `${stats.cons}%` },
-                  { icon: MousePointerClick, label: "Tests", value: stats.tests },
-                  { icon: Clock, label: "Time", value: stats.time },
+                { icon: Keyboard, label: "Best WPM", value: stats.wpm },
+                { icon: Zap, label: "Raw WPM", value: stats.raw },
+                { icon: Target, label: "Accuracy", value: `${stats.acc}%` },
+                { icon: Activity, label: "Consistency", value: `${stats.cons}%` },
+                { icon: MousePointerClick, label: "Tests", value: stats.tests },
+                { icon: Clock, label: "Time", value: stats.time },
               ].map((item) => (
                 <div key={item.label} className="bg-[#121212] border border-[#222] p-5 rounded-2xl flex items-center gap-5 hover:border-neutral-700 transition-colors">
-                    <div className="p-3 bg-[#1e1e1e] rounded-xl">
-                        <item.icon className="w-6 h-6 text-neutral-300"/>
-                    </div>
-                    <div>
-                        <h4 className="text-3xl font-bold text-white tracking-tighter">{item.value}</h4>
-                        <p className="text-sm font-medium text-neutral-400">{item.label}</p>
-                    </div>
+                  <div className="p-3 bg-[#1e1e1e] rounded-xl">
+                    <item.icon className="w-6 h-6 text-neutral-300" />
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold text-white tracking-tighter">{item.value}</h4>
+                    <p className="text-sm font-medium text-neutral-400">{item.label}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -277,7 +280,7 @@ export default function Portfolio() {
           <div className="max-w-7xl mx-auto">
             <motion.h3 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-4xl font-bold mb-16 tracking-tight text-white">Pengalaman Kerja</motion.h3>
             <div className="space-y-12">
-              
+
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group border-b border-neutral-800 pb-12">
                 <div className="grid md:grid-cols-4 gap-6">
                   <div className="col-span-1 text-neutral-500 font-mono text-sm pt-1 uppercase tracking-widest">Jun 2025 — Present</div>
@@ -350,61 +353,61 @@ export default function Portfolio() {
           </div>
 
           <div id="certificates" className="grid md:grid-cols-2 gap-6">
-              {[
-                { title: "Explore the possibilities with Microsoft 365 Copilot", issuer: "Microsoft", date: "April 2026", file: "/cert-copilot.pdf" },
-                { title: "Pelatihan Dasar Microsoft 365 Copilot", issuer: "Jobstreet & Microsoft", date: "April 2026", file: "/cert-jobstreet-copilot.pdf" },
-                { title: "Sertifikat Analisis Data Excel", issuer: "Microsoft & Jobstreet", date: "April 2026", file: "/cert-excel.pdf" },
-                { title: "QA Test Technique", issuer: "MySkill", date: "April 2026", file: "/cert-qa-technique.pdf" },
-                { title: "Quality Assurance Introduction", issuer: "MySkill", date: "Februari 2025", file: "/cert-qa-intro.pdf" }
-              ].map((cert, index) => (
-                <motion.a href={cert.file} target="_blank" rel="noopener noreferrer" key={index} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group relative flex items-start gap-4 p-6 bg-neutral-900/50 border border-neutral-800 rounded-2xl hover:border-neutral-500 transition-all overflow-hidden">
-                  <div className="p-3 bg-neutral-950 border border-neutral-800 rounded-xl group-hover:scale-110 transition-transform"><Award className="w-6 h-6 text-neutral-300" /></div>
-                  <div className="pr-8">
-                    <h4 className="text-lg font-semibold text-white mb-1 group-hover:text-blue-400 transition-colors">{cert.title}</h4>
-                    <p className="text-neutral-400 text-sm mb-2">{cert.issuer}</p>
-                    <span className="text-xs font-mono text-neutral-500 bg-neutral-950 px-3 py-1 rounded-full border border-neutral-800">{cert.date}</span>
-                  </div>
-                  <ExternalLink className="absolute top-6 right-6 w-5 h-5 text-neutral-500 opacity-0 group-hover:opacity-100 group-hover:text-blue-400 transition-all" />
-                </motion.a>
-              ))}
+            {[
+              { title: "Explore the possibilities with Microsoft 365 Copilot", issuer: "Microsoft", date: "April 2026", file: "/cert-copilot.pdf" },
+              { title: "Pelatihan Dasar Microsoft 365 Copilot", issuer: "Jobstreet & Microsoft", date: "April 2026", file: "/cert-jobstreet-copilot.pdf" },
+              { title: "Sertifikat Analisis Data Excel", issuer: "Microsoft & Jobstreet", date: "April 2026", file: "/cert-excel.pdf" },
+              { title: "QA Test Technique", issuer: "MySkill", date: "April 2026", file: "/cert-qa-technique.pdf" },
+              { title: "Quality Assurance Introduction", issuer: "MySkill", date: "Februari 2025", file: "/cert-qa-intro.pdf" }
+            ].map((cert, index) => (
+              <motion.a href={cert.file} target="_blank" rel="noopener noreferrer" key={index} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group relative flex items-start gap-4 p-6 bg-neutral-900/50 border border-neutral-800 rounded-2xl hover:border-neutral-500 transition-all overflow-hidden">
+                <div className="p-3 bg-neutral-950 border border-neutral-800 rounded-xl group-hover:scale-110 transition-transform"><Award className="w-6 h-6 text-neutral-300" /></div>
+                <div className="pr-8">
+                  <h4 className="text-lg font-semibold text-white mb-1 group-hover:text-blue-400 transition-colors">{cert.title}</h4>
+                  <p className="text-neutral-400 text-sm mb-2">{cert.issuer}</p>
+                  <span className="text-xs font-mono text-neutral-500 bg-neutral-950 px-3 py-1 rounded-full border border-neutral-800">{cert.date}</span>
+                </div>
+                <ExternalLink className="absolute top-6 right-6 w-5 h-5 text-neutral-500 opacity-0 group-hover:opacity-100 group-hover:text-blue-400 transition-all" />
+              </motion.a>
+            ))}
           </div>
         </section>
 
         {/* CONNECT WITH ME SECTION - FULL RESTORED */}
         <section id="contact" className="py-32 px-6 bg-[#0a0a0a] border-t border-neutral-900">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-4xl mx-auto text-center">
-                <h3 className="text-5xl md:text-6xl font-bold mb-8 text-white tracking-tighter">Connect With Me.</h3>
-                <p className="text-neutral-400 text-lg mb-12 max-w-2xl mx-auto">
-                    Selalu terbuka untuk tawaran profesional, kolaborasi QA, maupun partnership pembuatan konten digital game. Let's build something great together.
-                </p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-4xl mx-auto text-center">
+            <h3 className="text-5xl md:text-6xl font-bold mb-8 text-white tracking-tighter">Connect With Me.</h3>
+            <p className="text-neutral-400 text-lg mb-12 max-w-2xl mx-auto">
+              Selalu terbuka untuk tawaran profesional, kolaborasi QA, maupun partnership pembuatan konten digital game. Let's build something great together.
+            </p>
 
-                <div className="flex flex-wrap justify-center gap-4 mb-16">
-                    <a href="https://github.com/aprilliobintang455-boop" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-white rounded-full transition-all group">
-                        <Code className="w-5 h-5 text-neutral-400 group-hover:text-white" />
-                        <span className="font-semibold text-neutral-300 group-hover:text-white">GitHub</span>
-                    </a>
-                    
-                    <a href="https://linkedin.com/in/aprilliobintang" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#0a66c2] rounded-full transition-all group">
-                        <LinkIcon className="w-5 h-5 text-neutral-400 group-hover:text-[#0a66c2]" />
-                        <span className="font-semibold text-neutral-300 group-hover:text-white">LinkedIn</span>
-                    </a>
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              <a href="https://github.com/aprilliobintang455-boop" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-white rounded-full transition-all group">
+                <Code className="w-5 h-5 text-neutral-400 group-hover:text-white" />
+                <span className="font-semibold text-neutral-300 group-hover:text-white">GitHub</span>
+              </a>
 
-                    <a href="https://www.tiktok.com/@scarawanderr" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#fe2c55] rounded-full transition-all group">
-                        <Video className="w-5 h-5 text-neutral-400 group-hover:text-[#fe2c55]" />
-                        <span className="font-semibold text-neutral-300 group-hover:text-white">TikTok</span>
-                    </a>
+              <a href="https://linkedin.com/in/aprilliobintang" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#0a66c2] rounded-full transition-all group">
+                <LinkIcon className="w-5 h-5 text-neutral-400 group-hover:text-[#0a66c2]" />
+                <span className="font-semibold text-neutral-300 group-hover:text-white">LinkedIn</span>
+              </a>
 
-                    <a href="https://www.instagram.com/aprillio.bintang/" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#e1306c] rounded-full transition-all group">
-                        <Camera className="w-5 h-5 text-neutral-400 group-hover:text-[#e1306c]" />
-                        <span className="font-semibold text-neutral-300 group-hover:text-white">Instagram</span>
-                    </a>
-                    
-                    <a href="mailto:aprilliobintang455@gmail.com" className="flex items-center gap-3 px-6 py-4 bg-white text-black hover:bg-neutral-200 rounded-full transition-all group">
-                        <Mail className="w-5 h-5" />
-                        <span className="font-bold text-black">Email Me</span>
-                    </a>
-                </div>
-            </motion.div>
+              <a href="https://www.tiktok.com/@scarawanderr" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#fe2c55] rounded-full transition-all group">
+                <Video className="w-5 h-5 text-neutral-400 group-hover:text-[#fe2c55]" />
+                <span className="font-semibold text-neutral-300 group-hover:text-white">TikTok</span>
+              </a>
+
+              <a href="https://www.instagram.com/aprillio.bintang/" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#e1306c] rounded-full transition-all group">
+                <Camera className="w-5 h-5 text-neutral-400 group-hover:text-[#e1306c]" />
+                <span className="font-semibold text-neutral-300 group-hover:text-white">Instagram</span>
+              </a>
+
+              <a href="mailto:aprilliobintang455@gmail.com" className="flex items-center gap-3 px-6 py-4 bg-white text-black hover:bg-neutral-200 rounded-full transition-all group">
+                <Mail className="w-5 h-5" />
+                <span className="font-bold text-black">Email Me</span>
+              </a>
+            </div>
+          </motion.div>
         </section>
       </main>
 
