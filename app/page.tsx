@@ -206,25 +206,80 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Education Section */}
-        <section id="education" className="py-32 px-6 max-w-7xl mx-auto">
-          <motion.h3 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-4xl font-bold mb-16 tracking-tight text-white">Pendidikan & Sertifikasi</motion.h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-300">
-              <div className="text-neutral-500 font-mono text-sm mb-4">Agu 2025 — Jul 2029 (Expected)</div>
-              <h4 className="text-xl font-bold mb-2">S1 Sistem Informasi</h4>
-              <p className="text-neutral-400">Universitas Terbuka</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-300">
-              <div className="text-neutral-500 font-mono text-sm mb-4">Jan 2026 — Jun 2030 (Expected)</div>
-              <h4 className="text-xl font-bold mb-2">S1 Manajemen</h4>
-              <p className="text-neutral-400">Univ. Siber Muhammadiyah</p>
-            </motion.div>
-            <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-300">
-              <div className="text-neutral-500 font-mono text-sm mb-4">Jun 2022 — Jun 2024</div>
-              <h4 className="text-xl font-bold mb-2">Rekayasa Perangkat Lunak</h4>
-              <p className="text-neutral-400">SMK Negeri 4 Kendal</p>
-            </motion.div>
+{/* Education Section - Brighter & Mobile-Friendly Logos */}
+        <section id="education" className="py-32 px-6 max-w-7xl mx-auto relative">
+          
+          <motion.h3 
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} 
+            className="text-4xl font-bold mb-16 tracking-tight text-white relative z-10"
+          >
+            Pendidikan & Sertifikasi
+          </motion.h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 relative z-10">
+            {[
+              { 
+                year: "Agu 2025 — Jul 2029 (Expected)", 
+                title: "S1 Sistem Informasi", 
+                school: "Universitas Terbuka", 
+                link: "https://www.ut.ac.id/",
+                logo: "/images/logo-ut.png" 
+              },
+              { 
+                year: "Jan 2026 — Jun 2030 (Expected)", 
+                title: "S1 Manajemen", 
+                school: "Univ. Siber Muhammadiyah", 
+                link: "https://sibermu.ac.id/",
+                logo: "/images/logo-mu.png"
+              },
+              { 
+                year: "Jun 2022 — Jun 2024", 
+                title: "Rekayasa Perangkat Lunak", 
+                school: "SMK Negeri 4 Kendal", 
+                link: "https://smkn4kendal.sch.id/",
+                logo: "/images/logo-smk.png"
+              }
+            ].map((edu, index) => (
+              <motion.a 
+                key={index}
+                href={edu.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={fadeInUp} 
+                initial="hidden" 
+                whileInView="visible" 
+                viewport={{ once: true }} 
+                className="group relative bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500/50 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+              >
+                {/* 1. Watermark Logo - Visibilitas Ditingkatkan (Brighter Base & Full Hover) */}
+                <div className="absolute -right-5 -bottom-5 w-48 h-48 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 pointer-events-none">
+                  <img 
+                    src={edu.logo} 
+                    alt={`Logo ${edu.school}`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                
+                {/* 2. Efek Cahaya Sudut saat Hover */}
+                <div className="absolute -right-8 -top-8 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
+                
+                {/* 3. Konten Teks (relative z-10 agar di atas logo) */}
+                <div className="relative z-10">
+                  <div className="text-neutral-500 font-mono text-xs mb-4 flex justify-between items-center">
+                    <span>{edu.year}</span>
+                    <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all text-blue-400" />
+                  </div>
+                  {/* Warna Teks Judul dibuat lebih terang (dari pb-2 ke pb-0 agar seragam) */}
+                  <h4 className="text-2xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors tracking-tight">{edu.title}</h4>
+                  <p className="text-neutral-300 font-medium text-lg">{edu.school}</p>
+                  
+                  {/* Indikator Klik */}
+                  <div className="mt-8 flex items-center gap-2 text-xs font-semibold text-blue-500/0 group-hover:text-blue-500/100 transition-all duration-500">
+                    Visit Website <ArrowRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </motion.a>
+            ))}
           </div>
 
           <div id="certificates" className="grid md:grid-cols-2 gap-6">
