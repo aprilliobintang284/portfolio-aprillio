@@ -252,7 +252,7 @@ export default function Portfolio() {
                 className="group relative bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500/50 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
               >
                 {/* 1. Watermark Logo - Visibilitas Ditingkatkan (Brighter Base & Full Hover) */}
-                <div className="absolute -right-5 -bottom-5 w-48 h-48 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 pointer-events-none">
+                <div className="absolute -right-1 -bottom-1 w-48 h-48 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 pointer-events-none">
                   <img 
                     src={edu.logo} 
                     alt={`Logo ${edu.school}`}
