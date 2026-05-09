@@ -4,8 +4,10 @@ import { motion, type Variants } from "framer-motion";
 import { Mail, Link as LI, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, Activity, Video, Camera, Code, Sparkles } from "lucide-react";
 import Navbar from "./components/Navbar";
 
-const v: Variants = { hidden:{opacity:0,y:28}, show:{opacity:1,y:0,transition:{duration:.70,ease:[.22,1,.36,1]}} };
-const s: Variants = { show:{transition:{staggerChildren:.09}} };
+const v: Variants = { hidden:{opacity:0,y:32}, show:{opacity:1,y:0,transition:{duration:.72,ease:[.22,1,.36,1]}} };
+const vScale: Variants = { hidden:{opacity:0,y:24,scale:.97}, show:{opacity:1,y:0,scale:1,transition:{duration:.70,ease:[.22,1,.36,1]}} };
+const s: Variants = { hidden:{}, show:{transition:{staggerChildren:.10}} };
+const VP = { once: true, margin: "-80px" } as const;
 
 const W = { maxWidth:960, margin:"0 auto", padding:"0 24px" };
 const SEC = { padding:"96px 0", position:"relative" as const };
@@ -102,7 +104,7 @@ export default function Home() {
         <section id="about" style={{...SEC}}>
           <div style={W}>
             <span className="section-number">01</span>
-            <motion.div initial="hidden" animate="show" variants={s}>
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}>
               <motion.div variants={v} style={{maxWidth:620,marginBottom:48}}>
                 <span className="eyebrow" style={{marginBottom:16}}>01 — Tentang</span>
                 <h2 style={{fontWeight:900,fontSize:"clamp(30px,4vw,50px)",letterSpacing:"-.03em",lineHeight:1.08,marginBottom:20}}>
@@ -148,7 +150,7 @@ export default function Home() {
         <section id="experience" style={{...SEC}}>
           <div style={W}>
             <span className="section-number">02</span>
-            <motion.div initial="hidden" animate="show" variants={v} style={{marginBottom:48}}>
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v} style={{marginBottom:48}}>
               <span className="eyebrow" style={{marginBottom:16}}>02 — Pengalaman</span>
               <h2 style={{fontWeight:900,fontSize:"clamp(30px,4vw,50px)",letterSpacing:"-.03em"}}>
                 Rekam <span className="grad-orange">Jejak.</span>
@@ -163,7 +165,7 @@ export default function Home() {
                 {p:"Agu 2024 — Jun 2025",r:"Internship Monitoring Server",c:"PT. BULLION ECOSYSTEM INTERNATIONAL · Bogor",tag:"Completed",tc:"rgba(255,255,255,.04)",tb:"rgba(255,255,255,.09)",tt:"rgba(245,240,232,.35)",
                  i:["Monitoring sistem produksi secara berkala.","Analisis error transaksi dan penanganan kendala operasional.","Dokumentasi hasil monitoring ke laporan teknis."]},
               ].map((exp,i)=>(
-                <motion.div key={i} initial="hidden" animate="show" variants={v} className="g-card" style={{padding:32}}>
+                <motion.div key={i} initial="hidden" whileInView="show" viewport={VP} variants={vScale} className="g-card" style={{padding:32}}>
                   <div className="top-bar"/>
                   <div style={{display:"flex",gap:32,flexWrap:"wrap" as const}}>
                     <div style={{minWidth:160,flexShrink:0,display:"flex",flexDirection:"column" as const,gap:10}}>
@@ -195,7 +197,7 @@ export default function Home() {
         <section id="education" style={{...SEC}}>
           <div style={W}>
             <span className="section-number">03</span>
-            <motion.div initial="hidden" animate="show" variants={v} style={{marginBottom:48}}>
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v} style={{marginBottom:48}}>
               <span className="eyebrow" style={{marginBottom:16}}>03 — Pendidikan</span>
               <h2 style={{fontWeight:900,fontSize:"clamp(30px,4vw,50px)",letterSpacing:"-.03em"}}>
                 Pendidikan &amp; <span className="grad-orange">Sertifikasi.</span>
@@ -204,7 +206,7 @@ export default function Home() {
             <div className="grid-3col" style={{marginBottom:16}}>
               {edu.map((e,i)=>(
                 <motion.a key={i} href={e.href} target="_blank" rel="noopener noreferrer"
-                  initial="hidden" animate="show" variants={v}
+                  initial="hidden" whileInView="show" viewport={VP} variants={vScale}
                   className="g-card" style={{padding:24,display:"block",textDecoration:"none"}}>
                   <div className="top-bar"/>
                   <p style={{fontSize:10.5,fontFamily:"monospace",color:"rgba(245,240,232,.28)",marginBottom:14}}>{e.yr}</p>
@@ -216,7 +218,7 @@ export default function Home() {
             <div className="grid-2col-cert">
               {certs.map((c,i)=>(
                 <motion.a key={i} href={c.f} target="_blank"
-                  initial="hidden" animate="show" variants={v}
+                  initial="hidden" whileInView="show" viewport={VP} variants={vScale}
                   className="g-card" style={{padding:20,display:"flex",alignItems:"flex-start",gap:16,textDecoration:"none",position:"relative"}}>
                   <div className="top-bar"/>
                   {/* External link badge top-right */}
@@ -242,7 +244,7 @@ export default function Home() {
         {/* STATS */}
         <section id="metrics" style={{...SEC, paddingBottom:80}}>
           <div style={W}>
-            <motion.div initial="hidden" animate="show" variants={v}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v}
               style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap" as const,gap:16,marginBottom:40}}>
               <div>
                 <span className="eyebrow" style={{marginBottom:12}}>Metrics</span>
@@ -256,7 +258,7 @@ export default function Home() {
             </motion.div>
 
             {/* Hero WPM card */}
-            <motion.div initial="hidden" animate="show" variants={v}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={vScale}
               className="g-card"
               style={{padding:"36px 40px",marginBottom:16,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap" as const,gap:24,position:"relative"}}>
               <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}} />
@@ -282,7 +284,7 @@ export default function Home() {
                 {Icon:Keyboard,label:"Tests Completed",val:stats.tests,sub:"Selesai diuji"},
                 {Icon:Clock,label:"Time Typed",val:stats.time,sub:"Total durasi"},
               ] as {Icon:React.ElementType,label:string,val:string|number,sub:string}[]).map(({Icon,label,val,sub},i)=>(
-                <motion.div key={i} initial="hidden" animate="show" variants={v}
+                <motion.div key={i} initial="hidden" whileInView="show" viewport={VP} variants={vScale}
                   className="g-card"
                   style={{padding:"28px 32px",display:"flex",alignItems:"center",gap:24}}>
                   <div className="top-bar"/>
@@ -303,7 +305,7 @@ export default function Home() {
         {/* CONTACT */}
         <section id="contact" style={{padding:"140px 24px",position:"relative",overflow:"hidden"}}>
           <div style={{position:"absolute",width:560,height:560,borderRadius:"50%",background:"#f97316",filter:"blur(110px)",opacity:.10,top:"50%",left:"50%",transform:"translate(-50%,-50%)",pointerEvents:"none"}}/>
-          <motion.div initial="hidden" animate="show" variants={s}
+          <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             style={{maxWidth:600,margin:"0 auto",textAlign:"center",position:"relative",zIndex:10}}>
             <motion.span variants={v} className="eyebrow" style={{marginBottom:20}}>04 — Kontak</motion.span>
             <motion.h2 variants={v} className="glow" style={{fontWeight:900,fontSize:"clamp(40px,7vw,80px)",letterSpacing:"-.04em",lineHeight:1.02,marginBottom:16}}>

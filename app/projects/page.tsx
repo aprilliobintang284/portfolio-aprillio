@@ -3,8 +3,10 @@ import { motion, type Variants } from "framer-motion";
 import { ExternalLink, ShieldCheck, CheckCircle2, Bug, Lock, Server } from "lucide-react";
 import Navbar from "../components/Navbar";
 
-const v: Variants = { hidden:{opacity:0,y:24}, show:{opacity:1,y:0,transition:{duration:.70,ease:[.22,1,.36,1]}} };
-const s: Variants = { show:{transition:{staggerChildren:.09}} };
+const v: Variants = { hidden:{opacity:0,y:32}, show:{opacity:1,y:0,transition:{duration:.72,ease:[.22,1,.36,1]}} };
+const vScale: Variants = { hidden:{opacity:0,y:24,scale:.97}, show:{opacity:1,y:0,scale:1,transition:{duration:.70,ease:[.22,1,.36,1]}} };
+const s: Variants = { hidden:{}, show:{transition:{staggerChildren:.10}} };
+const VP = { once: true, margin: "-60px" } as const;
 const W = { maxWidth:960, margin:"0 auto", padding:"0 24px" };
 
 export default function Projects() {
@@ -16,7 +18,7 @@ export default function Projects() {
         <div style={W}>
 
           {/* Header */}
-          <motion.div initial="hidden" animate="show" variants={s}
+          <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             style={{textAlign:"center",maxWidth:560,margin:"0 auto 80px"}}>
             <motion.span variants={v} className="eyebrow" style={{marginBottom:16}}>QA Projects</motion.span>
             <motion.div variants={v} style={{display:"flex",justifyContent:"center",marginBottom:20}}>
@@ -43,7 +45,7 @@ export default function Projects() {
                desc:"Dashboard CMS eksklusif bagi penyelenggara event (B2B). Mengelola pembuatan event, manajemen kuota tiket, hingga analitik penjualan.",
                items:[{I:CheckCircle2,t:"Validasi input pembuatan event (Form Validation)."},{I:Bug,t:"Reporting bug integrasi API melalui Plane."},{I:Lock,t:"Pengujian Role-Based Access Control (RBAC)."}]},
             ].map((p,i)=>(
-              <motion.div key={i} initial="hidden" animate="show" variants={v} className="g-card g-card-padded" style={{padding:32,display:"flex",flexDirection:"column" as const}}>
+              <motion.div key={i} initial="hidden" whileInView="show" viewport={VP} variants={vScale} className="g-card g-card-padded" style={{padding:32,display:"flex",flexDirection:"column" as const}}>
                 <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
                   <span className="chip chip-green">Production Live</span>
@@ -69,7 +71,7 @@ export default function Projects() {
           </div>
 
           {/* WIP */}
-          <motion.div initial="hidden" animate="show" variants={v} className="g-card wip-card-padding"
+          <motion.div initial="hidden" whileInView="show" viewport={VP} variants={vScale} className="g-card wip-card-padding"
             style={{padding:56,textAlign:"center",background:"rgba(255,255,255,.02)",border:"1.5px dashed rgba(249,115,22,.16)"}}>
 
             <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>

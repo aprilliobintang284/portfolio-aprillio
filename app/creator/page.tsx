@@ -3,8 +3,10 @@ import { motion, type Variants } from "framer-motion";
 import { ExternalLink, PlayCircle, Zap, TrendingUp, Target, Video } from "lucide-react";
 import Navbar from "../components/Navbar";
 
-const v: Variants = { hidden:{opacity:0,y:24}, show:{opacity:1,y:0,transition:{duration:.70,ease:[.22,1,.36,1]}} };
-const s: Variants = { show:{transition:{staggerChildren:.09}} };
+const v: Variants = { hidden:{opacity:0,y:32}, show:{opacity:1,y:0,transition:{duration:.72,ease:[.22,1,.36,1]}} };
+const vScale: Variants = { hidden:{opacity:0,y:24,scale:.97}, show:{opacity:1,y:0,scale:1,transition:{duration:.70,ease:[.22,1,.36,1]}} };
+const s: Variants = { hidden:{}, show:{transition:{staggerChildren:.10}} };
+const VP = { once: true, margin: "-60px" } as const;
 const W = { maxWidth:960, margin:"0 auto", padding:"0 24px" };
 
 const CAMPAIGNS=[
@@ -22,7 +24,7 @@ export default function Creator() {
         <div style={W}>
 
           {/* Header */}
-          <motion.div initial="hidden" animate="show" variants={s}
+          <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             style={{textAlign:"center",maxWidth:560,margin:"0 auto 64px"}}>
             <motion.span variants={v} className="eyebrow" style={{color:"#ef4444",marginBottom:16}}>Creator Portfolio</motion.span>
             <motion.div variants={v} style={{display:"flex",justifyContent:"center",marginBottom:20}}>
@@ -44,14 +46,14 @@ export default function Creator() {
           </motion.div>
 
           {/* Stats */}
-          <motion.div initial="hidden" animate="show" variants={s}
+          <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             className="creator-stats-grid">
             {[
               {l:"Total Video Views",val:"3.8M",sub:"Massive Reach",I:Zap},
               {l:"Total Likes",val:"245K",sub:"High Engagement",I:TrendingUp},
               {l:"Followers",val:"2.1K",sub:"Niche Gaming Community",I:Target},
             ].map((x,i)=>(
-              <motion.div key={i} variants={v} className="g-card" style={{padding:32,textAlign:"center"}}>
+              <motion.div key={i} variants={vScale} className="g-card" style={{padding:32,textAlign:"center"}}>
                 <div className="top-bar" style={{background:"linear-gradient(90deg,#ef4444,#f97316)"}}/>
                 <div style={{display:"flex",justifyContent:"center",marginBottom:16}}>
                   <div style={{padding:12,borderRadius:14,background:"rgba(239,68,68,.09)",border:"1px solid rgba(239,68,68,.20)"}}>
@@ -66,14 +68,14 @@ export default function Creator() {
           </motion.div>
 
           {/* Campaigns */}
-          <motion.div initial="hidden" animate="show" variants={s}>
+          <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}>
             <motion.div variants={v} style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:32}}>
               <TrendingUp style={{width:16,height:16,color:"#ef4444"}}/>
               <h2 style={{fontSize:24,fontWeight:900,letterSpacing:"-.03em",color:"rgba(245,240,232,.88)"}}>Top Performing Campaigns</h2>
             </motion.div>
             <div className="creator-campaigns-grid">
               {CAMPAIGNS.map(c=>(
-                <motion.div key={c.title} variants={v} className="g-card g-card-padded-sm" style={{padding:24,display:"flex",flexDirection:"column" as const}}>
+                <motion.div key={c.title} variants={vScale} className="g-card g-card-padded-sm" style={{padding:24,display:"flex",flexDirection:"column" as const}}>
                   <div className="top-bar" style={{background:c.bar}}/>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20}}>
                     <div style={{padding:10,borderRadius:12,background:"rgba(255,255,255,.05)",border:"1px solid rgba(255,255,255,.07)"}}>
