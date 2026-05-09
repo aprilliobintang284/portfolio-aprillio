@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "./components/CustomCursor";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300","400","500","600","700","800","900"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  // --- INI YANG DIUBAH ---
-  title: "Porto April", // Teks yang muncul di tab browser
-  description: "Aprillio Bintang Perdana - QA Specialist & Gaming Content Creator Portfolio",
-  // -----------------------
+  title: "Porto April",
+  description: "Aprillio Bintang Perdana — QA Specialist & Freelance Gaming Content Creator. Portfolio, Projects, dan Creator Content. Tersedia untuk kolaborasi.",
 };
 
 export default function RootLayout({
@@ -17,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="scroll-smooth">
-      <body className={`${inter.className} bg-neutral-950 antialiased`}>{children}</body>
+    <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth">
+      <body className={`${inter.className} antialiased`}>
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

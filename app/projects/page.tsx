@@ -1,154 +1,94 @@
 "use client";
+import { motion, type Variants } from "framer-motion";
+import { ExternalLink, ShieldCheck, CheckCircle2, Bug, Lock, Server } from "lucide-react";
+import Navbar from "../components/Navbar";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ExternalLink, ShieldCheck, Bug, CheckCircle2, Server, Lock, Menu, X } from "lucide-react";
-import Link from "next/link";
+const v: Variants = { hidden:{opacity:0,y:24}, show:{opacity:1,y:0,transition:{duration:.70,ease:[.22,1,.36,1]}} };
+const s: Variants = { show:{transition:{staggerChildren:.09}} };
+const W = { maxWidth:960, margin:"0 auto", padding:"0 24px" };
 
 export default function Projects() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
-
   return (
-    <div className="relative bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-indigo-500/30 selection:text-white">
-      {/* Efek Spotlight Halus di Background */}
-      <div className="absolute top-0 z-0 h-[80vh] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),rgba(0,0,0,0))] pointer-events-none"></div>
+    <div style={{minHeight:"100vh",position:"relative"}}>
+      <div className="bg-scene bg-scene-amber"/>
+      <Navbar/>
+      <main style={{paddingTop:"clamp(108px,14vw,160px)",paddingBottom:120}}>
+        <div style={W}>
 
-      {/* Navbar Khusus Page Project */}
-      <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</Link>
-
-          {/* Menu Desktop (Gaya Modern Pill) */}
-          <div className="hidden md:flex items-center space-x-1 text-sm font-medium text-neutral-400">
-            <Link href="/#about" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Tentang</Link>
-            {/* Active State: Projects */}
-            <Link href="/projects" className="px-4 py-2 rounded-full bg-white/10 text-white border border-white/5 shadow-sm transition-all duration-300">Projects</Link>
-            <Link href="/creator" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Portofolio Kreator</Link>
-            <Link href="/#experience" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pengalaman</Link>
-            <Link href="/#education" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pendidikan & Sertifikasi</Link>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link href="/" className="hidden md:flex text-sm font-medium items-center gap-2 bg-neutral-900 border border-neutral-800 text-white px-4 py-2 rounded-full hover:bg-neutral-800 transition-colors">
-              <ArrowLeft className="w-4 h-4" /> Kembali
-            </Link>
-
-            {/* Tombol Hamburger Khusus Mobile */}
-            <button className="md:hidden text-neutral-300 hover:text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Dropdown Menu Mobile (Premium Look) */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-              className="md:hidden absolute top-full left-0 w-full bg-neutral-950 border-b border-neutral-800 flex flex-col py-6 px-6 gap-2 shadow-2xl"
-            >
-              <Link href="/#about" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Tentang</Link>
-              {/* Di halaman ini, Projects kita buat 'aktif' (bg-neutral-800) */}
-              <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 bg-neutral-800 text-white rounded-xl font-medium shadow-sm transition-all">Projects</Link>
-              <Link href="/creator" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Portofolio Kreator</Link>
-              <Link href="/#experience" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Pengalaman</Link>
-              <Link href="/#education" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-xl transition-all">Pendidikan & Sertifikasi</Link>
-              <Link href="/" className="bg-white text-black flex items-center justify-center gap-2 py-3 rounded-xl font-medium mt-4 hover:bg-neutral-200 transition-all">
-                <ArrowLeft className="w-4 h-4" /> Kembali ke Home
-              </Link>
+          {/* Header */}
+          <motion.div initial="hidden" animate="show" variants={s}
+            style={{textAlign:"center",maxWidth:560,margin:"0 auto 80px"}}>
+            <motion.span variants={v} className="eyebrow" style={{marginBottom:16}}>QA Projects</motion.span>
+            <motion.div variants={v} style={{display:"flex",justifyContent:"center",marginBottom:20}}>
+              <div style={{padding:14,borderRadius:18,background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
+                <ShieldCheck style={{width:24,height:24,color:"#f97316"}}/>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+            <motion.h1 variants={v} className="grad-amber"
+              style={{fontWeight:900,fontSize:"clamp(32px,5vw,58px)",letterSpacing:"-.03em",lineHeight:1.1,marginBottom:20}}>
+              QA Testing Projects.
+            </motion.h1>
+            <motion.p variants={v} style={{fontSize:14,lineHeight:1.6,color:"rgba(245,240,232,.45)"}}>
+              Sebagai <strong style={{color:"rgba(245,240,232,.78)"}}>Quality Assurance Specialist</strong>, saya memastikan setiap fungsionalitas berjalan sempurna sebelum menyentuh pengguna akhir.
+            </motion.p>
+          </motion.div>
 
-      <main className="pt-32 pb-32 px-6 max-w-7xl mx-auto">
-        {/* Header Section (Tema Soft Amethyst) */}
-        <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="max-w-3xl mb-20">
-          <div className="flex items-center gap-3 mb-6">
-            <ShieldCheck className="w-8 h-8 text-indigo-400" />
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent pb-2">QA Testing Projects.</h1>
+          {/* Cards */}
+          <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:20,marginBottom:20}}>
+            {[
+              {href:"https://tenar.events/",title:"Tenar Events (Buyer)",
+               desc:"Platform pencarian & pembelian tiket event bagi pengguna akhir (B2C). Fokus pada kelancaran alur checkout, fungsionalitas pencarian, dan keamanan transaksi.",
+               items:[{I:CheckCircle2,t:"End-to-End Testing alur pembelian tiket."},{I:Bug,t:"UI/UX Cross-browser testing (Mobile & Desktop)."},{I:Server,t:"Fungsionalitas filter pencarian event aktif."}]},
+              {href:"https://organizer.tenar.events/",title:"Tenar Organizer",
+               desc:"Dashboard CMS eksklusif bagi penyelenggara event (B2B). Mengelola pembuatan event, manajemen kuota tiket, hingga analitik penjualan.",
+               items:[{I:CheckCircle2,t:"Validasi input pembuatan event (Form Validation)."},{I:Bug,t:"Reporting bug integrasi API melalui Plane."},{I:Lock,t:"Pengujian Role-Based Access Control (RBAC)."}]},
+            ].map((p,i)=>(
+              <motion.div key={i} initial="hidden" animate="show" variants={v} className="g-card" style={{padding:32,display:"flex",flexDirection:"column" as const}}>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
+                  <span className="chip chip-green">Production Live</span>
+                  <a href={p.href} target="_blank" rel="noreferrer"
+                    style={{padding:10,borderRadius:"50%",background:"rgba(249,115,22,.10)",border:"1px solid rgba(249,115,22,.20)",color:"#f97316",display:"flex",cursor:"none"}}>
+                    <ExternalLink style={{width:16,height:16}}/>
+                  </a>
+                </div>
+                <h2 style={{fontSize:22,fontWeight:900,color:"rgba(245,240,232,.90)",marginBottom:12}}>{p.title}</h2>
+                <p style={{fontSize:13.5,lineHeight:1.6,color:"rgba(245,240,232,.48)",marginBottom:24,flex:1}}>{p.desc}</p>
+                <div style={{paddingTop:20,borderTop:"1px solid rgba(249,115,22,.09)"}}>
+                  <p style={{fontSize:10,fontWeight:700,color:"rgba(245,240,232,.28)",letterSpacing:".14em",textTransform:"uppercase" as const,marginBottom:12}}>QA Scope</p>
+                  <ul style={{display:"flex",flexDirection:"column" as const,gap:8}}>
+                    {p.items.map(({I,t},j)=>(
+                      <li key={j} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:13,color:"rgba(245,240,232,.52)"}}>
+                        <I style={{width:15,height:15,color:"#f97316",flexShrink:0,marginTop:2}}/>{t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <p className="text-neutral-400 text-lg leading-relaxed">
-            Sebagai seorang <strong>Quality Assurance Specialist</strong>, tanggung jawab utama saya adalah memastikan setiap fungsionalitas, alur sistem, dan <strong>User Interface</strong> berjalan tanpa hambatan sebelum menyentuh pengguna akhir.
-            Berikut adalah rekam jejak platform <strong>live</strong> maupun <strong>development</strong> yang telah melewati fase pengujian dan dokumentasi <strong>bug</strong> komprehensif dari saya.
-          </p>
-        </motion.div>
 
-        {/* Project Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
-
-          {/* Project 1: Tenar Events (Production) */}
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-[#121212] border border-neutral-800 rounded-3xl p-8 hover:border-indigo-500/40 hover:shadow-[0_8px_30px_rgb(99,102,241,0.08)] hover:-translate-y-1 transition-all duration-500 group flex flex-col">
-            <div className="flex justify-between items-start mb-6">
-              <span className="px-3 py-1 bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-mono uppercase tracking-widest rounded-full">Production Live</span>
-              <a href="https://tenar.events/" target="_blank" rel="noreferrer" className="p-3 bg-neutral-900 rounded-full group-hover:bg-indigo-500 group-hover:text-white transition-all duration-500">
-                <ExternalLink className="w-5 h-5" />
-              </a>
+          {/* WIP */}
+          <motion.div initial="hidden" animate="show" variants={v} className="g-card"
+            style={{padding:56,textAlign:"center",background:"rgba(255,255,255,.02)",border:"1.5px dashed rgba(249,115,22,.16)"}}>
+            <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
+              <div style={{padding:14,borderRadius:18,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)"}}>
+                <Lock style={{width:24,height:24,color:"#f97316"}}/>
+              </div>
             </div>
-            <h3 className="text-3xl font-bold text-white mb-3">Tenar Events (Buyer)</h3>
-            <p className="text-neutral-400 mb-8 flex-grow">
-              Platform utama pencarian dan pembelian tiket event bagi pengguna akhir (B2C). Fokus pengujian pada kelancaran alur <strong>checkout</strong>, fungsionalitas pencarian, dan keamanan transaksi <strong>user.</strong>
+            <h2 style={{fontSize:20,fontWeight:900,color:"rgba(245,240,232,.45)",marginBottom:10}}>Payment Gateway MVP</h2>
+            <p style={{fontSize:13.5,lineHeight:1.6,color:"rgba(245,240,232,.32)",maxWidth:420,margin:"0 auto 20px"}}>
+              Pengujian integrasi sistem pembayaran otomatis. Masih dalam tahap <strong style={{color:"rgba(245,240,232,.48)"}}>development</strong> internal.
             </p>
-
-            <div className="space-y-3 pt-6 border-t border-neutral-800">
-              <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider mb-4">Fokus Pengujian (QA Scope):</h4>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> End-to-End Testing alur pembelian tiket.</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Bug className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> UI/UX Cross-browser testing (Mobile & Desktop).</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Server className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Fungsionalitas filter pencarian event aktif.</li>
-              </ul>
-            </div>
+            <span className="chip">In Progress</span>
           </motion.div>
-
-          {/* Project 2: Tenar Organizer */}
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-[#121212] border border-neutral-800 rounded-3xl p-8 hover:border-indigo-500/40 hover:shadow-[0_8px_30px_rgb(99,102,241,0.08)] hover:-translate-y-1 transition-all duration-500 group flex flex-col">
-            <div className="flex justify-between items-start mb-6">
-              <span className="px-3 py-1 bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-mono uppercase tracking-widest rounded-full">Production Live</span>
-              <a href="https://organizer.tenar.events/" target="_blank" rel="noreferrer" className="p-3 bg-neutral-900 rounded-full group-hover:bg-indigo-500 group-hover:text-white transition-all duration-500">
-                <ExternalLink className="w-5 h-5" />
-              </a>
-            </div>
-            <h3 className="text-3xl font-bold text-white mb-3">Tenar Organizer</h3>
-            <p className="text-neutral-400 mb-8 flex-grow">
-              Dashboard <strong>Content Management System (CMS)</strong> eksklusif bagi penyelenggara event (B2B). Mengelola pembuatan event, manajemen kuota tiket, hingga analitik penjualan.
-            </p>
-
-            <div className="space-y-3 pt-6 border-t border-neutral-800">
-              <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider mb-4">Fokus Pengujian (QA Scope):</h4>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Validasi input pembuatan event (Form Validation).</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Bug className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Reporting bug integrasi API melalui Plane.</li>
-                <li className="flex items-start gap-3 text-sm text-neutral-400"><Lock className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" /> Pengujian Role-Based Access Control (RBAC).</li>
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Project 3: Payment Gateway (Coming Soon) */}
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="bg-neutral-950 border border-neutral-800 border-dashed rounded-3xl p-8 hover:border-indigo-500/30 transition-colors duration-500 flex flex-col justify-center items-center text-center lg:col-span-2 py-16">
-            <div className="p-4 bg-neutral-900 rounded-full mb-4">
-              <Lock className="w-8 h-8 text-neutral-500" />
-            </div>
-            <h3 className="text-2xl font-bold text-neutral-400 mb-2">Payment Gateway MVP </h3>
-            <p className="text-neutral-600 max-w-lg mx-auto mb-4">
-              Pengujian integrasi sistem pembayaran otomatis. Saat ini masih dalam tahap <strong>development</strong> internal dan persiapan rilis ke <strong>production</strong>.
-            </p>
-            <span className="px-4 py-1.5 bg-neutral-900 text-neutral-500 text-xs font-mono uppercase tracking-widest rounded-full">In Progress</span>
-          </motion.div>
-
         </div>
       </main>
 
-      {/* Efek Spotlight Indigo dari Bawah */}
-      <div className="absolute bottom-0 left-0 z-0 h-[60vh] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_120%,rgba(99,102,241,0.15),rgba(0,0,0,0))] pointer-events-none"></div>
-
-      {/* Tambahkan relative z-10 agar teks footer tidak tertutup cahaya */}
-      <footer className="border-t border-neutral-900 py-8 text-center text-neutral-700 text-xs bg-[#0a0a0a] relative z-10">
-        <p>© {new Date().getFullYear()} Aprillio Bintang Perdana.</p>
+      <footer style={{padding:"32px 24px",textAlign:"center",borderTop:"1px solid rgba(249,115,22,.08)",background:"rgba(255,255,255,.015)"}}>
+        <p style={{fontSize:11,color:"rgba(245,240,232,.22)",fontWeight:600,letterSpacing:".16em",textTransform:"uppercase" as const}}>
+          © {new Date().getFullYear()} Aprillio Bintang Perdana &nbsp;·&nbsp; Crafted with ✦
+        </p>
       </footer>
     </div>
   );

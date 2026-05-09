@@ -1,387 +1,340 @@
 "use client";
-
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { Mail, Phone, MapPin, Link as LinkIcon, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, TrendingUp, Medal, Activity, Video, Smartphone, DollarSign, PlayCircle, Code, Camera, Menu, X } from "lucide-react";
-import Link from "next/link"; // Tambahkan import Link dari next/link
+import { motion, type Variants } from "framer-motion";
+import { Mail, Link as LI, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, Activity, Video, Camera, Code, Sparkles } from "lucide-react";
+import Navbar from "./components/Navbar";
 
-export default function Portfolio() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [stats, setStats] = useState({
-    wpm: 121, raw: 125, acc: 97, cons: 79, tests: 666, time: "9h 50m"
-  });
+const v: Variants = { hidden:{opacity:0,y:28}, show:{opacity:1,y:0,transition:{duration:.70,ease:[.22,1,.36,1]}} };
+const s: Variants = { show:{transition:{staggerChildren:.09}} };
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const res = await fetch("https://api.monkeytype.com/users/Aprillio/profile");
-        const data = await res.json();
-        if (data?.data) {
-          const pb = data.data.personalBests?.time?.["15"]?.[0] || data.data.personalBests?.time?.["60"]?.[0];
-          const ts = data.data.typingStats;
-          if (pb) {
-            setStats(prev => ({
-              ...prev,
-              wpm: Math.floor(pb.wpm) || prev.wpm,
-              raw: Math.floor(pb.raw) || prev.raw,
-              acc: Math.floor(pb.acc) || prev.acc,
-              cons: Math.floor(pb.consistency) || prev.cons,
-              tests: ts?.completedTests || prev.tests,
-              time: ts?.timeTyping ? `${Math.floor(ts.timeTyping / 3600)}h ${Math.floor((ts.timeTyping % 3600) / 60)}m` : prev.time
-            }));
-          }
-        }
-      } catch (err) { console.error(err); }
-    };
-    fetchStats();
-  }, []);
+const W = { maxWidth:960, margin:"0 auto", padding:"0 24px" };
+const SEC = { padding:"96px 0", position:"relative" as const };
+const CARD_STYLE = { padding:"28px", borderRadius:20, background:"rgba(255,255,255,.035)", border:"1px solid rgba(255,255,255,.075)", boxShadow:"inset 0 1px 0 rgba(255,255,255,.05), 0 4px 24px rgba(0,0,0,.50)", position:"relative" as const, overflow:"hidden" as const };
 
-  const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
+export default function Home() {
+  const [stats, setStats] = useState({wpm:121,raw:125,acc:97,cons:79,tests:666,time:"9h 50m"});
+  useEffect(()=>{
+    fetch("https://api.monkeytype.com/users/Aprillio/profile").then(r=>r.json()).then(d=>{
+      if(!d?.data) return;
+      const pb=d.data.personalBests?.time?.["15"]?.[0]; const ts=d.data.typingStats;
+      if(pb) setStats({wpm:Math.floor(pb.wpm)||121,raw:Math.floor(pb.raw)||125,acc:Math.floor(pb.acc)||97,cons:Math.floor(pb.consistency)||79,tests:ts?.completedTests||666,time:ts?.timeTyping?`${Math.floor(ts.timeTyping/3600)}h ${Math.floor((ts.timeTyping%3600)/60)}m`:"9h 50m"});
+    }).catch(()=>{});
+  },[]);
+
+  const edu=[
+    {yr:"Agu 2025—Jul 2029",title:"S1 Sistem Informasi",school:"Universitas Terbuka",href:"https://ut.ac.id"},
+    {yr:"Jan 2026—Jun 2030",title:"S1 Manajemen",school:"Univ. Siber Muhammadiyah",href:"https://sibermu.ac.id"},
+    {yr:"Jun 2022—Jun 2024",title:"Rekayasa Perangkat Lunak",school:"SMK Negeri 4 Kendal",href:"https://smkn4kendal.sch.id"},
+  ];
+  const certs=[
+    {t:"Microsoft 365 Copilot",i:"Microsoft",d:"Apr 2026",f:"/cert-copilot.pdf"},
+    {t:"Pelatihan Dasar Copilot",i:"Jobstreet & Microsoft",d:"Apr 2026",f:"/cert-jobstreet-copilot.pdf"},
+    {t:"Analisis Data Excel",i:"Microsoft & Jobstreet",d:"Apr 2026",f:"/cert-excel.pdf"},
+    {t:"QA Test Technique",i:"MySkill",d:"Apr 2026",f:"/cert-qa-technique.pdf"},
+    {t:"Quality Assurance Introduction",i:"MySkill",d:"Feb 2025",f:"/cert-qa-intro.pdf"},
+    {t:"Intensive Bootcamp Excel",i:"KarirNex",d:"Apr 2026",f:"/cert-excel-karirnex.pdf"},
+  ];
+  const st=[
+    {I:Keyboard,l:"Best WPM",v:stats.wpm},{I:Zap,l:"Raw WPM",v:stats.raw},
+    {I:Target,l:"Accuracy",v:`${stats.acc}%`},{I:Activity,l:"Consistency",v:`${stats.cons}%`},
+    {I:MousePointerClick,l:"Tests Done",v:stats.tests},{I:Clock,l:"Time Typed",v:stats.time},
+  ];
 
   return (
-    <div className="relative bg-neutral-950 text-neutral-50 min-h-screen font-sans selection:bg-blue-500/30 selection:text-white scroll-smooth">
-      {/* Efek Spotlight Solid Blue */}
-      <div className="absolute top-0 z-0 h-[80vh] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.25),rgba(0,0,0,0))] pointer-events-none"></div>
+    <div style={{minHeight:"100vh",position:"relative"}}>
+      <div className="bg-scene"/>
+      <Navbar/>
+      <main>
 
-      {/* Navbar Utama (Home) */}
-      <nav className="fixed top-0 w-full z-40 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-semibold tracking-tight text-white hover:opacity-80 transition-opacity">ABP.</Link>
-
-          {/* Menu Desktop (Gaya Modern Pill) */}
-          <div className="hidden md:flex items-center space-x-1 text-sm font-medium text-neutral-400">
-            <a href="#about" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Tentang</a>
-            <Link href="/projects" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Projects</Link>
-            <Link href="/creator" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Portofolio Kreator</Link>
-            <a href="#experience" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pengalaman</a>
-            <a href="#education" className="px-4 py-2 rounded-full hover:text-white hover:bg-neutral-800/50 transition-all duration-300">Pendidikan & Sertifikasi</a>
+        {/* HERO */}
+        <section style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",padding:"120px 24px 80px",position:"relative",overflow:"hidden"}}>
+          <div style={{position:"absolute",inset:0,pointerEvents:"none"}}>
+            <div style={{position:"absolute",width:480,height:480,borderRadius:"50%",background:"#f97316",filter:"blur(90px)",opacity:.12,top:-80,left:-80}}/>
+            <div style={{position:"absolute",width:360,height:360,borderRadius:"50%",background:"#f59e0b",filter:"blur(90px)",opacity:.09,bottom:0,right:-80}}/>
           </div>
-
-          <div className="flex items-center gap-4">
-            <a href="#contact" className="hidden md:block text-sm font-medium bg-neutral-950/50 border border-neutral-700 text-neutral-300 px-6 py-2.5 rounded-full hover:border-blue-500 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300">
-              Connect
-            </a>
-            {/* Tombol Hamburger Khusus Mobile */}
-            <button className="md:hidden text-neutral-300 hover:text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Dropdown Menu Mobile */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-              className="md:hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-neutral-800 flex flex-col py-4 px-6 gap-4 shadow-xl"
-            >
-              <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Tentang</a>
-              <Link href="/projects" className="text-neutral-300 hover:text-white">Projects</Link>
-              <Link href="/creator" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Portofolio Kreator</Link>
-              <a href="#experience" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pengalaman</a>
-              <a href="#education" onClick={() => setIsMobileMenuOpen(false)} className="text-neutral-300 hover:text-white">Pendidikan & Sertifikasi</a>
-              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-white text-black text-center py-2 rounded-full font-medium mt-2">Connect</a>
+          <motion.div initial="hidden" animate="show" variants={s} style={{textAlign:"center",maxWidth:860,width:"100%",position:"relative",zIndex:10}}>
+            <motion.div variants={v} style={{display:"inline-flex",alignItems:"center",gap:10,padding:"10px 20px",borderRadius:999,marginBottom:40,background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)"}}>
+              <span style={{position:"relative",display:"flex"}}>
+                <span style={{position:"absolute",inset:0,borderRadius:"50%",background:"#34d399",opacity:.5,animation:"ping 1s cubic-bezier(0,0,.2,1) infinite"}}/>
+                <span style={{width:8,height:8,borderRadius:"50%",background:"#34d399",display:"block"}}/>
+              </span>
+              <span style={{fontSize:11,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.55)"}}>Available for Work</span>
+              <Sparkles style={{width:12,height:12,color:"#f97316",opacity:.7}}/>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
 
-      <main className="pt-24">
-        {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center px-6 max-w-7xl mx-auto pt-10">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.2 } } }} className="grid lg:grid-cols-2 gap-12 items-center w-full">
-            <div>
-              <motion.p variants={fadeInUp} className="text-neutral-400 mb-4 text-sm font-mono tracking-wide uppercase">Portofolio</motion.p>
-              <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-white pb-2">
-                Aprillio Bintang <br /><span className="text-neutral-500">Perdana.</span>
-              </motion.h1>
-              <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-light text-neutral-300 mb-8 leading-snug">
-                QA Specialist & <br />Freelance Content Creator.
-              </motion.h2>
-              <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-                <a href="#experience" className="flex items-center gap-2 border border-neutral-700 rounded-full px-6 py-3 hover:bg-neutral-800 transition-colors">
-                  Lihat Pekerjaan <ArrowRight className="w-4 h-4" />
-                </a>
-              </motion.div>
-            </div>
+            <motion.h1 variants={v} className="glow" style={{fontWeight:900,letterSpacing:"-.03em",lineHeight:1.02,marginBottom:20,fontSize:"clamp(40px,6.5vw,84px)"}}>
+              <span style={{color:"rgba(245,240,232,.92)"}}>Aprillio </span>
+              <span className="grad-orange">Bintang</span>
+              <span style={{color:"rgba(245,240,232,.20)"}}> Perdana.</span>
+            </motion.h1>
 
-            <motion.div variants={fadeInUp} className="hidden lg:block relative w-full max-w-md mx-auto aspect-[4/5] rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-800 group">
-              <img src="/profile.jpg" alt="Aprillio Bintang" className="object-cover w-full h-full filter grayscale group-hover:grayscale-0 transition-all duration-700" />
-              <div className="absolute inset-0 border border-white/10 rounded-3xl z-10 pointer-events-none"></div>
+            <motion.p variants={v} style={{fontSize:11,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.38)",marginBottom:8}}>
+              QA Specialist <span style={{opacity:.35,margin:"0 8px"}}>✦</span> Freelance Content Creator
+            </motion.p>
+            <motion.p variants={v} style={{fontSize:14,color:"rgba(245,240,232,.35)",lineHeight:1.6,marginBottom:44,maxWidth:380,marginLeft:"auto",marginRight:"auto"}}>
+              Memastikan sistem berjalan sempurna dan konten memenangkan algoritma.
+            </motion.p>
+
+            <motion.div variants={v} style={{display:"flex",flexWrap:"wrap" as const,justifyContent:"center",gap:12,marginBottom:64}}>
+              <a href="#experience" className="btn btn-primary">Lihat Pengalaman <ArrowRight style={{width:16,height:16}}/></a>
+              <a href="#contact" className="btn btn-ghost">Connect</a>
             </motion.div>
-          </motion.div>
-        </section>
 
-        {/* Marquee */}
-        <div className="w-full overflow-hidden bg-neutral-900 py-4 border-y border-neutral-800 flex items-center">
-          <motion.div animate={{ x: ["0%", "-50%"] }} transition={{ ease: "linear", duration: 15, repeat: Infinity }} className="flex whitespace-nowrap text-neutral-500 text-sm font-mono tracking-widest uppercase">
-            {[...Array(10)].map((_, i) => (
-              <span key={i} className="mx-8">• Functional Testing • Video Editing • Requirement Analysis • Content Strategy </span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* About Section */}
-        <section id="about" className="py-32 px-6 max-w-7xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="grid md:grid-cols-2 gap-16">
-            <div>
-              <h3 className="text-4xl font-bold mb-6 tracking-tight text-white">Tentang Saya</h3>
-              <p className="text-neutral-400 text-lg leading-relaxed mb-6">
-                Seorang <strong>Quality Assurance Specialist</strong> yang memiliki ketelitian tinggi dalam pengujian sistem, sekaligus <strong>Freelance Gaming Content Creator</strong> yang kreatif.
-              </p>
-              <p className="text-neutral-400 text-lg leading-relaxed mb-6">
-                Di dunia IT, saya terbiasa menyusun skenario <i>test case</i> secara terstruktur dan memastikan kelancaran aplikasi. Di ranah kreatif, saya aktif memproduksi konten kampanye <i>Honor of Kings</i> yang berorientasi pada analitik audiens dan tren algoritma TikTok.
-              </p>
-              <p className="text-neutral-400 text-lg leading-relaxed">
-                Saya percaya bahwa logika analitis dari QA dan kreativitas dari pembuatan konten digital dapat dipadukan untuk menghasilkan produk dan strategi kampanye yang berdampak luas.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-white">Keahlian Profesional</h3>
-              <div className="flex flex-wrap gap-3">
-                {["Functional & UI Testing", "Bug Reporting (Plane)", "Manual API Testing (Postman)", "Requirement Analysis", "Video Editing", "Content Strategy", "Trend Analysis", "Community Engagement"].map((skill) => (
-                  <span key={skill} className="px-4 py-2 bg-neutral-900 border border-neutral-800 rounded-full text-sm text-neutral-300">{skill}</span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Experience Section */}
-        <section id="experience" className="py-32 px-6 bg-neutral-900/30 border-t border-neutral-900">
-          <div className="max-w-7xl mx-auto">
-            <motion.h3 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-4xl font-bold mb-16 tracking-tight text-white">Pengalaman Kerja</motion.h3>
-            <div className="space-y-12">
-
-              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group border-b border-neutral-800 pb-12">
-                <div className="grid md:grid-cols-4 gap-6">
-                  <div className="col-span-1 text-neutral-500 font-mono text-sm pt-1 uppercase tracking-widest">Jun 2025 — Present</div>
-                  <div className="col-span-3">
-                    <h4 className="text-2xl font-semibold text-white mb-2">Quality Assurance Specialist</h4>
-                    <p className="text-neutral-400 mb-6 text-lg">PT. BULLION ECOSYSTEM INTERNATIONAL • Bogor</p>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Pengujian end-to-end sistem event Tenar Buyer & Organizer Phase 2-4 dan dashboard Payment Gateway MVP - Phase 2.</span></li>
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Menyusun dan mengelola puluhan test case secara terstruktur melalui spreadsheet.</span></li>
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Mengidentifikasi dan melaporkan bug menggunakan tools (Plane).</span></li>
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Berkoordinasi dengan tim developer untuk resolusi isu tepat waktu.</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group border-b border-neutral-800 pb-12">
-                <div className="grid md:grid-cols-4 gap-6">
-                  <div className="col-span-1 text-neutral-500 font-mono text-sm pt-1 uppercase tracking-widest">2025 — Present</div>
-                  <div className="col-span-3">
-                    <h4 className="text-2xl font-semibold text-white mb-2">Freelance Gaming Content Creator</h4>
-                    <p className="text-neutral-400 mb-6 text-lg">Honor of Kings (Tencent / TikTok Project) • Remote</p>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Berhasil menyelesaikan kontrak partnership pembuatan 50 video promosi official Honor of Kings untuk kampanye TikTok.</span></li>
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Aktif memproduksi konten eksklusif di dalam HoK Creator Camp dengan pencapaian jutaan penayangan akumulatif.</span></li>
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Secara konsisten melakukan kurasi dan editing klip berkualitas tinggi dari in-game footage serta livestream komunitas.</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group pb-4">
-                <div className="grid md:grid-cols-4 gap-6">
-                  <div className="col-span-1 text-neutral-500 font-mono text-sm pt-1 uppercase tracking-widest">Agu 2024 — Jun 2025</div>
-                  <div className="col-span-3">
-                    <h4 className="text-2xl font-semibold text-white mb-2">Internship Monitoring Server</h4>
-                    <p className="text-neutral-400 mb-6 text-lg">PT. BULLION ECOSYSTEM INTERNATIONAL • Bogor</p>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Melakukan monitoring sistem produksi secara berkala.</span></li>
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Menganalisis berbagai jenis error transaksi dan menangani kendala operasional.</span></li>
-                      <li className="flex items-start gap-3 text-neutral-300 font-light leading-relaxed"><CheckCircle2 className="w-5 h-5 text-neutral-600 shrink-0 mt-1" /><span>Mendokumentasikan hasil monitoring ke dalam laporan teknis.</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* Education Section - Brighter & Mobile-Friendly Logos */}
-        <section id="education" className="py-32 px-6 max-w-7xl mx-auto relative">
-
-          <motion.h3
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
-            className="text-4xl font-bold mb-16 tracking-tight text-white relative z-10"
-          >
-            Pendidikan & Sertifikasi
-          </motion.h3>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 relative z-10">
-            {[
-              {
-                year: "Agu 2025 — Jul 2029 (Expected)",
-                title: "S1 Sistem Informasi",
-                school: "Universitas Terbuka",
-                link: "https://www.ut.ac.id/",
-                logo: "/images/logo-ut.png"
-              },
-              {
-                year: "Jan 2026 — Jun 2030 (Expected)",
-                title: "S1 Manajemen",
-                school: "Univ. Siber Muhammadiyah",
-                link: "https://sibermu.ac.id/",
-                logo: "/images/logo-mu.png"
-              },
-              {
-                year: "Jun 2022 — Jun 2024",
-                title: "Rekayasa Perangkat Lunak",
-                school: "SMK Negeri 4 Kendal",
-                link: "https://smkn4kendal.sch.id/",
-                logo: "/images/logo-smk.png"
-              }
-            ].map((edu, index) => (
-              <motion.a
-                key={index}
-                href={edu.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="group relative bg-neutral-900/40 border border-neutral-800 p-8 rounded-2xl hover:border-blue-500/50 hover:bg-neutral-900/80 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
-              >
-                {/* 1. Watermark Logo - Visibilitas Ditingkatkan (Brighter Base & Full Hover) */}
-                <div className="absolute -right-1 -bottom-1 w-48 h-48 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 pointer-events-none">
-                  <img
-                    src={edu.logo}
-                    alt={`Logo ${edu.school}`}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-
-                {/* 2. Efek Cahaya Sudut saat Hover */}
-                <div className="absolute -right-8 -top-8 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
-
-                {/* 3. Konten Teks (relative z-10 agar di atas logo) */}
-                <div className="relative z-10">
-                  <div className="text-neutral-500 font-mono text-xs mb-4 flex justify-between items-center">
-                    <span>{edu.year}</span>
-                    <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all text-blue-400" />
-                  </div>
-                  {/* Warna Teks Judul dibuat lebih terang (dari pb-2 ke pb-0 agar seragam) */}
-                  <h4 className="text-2xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors tracking-tight">{edu.title}</h4>
-                  <p className="text-neutral-300 font-medium text-lg">{edu.school}</p>
-
-                  {/* Indikator Klik */}
-                  <div className="mt-8 flex items-center gap-2 text-xs font-semibold text-blue-500/0 group-hover:text-blue-500/100 transition-all duration-500">
-                    Visit Website <ArrowRight className="w-3 h-3" />
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-
-          <div id="certificates" className="grid md:grid-cols-2 gap-6">
-            {[
-              { title: "Explore the possibilities with Microsoft 365 Copilot", issuer: "Microsoft", date: "April 2026", file: "/cert-copilot.pdf" },
-              { title: "Pelatihan Dasar Microsoft 365 Copilot", issuer: "Jobstreet & Microsoft", date: "April 2026", file: "/cert-jobstreet-copilot.pdf" },
-              { title: "Sertifikat Analisis Data Excel", issuer: "Microsoft & Jobstreet", date: "April 2026", file: "/cert-excel.pdf" },
-              { title: "QA Test Technique", issuer: "MySkill", date: "April 2026", file: "/cert-qa-technique.pdf" },
-              { title: "Quality Assurance Introduction", issuer: "MySkill", date: "Februari 2025", file: "/cert-qa-intro.pdf" },
-              { title: "Intensive Bootcamp – Microsoft Excel", issuer: "KarirNex", date: "April 2026", file: "/cert-excel-karirnex.pdf" }
-            ].map((cert, index) => (
-              <motion.a href={cert.file} target="_blank" rel="noopener noreferrer" key={index} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="group relative flex items-start gap-4 p-6 bg-neutral-900/50 border border-neutral-800 rounded-2xl hover:border-neutral-500 transition-all overflow-hidden">
-                <div className="p-3 bg-neutral-950 border border-neutral-800 rounded-xl group-hover:scale-110 transition-transform"><Award className="w-6 h-6 text-neutral-300" /></div>
-                <div className="pr-8">
-                  <h4 className="text-lg font-semibold text-white mb-1 group-hover:text-blue-400 transition-colors">{cert.title}</h4>
-                  <p className="text-neutral-400 text-sm mb-2">{cert.issuer}</p>
-                  <span className="text-xs font-mono text-neutral-500 bg-neutral-950 px-3 py-1 rounded-full border border-neutral-800">{cert.date}</span>
-                </div>
-                <ExternalLink className="absolute top-6 right-6 w-5 h-5 text-neutral-500 opacity-0 group-hover:opacity-100 group-hover:text-blue-400 transition-all" />
-              </motion.a>
-            ))}
-          </div>
-        </section>
-
-        {/* Monkeytype Dashboard (Dipindah ke sini) */}
-        <section id="metrics" className="py-24 px-6 bg-[#0a0a0a] border-y border-neutral-900 overflow-hidden">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-end mb-10">
-              <div className="flex items-center gap-3">
-                <Keyboard className="w-6 h-6 text-neutral-400" />
-                <h3 className="text-2xl font-bold tracking-tight text-neutral-200">Typing Performance</h3>
-              </div>
-              <a href="https://monkeytype.com/profile/Aprillio" target="_blank" rel="noreferrer" className="text-sm font-mono text-neutral-400 bg-neutral-900 px-4 py-2 rounded-full border border-neutral-800 hover:text-white transition-all flex items-center gap-2">
-                <Activity className="w-4 h-4" /> Live Profile
-              </a>
-            </div>
-            {/* Grid 6 Kotak (3 Kolom x 2 Baris) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-              {[
-                { icon: Keyboard, label: "Best WPM", value: stats.wpm },
-                { icon: Zap, label: "Raw WPM", value: stats.raw },
-                { icon: Target, label: "Accuracy", value: `${stats.acc}%` },
-                { icon: Activity, label: "Consistency", value: `${stats.cons}%` },
-                { icon: MousePointerClick, label: "Tests", value: stats.tests },
-                { icon: Clock, label: "Time", value: stats.time },
-              ].map((item) => (
-                <div key={item.label} className="bg-[#121212] border border-[#222] p-5 rounded-2xl flex items-center gap-5 hover:border-neutral-700 transition-colors">
-                  <div className="p-3 bg-[#1e1e1e] rounded-xl">
-                    <item.icon className="w-6 h-6 text-neutral-300" />
-                  </div>
-                  <div>
-                    <h4 className="text-3xl font-bold text-white tracking-tighter">{item.value}</h4>
-                    <p className="text-sm font-medium text-neutral-400">{item.label}</p>
-                  </div>
+            <motion.div variants={v} style={{display:"inline-flex",flexWrap:"wrap" as const,justifyContent:"center",gap:40,padding:"20px 40px",borderRadius:18,background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)"}}>
+              {[["3.8M","Total Views"],["50+","Videos"],["666+","QA Tests"],["121 WPM","Typing Speed"]].map(([val,lbl])=>(
+                <div key={lbl} style={{textAlign:"center"}}>
+                  <p className="grad-orange" style={{fontWeight:900,fontSize:"clamp(18px,2.5vw,26px)",letterSpacing:"-.04em",marginBottom:4}}>{val}</p>
+                  <p style={{fontSize:10,fontWeight:700,letterSpacing:".14em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.30)"}}>{lbl}</p>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </section>
 
-        {/* CONNECT WITH ME SECTION */}
-        <section id="contact" className="relative py-32 px-6 bg-neutral-950 overflow-hidden">
-          {/* Efek Spotlight Biru Halus dari Bawah */}
-          <div className="absolute bottom-0 left-0 z-0 h-full w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_120%,rgba(59,130,246,0.15),rgba(0,0,0,0))] pointer-events-none"></div>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="max-w-4xl mx-auto text-center">
-            <h3 className="text-5xl md:text-6xl font-bold mb-8 text-white tracking-tighter">Connect With Me.</h3>
-            <p className="text-neutral-400 text-lg mb-12 max-w-2xl mx-auto">
-              Selalu terbuka untuk tawaran profesional, kolaborasi QA, maupun partnership pembuatan konten digital game. Let's build something great together.
-            </p>
+        {/* MARQUEE */}
+        <div style={{overflow:"hidden",padding:"12px 0",borderTop:"1px solid rgba(249,115,22,.07)",borderBottom:"1px solid rgba(249,115,22,.07)",background:"rgba(255,255,255,.02)"}}>
+          <div className="marquee-track" style={{display:"flex",whiteSpace:"nowrap" as const,fontSize:10.5,fontWeight:700,letterSpacing:".18em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.20)"}}>
+            {[...Array(12)].map((_,i)=><span key={i} style={{margin:"0 40px"}}>✦ Functional Testing ✦ Video Editing ✦ Bug Reporting ✦ API Testing ✦ Content Strategy ✦ TikTok Growth </span>)}
+          </div>
+        </div>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-16">
-              <a href="https://github.com/aprilliobintang455-boop" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-white rounded-full transition-all group">
-                <Code className="w-5 h-5 text-neutral-400 group-hover:text-white" />
-                <span className="font-semibold text-neutral-300 group-hover:text-white">GitHub</span>
-              </a>
+        {/* ABOUT */}
+        <section id="about" style={{...SEC}}>
+          <div style={W}>
+            <span className="section-number">01</span>
+            <motion.div initial="hidden" animate="show" variants={s}>
+              <motion.div variants={v} style={{maxWidth:620,marginBottom:48}}>
+                <span className="eyebrow" style={{marginBottom:16}}>01 — Tentang</span>
+                <h2 style={{fontWeight:900,fontSize:"clamp(30px,4vw,50px)",letterSpacing:"-.03em",lineHeight:1.08,marginBottom:20}}>
+                  Dua Keahlian,<br/><span className="grad-orange">Satu Visi.</span>
+                </h2>
+                <div style={{display:"flex",flexDirection:"column" as const,gap:12,fontSize:14,lineHeight:1.65,color:"rgba(245,240,232,.45)"}}>
+                  <p>Seorang <strong style={{color:"rgba(245,240,232,.80)"}}>Quality Assurance Specialist</strong> dengan ketelitian tinggi, sekaligus <strong style={{color:"rgba(245,240,232,.80)"}}>Freelance Gaming Content Creator</strong> yang kreatif.</p>
+                  <p>Di dunia IT, menyusun <em>test case</em> terstruktur dan memastikan kelancaran aplikasi. Di ranah kreatif, memproduksi konten <em>Honor of Kings</em> berorientasi analitik audiens &amp; algoritma TikTok.</p>
+                </div>
+              </motion.div>
+              <div className="grid-2col">
+                {[
+                  {cat:"QA & Testing", skills:["Functional & UI Testing","Bug Reporting (Plane)","Manual API Testing","Requirement Analysis"], icon:"✓", acBg:"rgba(249,115,22,.12)", acBd:"rgba(249,115,22,.22)", dot:"#f97316", bar:"linear-gradient(90deg,#f97316,#fbbf24)"},
+                  {cat:"Content Creation", skills:["Video Editing","Content Strategy","Trend Analysis","Community Engagement"], icon:"▶", acBg:"rgba(239,68,68,.12)", acBd:"rgba(239,68,68,.22)", dot:"#ef4444", bar:"linear-gradient(90deg,#ef4444,#f97316)"},
+                ].map(c=>(
+                  <motion.div key={c.cat} variants={v} className="g-card" style={{padding:28}}>
+                    <div className="top-bar" style={{background:c.bar}}/>
+                    <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:20}}>
+                      <div style={{width:40,height:40,borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",background:c.acBg,border:`1px solid ${c.acBd}`,fontSize:18,color:c.dot,flexShrink:0}}>{c.icon}</div>
+                      <div>
+                        <p style={{fontSize:9.5,fontWeight:700,color:"rgba(245,240,232,.28)",letterSpacing:".14em",textTransform:"uppercase" as const,marginBottom:3}}>Category</p>
+                        <p style={{fontSize:14,fontWeight:900,color:"rgba(245,240,232,.90)"}}>{c.cat}</p>
+                      </div>
+                    </div>
+                    <div style={{display:"flex",flexDirection:"column" as const,gap:8}}>
+                      {c.skills.map(sk=>(
+                        <div key={sk} className="skill-pill">
+                          <span style={{width:6,height:6,borderRadius:"50%",background:c.dot,flexShrink:0}}/>
+                          {sk}
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-              <a href="https://linkedin.com/in/aprilliobintang" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#0a66c2] rounded-full transition-all group">
-                <LinkIcon className="w-5 h-5 text-neutral-400 group-hover:text-[#0a66c2]" />
-                <span className="font-semibold text-neutral-300 group-hover:text-white">LinkedIn</span>
-              </a>
+        <hr className="silk-divider"/>
 
-              <a href="https://www.tiktok.com/@scarawanderr" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#fe2c55] rounded-full transition-all group">
-                <Video className="w-5 h-5 text-neutral-400 group-hover:text-[#fe2c55]" />
-                <span className="font-semibold text-neutral-300 group-hover:text-white">TikTok</span>
-              </a>
-
-              <a href="https://www.instagram.com/aprillio.bintang/" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-6 py-4 bg-neutral-900 border border-neutral-800 hover:border-[#e1306c] rounded-full transition-all group">
-                <Camera className="w-5 h-5 text-neutral-400 group-hover:text-[#e1306c]" />
-                <span className="font-semibold text-neutral-300 group-hover:text-white">Instagram</span>
-              </a>
-
-              <a href="mailto:aprilliobintang455@gmail.com" className="flex items-center gap-3 px-6 py-4 bg-white text-black hover:bg-neutral-200 rounded-full transition-all group">
-                <Mail className="w-5 h-5" />
-                <span className="font-bold text-black">Email Me</span>
-              </a>
+        {/* EXPERIENCE */}
+        <section id="experience" style={{...SEC}}>
+          <div style={W}>
+            <span className="section-number">02</span>
+            <motion.div initial="hidden" animate="show" variants={v} style={{marginBottom:48}}>
+              <span className="eyebrow" style={{marginBottom:16}}>02 — Pengalaman</span>
+              <h2 style={{fontWeight:900,fontSize:"clamp(30px,4vw,50px)",letterSpacing:"-.03em"}}>
+                Rekam <span className="grad-orange">Jejak.</span>
+              </h2>
+            </motion.div>
+            <div style={{display:"flex",flexDirection:"column" as const,gap:16}}>
+              {[
+                {p:"Jun 2025 — Present",r:"Quality Assurance Specialist",c:"PT. BULLION ECOSYSTEM INTERNATIONAL · Bogor",tag:"Current",tc:"rgba(52,211,153,.10)",tb:"rgba(52,211,153,.25)",tt:"#34d399",
+                 i:["End-to-end testing sistem event Tenar Buyer & Organizer Phase 2–4 dan Payment Gateway MVP.","Menyusun dan mengelola puluhan test case terstruktur.","Identifikasi dan pelaporan bug menggunakan Plane.","Koordinasi dengan developer untuk resolusi isu."]},
+                {p:"2025 — Present",r:"Freelance Gaming Content Creator",c:"Honor of Kings (Tencent / TikTok) · Remote",tag:"Active",tc:"rgba(249,115,22,.10)",tb:"rgba(249,115,22,.25)",tt:"#fdba74",
+                 i:["Menyelesaikan kontrak 50 video promosi official HoK kampanye TikTok.","Aktif di HoK Creator Camp dengan jutaan penayangan akumulatif.","Kurasi & editing klip berkualitas dari in-game footage."]},
+                {p:"Agu 2024 — Jun 2025",r:"Internship Monitoring Server",c:"PT. BULLION ECOSYSTEM INTERNATIONAL · Bogor",tag:"Completed",tc:"rgba(255,255,255,.04)",tb:"rgba(255,255,255,.09)",tt:"rgba(245,240,232,.35)",
+                 i:["Monitoring sistem produksi secara berkala.","Analisis error transaksi dan penanganan kendala operasional.","Dokumentasi hasil monitoring ke laporan teknis."]},
+              ].map((exp,i)=>(
+                <motion.div key={i} initial="hidden" animate="show" variants={v} className="g-card" style={{padding:32}}>
+                  <div className="top-bar"/>
+                  <div style={{display:"flex",gap:32,flexWrap:"wrap" as const}}>
+                    <div style={{minWidth:160,flexShrink:0,display:"flex",flexDirection:"column" as const,gap:10}}>
+                      <span style={{fontSize:11,fontFamily:"monospace",color:"rgba(245,240,232,.32)",lineHeight:1.5}}>{exp.p}</span>
+                      <span style={{fontSize:10.5,fontWeight:700,padding:"4px 12px",borderRadius:999,width:"fit-content",background:exp.tc,border:`1px solid ${exp.tb}`,color:exp.tt}}>{exp.tag}</span>
+                    </div>
+                    <div style={{flex:1,minWidth:200}}>
+                      <h3 style={{fontSize:18,fontWeight:900,color:"rgba(245,240,232,.92)",marginBottom:6}}>{exp.r}</h3>
+                      <p style={{fontSize:12,color:"rgba(245,240,232,.32)",fontWeight:500,marginBottom:20,letterSpacing:".02em"}}>{exp.c}</p>
+                      <ul style={{display:"flex",flexDirection:"column" as const,gap:10}}>
+                        {exp.i.map((it,j)=>(
+                          <li key={j} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:13.5,lineHeight:1.55,color:"rgba(245,240,232,.52)"}}>
+                            <CheckCircle2 style={{width:15,height:15,color:"#f97316",flexShrink:0,marginTop:2,opacity:.80}}/>
+                            {it}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
+          </div>
+        </section>
+
+        <hr className="silk-divider"/>
+
+        {/* EDUCATION */}
+        <section id="education" style={{...SEC}}>
+          <div style={W}>
+            <span className="section-number">03</span>
+            <motion.div initial="hidden" animate="show" variants={v} style={{marginBottom:48}}>
+              <span className="eyebrow" style={{marginBottom:16}}>03 — Pendidikan</span>
+              <h2 style={{fontWeight:900,fontSize:"clamp(30px,4vw,50px)",letterSpacing:"-.03em"}}>
+                Pendidikan &amp; <span className="grad-orange">Sertifikasi.</span>
+              </h2>
+            </motion.div>
+            <div className="grid-3col" style={{marginBottom:16}}>
+              {edu.map((e,i)=>(
+                <motion.a key={i} href={e.href} target="_blank" rel="noopener noreferrer"
+                  initial="hidden" animate="show" variants={v}
+                  className="g-card" style={{padding:24,display:"block",textDecoration:"none"}}>
+                  <div className="top-bar"/>
+                  <p style={{fontSize:10.5,fontFamily:"monospace",color:"rgba(245,240,232,.28)",marginBottom:14}}>{e.yr}</p>
+                  <h3 style={{fontSize:14,fontWeight:900,color:"rgba(245,240,232,.88)",marginBottom:8,lineHeight:1.35}}>{e.title}</h3>
+                  <p style={{fontSize:13,color:"rgba(245,240,232,.40)"}}>{e.school}</p>
+                </motion.a>
+              ))}
+            </div>
+            <div className="grid-2col-cert">
+              {certs.map((c,i)=>(
+                <motion.a key={i} href={c.f} target="_blank"
+                  initial="hidden" animate="show" variants={v}
+                  className="g-card" style={{padding:20,display:"flex",alignItems:"flex-start",gap:16,textDecoration:"none",position:"relative"}}>
+                  <div className="top-bar"/>
+                  {/* External link badge top-right */}
+                  <div style={{position:"absolute",top:14,right:14,padding:6,borderRadius:8,background:"rgba(249,115,22,.10)",border:"1px solid rgba(249,115,22,.18)"}}>
+                    <ExternalLink style={{width:12,height:12,color:"#f97316"}}/>
+                  </div>
+                  <div style={{padding:10,borderRadius:12,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)",flexShrink:0}}>
+                    <Award style={{width:16,height:16,color:"#f97316"}}/>
+                  </div>
+                  <div style={{flex:1,minWidth:0,paddingRight:28}}>
+                    <h4 style={{fontSize:13.5,fontWeight:700,color:"rgba(245,240,232,.85)",marginBottom:4,lineHeight:1.35}}>{c.t}</h4>
+                    <p style={{fontSize:11,color:"rgba(245,240,232,.32)",marginBottom:10}}>{c.i}</p>
+                    <span style={{fontSize:10.5,fontFamily:"monospace",color:"#f97316",background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.15)",padding:"3px 10px",borderRadius:999}}>{c.d}</span>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <hr className="silk-divider"/>
+
+        {/* STATS */}
+        <section id="metrics" style={{...SEC, paddingBottom:80}}>
+          <div style={W}>
+            <motion.div initial="hidden" animate="show" variants={v}
+              style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap" as const,gap:16,marginBottom:40}}>
+              <div>
+                <span className="eyebrow" style={{marginBottom:12}}>Metrics</span>
+                <h2 style={{fontWeight:900,fontSize:"clamp(26px,3.5vw,40px)",letterSpacing:"-.03em"}}>
+                  Typing <span className="grad-orange">Performance.</span>
+                </h2>
+              </div>
+              <a href="https://monkeytype.com/profile/Aprillio" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm">
+                <Activity style={{width:14,height:14}}/> Live Profile
+              </a>
+            </motion.div>
+
+            {/* Hero WPM card */}
+            <motion.div initial="hidden" animate="show" variants={v}
+              className="g-card"
+              style={{padding:"36px 40px",marginBottom:16,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap" as const,gap:24,position:"relative"}}>
+              <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}} />
+              <div style={{position:"absolute",width:320,height:320,borderRadius:"50%",background:"#f97316",filter:"blur(80px)",opacity:.07,top:"50%",right:-40,transform:"translateY(-50%)",pointerEvents:"none"}}/>
+              <div>
+                <p style={{fontSize:11,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.30)",marginBottom:8}}>Personal Best · 15s Test</p>
+                <p className="grad-orange" style={{fontWeight:900,fontSize:"clamp(56px,8vw,100px)",letterSpacing:"-.05em",lineHeight:1}}>{stats.wpm}</p>
+                <p style={{fontSize:14,fontWeight:600,color:"rgba(245,240,232,.45)",marginTop:4}}>Words Per Minute</p>
+              </div>
+              <div style={{display:"flex",gap:32,flexWrap:"wrap" as const}}>
+                {[["Raw WPM",stats.raw],["Accuracy",`${stats.acc}%`],["Consistency",`${stats.cons}%`]].map(([l,val])=>(
+                  <div key={l as string} style={{textAlign:"center"}}>
+                    <p style={{fontWeight:900,fontSize:"clamp(22px,3vw,32px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.88)"}}>{val}</p>
+                    <p style={{fontSize:11,color:"rgba(245,240,232,.32)",fontWeight:500,marginTop:4,letterSpacing:".04em"}}>{l}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Bottom 2-stat row */}
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
+              {([
+                {Icon:Keyboard,label:"Tests Completed",val:stats.tests,sub:"Selesai diuji"},
+                {Icon:Clock,label:"Time Typed",val:stats.time,sub:"Total durasi"},
+              ] as {Icon:React.ElementType,label:string,val:string|number,sub:string}[]).map(({Icon,label,val,sub},i)=>(
+                <motion.div key={i} initial="hidden" animate="show" variants={v}
+                  className="g-card"
+                  style={{padding:"28px 32px",display:"flex",alignItems:"center",gap:24}}>
+                  <div className="top-bar"/>
+                  <div style={{padding:14,borderRadius:16,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)",flexShrink:0}}>
+                    <Icon style={{width:20,height:20,color:"#f97316"}}/>
+                  </div>
+                  <div>
+                    <p style={{fontWeight:900,fontSize:"clamp(24px,3vw,36px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.90)"}}>{val}</p>
+                    <p style={{fontSize:12,color:"rgba(245,240,232,.35)",fontWeight:500,marginTop:3}}>{label}</p>
+                    <p style={{fontSize:10.5,color:"rgba(249,115,22,.55)",fontWeight:600,marginTop:2,letterSpacing:".04em"}}>{sub}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section id="contact" style={{padding:"140px 24px",position:"relative",overflow:"hidden"}}>
+          <div style={{position:"absolute",width:560,height:560,borderRadius:"50%",background:"#f97316",filter:"blur(110px)",opacity:.10,top:"50%",left:"50%",transform:"translate(-50%,-50%)",pointerEvents:"none"}}/>
+          <motion.div initial="hidden" animate="show" variants={s}
+            style={{maxWidth:600,margin:"0 auto",textAlign:"center",position:"relative",zIndex:10}}>
+            <motion.span variants={v} className="eyebrow" style={{marginBottom:20}}>04 — Kontak</motion.span>
+            <motion.h2 variants={v} className="glow" style={{fontWeight:900,fontSize:"clamp(40px,7vw,80px)",letterSpacing:"-.04em",lineHeight:1.02,marginBottom:16}}>
+              Mari <span className="grad-orange">Terhubung.</span>
+            </motion.h2>
+            <motion.p variants={v} style={{fontSize:14,color:"rgba(245,240,232,.40)",lineHeight:1.6,marginBottom:48,maxWidth:320,marginLeft:"auto",marginRight:"auto"}}>
+              Terbuka untuk kolaborasi QA, tawaran profesional, atau partnership konten digital.
+            </motion.p>
+            <motion.div variants={v} style={{display:"flex",flexWrap:"wrap" as const,justifyContent:"center",gap:12}}>
+              {[
+                {href:"https://github.com/aprilliobintang455-boop",I:Code,l:"GitHub"},
+                {href:"https://linkedin.com/in/aprilliobintang",I:LI,l:"LinkedIn"},
+                {href:"https://www.tiktok.com/@scarawanderr",I:Video,l:"TikTok"},
+                {href:"https://www.instagram.com/aprillio.bintang/",I:Camera,l:"Instagram"},
+              ].map(({href,I,l})=>(
+                <a key={l} href={href} target="_blank" rel="noreferrer" className="btn btn-ghost">
+                  <I style={{width:16,height:16,color:"#f97316"}}/> {l}
+                </a>
+              ))}
+              <a href="mailto:aprilliobintang455@gmail.com" className="btn btn-primary">
+                <Mail style={{width:16,height:16}}/> Email Me
+              </a>
+            </motion.div>
           </motion.div>
         </section>
       </main>
 
-      <footer className="border-t border-neutral-900 py-8 text-center text-neutral-600 text-sm bg-[#0a0a0a]">
-        <p>© {new Date().getFullYear()} Aprillio Bintang Perdana.</p>
+      <footer style={{padding:"32px 24px",textAlign:"center",borderTop:"1px solid rgba(249,115,22,.08)",background:"rgba(255,255,255,.015)"}}>
+        <p style={{fontSize:11,color:"rgba(245,240,232,.22)",fontWeight:600,letterSpacing:".16em",textTransform:"uppercase" as const}}>
+          © {new Date().getFullYear()} Aprillio Bintang Perdana &nbsp;·&nbsp; Crafted with ✦
+        </p>
       </footer>
     </div>
   );
