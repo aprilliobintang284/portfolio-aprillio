@@ -2,6 +2,7 @@
 import { motion, type Variants } from "framer-motion";
 import { ExternalLink, ShieldCheck, CheckCircle2, Bug, Lock, Server } from "lucide-react";
 import Navbar from "../components/Navbar";
+import ParallaxScene from "../components/ParallaxScene";
 
 const v: Variants = { hidden:{opacity:0,y:32}, show:{opacity:1,y:0,transition:{duration:.72,ease:[.22,1,.36,1]}} };
 const vScale: Variants = { hidden:{opacity:0,y:24,scale:.97}, show:{opacity:1,y:0,scale:1,transition:{duration:.70,ease:[.22,1,.36,1]}} };
@@ -13,6 +14,7 @@ export default function Projects() {
   return (
     <div style={{minHeight:"100vh",position:"relative"}}>
       <div className="bg-scene bg-scene-amber"/>
+      <ParallaxScene />
       <Navbar/>
       <main style={{paddingTop:"clamp(108px,14vw,160px)",paddingBottom:120}}>
         <div style={W}>

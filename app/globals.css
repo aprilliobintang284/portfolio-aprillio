@@ -114,7 +114,13 @@
   background: linear-gradient(135deg, #f97316, #fbbf24);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   padding: 5px 12px; white-space: nowrap;
+  /* Back-to-top button behaviour */
+  cursor: none;
+  border: none;
+  transition: transform .28s cubic-bezier(.22,.68,0,1.2), opacity .2s;
+  display: inline-block;
 }
+.logo:hover { transform: scale(1.05); opacity: .85; }
 
 /* ── MOBILE NAV ─────────────────────────── */
 .mobile-nav {
@@ -340,9 +346,66 @@
   .grid-3col { grid-template-columns: 1fr; }
   .grid-2col-cert { grid-template-columns: 1fr; }
   .grid-stats { grid-template-columns: repeat(2, 1fr); }
+
+  /* Stats section mobile fix — center everything, 1-col grid */
+  .stats-grid-mobile {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  /* Hero WPM card inner flex → column + centered */
+  .hero-wpm-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 20px !important;
+  }
+  .hero-wpm-values {
+    justify-content: center !important;
+    gap: 20px !important;
+  }
+  /* Bottom 2-stat row → 1 column */
+  .bottom-stat-grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* Stat card inner align → center */
+  .stat-card-inner {
+    justify-content: center !important;
+    text-align: center !important;
+  }
 }
 @media (max-width: 480px) {
   .grid-stats { grid-template-columns: 1fr; }
+}
+
+/* ── PARALLAX FLOATING SHAPES ───────────── */
+.parallax-shape {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+.parallax-shape-1 {
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(249,115,22,.18) 0%, transparent 70%);
+  filter: blur(60px);
+  top: 10%; left: -8%;
+}
+.parallax-shape-2 {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(245,158,11,.14) 0%, transparent 70%);
+  filter: blur(50px);
+  top: 45%; right: -6%;
+}
+.parallax-shape-3 {
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(251,191,36,.10) 0%, transparent 70%);
+  filter: blur(40px);
+  bottom: 15%; left: 30%;
+}
+@media (max-width: 768px) {
+  .parallax-shape-1 { width: 280px; height: 280px; }
+  .parallax-shape-2 { width: 200px; height: 200px; }
+  .parallax-shape-3 { width: 160px; height: 160px; }
 }
 
 /* ── PAGE-LEVEL RESPONSIVE ──────────────── */

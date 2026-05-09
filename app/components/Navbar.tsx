@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -38,6 +38,17 @@ export default function Navbar() {
     }
   };
 
+  // Smooth scroll back to very top (used by logo)
+  const scrollToTop = useCallback((closeMenu = false) => {
+    if (closeMenu) setOpen(false);
+    if (path !== "/") {
+      router.push("/");
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 400);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [path, router]);
+
   const NavLink = ({ l, mobile = false, onClick }: { l: typeof LINKS[0]; mobile?: boolean; onClick?: () => void }) => {
     const isActive = l.pages.includes(path) && !l.anchor;
     const cls = `pill-nav-link${isActive ? " is-active" : ""}`;
@@ -73,7 +84,7 @@ export default function Navbar() {
           className="pill-nav"
           style={{ pointerEvents: "auto" }}
         >
-          <Link href="/" className="logo">ABP.</Link>
+          <button onClick={() => scrollToTop()} className="logo" aria-label="Back to top">ABP.</button>
           <span className="pill-divider" />
 
           {LINKS.map(l => (
@@ -90,7 +101,7 @@ export default function Navbar() {
       {/* ── MOBILE ── */}
       <header className="md:hidden">
         <div className="mobile-nav">
-          <Link href="/" className="logo">ABP.</Link>
+          <button onClick={() => scrollToTop()} className="logo" aria-label="Back to top">ABP.</button>
           <button
             onClick={() => setOpen(!open)}
             className="btn btn-ghost btn-sm"

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { Mail, Link as LI, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, Activity, Video, Camera, Code, Sparkles } from "lucide-react";
 import Navbar from "./components/Navbar";
+import ParallaxScene from "./components/ParallaxScene";
 
 const v: Variants = { hidden:{opacity:0,y:32}, show:{opacity:1,y:0,transition:{duration:.72,ease:[.22,1,.36,1]}} };
 const vScale: Variants = { hidden:{opacity:0,y:24,scale:.97}, show:{opacity:1,y:0,scale:1,transition:{duration:.70,ease:[.22,1,.36,1]}} };
@@ -24,9 +25,9 @@ export default function Home() {
   },[]);
 
   const edu=[
-    {yr:"Agu 2025—Sekarang",title:"S1 Sistem Informasi",school:"Universitas Terbuka",href:"https://ut.ac.id"},
-    {yr:"Jan 2026—Sekarang",title:"S1 Manajemen",school:"Univ. Siber Muhammadiyah",href:"https://sibermu.ac.id"},
-    {yr:"Jun 2022—Jun 2024",title:"Rekayasa Perangkat Lunak",school:"SMK Negeri 4 Kendal",href:"https://smkn4kendal.sch.id"},
+    {yr:"Agu 2025 — Present",title:"S1 Sistem Informasi",school:"Universitas Terbuka",href:"https://ut.ac.id"},
+    {yr:"Jan 2026 — Present",title:"S1 Manajemen",school:"Univ. Siber Muhammadiyah",href:"https://sibermu.ac.id"},
+    {yr:"Jun 2022 — Jun 2024",title:"Rekayasa Perangkat Lunak",school:"SMK Negeri 4 Kendal",href:"https://smkn4kendal.sch.id"},
   ];
   const certs=[
     {t:"Microsoft 365 Copilot",i:"Microsoft",d:"Apr 2026",f:"/cert-copilot.pdf"},
@@ -45,6 +46,7 @@ export default function Home() {
   return (
     <div style={{minHeight:"100vh",position:"relative"}}>
       <div className="bg-scene"/>
+      <ParallaxScene />
       <Navbar/>
       <main>
 
@@ -260,41 +262,45 @@ export default function Home() {
             {/* Hero WPM card */}
             <motion.div initial="hidden" whileInView="show" viewport={VP} variants={vScale}
               className="g-card"
-              style={{padding:"36px 40px",marginBottom:16,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap" as const,gap:24,position:"relative"}}>
+              style={{padding:"36px 40px",marginBottom:16,position:"relative"}}>
               <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}} />
               <div style={{position:"absolute",width:320,height:320,borderRadius:"50%",background:"#f97316",filter:"blur(80px)",opacity:.07,top:"50%",right:-40,transform:"translateY(-50%)",pointerEvents:"none"}}/>
-              <div>
-                <p style={{fontSize:11,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.30)",marginBottom:8}}>Personal Best · 15s Test</p>
-                <p className="grad-orange" style={{fontWeight:900,fontSize:"clamp(56px,8vw,100px)",letterSpacing:"-.05em",lineHeight:1}}>{stats.wpm}</p>
-                <p style={{fontSize:14,fontWeight:600,color:"rgba(245,240,232,.45)",marginTop:4}}>Words Per Minute</p>
-              </div>
-              <div style={{display:"flex",gap:32,flexWrap:"wrap" as const}}>
-                {[["Raw WPM",stats.raw],["Accuracy",`${stats.acc}%`],["Consistency",`${stats.cons}%`]].map(([l,val])=>(
-                  <div key={l as string} style={{textAlign:"center"}}>
-                    <p style={{fontWeight:900,fontSize:"clamp(22px,3vw,32px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.88)"}}>{val}</p>
-                    <p style={{fontSize:11,color:"rgba(245,240,232,.32)",fontWeight:500,marginTop:4,letterSpacing:".04em"}}>{l}</p>
-                  </div>
-                ))}
+              <div className="hero-wpm-inner" style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap" as const,gap:24}}>
+                <div style={{textAlign:"center"}}>
+                  <p style={{fontSize:11,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.30)",marginBottom:8}}>Personal Best · 15s Test</p>
+                  <p className="grad-orange" style={{fontWeight:900,fontSize:"clamp(56px,8vw,100px)",letterSpacing:"-.05em",lineHeight:1}}>{stats.wpm}</p>
+                  <p style={{fontSize:14,fontWeight:600,color:"rgba(245,240,232,.45)",marginTop:4}}>Words Per Minute</p>
+                </div>
+                <div className="hero-wpm-values" style={{display:"flex",gap:32,flexWrap:"wrap" as const}}>
+                  {[["Raw WPM",stats.raw],["Accuracy",`${stats.acc}%`],["Consistency",`${stats.cons}%`]].map(([l,val])=>(
+                    <div key={l as string} style={{textAlign:"center"}}>
+                      <p style={{fontWeight:900,fontSize:"clamp(22px,3vw,32px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.88)"}}>{val}</p>
+                      <p style={{fontSize:11,color:"rgba(245,240,232,.32)",fontWeight:500,marginTop:4,letterSpacing:".04em"}}>{l}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
             {/* Bottom 2-stat row */}
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
+            <div className="bottom-stat-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
               {([
                 {Icon:Keyboard,label:"Tests Completed",val:stats.tests,sub:"Selesai diuji"},
                 {Icon:Clock,label:"Time Typed",val:stats.time,sub:"Total durasi"},
               ] as {Icon:React.ElementType,label:string,val:string|number,sub:string}[]).map(({Icon,label,val,sub},i)=>(
                 <motion.div key={i} initial="hidden" whileInView="show" viewport={VP} variants={vScale}
                   className="g-card"
-                  style={{padding:"28px 32px",display:"flex",alignItems:"center",gap:24}}>
+                  style={{padding:"28px 32px"}}>
                   <div className="top-bar"/>
-                  <div style={{padding:14,borderRadius:16,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)",flexShrink:0}}>
-                    <Icon style={{width:20,height:20,color:"#f97316"}}/>
-                  </div>
-                  <div>
-                    <p style={{fontWeight:900,fontSize:"clamp(24px,3vw,36px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.90)"}}>{val}</p>
-                    <p style={{fontSize:12,color:"rgba(245,240,232,.35)",fontWeight:500,marginTop:3}}>{label}</p>
-                    <p style={{fontSize:10.5,color:"rgba(249,115,22,.55)",fontWeight:600,marginTop:2,letterSpacing:".04em"}}>{sub}</p>
+                  <div className="stat-card-inner" style={{display:"flex",alignItems:"center",gap:24}}>
+                    <div style={{padding:14,borderRadius:16,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)",flexShrink:0}}>
+                      <Icon style={{width:20,height:20,color:"#f97316"}}/>
+                    </div>
+                    <div>
+                      <p style={{fontWeight:900,fontSize:"clamp(24px,3vw,36px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.90)"}}>{val}</p>
+                      <p style={{fontSize:12,color:"rgba(245,240,232,.35)",fontWeight:500,marginTop:3}}>{label}</p>
+                      <p style={{fontSize:10.5,color:"rgba(249,115,22,.55)",fontWeight:600,marginTop:2,letterSpacing:".04em"}}>{sub}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
