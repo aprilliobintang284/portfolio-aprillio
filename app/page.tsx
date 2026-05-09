@@ -24,8 +24,8 @@ export default function Home() {
   },[]);
 
   const edu=[
-    {yr:"Agu 2025—Jul 2029",title:"S1 Sistem Informasi",school:"Universitas Terbuka",href:"https://ut.ac.id"},
-    {yr:"Jan 2026—Jun 2030",title:"S1 Manajemen",school:"Univ. Siber Muhammadiyah",href:"https://sibermu.ac.id"},
+    {yr:"Agu 2025—Sekarang",title:"S1 Sistem Informasi",school:"Universitas Terbuka",href:"https://ut.ac.id"},
+    {yr:"Jan 2026—Sekarang",title:"S1 Manajemen",school:"Univ. Siber Muhammadiyah",href:"https://sibermu.ac.id"},
     {yr:"Jun 2022—Jun 2024",title:"Rekayasa Perangkat Lunak",school:"SMK Negeri 4 Kendal",href:"https://smkn4kendal.sch.id"},
   ];
   const certs=[
@@ -335,7 +335,7 @@ export default function Home() {
 
       <footer style={{padding:"32px 24px",textAlign:"center",borderTop:"1px solid rgba(249,115,22,.08)",background:"rgba(255,255,255,.015)"}}>
         <p style={{fontSize:11,color:"rgba(245,240,232,.22)",fontWeight:600,letterSpacing:".16em",textTransform:"uppercase" as const}}>
-          © {new Date().getFullYear()} Aprillio Bintang Perdana &nbsp;·&nbsp; Crafted with ✦
+          © {new Date().getFullYear()} &nbsp;·&nbsp; Aprillio Bintang Perdana &nbsp;·&nbsp; Crafted with ✦
         </p>
       </footer>
     </div>
