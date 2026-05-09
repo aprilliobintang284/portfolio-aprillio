@@ -15,11 +15,17 @@
     background: #0e0c09;
     color: #f5f0e8;
     overflow-x: hidden;
-    cursor: none;
+    /* Eliminate orange tap highlight on all touch devices */
+    -webkit-tap-highlight-color: transparent;
   }
-  /* Prevent browser default cursor on all interactive elements */
+  /* Tap highlight off for all interactive elements */
   a, button, [role="button"], input, textarea, select, label {
-    cursor: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Custom cursor only on true hover/pointer devices (desktop) */
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    a, button, [role="button"], input, textarea, select, label { cursor: none !important; }
   }
 }
 
@@ -324,6 +330,11 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+/* Tablet */
+@media (max-width: 1024px) {
+  .grid-3col { grid-template-columns: repeat(2, 1fr); }
+}
+/* Mobile */
 @media (max-width: 768px) {
   .grid-2col { grid-template-columns: 1fr; }
   .grid-3col { grid-template-columns: 1fr; }
@@ -332,4 +343,50 @@
 }
 @media (max-width: 480px) {
   .grid-stats { grid-template-columns: 1fr; }
+}
+
+/* ── PAGE-LEVEL RESPONSIVE ──────────────── */
+/* Projects page: 2-col → 1-col */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .projects-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* Creator page: stats 3-col → 2-col → 1-col */
+.creator-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 64px;
+}
+@media (max-width: 900px) {
+  .creator-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .creator-stats-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
+}
+
+/* Creator page: campaigns 3-col → 2-col → 1-col */
+.creator-campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) {
+  .creator-campaigns-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .creator-campaigns-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* Card padding scale-down on mobile */
+@media (max-width: 600px) {
+  .g-card-padded { padding: 20px !important; }
+  .g-card-padded-sm { padding: 16px !important; }
+  .wip-card-padding { padding: 36px 20px !important; }
 }

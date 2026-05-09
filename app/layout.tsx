@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Porto April",
+  title: "Porto April ",
   description: "Aprillio Bintang Perdana — QA Specialist & Freelance Gaming Content Creator. Portfolio, Projects, dan Creator Content. Tersedia untuk kolaborasi.",
 };
 

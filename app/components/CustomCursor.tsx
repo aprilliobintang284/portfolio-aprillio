@@ -1,17 +1,34 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
+  const [isHoverDevice, setIsHoverDevice] = useState(false);
 
   useEffect(() => {
+    // Only enable on devices that support true hover (desktops / laptops)
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setIsHoverDevice(mq.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setIsHoverDevice(e.matches);
+    mq.addEventListener("change", handleChange);
+
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!isHoverDevice) return;
+
     const onMove = (e: MouseEvent) => {
       if (!dotRef.current) return;
       dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     };
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+  }, [isHoverDevice]);
+
+  // Don't render anything on touch/mobile devices
+  if (!isHoverDevice) return null;
 
   return (
     <div

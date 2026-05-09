@@ -34,7 +34,7 @@ export default function Projects() {
           </motion.div>
 
           {/* Cards */}
-          <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:20,marginBottom:20}}>
+          <div className="projects-grid">
             {[
               {href:"https://tenar.events/",title:"Tenar Events (Buyer)",
                desc:"Platform pencarian & pembelian tiket event bagi pengguna akhir (B2C). Fokus pada kelancaran alur checkout, fungsionalitas pencarian, dan keamanan transaksi.",
@@ -43,7 +43,7 @@ export default function Projects() {
                desc:"Dashboard CMS eksklusif bagi penyelenggara event (B2B). Mengelola pembuatan event, manajemen kuota tiket, hingga analitik penjualan.",
                items:[{I:CheckCircle2,t:"Validasi input pembuatan event (Form Validation)."},{I:Bug,t:"Reporting bug integrasi API melalui Plane."},{I:Lock,t:"Pengujian Role-Based Access Control (RBAC)."}]},
             ].map((p,i)=>(
-              <motion.div key={i} initial="hidden" animate="show" variants={v} className="g-card" style={{padding:32,display:"flex",flexDirection:"column" as const}}>
+              <motion.div key={i} initial="hidden" animate="show" variants={v} className="g-card g-card-padded" style={{padding:32,display:"flex",flexDirection:"column" as const}}>
                 <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
                   <span className="chip chip-green">Production Live</span>
@@ -69,8 +69,9 @@ export default function Projects() {
           </div>
 
           {/* WIP */}
-          <motion.div initial="hidden" animate="show" variants={v} className="g-card"
+          <motion.div initial="hidden" animate="show" variants={v} className="g-card wip-card-padding"
             style={{padding:56,textAlign:"center",background:"rgba(255,255,255,.02)",border:"1.5px dashed rgba(249,115,22,.16)"}}>
+
             <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
               <div style={{padding:14,borderRadius:18,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)"}}>
                 <Lock style={{width:24,height:24,color:"#f97316"}}/>

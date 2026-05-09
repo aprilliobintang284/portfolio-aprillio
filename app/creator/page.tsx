@@ -45,7 +45,7 @@ export default function Creator() {
 
           {/* Stats */}
           <motion.div initial="hidden" animate="show" variants={s}
-            style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,marginBottom:64}}>
+            className="creator-stats-grid">
             {[
               {l:"Total Video Views",val:"3.8M",sub:"Massive Reach",I:Zap},
               {l:"Total Likes",val:"245K",sub:"High Engagement",I:TrendingUp},
@@ -71,9 +71,9 @@ export default function Creator() {
               <TrendingUp style={{width:16,height:16,color:"#ef4444"}}/>
               <h2 style={{fontSize:24,fontWeight:900,letterSpacing:"-.03em",color:"rgba(245,240,232,.88)"}}>Top Performing Campaigns</h2>
             </motion.div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16}}>
+            <div className="creator-campaigns-grid">
               {CAMPAIGNS.map(c=>(
-                <motion.div key={c.title} variants={v} className="g-card" style={{padding:24,display:"flex",flexDirection:"column" as const}}>
+                <motion.div key={c.title} variants={v} className="g-card g-card-padded-sm" style={{padding:24,display:"flex",flexDirection:"column" as const}}>
                   <div className="top-bar" style={{background:c.bar}}/>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20}}>
                     <div style={{padding:10,borderRadius:12,background:"rgba(255,255,255,.05)",border:"1px solid rgba(255,255,255,.07)"}}>
