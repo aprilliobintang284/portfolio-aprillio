@@ -453,3 +453,41 @@
   .g-card-padded-sm { padding: 16px !important; }
   .wip-card-padding { padding: 36px 20px !important; }
 }
+
+/* ── DUOLINGO SECTION ───────────────────── */
+/* Stat cards: 3-col on desktop, 1-col on mobile */
+.duo-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+/* Course breakdown: 3-col desktop, 1-col mobile */
+.duo-course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 768px) {
+  .duo-stat-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .duo-course-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  /* Course card: row layout on mobile for compactness */
+  .duo-course-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px !important;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  /* 2-col for courses on tablet */
+  .duo-course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

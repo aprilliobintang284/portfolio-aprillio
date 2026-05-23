@@ -271,9 +271,8 @@ export default function Home() {
               </a>
             </motion.div>
 
-            {/* 3 stat cards */}
-            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
-              style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,marginBottom:16}}>
+            {/* 3 stat cards — responsive via CSS class */}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s} className="duo-stat-grid">
 
               {/* Streak */}
               <motion.div variants={vScale} className="g-card" style={{padding:"28px 24px",position:"relative"}}>
@@ -324,9 +323,8 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Course breakdown */}
-            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
-              style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12}}>
+            {/* Course breakdown — responsive via CSS class */}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s} className="duo-course-grid">
               {duoLoading
                 ? [1,2,3].map(i=>(
                     <div key={i} className="g-card" style={{padding:"20px 22px",opacity:.4}}>
@@ -339,19 +337,33 @@ export default function Home() {
                   const courses = duo?.courses ?? [];
                   const maxXp = Math.max(...courses.map(x => x.xp), 1);
                   const pct = Math.round((c.xp / maxXp) * 100);
-                  const flags: Record<string,string> = { ja:"🇯🇵", en:"🇺🇸", ko:"🇰🇷", fr:"🇫🇷", es:"🇪🇸", de:"🇩🇪", "zh-cn":"🇨🇳", zh:"🇨🇳", pt:"🇧🇷", it:"🇮🇹", ru:"🇷🇺", ar:"🇸🇦", hi:"🇮🇳" };
-                  const flag = flags[c.language.toLowerCase()] ?? "🌐";
+                  // Map learningLanguage code → ISO 3166-1 alpha-2 for flagcdn.com
+                  const countryCode: Record<string,string> = {
+                    ja:"jp", en:"us", ko:"kr", fr:"fr", es:"es", de:"de",
+                    "zh-cn":"cn", zh:"cn", pt:"br", it:"it", ru:"ru",
+                    ar:"sa", hi:"in", id:"id", tr:"tr", nl:"nl", pl:"pl",
+                    sv:"se", da:"dk", fi:"fi", nb:"no", el:"gr", cs:"cz",
+                    ro:"ro", uk:"ua", vi:"vn", th:"th",
+                  };
+                  const cc = countryCode[c.language.toLowerCase()] ?? "un";
                   return (
                     <motion.div key={i} variants={vScale} className="g-card" style={{padding:"20px 22px"}}>
                       <div className="top-bar" style={{background:"linear-gradient(90deg,#58cc02,#89e219)"}}/>
-                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+                      <div className="duo-course-card-inner" style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
                         <div style={{display:"flex",alignItems:"center",gap:10}}>
-                          <span style={{fontSize:22}}>{flag}</span>
+                          {/* Use flagcdn.com image — works on all platforms including Windows */}
+                          <img
+                            src={`https://flagcdn.com/28x21/${cc}.png`}
+                            srcSet={`https://flagcdn.com/56x42/${cc}.png 2x`}
+                            width={28} height={21}
+                            alt={c.title}
+                            style={{borderRadius:3,objectFit:"cover",flexShrink:0,boxShadow:"0 1px 4px rgba(0,0,0,.4)"}}
+                          />
                           <p style={{fontSize:14,fontWeight:700,color:"rgba(245,240,232,.85)"}}>{c.title}</p>
                         </div>
                         <span style={{fontSize:11,fontWeight:700,padding:"3px 10px",borderRadius:999,
                           background:"rgba(88,204,2,.10)",border:"1px solid rgba(88,204,2,.22)",
-                          color:"#89e219",fontFamily:"monospace"}}>
+                          color:"#89e219",fontFamily:"monospace",whiteSpace:"nowrap" as const}}>
                           {c.xp.toLocaleString()} XP
                         </span>
                       </div>
