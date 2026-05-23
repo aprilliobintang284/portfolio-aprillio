@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { Mail, Link as LI, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, Activity, Video, Camera, Code, Sparkles } from "lucide-react";
+import { Mail, Link as LI, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, Activity, Video, Camera, Code, Sparkles, Flame, Trophy, BookOpen, Globe } from "lucide-react";
 import Navbar from "./components/Navbar";
 import ParallaxScene from "./components/ParallaxScene";
 
@@ -14,14 +14,24 @@ const W = { maxWidth:960, margin:"0 auto", padding:"0 24px" };
 const SEC = { padding:"96px 0", position:"relative" as const };
 const CARD_STYLE = { padding:"28px", borderRadius:20, background:"rgba(255,255,255,.035)", border:"1px solid rgba(255,255,255,.075)", boxShadow:"inset 0 1px 0 rgba(255,255,255,.05), 0 4px 24px rgba(0,0,0,.50)", position:"relative" as const, overflow:"hidden" as const };
 
+type DuoCourse = { title: string; xp: number; language: string };
+type DuoStats = { streak: number; totalXp: number; activeCourses: number; courses: DuoCourse[] };
+
 export default function Home() {
   const [stats, setStats] = useState({wpm:121,raw:125,acc:97,cons:79,tests:666,time:"9h 50m"});
+  const [duo, setDuo] = useState<DuoStats | null>(null);
+  const [duoLoading, setDuoLoading] = useState(true);
+
   useEffect(()=>{
     fetch("https://api.monkeytype.com/users/Aprillio/profile").then(r=>r.json()).then(d=>{
       if(!d?.data) return;
       const pb=d.data.personalBests?.time?.["15"]?.[0]; const ts=d.data.typingStats;
       if(pb) setStats({wpm:Math.floor(pb.wpm)||121,raw:Math.floor(pb.raw)||125,acc:Math.floor(pb.acc)||97,cons:Math.floor(pb.consistency)||79,tests:ts?.completedTests||666,time:ts?.timeTyping?`${Math.floor(ts.timeTyping/3600)}h ${Math.floor((ts.timeTyping%3600)/60)}m`:"9h 50m"});
     }).catch(()=>{});
+
+    fetch("/api/duolingo").then(r=>r.json()).then((d: DuoStats & { ok?: boolean })=>{
+      if(d?.ok) setDuo({ streak: d.streak, totalXp: d.totalXp, activeCourses: d.activeCourses, courses: d.courses ?? [] });
+    }).catch(()=>{}).finally(()=>setDuoLoading(false));
   },[]);
 
   const edu=[
@@ -243,6 +253,123 @@ export default function Home() {
 
         <hr className="silk-divider"/>
 
+        {/* DUOLINGO PROGRESS */}
+        <section id="duolingo" style={{...SEC, paddingBottom:80}}>
+          <div style={W}>
+            <span className="section-number">04</span>
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v}
+              style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap" as const,gap:16,marginBottom:40}}>
+              <div>
+                <span className="eyebrow" style={{marginBottom:12}}>Duolingo</span>
+                <h2 style={{fontWeight:900,fontSize:"clamp(26px,3.5vw,40px)",letterSpacing:"-.03em"}}>
+                  Language <span style={{background:"linear-gradient(135deg,#58cc02,#89e219)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Progress.</span>
+                </h2>
+              </div>
+              <a href="https://www.duolingo.com/profile/AprillioBi" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm"
+                style={{borderColor:"rgba(88,204,2,.25)",color:"rgba(88,204,2,.8)"}}>
+                <Globe style={{width:14,height:14,color:"#58cc02"}}/> Profile
+              </a>
+            </motion.div>
+
+            {/* 3 stat cards */}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
+              style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,marginBottom:16}}>
+
+              {/* Streak */}
+              <motion.div variants={vScale} className="g-card" style={{padding:"28px 24px",position:"relative"}}>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#ff6b00,#ff9900)"}}/>
+                <div style={{position:"absolute",width:120,height:120,borderRadius:"50%",background:"#ff6b00",filter:"blur(40px)",opacity:.10,top:-20,right:-20,pointerEvents:"none"}}/>
+                <div style={{display:"flex",flexDirection:"column" as const,gap:8}}>
+                  <div style={{padding:10,borderRadius:12,background:"rgba(255,107,0,.10)",border:"1px solid rgba(255,107,0,.22)",width:"fit-content"}}>
+                    <Flame style={{width:20,height:20,color:"#ff6b00"}}/>
+                  </div>
+                  <p style={{fontWeight:900,fontSize:"clamp(32px,4vw,52px)",letterSpacing:"-.04em",lineHeight:1,
+                    background:"linear-gradient(135deg,#ff6b00,#ff9900)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>
+                    {duoLoading ? "—" : (duo?.streak ?? 0).toLocaleString()}
+                  </p>
+                  <p style={{fontSize:12,color:"rgba(245,240,232,.38)",fontWeight:600,letterSpacing:".04em",textTransform:"uppercase" as const}}>Day Streak</p>
+                </div>
+              </motion.div>
+
+              {/* Total XP */}
+              <motion.div variants={vScale} className="g-card" style={{padding:"28px 24px",position:"relative"}}>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#ffc800,#ffe066)"}}/>
+                <div style={{position:"absolute",width:120,height:120,borderRadius:"50%",background:"#ffc800",filter:"blur(40px)",opacity:.10,top:-20,right:-20,pointerEvents:"none"}}/>
+                <div style={{display:"flex",flexDirection:"column" as const,gap:8}}>
+                  <div style={{padding:10,borderRadius:12,background:"rgba(255,200,0,.10)",border:"1px solid rgba(255,200,0,.22)",width:"fit-content"}}>
+                    <Trophy style={{width:20,height:20,color:"#ffc800"}}/>
+                  </div>
+                  <p style={{fontWeight:900,fontSize:"clamp(28px,3.5vw,46px)",letterSpacing:"-.04em",lineHeight:1,
+                    background:"linear-gradient(135deg,#ffc800,#ffe066)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>
+                    {duoLoading ? "—" : (duo?.totalXp ?? 0).toLocaleString()}
+                  </p>
+                  <p style={{fontSize:12,color:"rgba(245,240,232,.38)",fontWeight:600,letterSpacing:".04em",textTransform:"uppercase" as const}}>Total XP</p>
+                </div>
+              </motion.div>
+
+              {/* Active Courses */}
+              <motion.div variants={vScale} className="g-card" style={{padding:"28px 24px",position:"relative"}}>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#1cb0f6,#58cc02)"}}/>
+                <div style={{position:"absolute",width:120,height:120,borderRadius:"50%",background:"#1cb0f6",filter:"blur(40px)",opacity:.10,top:-20,right:-20,pointerEvents:"none"}}/>
+                <div style={{display:"flex",flexDirection:"column" as const,gap:8}}>
+                  <div style={{padding:10,borderRadius:12,background:"rgba(28,176,246,.10)",border:"1px solid rgba(28,176,246,.22)",width:"fit-content"}}>
+                    <BookOpen style={{width:20,height:20,color:"#1cb0f6"}}/>
+                  </div>
+                  <p style={{fontWeight:900,fontSize:"clamp(32px,4vw,52px)",letterSpacing:"-.04em",lineHeight:1,
+                    background:"linear-gradient(135deg,#1cb0f6,#58cc02)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>
+                    {duoLoading ? "—" : (duo?.activeCourses ?? 0)}
+                  </p>
+                  <p style={{fontSize:12,color:"rgba(245,240,232,.38)",fontWeight:600,letterSpacing:".04em",textTransform:"uppercase" as const}}>Active Courses</p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Course breakdown */}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
+              style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12}}>
+              {duoLoading
+                ? [1,2,3].map(i=>(
+                    <div key={i} className="g-card" style={{padding:"20px 22px",opacity:.4}}>
+                      <div className="top-bar" style={{background:"linear-gradient(90deg,#58cc02,#89e219)"}}/>
+                      <div style={{height:14,borderRadius:8,background:"rgba(255,255,255,.08)",marginBottom:12,width:"60%"}}/>
+                      <div style={{height:4,borderRadius:999,background:"rgba(255,255,255,.06)"}}/>
+                    </div>
+                  ))
+                : (duo?.courses ?? []).map((c, i) => {
+                  const courses = duo?.courses ?? [];
+                  const maxXp = Math.max(...courses.map(x => x.xp), 1);
+                  const pct = Math.round((c.xp / maxXp) * 100);
+                  const flags: Record<string,string> = { ja:"🇯🇵", en:"🇺🇸", ko:"🇰🇷", fr:"🇫🇷", es:"🇪🇸", de:"🇩🇪", "zh-cn":"🇨🇳", zh:"🇨🇳", pt:"🇧🇷", it:"🇮🇹", ru:"🇷🇺", ar:"🇸🇦", hi:"🇮🇳" };
+                  const flag = flags[c.language.toLowerCase()] ?? "🌐";
+                  return (
+                    <motion.div key={i} variants={vScale} className="g-card" style={{padding:"20px 22px"}}>
+                      <div className="top-bar" style={{background:"linear-gradient(90deg,#58cc02,#89e219)"}}/>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+                        <div style={{display:"flex",alignItems:"center",gap:10}}>
+                          <span style={{fontSize:22}}>{flag}</span>
+                          <p style={{fontSize:14,fontWeight:700,color:"rgba(245,240,232,.85)"}}>{c.title}</p>
+                        </div>
+                        <span style={{fontSize:11,fontWeight:700,padding:"3px 10px",borderRadius:999,
+                          background:"rgba(88,204,2,.10)",border:"1px solid rgba(88,204,2,.22)",
+                          color:"#89e219",fontFamily:"monospace"}}>
+                          {c.xp.toLocaleString()} XP
+                        </span>
+                      </div>
+                      <div style={{height:4,borderRadius:999,background:"rgba(255,255,255,.06)",overflow:"hidden"}}>
+                        <div style={{height:"100%",width:`${pct}%`,borderRadius:999,
+                          background:"linear-gradient(90deg,#58cc02,#89e219)",
+                          transition:"width 1s ease"}} />
+                      </div>
+                    </motion.div>
+                  );
+                })
+              }
+            </motion.div>
+          </div>
+        </section>
+
+        <hr className="silk-divider"/>
+
         {/* STATS */}
         <section id="metrics" style={{...SEC, paddingBottom:80}}>
           <div style={W}>
@@ -313,7 +440,7 @@ export default function Home() {
           <div style={{position:"absolute",width:560,height:560,borderRadius:"50%",background:"#f97316",filter:"blur(110px)",opacity:.10,top:"50%",left:"50%",transform:"translate(-50%,-50%)",pointerEvents:"none"}}/>
           <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             style={{maxWidth:600,margin:"0 auto",textAlign:"center",position:"relative",zIndex:10}}>
-            <motion.span variants={v} className="eyebrow" style={{marginBottom:20}}>04 — Kontak</motion.span>
+            <motion.span variants={v} className="eyebrow" style={{marginBottom:20}}>05 — Kontak</motion.span>
             <motion.h2 variants={v} className="glow" style={{fontWeight:900,fontSize:"clamp(40px,7vw,80px)",letterSpacing:"-.04em",lineHeight:1.02,marginBottom:16}}>
               Mari <span className="grad-orange">Terhubung.</span>
             </motion.h2>
