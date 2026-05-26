@@ -25,6 +25,7 @@ type MTStats = {
 
 // ── MonkeyType SVG Line Chart ──────────────────────────────────────────────
 function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean }) {
+  const [hov, setHov] = useState<number|null>(null);
   const W = 420, H = 180, PAD = { top:16, right:16, bottom:32, left:36 };
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;
@@ -61,24 +62,21 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
   // Y-axis tick values
   const ticks = [minV, minV+Math.round(range/3), minV+Math.round(2*range/3), maxV].map(Math.round);
 
+  // Find nearest point on mousemove
+  function handleMouseMove(e: React.MouseEvent<SVGSVGElement>) {
+    const svg = e.currentTarget;
+    const rect = svg.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    const mx = (e.clientX - rect.left) * scaleX;
+    let closest = 0, minD = Infinity;
+    data.forEach((_,i)=>{ const d=Math.abs(mx-xScale(i)); if(d<minD){minD=d;closest=i;} });
+    setHov(closest);
+  }
+
   return (
-    <div style={{width:"100%",overflow:"hidden"}}>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",height:"auto",overflow:"visible"}}>
-        {/* Grid lines */}
-        {ticks.map(t=>(
-          <line key={t} x1={PAD.left} x2={W-PAD.right} y1={yScale(t)} y2={yScale(t)}
-            stroke="rgba(255,255,255,.06)" strokeWidth="1" strokeDasharray="4 4"/>
-        ))}
-        {/* Y axis labels */}
-        {ticks.map(t=>(
-          <text key={t} x={PAD.left-6} y={yScale(t)+4} textAnchor="end"
-            fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{t}</text>
-        ))}
-
-        {/* Raw WPM line (dashed, lighter) */}
-        <path d={buildPath(rawVals)} fill="none" stroke="rgba(249,115,22,.35)" strokeWidth="1.5" strokeDasharray="5 3"/>
-
-        {/* WPM line gradient fill area */}
+    <div style={{width:"100%",overflow:"hidden",position:"relative"}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",height:"auto",overflow:"visible",cursor:"crosshair"}}
+        onMouseMove={handleMouseMove} onMouseLeave={()=>setHov(null)}>
         <defs>
           <linearGradient id="wpmFill" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#f97316" stopOpacity="0.18"/>
@@ -90,31 +88,69 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
           </linearGradient>
         </defs>
 
-        {/* Fill under WPM line */}
-        <path
-          d={buildPath(wpmVals) + ` L ${xScale(data.length-1)},${yScale(minV)} L ${xScale(0)},${yScale(minV)} Z`}
-          fill="url(#wpmFill)"
-        />
+        {/* Grid lines */}
+        {ticks.map(t=>(
+          <line key={t} x1={PAD.left} x2={W-PAD.right} y1={yScale(t)} y2={yScale(t)}
+            stroke="rgba(255,255,255,.06)" strokeWidth="1" strokeDasharray="4 4"/>
+        ))}
+        {ticks.map(t=>(
+          <text key={t} x={PAD.left-6} y={yScale(t)+4} textAnchor="end"
+            fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{t}</text>
+        ))}
 
-        {/* WPM main line */}
+        {/* Hover vertical line */}
+        {hov!==null && (
+          <line x1={xScale(hov)} x2={xScale(hov)} y1={PAD.top} y2={PAD.top+plotH}
+            stroke="rgba(255,255,255,.15)" strokeWidth="1" strokeDasharray="3 3"/>
+        )}
+
+        {/* Raw WPM line */}
+        <path d={buildPath(rawVals)} fill="none" stroke="rgba(249,115,22,.35)" strokeWidth="1.5" strokeDasharray="5 3"/>
+        {/* Fill */}
+        <path d={buildPath(wpmVals)+` L ${xScale(data.length-1)},${yScale(minV)} L ${xScale(0)},${yScale(minV)} Z`} fill="url(#wpmFill)"/>
+        {/* WPM line */}
         <path d={buildPath(wpmVals)} fill="none" stroke="url(#wpmLine)" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round"/>
 
         {/* Data points */}
         {data.map((pt,i)=>(
           <g key={i}>
-            <circle cx={xScale(i)} cy={yScale(pt.wpm)} r="4" fill="#0e0c09" stroke="#f97316" strokeWidth="2"/>
-            <circle cx={xScale(i)} cy={yScale(pt.raw)} r="3" fill="rgba(249,115,22,.3)" stroke="rgba(249,115,22,.5)" strokeWidth="1.5"/>
+            <circle cx={xScale(i)} cy={yScale(pt.wpm)} r={hov===i?6:4}
+              fill="#0e0c09" stroke={hov===i?"#fbbf24":"#f97316"} strokeWidth={hov===i?2.5:2}
+              style={{transition:"r .15s,stroke .15s"}}/>
+            <circle cx={xScale(i)} cy={yScale(pt.raw)} r={hov===i?4.5:3}
+              fill={hov===i?"rgba(249,115,22,.6)":"rgba(249,115,22,.3)"}
+              stroke="rgba(249,115,22,.5)" strokeWidth="1.5"
+              style={{transition:"r .15s"}}/>
           </g>
         ))}
 
-        {/* X axis labels */}
+        {/* X labels */}
         {data.map((pt,i)=>(
           <text key={i} x={xScale(i)} y={H-6} textAnchor="middle"
-            fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{pt.label}</text>
+            fill={hov===i?"rgba(245,240,232,.70)":"rgba(245,240,232,.30)"}
+            fontSize="9" fontFamily="monospace" style={{transition:"fill .15s"}}>{pt.label}</text>
         ))}
+
+        {/* Hover tooltip inside SVG */}
+        {hov!==null&&(()=>{
+          const pt=data[hov];
+          const cx=xScale(hov);
+          const tipW=90, tipH=46, tipX=Math.min(Math.max(cx-tipW/2,PAD.left),W-PAD.right-tipW), tipY=PAD.top-4;
+          return (
+            <g>
+              <rect x={tipX} y={tipY} width={tipW} height={tipH} rx="6" ry="6"
+                fill="rgba(20,16,10,.92)" stroke="rgba(249,115,22,.35)" strokeWidth="1"/>
+              <text x={tipX+tipW/2} y={tipY+14} textAnchor="middle"
+                fill="rgba(245,240,232,.45)" fontSize="8" fontFamily="monospace">{pt.label}</text>
+              <text x={tipX+8} y={tipY+28} fill="#f97316" fontSize="10" fontWeight="700" fontFamily="monospace">WPM</text>
+              <text x={tipX+tipW-8} y={tipY+28} textAnchor="end" fill="#fbbf24" fontSize="10" fontWeight="900" fontFamily="monospace">{pt.wpm}</text>
+              <text x={tipX+8} y={tipY+42} fill="rgba(249,115,22,.5)" fontSize="10" fontWeight="700" fontFamily="monospace">Raw</text>
+              <text x={tipX+tipW-8} y={tipY+42} textAnchor="end" fill="rgba(249,115,22,.75)" fontSize="10" fontWeight="900" fontFamily="monospace">{pt.raw}</text>
+            </g>
+          );
+        })()}
       </svg>
 
-      {/* Legend */}
       <div style={{display:"flex",gap:16,marginTop:8,justifyContent:"flex-end"}}>
         <div style={{display:"flex",alignItems:"center",gap:5}}>
           <div style={{width:16,height:2,background:"linear-gradient(90deg,#f97316,#fbbf24)",borderRadius:1}}/>
@@ -131,6 +167,7 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
 
 // ── MonkeyType SVG Bar Chart ───────────────────────────────────────────────
 function MTBarChart({ data, loading }: { data: MTChartPoint[]; loading: boolean }) {
+  const [hov, setHov] = useState<number|null>(null);
   const W = 420, H = 180, PAD = { top:16, right:16, bottom:32, left:36 };
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;
@@ -149,59 +186,101 @@ function MTBarChart({ data, loading }: { data: MTChartPoint[]; loading: boolean 
   const ticks = [0, 25, 50, 75, 100];
   const yScale = (v:number) => PAD.top + plotH - (v/maxV) * plotH;
 
+  function handleMouseMove(e: React.MouseEvent<SVGSVGElement>) {
+    const svg = e.currentTarget;
+    const rect = svg.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) * (W / rect.width);
+    let closest = 0, minD = Infinity;
+    data.forEach((_,i)=>{
+      const cx = PAD.left + i * groupW + groupW/2;
+      const d = Math.abs(mx - cx);
+      if(d<minD){minD=d;closest=i;}
+    });
+    setHov(closest);
+  }
+
   return (
-    <div style={{width:"100%",overflow:"hidden"}}>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",height:"auto",overflow:"visible"}}>
+    <div style={{width:"100%",overflow:"hidden",position:"relative"}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",height:"auto",overflow:"visible",cursor:"crosshair"}}
+        onMouseMove={handleMouseMove} onMouseLeave={()=>setHov(null)}>
         <defs>
           <linearGradient id="accBar" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#e2e8f0" stopOpacity="0.9"/>
             <stop offset="100%" stopColor="#94a3b8" stopOpacity="0.6"/>
           </linearGradient>
+          <linearGradient id="accBarHov" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#f1f5f9" stopOpacity="1"/>
+            <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.85"/>
+          </linearGradient>
           <linearGradient id="consBar" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#64748b" stopOpacity="0.8"/>
             <stop offset="100%" stopColor="#475569" stopOpacity="0.5"/>
           </linearGradient>
+          <linearGradient id="consBarHov" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#94a3b8" stopOpacity="1"/>
+            <stop offset="100%" stopColor="#64748b" stopOpacity="0.8"/>
+          </linearGradient>
         </defs>
 
-        {/* Grid lines */}
         {ticks.map(t=>(
           <line key={t} x1={PAD.left} x2={W-PAD.right} y1={yScale(t)} y2={yScale(t)}
             stroke="rgba(255,255,255,.06)" strokeWidth="1" strokeDasharray="4 4"/>
         ))}
-        {/* Y labels */}
         {ticks.map(t=>(
           <text key={t} x={PAD.left-6} y={yScale(t)+4} textAnchor="end"
             fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{t}</text>
         ))}
 
-        {/* Bars */}
+        {/* Hover highlight band */}
+        {hov!==null&&(
+          <rect
+            x={PAD.left+hov*groupW} y={PAD.top}
+            width={groupW} height={plotH}
+            fill="rgba(255,255,255,.04)" rx="4"/>
+        )}
+
         {data.map((pt,i)=>{
           const cx = PAD.left + i * groupW + groupW/2;
           const accH = (pt.acc/maxV) * plotH;
           const consH = (pt.consistency/maxV) * plotH;
+          const isHov = hov===i;
           return (
             <g key={i}>
-              {/* Accuracy bar */}
-              <rect
-                x={cx - barW - gap/2} y={yScale(pt.acc)}
-                width={barW} height={accH} rx="2" ry="2"
-                fill="url(#accBar)"
-              />
-              {/* Consistency bar */}
-              <rect
-                x={cx + gap/2} y={yScale(pt.consistency)}
-                width={barW} height={consH} rx="2" ry="2"
-                fill="url(#consBar)"
-              />
-              {/* X label */}
+              <rect x={cx-barW-gap/2} y={yScale(pt.acc)} width={barW} height={accH} rx="2" ry="2"
+                fill={isHov?"url(#accBarHov)":"url(#accBar)"}
+                style={{transition:"fill .15s"}}/>
+              <rect x={cx+gap/2} y={yScale(pt.consistency)} width={barW} height={consH} rx="2" ry="2"
+                fill={isHov?"url(#consBarHov)":"url(#consBar)"}
+                style={{transition:"fill .15s"}}/>
               <text x={cx} y={H-6} textAnchor="middle"
-                fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{pt.label}</text>
+                fill={isHov?"rgba(245,240,232,.70)":"rgba(245,240,232,.30)"}
+                fontSize="9" fontFamily="monospace" style={{transition:"fill .15s"}}>{pt.label}</text>
             </g>
           );
         })}
+
+        {/* Tooltip */}
+        {hov!==null&&(()=>{
+          const pt=data[hov];
+          const cx=PAD.left+hov*groupW+groupW/2;
+          const tipW=100, tipH=46;
+          const tipX=Math.min(Math.max(cx-tipW/2,PAD.left),W-PAD.right-tipW);
+          const tipY=PAD.top-4;
+          return (
+            <g>
+              <rect x={tipX} y={tipY} width={tipW} height={tipH} rx="6" ry="6"
+                fill="rgba(20,16,10,.92)" stroke="rgba(255,255,255,.15)" strokeWidth="1"/>
+              <text x={tipX+tipW/2} y={tipY+14} textAnchor="middle"
+                fill="rgba(245,240,232,.45)" fontSize="8" fontFamily="monospace">{pt.label}</text>
+              <text x={tipX+8} y={tipY+28} fill="rgba(226,232,240,.80)" fontSize="10" fontWeight="700" fontFamily="monospace">Acc</text>
+              <text x={tipX+tipW-8} y={tipY+28} textAnchor="end" fill="#e2e8f0" fontSize="10" fontWeight="900" fontFamily="monospace">{pt.acc}%</text>
+              <text x={tipX+8} y={tipY+42} fill="rgba(100,116,139,.90)" fontSize="10" fontWeight="700" fontFamily="monospace">Cons</text>
+              <text x={tipX+tipW-8} y={tipY+42} textAnchor="end" fill="#94a3b8" fontSize="10" fontWeight="900" fontFamily="monospace">{pt.consistency}%</text>
+            </g>
+          );
+        })()}
       </svg>
 
-      {/* Legend */}
       <div style={{display:"flex",gap:16,marginTop:8,justifyContent:"flex-end"}}>
         <div style={{display:"flex",alignItems:"center",gap:5}}>
           <div style={{width:10,height:10,background:"rgba(226,232,240,.85)",borderRadius:2}}/>
