@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { Mail, Link as LI, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, Activity, Video, Camera, Code, Sparkles, Flame, Trophy, BookOpen, Globe } from "lucide-react";
 import Navbar from "./components/Navbar";
@@ -16,18 +16,232 @@ const CARD_STYLE = { padding:"28px", borderRadius:20, background:"rgba(255,255,2
 
 type DuoCourse = { title: string; xp: number; language: string };
 type DuoStats = { streak: number; totalXp: number; activeCourses: number; courses: DuoCourse[] };
+type MTChartPoint = { label: string; wpm: number; raw: number; acc: number; consistency: number };
+type MTStats = {
+  bestWpm: number; bestRaw: number; bestAcc: number; bestConsistency: number;
+  avgWpm: number; completedTests: number; completionPct: number;
+  timeTyping: string; startedTests: number; chartData: MTChartPoint[] | null;
+};
+
+// ── MonkeyType SVG Line Chart ──────────────────────────────────────────────
+function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean }) {
+  const W = 420, H = 180, PAD = { top:16, right:16, bottom:32, left:36 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+
+  if (loading) return (
+    <div style={{height:H,display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <span style={{fontSize:12,color:"rgba(245,240,232,.25)",letterSpacing:".08em"}}>Loading…</span>
+    </div>
+  );
+
+  const wpmVals = data.map(d=>d.wpm);
+  const rawVals = data.map(d=>d.raw);
+  const allVals = [...wpmVals, ...rawVals];
+  const minV = Math.max(0, Math.min(...allVals) - 10);
+  const maxV = Math.max(...allVals) + 10;
+  const range = maxV - minV || 1;
+
+  const xScale = (i:number) => PAD.left + (i / Math.max(data.length-1,1)) * plotW;
+  const yScale = (v:number) => PAD.top + plotH - ((v - minV)/range) * plotH;
+
+  // Build smooth SVG path using cubic bezier
+  function buildPath(vals: number[]) {
+    if (vals.length < 2) return "";
+    const pts = vals.map((v,i)=>({ x: xScale(i), y: yScale(v) }));
+    let d = `M ${pts[0].x},${pts[0].y}`;
+    for (let i=1; i<pts.length; i++) {
+      const prev = pts[i-1], cur = pts[i];
+      const cpx = (prev.x + cur.x) / 2;
+      d += ` C ${cpx},${prev.y} ${cpx},${cur.y} ${cur.x},${cur.y}`;
+    }
+    return d;
+  }
+
+  // Y-axis tick values
+  const ticks = [minV, minV+Math.round(range/3), minV+Math.round(2*range/3), maxV].map(Math.round);
+
+  return (
+    <div style={{width:"100%",overflow:"hidden"}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",height:"auto",overflow:"visible"}}>
+        {/* Grid lines */}
+        {ticks.map(t=>(
+          <line key={t} x1={PAD.left} x2={W-PAD.right} y1={yScale(t)} y2={yScale(t)}
+            stroke="rgba(255,255,255,.06)" strokeWidth="1" strokeDasharray="4 4"/>
+        ))}
+        {/* Y axis labels */}
+        {ticks.map(t=>(
+          <text key={t} x={PAD.left-6} y={yScale(t)+4} textAnchor="end"
+            fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{t}</text>
+        ))}
+
+        {/* Raw WPM line (dashed, lighter) */}
+        <path d={buildPath(rawVals)} fill="none" stroke="rgba(249,115,22,.35)" strokeWidth="1.5" strokeDasharray="5 3"/>
+
+        {/* WPM line gradient fill area */}
+        <defs>
+          <linearGradient id="wpmFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#f97316" stopOpacity="0.18"/>
+            <stop offset="100%" stopColor="#f97316" stopOpacity="0"/>
+          </linearGradient>
+          <linearGradient id="wpmLine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#f97316"/>
+            <stop offset="100%" stopColor="#fbbf24"/>
+          </linearGradient>
+        </defs>
+
+        {/* Fill under WPM line */}
+        <path
+          d={buildPath(wpmVals) + ` L ${xScale(data.length-1)},${yScale(minV)} L ${xScale(0)},${yScale(minV)} Z`}
+          fill="url(#wpmFill)"
+        />
+
+        {/* WPM main line */}
+        <path d={buildPath(wpmVals)} fill="none" stroke="url(#wpmLine)" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round"/>
+
+        {/* Data points */}
+        {data.map((pt,i)=>(
+          <g key={i}>
+            <circle cx={xScale(i)} cy={yScale(pt.wpm)} r="4" fill="#0e0c09" stroke="#f97316" strokeWidth="2"/>
+            <circle cx={xScale(i)} cy={yScale(pt.raw)} r="3" fill="rgba(249,115,22,.3)" stroke="rgba(249,115,22,.5)" strokeWidth="1.5"/>
+          </g>
+        ))}
+
+        {/* X axis labels */}
+        {data.map((pt,i)=>(
+          <text key={i} x={xScale(i)} y={H-6} textAnchor="middle"
+            fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{pt.label}</text>
+        ))}
+      </svg>
+
+      {/* Legend */}
+      <div style={{display:"flex",gap:16,marginTop:8,justifyContent:"flex-end"}}>
+        <div style={{display:"flex",alignItems:"center",gap:5}}>
+          <div style={{width:16,height:2,background:"linear-gradient(90deg,#f97316,#fbbf24)",borderRadius:1}}/>
+          <span style={{fontSize:10,color:"rgba(245,240,232,.40)",fontWeight:600}}>WPM</span>
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:5}}>
+          <div style={{width:16,height:2,background:"rgba(249,115,22,.4)",borderRadius:1,borderTop:"1.5px dashed rgba(249,115,22,.5)"}}/>
+          <span style={{fontSize:10,color:"rgba(245,240,232,.40)",fontWeight:600}}>Raw</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── MonkeyType SVG Bar Chart ───────────────────────────────────────────────
+function MTBarChart({ data, loading }: { data: MTChartPoint[]; loading: boolean }) {
+  const W = 420, H = 180, PAD = { top:16, right:16, bottom:32, left:36 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+  const maxV = 100;
+
+  if (loading) return (
+    <div style={{height:H,display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <span style={{fontSize:12,color:"rgba(245,240,232,.25)",letterSpacing:".08em"}}>Loading…</span>
+    </div>
+  );
+
+  const n = data.length;
+  const groupW = plotW / n;
+  const barW = groupW * 0.32;
+  const gap = barW * 0.35;
+  const ticks = [0, 25, 50, 75, 100];
+  const yScale = (v:number) => PAD.top + plotH - (v/maxV) * plotH;
+
+  return (
+    <div style={{width:"100%",overflow:"hidden"}}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",height:"auto",overflow:"visible"}}>
+        <defs>
+          <linearGradient id="accBar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#e2e8f0" stopOpacity="0.9"/>
+            <stop offset="100%" stopColor="#94a3b8" stopOpacity="0.6"/>
+          </linearGradient>
+          <linearGradient id="consBar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#64748b" stopOpacity="0.8"/>
+            <stop offset="100%" stopColor="#475569" stopOpacity="0.5"/>
+          </linearGradient>
+        </defs>
+
+        {/* Grid lines */}
+        {ticks.map(t=>(
+          <line key={t} x1={PAD.left} x2={W-PAD.right} y1={yScale(t)} y2={yScale(t)}
+            stroke="rgba(255,255,255,.06)" strokeWidth="1" strokeDasharray="4 4"/>
+        ))}
+        {/* Y labels */}
+        {ticks.map(t=>(
+          <text key={t} x={PAD.left-6} y={yScale(t)+4} textAnchor="end"
+            fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{t}</text>
+        ))}
+
+        {/* Bars */}
+        {data.map((pt,i)=>{
+          const cx = PAD.left + i * groupW + groupW/2;
+          const accH = (pt.acc/maxV) * plotH;
+          const consH = (pt.consistency/maxV) * plotH;
+          return (
+            <g key={i}>
+              {/* Accuracy bar */}
+              <rect
+                x={cx - barW - gap/2} y={yScale(pt.acc)}
+                width={barW} height={accH} rx="2" ry="2"
+                fill="url(#accBar)"
+              />
+              {/* Consistency bar */}
+              <rect
+                x={cx + gap/2} y={yScale(pt.consistency)}
+                width={barW} height={consH} rx="2" ry="2"
+                fill="url(#consBar)"
+              />
+              {/* X label */}
+              <text x={cx} y={H-6} textAnchor="middle"
+                fill="rgba(245,240,232,.30)" fontSize="9" fontFamily="monospace">{pt.label}</text>
+            </g>
+          );
+        })}
+      </svg>
+
+      {/* Legend */}
+      <div style={{display:"flex",gap:16,marginTop:8,justifyContent:"flex-end"}}>
+        <div style={{display:"flex",alignItems:"center",gap:5}}>
+          <div style={{width:10,height:10,background:"rgba(226,232,240,.85)",borderRadius:2}}/>
+          <span style={{fontSize:10,color:"rgba(245,240,232,.40)",fontWeight:600}}>Accuracy</span>
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:5}}>
+          <div style={{width:10,height:10,background:"rgba(100,116,139,.75)",borderRadius:2}}/>
+          <span style={{fontSize:10,color:"rgba(245,240,232,.40)",fontWeight:600}}>Consistency</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
-  const [stats, setStats] = useState({wpm:121,raw:125,acc:97,cons:79,tests:666,time:"9h 50m"});
+  const [stats, setStats] = useState<MTStats>({
+    bestWpm:121,bestRaw:125,bestAcc:97,bestConsistency:79,
+    avgWpm:94,completedTests:669,completionPct:21,
+    timeTyping:"9h 52m",startedTests:3300,chartData:null,
+  });
+  const [mtLoading, setMtLoading] = useState(true);
   const [duo, setDuo] = useState<DuoStats | null>(null);
   const [duoLoading, setDuoLoading] = useState(true);
 
   useEffect(()=>{
-    fetch("https://api.monkeytype.com/users/Aprillio/profile").then(r=>r.json()).then(d=>{
-      if(!d?.data) return;
-      const pb=d.data.personalBests?.time?.["15"]?.[0]; const ts=d.data.typingStats;
-      if(pb) setStats({wpm:Math.floor(pb.wpm)||121,raw:Math.floor(pb.raw)||125,acc:Math.floor(pb.acc)||97,cons:Math.floor(pb.consistency)||79,tests:ts?.completedTests||666,time:ts?.timeTyping?`${Math.floor(ts.timeTyping/3600)}h ${Math.floor((ts.timeTyping%3600)/60)}m`:"9h 50m"});
-    }).catch(()=>{});
+    // Fetch MonkeyType via our proxy API
+    fetch("/api/monkeytype").then(r=>r.json()).then((d: MTStats & { ok?: boolean })=>{
+      if(d?.ok) setStats({
+        bestWpm: d.bestWpm ?? 121,
+        bestRaw: d.bestRaw ?? 125,
+        bestAcc: d.bestAcc ?? 97,
+        bestConsistency: d.bestConsistency ?? 79,
+        avgWpm: d.avgWpm ?? 94,
+        completedTests: d.completedTests ?? 669,
+        completionPct: d.completionPct ?? 21,
+        timeTyping: d.timeTyping ?? "9h 52m",
+        startedTests: d.startedTests ?? 3300,
+        chartData: d.chartData ?? null,
+      });
+    }).catch(()=>{}).finally(()=>setMtLoading(false));
 
     fetch("/api/duolingo").then(r=>r.json()).then((d: DuoStats & { ok?: boolean })=>{
       if(d?.ok) setDuo({ streak: d.streak, totalXp: d.totalXp, activeCourses: d.activeCourses, courses: d.courses ?? [] });
@@ -47,11 +261,18 @@ export default function Home() {
     {t:"Quality Assurance Introduction",i:"MySkill",d:"Feb 2025",f:"/cert-qa-intro.pdf"},
     {t:"Intensive Bootcamp Excel",i:"KarirNex",d:"Apr 2026",f:"/cert-excel-karirnex.pdf"},
   ];
-  const st=[
-    {I:Keyboard,l:"Best WPM",v:stats.wpm},{I:Zap,l:"Raw WPM",v:stats.raw},
-    {I:Target,l:"Accuracy",v:`${stats.acc}%`},{I:Activity,l:"Consistency",v:`${stats.cons}%`},
-    {I:MousePointerClick,l:"Tests Done",v:stats.tests},{I:Clock,l:"Time Typed",v:stats.time},
+  // Format startedTests → e.g. 3.3K
+  const fmtK = (n:number) => n>=1000 ? `${(n/1000).toFixed(1)}K` : String(n);
+
+  // Fallback chart data (last 5 tests mock) if no ApeKey configured
+  const defaultChart: MTChartPoint[] = [
+    {label:"T1",wpm:95,raw:100,acc:96,consistency:72},
+    {label:"T2",wpm:121,raw:125,acc:100,consistency:78},
+    {label:"T3",wpm:88,raw:92,acc:91,consistency:65},
+    {label:"T4",wpm:72,raw:76,acc:90,consistency:62},
+    {label:"T5",wpm:118,raw:122,acc:99,consistency:74},
   ];
+  const chartData = stats.chartData ?? defaultChart;
 
   return (
     <div style={{minHeight:"100vh",position:"relative"}}>
@@ -382,68 +603,164 @@ export default function Home() {
 
         <hr className="silk-divider"/>
 
-        {/* STATS */}
+        {/* TYPING PERFORMANCE — MonkeyType Dashboard */}
         <section id="metrics" style={{...SEC, paddingBottom:80}}>
           <div style={W}>
+            <span className="section-number">05</span>
+
+            {/* Header */}
             <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v}
               style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap" as const,gap:16,marginBottom:40}}>
               <div>
-                <span className="eyebrow" style={{marginBottom:12}}>Metrics</span>
+                <span className="eyebrow" style={{marginBottom:12}}>MonkeyType</span>
                 <h2 style={{fontWeight:900,fontSize:"clamp(26px,3.5vw,40px)",letterSpacing:"-.03em"}}>
                   Typing <span className="grad-orange">Performance.</span>
                 </h2>
               </div>
-              <a href="https://monkeytype.com/profile/Aprillio" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm">
-                <Activity style={{width:14,height:14}}/> Live Profile
-              </a>
-            </motion.div>
-
-            {/* Hero WPM card */}
-            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={vScale}
-              className="g-card"
-              style={{padding:"36px 40px",marginBottom:16,position:"relative"}}>
-              <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}} />
-              <div style={{position:"absolute",width:320,height:320,borderRadius:"50%",background:"#f97316",filter:"blur(80px)",opacity:.07,top:"50%",right:-40,transform:"translateY(-50%)",pointerEvents:"none"}}/>
-              <div className="hero-wpm-inner" style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap" as const,gap:24}}>
-                <div style={{textAlign:"center"}}>
-                  <p style={{fontSize:11,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.30)",marginBottom:8}}>Personal Best · 15s Test</p>
-                  <p className="grad-orange" style={{fontWeight:900,fontSize:"clamp(56px,8vw,100px)",letterSpacing:"-.05em",lineHeight:1}}>{stats.wpm}</p>
-                  <p style={{fontSize:14,fontWeight:600,color:"rgba(245,240,232,.45)",marginTop:4}}>Words Per Minute</p>
-                </div>
-                <div className="hero-wpm-values" style={{display:"flex",gap:32,flexWrap:"wrap" as const}}>
-                  {[["Raw WPM",stats.raw],["Accuracy",`${stats.acc}%`],["Consistency",`${stats.cons}%`]].map(([l,val])=>(
-                    <div key={l as string} style={{textAlign:"center"}}>
-                      <p style={{fontWeight:900,fontSize:"clamp(22px,3vw,32px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.88)"}}>{val}</p>
-                      <p style={{fontSize:11,color:"rgba(245,240,232,.32)",fontWeight:500,marginTop:4,letterSpacing:".04em"}}>{l}</p>
-                    </div>
-                  ))}
-                </div>
+              <div style={{display:"flex",alignItems:"center",gap:10}}>
+                {/* Live badge */}
+                <span style={{display:"inline-flex",alignItems:"center",gap:6,padding:"6px 14px",borderRadius:999,background:"rgba(249,115,22,.10)",border:"1px solid rgba(249,115,22,.22)",fontSize:11,fontWeight:700,letterSpacing:".08em",color:"rgba(249,115,22,.90)"}}>
+                  <span style={{position:"relative",display:"flex"}}>
+                    <span style={{position:"absolute",inset:0,borderRadius:"50%",background:"#f97316",opacity:.5,animation:"ping 1s cubic-bezier(0,0,.2,1) infinite"}}/>
+                    <span style={{width:6,height:6,borderRadius:"50%",background:"#f97316",display:"block"}}/>
+                  </span>
+                  Real-time
+                </span>
+                <a href="https://monkeytype.com/profile/Aprillio" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm">
+                  <Activity style={{width:14,height:14}}/> Live Profile
+                </a>
               </div>
             </motion.div>
 
-            {/* Bottom 2-stat row */}
-            <div className="bottom-stat-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
-              {([
-                {Icon:Keyboard,label:"Tests Completed",val:stats.tests,sub:"Selesai diuji"},
-                {Icon:Clock,label:"Time Typed",val:stats.time,sub:"Total durasi"},
-              ] as {Icon:React.ElementType,label:string,val:string|number,sub:string}[]).map(({Icon,label,val,sub},i)=>(
-                <motion.div key={i} initial="hidden" whileInView="show" viewport={VP} variants={vScale}
-                  className="g-card"
-                  style={{padding:"28px 32px"}}>
-                  <div className="top-bar"/>
-                  <div className="stat-card-inner" style={{display:"flex",alignItems:"center",gap:24}}>
-                    <div style={{padding:14,borderRadius:16,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)",flexShrink:0}}>
-                      <Icon style={{width:20,height:20,color:"#f97316"}}/>
-                    </div>
-                    <div>
-                      <p style={{fontWeight:900,fontSize:"clamp(24px,3vw,36px)",letterSpacing:"-.04em",color:"rgba(245,240,232,.90)"}}>{val}</p>
-                      <p style={{fontSize:12,color:"rgba(245,240,232,.35)",fontWeight:500,marginTop:3}}>{label}</p>
-                      <p style={{fontSize:10.5,color:"rgba(249,115,22,.55)",fontWeight:600,marginTop:2,letterSpacing:".04em"}}>{sub}</p>
-                    </div>
+            {/* ROW 1 — 4 stat cards (Best WPM, Accuracy, Tests, Time Typing) */}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
+              className="mt-grid-4">
+
+              {/* Best WPM */}
+              <motion.div variants={vScale} className="g-card mt-stat-card">
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
+                  <Keyboard style={{width:18,height:18,color:"#f97316"}}/>
+                </div>
+                <div className="mt-stat-body">
+                  <p className="mt-stat-val grad-orange">{mtLoading ? "—" : stats.bestWpm}</p>
+                  <p className="mt-stat-label">Best WPM</p>
+                  <p className="mt-stat-sub">Avg: {mtLoading ? "—" : stats.avgWpm} WPM</p>
+                </div>
+              </motion.div>
+
+              {/* Accuracy */}
+              <motion.div variants={vScale} className="g-card mt-stat-card">
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#10b981,#34d399)"}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(16,185,129,.12)",border:"1px solid rgba(16,185,129,.22)"}}>
+                  <Target style={{width:18,height:18,color:"#10b981"}}/>
+                </div>
+                <div className="mt-stat-body">
+                  <p className="mt-stat-val" style={{background:"linear-gradient(135deg,#10b981,#34d399)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{mtLoading ? "—" : `${stats.bestAcc}%`}</p>
+                  <p className="mt-stat-label">Best Accuracy</p>
+                  <p className="mt-stat-sub">Consistency: {mtLoading ? "—" : `${stats.bestConsistency}%`}</p>
+                </div>
+              </motion.div>
+
+              {/* Tests Completed */}
+              <motion.div variants={vScale} className="g-card mt-stat-card">
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#8b5cf6,#a78bfa)"}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(139,92,246,.12)",border:"1px solid rgba(139,92,246,.22)"}}>
+                  <MousePointerClick style={{width:18,height:18,color:"#8b5cf6"}}/>
+                </div>
+                <div className="mt-stat-body">
+                  <p className="mt-stat-val" style={{background:"linear-gradient(135deg,#8b5cf6,#a78bfa)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{mtLoading ? "—" : stats.completedTests.toLocaleString()}</p>
+                  <p className="mt-stat-label">Tests Completed</p>
+                  <p className="mt-stat-sub">{mtLoading ? "—" : `${stats.completionPct}%`} completion</p>
+                </div>
+              </motion.div>
+
+              {/* Time Typing */}
+              <motion.div variants={vScale} className="g-card mt-stat-card">
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#06b6d4,#38bdf8)"}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(6,182,212,.12)",border:"1px solid rgba(6,182,212,.22)"}}>
+                  <Clock style={{width:18,height:18,color:"#06b6d4"}}/>
+                </div>
+                <div className="mt-stat-body">
+                  <p className="mt-stat-val" style={{background:"linear-gradient(135deg,#06b6d4,#38bdf8)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{mtLoading ? "—" : stats.timeTyping}</p>
+                  <p className="mt-stat-label">Time Typing</p>
+                  <p className="mt-stat-sub">{mtLoading ? "—" : fmtK(stats.startedTests)} started</p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* ROW 2 — 3 stat cards (Raw WPM, Avg WPM, Consistency) */}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
+              className="mt-grid-3" style={{marginTop:12}}>
+
+              {/* Best Raw WPM */}
+              <motion.div variants={vScale} className="g-card mt-stat-card">
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fb923c)"}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
+                  <Zap style={{width:18,height:18,color:"#fb923c"}}/>
+                </div>
+                <div className="mt-stat-body">
+                  <p className="mt-stat-val" style={{background:"linear-gradient(135deg,#fb923c,#fbbf24)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{mtLoading ? "—" : stats.bestRaw}</p>
+                  <p className="mt-stat-label">Best Raw WPM</p>
+                  <p className="mt-stat-sub">Uncorrected speed</p>
+                </div>
+              </motion.div>
+
+              {/* Average WPM */}
+              <motion.div variants={vScale} className="g-card mt-stat-card">
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#f59e0b,#fcd34d)"}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(245,158,11,.12)",border:"1px solid rgba(245,158,11,.22)"}}>
+                  <Activity style={{width:18,height:18,color:"#f59e0b"}}/>
+                </div>
+                <div className="mt-stat-body">
+                  <p className="mt-stat-val" style={{background:"linear-gradient(135deg,#f59e0b,#fcd34d)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{mtLoading ? "—" : stats.avgWpm}</p>
+                  <p className="mt-stat-label">Average WPM</p>
+                  <p className="mt-stat-sub">Across all tests</p>
+                </div>
+              </motion.div>
+
+              {/* Best Consistency */}
+              <motion.div variants={vScale} className="g-card mt-stat-card">
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#ec4899,#f472b6)"}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(236,72,153,.12)",border:"1px solid rgba(236,72,153,.22)"}}>
+                  <Award style={{width:18,height:18,color:"#ec4899"}}/>
+                </div>
+                <div className="mt-stat-body">
+                  <p className="mt-stat-val" style={{background:"linear-gradient(135deg,#ec4899,#f472b6)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{mtLoading ? "—" : `${stats.bestConsistency}%`}</p>
+                  <p className="mt-stat-label">Best Consistency</p>
+                  <p className="mt-stat-sub">Typing stability</p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* ROW 3 — 2 charts side by side */}
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
+              className="mt-charts-row" style={{marginTop:12}}>
+
+              {/* WPM Progress Line Chart */}
+              <motion.div variants={vScale} className="g-card" style={{padding:"28px 24px",flex:1,minWidth:0}}>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
+                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:24}}>
+                  <div style={{padding:8,borderRadius:10,background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
+                    <Activity style={{width:16,height:16,color:"#f97316"}}/>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <h3 style={{fontWeight:800,fontSize:15,color:"rgba(245,240,232,.90)"}}>WPM Progress</h3>
+                </div>
+                <MTLineChart data={chartData} loading={mtLoading}/>
+              </motion.div>
+
+              {/* Accuracy & Consistency Bar Chart */}
+              <motion.div variants={vScale} className="g-card" style={{padding:"28px 24px",flex:1,minWidth:0}}>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#10b981,#06b6d4)"}}/>
+                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:24}}>
+                  <div style={{padding:8,borderRadius:10,background:"rgba(16,185,129,.12)",border:"1px solid rgba(16,185,129,.22)"}}>
+                    <Target style={{width:16,height:16,color:"#10b981"}}/>
+                  </div>
+                  <h3 style={{fontWeight:800,fontSize:15,color:"rgba(245,240,232,.90)"}}>Accuracy &amp; Consistency</h3>
+                </div>
+                <MTBarChart data={chartData} loading={mtLoading}/>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 

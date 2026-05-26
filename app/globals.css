@@ -491,3 +491,73 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ── MONKEYTYPE PERFORMANCE SECTION ─────── */
+
+/* Row 1: 4-column stat grid */
+.mt-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 0;
+}
+/* Row 2: 3-column stat grid */
+.mt-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+/* Row 3: charts side by side */
+.mt-charts-row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* Individual stat card */
+.mt-stat-card {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mt-stat-icon-wrap {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mt-stat-body { display: flex; flex-direction: column; gap: 2px; }
+.mt-stat-val {
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 36px);
+  letter-spacing: -.05em;
+  line-height: 1;
+}
+.mt-stat-label {
+  font-size: 12px; font-weight: 700;
+  color: rgba(245,240,232,.55);
+  margin-top: 4px;
+}
+.mt-stat-sub {
+  font-size: 10.5px; font-weight: 500;
+  color: rgba(245,240,232,.28);
+}
+
+/* Tablet breakpoints */
+@media (max-width: 900px) {
+  .mt-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .mt-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .mt-charts-row { flex-direction: column; }
+}
+/* Mobile */
+@media (max-width: 600px) {
+  .mt-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .mt-grid-3 { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .mt-stat-card { padding: 16px 14px; }
+  .mt-stat-val { font-size: 22px; }
+  .mt-charts-row { flex-direction: column; gap: 10px; }
+}
+@media (max-width: 420px) {
+  .mt-grid-3 { grid-template-columns: 1fr; }
+}
