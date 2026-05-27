@@ -23,6 +23,135 @@ type MTStats = {
   timeTyping: string; startedTests: number; chartData: MTChartPoint[] | null;
 };
 
+// Palette for Duolingo languages
+const DUO_COLORS = ["#58cc02","#1cb0f6","#ff9600","#ce82ff","#ff4b4b","#89e219","#00cd9c"];
+
+// ── Duolingo XP Distribution Donut Chart ───────────────────────────
+
+function DuoDonutChart({ courses, loading }: { courses: DuoCourse[]; loading: boolean }) {
+  const [hov, setHov] = useState<number|null>(null);
+  const SIZE = 200, CX = 100, CY = 100, R = 72, INNER = 44;
+
+  if (loading) return (
+    <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:SIZE,opacity:.4}}>
+      <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}>
+        <circle cx={CX} cy={CY} r={R} fill="none" stroke="rgba(255,255,255,.08)" strokeWidth={R-INNER}/>
+      </svg>
+    </div>
+  );
+
+  if (!courses.length) return null;
+
+  const total = courses.reduce((s, c) => s + c.xp, 0) || 1;
+
+  // Build arc segments
+  type Seg = { start: number; sweep: number; color: string; course: DuoCourse; pct: number };
+  const segs: Seg[] = [];
+  let angle = -90; // start from top
+  courses.forEach((c, i) => {
+    const pct = c.xp / total;
+    const sweep = pct * 360;
+    segs.push({ start: angle, sweep, color: DUO_COLORS[i % DUO_COLORS.length], course: c, pct });
+    angle += sweep;
+  });
+
+  function polarToXY(cx: number, cy: number, r: number, deg: number) {
+    const rad = (deg * Math.PI) / 180;
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+  }
+
+  function arcPath(start: number, sweep: number, r: number, innerR: number) {
+    const clampedSweep = Math.min(sweep, 359.99);
+    const end = start + clampedSweep;
+    const o1 = polarToXY(CX, CY, r, start);
+    const o2 = polarToXY(CX, CY, r, end);
+    const i1 = polarToXY(CX, CY, innerR, end);
+    const i2 = polarToXY(CX, CY, innerR, start);
+    const large = clampedSweep > 180 ? 1 : 0;
+    return [
+      `M ${o1.x} ${o1.y}`,
+      `A ${r} ${r} 0 ${large} 1 ${o2.x} ${o2.y}`,
+      `L ${i1.x} ${i1.y}`,
+      `A ${innerR} ${innerR} 0 ${large} 0 ${i2.x} ${i2.y}`,
+      "Z",
+    ].join(" ");
+  }
+
+  const hovered = hov !== null ? segs[hov] : null;
+
+  return (
+    <div style={{display:"flex",alignItems:"center",gap:24,flexWrap:"wrap" as const,justifyContent:"center"}}>
+      {/* Donut SVG */}
+      <div style={{position:"relative",flexShrink:0}}>
+        <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} style={{overflow:"visible"}}>
+          {/* Track ring */}
+          <circle cx={CX} cy={CY} r={(R+INNER)/2} fill="none"
+            stroke="rgba(255,255,255,.04)" strokeWidth={R-INNER}/>
+
+          {/* Segments */}
+          {segs.map((seg, i) => (
+            <path
+              key={i}
+              d={arcPath(seg.start, seg.sweep, R, INNER)}
+              fill={seg.color}
+              opacity={hov===null ? 0.85 : hov===i ? 1 : 0.35}
+              style={{transition:"opacity .2s, transform .2s",transformOrigin:`${CX}px ${CY}px`,
+                transform: hov===i ? "scale(1.06)" : "scale(1)",cursor:"pointer"}}
+              onMouseEnter={()=>setHov(i)}
+              onMouseLeave={()=>setHov(null)}
+            />
+          ))}
+
+          {/* Center text — show hovered or total */}
+          {hovered ? (
+            <>
+              <text x={CX} y={CY-6} textAnchor="middle" fill={hovered.color}
+                fontSize="13" fontWeight="900" fontFamily="monospace">
+                {Math.round(hovered.pct*100)}%
+              </text>
+              <text x={CX} y={CY+10} textAnchor="middle" fill="rgba(245,240,232,.45)"
+                fontSize="8" fontFamily="monospace">
+                {hovered.course.xp.toLocaleString()} XP
+              </text>
+            </>
+          ) : (
+            <>
+              <text x={CX} y={CY-4} textAnchor="middle" fill="rgba(245,240,232,.70)"
+                fontSize="13" fontWeight="900" fontFamily="monospace">
+                {total.toLocaleString()}
+              </text>
+              <text x={CX} y={CY+12} textAnchor="middle" fill="rgba(245,240,232,.35)"
+                fontSize="9" fontFamily="monospace">Total XP</text>
+            </>
+          )}
+        </svg>
+      </div>
+
+      {/* Legend */}
+      <div style={{display:"flex",flexDirection:"column" as const,gap:10,minWidth:140}}>
+        {segs.map((seg, i) => (
+          <div key={i}
+            style={{display:"flex",alignItems:"center",gap:10,cursor:"pointer",
+              opacity: hov===null ? 1 : hov===i ? 1 : 0.4,
+              transition:"opacity .2s"}}
+            onMouseEnter={()=>setHov(i)}
+            onMouseLeave={()=>setHov(null)}>
+            <div style={{width:10,height:10,borderRadius:3,background:seg.color,flexShrink:0}}/>
+            <div style={{flex:1}}>
+              <p style={{fontSize:13,fontWeight:700,color:"rgba(245,240,232,.85)",lineHeight:1.2}}>
+                {seg.course.title}
+              </p>
+              <p style={{fontSize:10,color:"rgba(245,240,232,.38)",fontFamily:"monospace"}}>
+                {seg.course.xp.toLocaleString()} XP &nbsp;·&nbsp; {Math.round(seg.pct*100)}%
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── MonkeyType SVG Line Chart ──────────────────────────────────────────────
 function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean }) {
   const [hov, setHov] = useState<number|null>(null);
@@ -677,6 +806,26 @@ export default function Home() {
                 })
               }
             </motion.div>
+
+            {/* XP Distribution Donut Chart */}
+            {(duoLoading || (duo?.courses ?? []).length > 0) && (
+              <motion.div initial="hidden" whileInView="show" viewport={VP} variants={vScale}
+                className="g-card" style={{padding:"28px 32px",marginTop:12}}>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,#58cc02,#89e219)"}}/>
+                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:20}}>
+                  <div style={{padding:8,borderRadius:10,background:"rgba(88,204,2,.10)",border:"1px solid rgba(88,204,2,.22)"}}>
+                    <Globe style={{width:16,height:16,color:"#58cc02"}}/>
+                  </div>
+                  <h3 style={{fontWeight:800,fontSize:15,color:"rgba(245,240,232,.90)"}}>
+                    XP Distribution
+                  </h3>
+                  <span style={{marginLeft:"auto",fontSize:10,fontWeight:600,color:"rgba(245,240,232,.30)",letterSpacing:".06em"}}>
+                    Hover to explore
+                  </span>
+                </div>
+                <DuoDonutChart courses={duo?.courses ?? []} loading={duoLoading}/>
+              </motion.div>
+            )}
           </div>
         </section>
 
