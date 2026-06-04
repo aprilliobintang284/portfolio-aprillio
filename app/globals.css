@@ -492,6 +492,20 @@
   }
 }
 
+/* Duolingo bottom 2-card row */
+.duo-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+@media (max-width: 600px) {
+  .duo-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 /* ── MONKEYTYPE PERFORMANCE SECTION ─────── */
 
 /* Row 1: 4-column stat grid */
