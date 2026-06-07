@@ -2,7 +2,6 @@
 import { motion, type Variants } from "framer-motion";
 import { ExternalLink, PlayCircle, Zap, TrendingUp, Target, Video } from "lucide-react";
 import Navbar from "../components/Navbar";
-import ParallaxScene from "../components/ParallaxScene";
 
 const v: Variants = { hidden:{opacity:0,y:32}, show:{opacity:1,y:0,transition:{duration:.72,ease:[.22,1,.36,1]}} };
 const vScale: Variants = { hidden:{opacity:0,y:24,scale:.97}, show:{opacity:1,y:0,scale:1,transition:{duration:.70,ease:[.22,1,.36,1]}} };
@@ -18,9 +17,14 @@ const CAMPAIGNS=[
 
 export default function Creator() {
   return (
-    <div style={{minHeight:"100vh",position:"relative"}}>
+    <div data-page="creator" style={{minHeight:"100vh",position:"relative"}}>
       <div className="bg-scene bg-scene-red"/>
-      <ParallaxScene />
+      {/* Fixed red orbs — brand-locked, not affected by color theme toggle */}
+      <div style={{position:"fixed",inset:0,zIndex:-1,overflow:"hidden",pointerEvents:"none"}}>
+        <div style={{position:"absolute",width:420,height:420,borderRadius:"50%",background:"radial-gradient(circle, rgba(239,68,68,.18) 0%, transparent 70%)",filter:"blur(60px)",top:"10%",left:"-8%"}}/>
+        <div style={{position:"absolute",width:320,height:320,borderRadius:"50%",background:"radial-gradient(circle, rgba(220,38,38,.14) 0%, transparent 70%)",filter:"blur(50px)",top:"45%",right:"-6%"}}/>
+        <div style={{position:"absolute",width:240,height:240,borderRadius:"50%",background:"radial-gradient(circle, rgba(249,115,22,.10) 0%, transparent 70%)",filter:"blur(40px)",bottom:"15%",left:"30%"}}/>
+      </div>
       <Navbar/>
       <main style={{paddingTop:"clamp(108px,14vw,160px)",paddingBottom:120}}>
         <div style={W}>

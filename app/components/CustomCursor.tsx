@@ -41,12 +41,12 @@ export default function CustomCursor() {
         width: 8,
         height: 8,
         borderRadius: "50%",
-        background: "#f97316",
+        background: "var(--ac-hex-1)",
         pointerEvents: "none",
         zIndex: 9999,
         willChange: "transform",
         transform: "translate(-100px, -100px)",
-        boxShadow: "0 0 12px rgba(249,115,22,.60)",
+        boxShadow: "0 0 12px rgba(var(--ac-1),.60)",
       }}
     />
   );

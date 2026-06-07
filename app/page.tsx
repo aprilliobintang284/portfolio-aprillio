@@ -82,12 +82,12 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
         onMouseMove={handleMouseMove} onMouseLeave={()=>setHov(null)}>
         <defs>
           <linearGradient id="wpmFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#f97316" stopOpacity="0.18"/>
-            <stop offset="100%" stopColor="#f97316" stopOpacity="0"/>
+            <stop offset="0%" stopColor="var(--ac-hex-1)" stopOpacity="0.18"/>
+            <stop offset="100%" stopColor="var(--ac-hex-1)" stopOpacity="0"/>
           </linearGradient>
           <linearGradient id="wpmLine" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#f97316"/>
-            <stop offset="100%" stopColor="#fbbf24"/>
+            <stop offset="0%" stopColor="var(--ac-hex-1)"/>
+            <stop offset="100%" stopColor="var(--ac-hex-2)"/>
           </linearGradient>
         </defs>
 
@@ -108,7 +108,7 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
         )}
 
         {/* Raw WPM line */}
-        <path d={buildPath(rawVals)} fill="none" stroke="rgba(249,115,22,.35)" strokeWidth="1.5" strokeDasharray="5 3"/>
+        <path d={buildPath(rawVals)} fill="none" stroke={`rgba(var(--ac-1),.35)`} strokeWidth="1.5" strokeDasharray="5 3"/>
         {/* Fill */}
         <path d={buildPath(wpmVals)+` L ${xScale(data.length-1)},${yScale(minV)} L ${xScale(0)},${yScale(minV)} Z`} fill="url(#wpmFill)"/>
         {/* WPM line */}
@@ -118,11 +118,11 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
         {data.map((pt,i)=>(
           <g key={i}>
             <circle cx={xScale(i)} cy={yScale(pt.wpm)} r={hov===i?6:4}
-              fill="#0e0c09" stroke={hov===i?"#fbbf24":"#f97316"} strokeWidth={hov===i?2.5:2}
+              fill="#0e0c09" stroke={hov===i?"var(--ac-hex-2)":"var(--ac-hex-1)"} strokeWidth={hov===i?2.5:2}
               style={{transition:"r .15s,stroke .15s"}}/>
             <circle cx={xScale(i)} cy={yScale(pt.raw)} r={hov===i?4.5:3}
-              fill={hov===i?"rgba(249,115,22,.6)":"rgba(249,115,22,.3)"}
-              stroke="rgba(249,115,22,.5)" strokeWidth="1.5"
+              fill={hov===i?`rgba(var(--ac-1),.6)`:`rgba(var(--ac-1),.3)`}
+              stroke={`rgba(var(--ac-1),.5)`} strokeWidth="1.5"
               style={{transition:"r .15s"}}/>
           </g>
         ))}
@@ -142,13 +142,13 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
           return (
             <g>
               <rect x={tipX} y={tipY} width={tipW} height={tipH} rx="6" ry="6"
-                fill="rgba(20,16,10,.92)" stroke="rgba(249,115,22,.35)" strokeWidth="1"/>
+                fill="rgba(20,16,10,.92)" stroke={`rgba(var(--ac-1),.35)`} strokeWidth="1"/>
               <text x={tipX+tipW/2} y={tipY+14} textAnchor="middle"
                 fill="rgba(245,240,232,.45)" fontSize="8" fontFamily="monospace">{pt.label}</text>
-              <text x={tipX+8} y={tipY+28} fill="#f97316" fontSize="10" fontWeight="700" fontFamily="monospace">WPM</text>
-              <text x={tipX+tipW-8} y={tipY+28} textAnchor="end" fill="#fbbf24" fontSize="10" fontWeight="900" fontFamily="monospace">{pt.wpm}</text>
-              <text x={tipX+8} y={tipY+42} fill="rgba(249,115,22,.5)" fontSize="10" fontWeight="700" fontFamily="monospace">Raw</text>
-              <text x={tipX+tipW-8} y={tipY+42} textAnchor="end" fill="rgba(249,115,22,.75)" fontSize="10" fontWeight="900" fontFamily="monospace">{pt.raw}</text>
+              <text x={tipX+8} y={tipY+28} fill="var(--ac-hex-1)" fontSize="10" fontWeight="700" fontFamily="monospace">WPM</text>
+              <text x={tipX+tipW-8} y={tipY+28} textAnchor="end" fill="var(--ac-hex-2)" fontSize="10" fontWeight="900" fontFamily="monospace">{pt.wpm}</text>
+              <text x={tipX+8} y={tipY+42} fill={`rgba(var(--ac-1),.5)`} fontSize="10" fontWeight="700" fontFamily="monospace">Raw</text>
+              <text x={tipX+tipW-8} y={tipY+42} textAnchor="end" fill={`rgba(var(--ac-1),.75)`} fontSize="10" fontWeight="900" fontFamily="monospace">{pt.raw}</text>
             </g>
           );
         })()}
@@ -156,11 +156,11 @@ function MTLineChart({ data, loading }: { data: MTChartPoint[]; loading: boolean
 
       <div style={{display:"flex",gap:16,marginTop:8,justifyContent:"flex-end"}}>
         <div style={{display:"flex",alignItems:"center",gap:5}}>
-          <div style={{width:16,height:2,background:"linear-gradient(90deg,#f97316,#fbbf24)",borderRadius:1}}/>
+          <div style={{width:16,height:2,background:`linear-gradient(90deg,var(--ac-hex-1),var(--ac-hex-2))`,borderRadius:1}}/>
           <span style={{fontSize:10,color:"rgba(245,240,232,.40)",fontWeight:600}}>WPM</span>
         </div>
         <div style={{display:"flex",alignItems:"center",gap:5}}>
-          <div style={{width:16,height:2,background:"rgba(249,115,22,.4)",borderRadius:1,borderTop:"1.5px dashed rgba(249,115,22,.5)"}}/>
+          <div style={{width:16,height:2,background:`rgba(var(--ac-1),.4)`,borderRadius:1,borderTop:`1.5px dashed rgba(var(--ac-1),.5)`}}/>
           <span style={{fontSize:10,color:"rgba(245,240,232,.40)",fontWeight:600}}>Raw</span>
         </div>
       </div>
@@ -370,8 +370,8 @@ export default function Home() {
         {/* HERO */}
         <section style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",padding:"120px 24px 80px",position:"relative",overflow:"hidden"}}>
           <div style={{position:"absolute",inset:0,pointerEvents:"none"}}>
-            <div style={{position:"absolute",width:480,height:480,borderRadius:"50%",background:"#f97316",filter:"blur(90px)",opacity:.12,top:-80,left:-80}}/>
-            <div style={{position:"absolute",width:360,height:360,borderRadius:"50%",background:"#f59e0b",filter:"blur(90px)",opacity:.09,bottom:0,right:-80}}/>
+            <div style={{position:"absolute",width:480,height:480,borderRadius:"50%",background:"var(--ac-hex-1)",filter:"blur(90px)",opacity:.12,top:-80,left:-80}}/>
+            <div style={{position:"absolute",width:360,height:360,borderRadius:"50%",background:"var(--ac-hex-2)",filter:"blur(90px)",opacity:.09,bottom:0,right:-80}}/>
           </div>
           <motion.div initial="hidden" animate="show" variants={s} style={{textAlign:"center",maxWidth:860,width:"100%",position:"relative",zIndex:10}}>
             <motion.div variants={v} style={{display:"inline-flex",alignItems:"center",gap:10,padding:"10px 20px",borderRadius:999,marginBottom:40,background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)"}}>
@@ -380,7 +380,7 @@ export default function Home() {
                 <span style={{width:8,height:8,borderRadius:"50%",background:"#34d399",display:"block"}}/>
               </span>
               <span style={{fontSize:11,fontWeight:700,letterSpacing:".16em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.55)"}}>Available for Work</span>
-              <Sparkles style={{width:12,height:12,color:"#f97316",opacity:.7}}/>
+              <Sparkles style={{width:12,height:12,color:"var(--ac-hex-1)",opacity:.7}}/>
             </motion.div>
 
             <motion.h1 variants={v} className="glow" style={{fontWeight:900,letterSpacing:"-.03em",lineHeight:1.02,marginBottom:20,fontSize:"clamp(40px,6.5vw,84px)"}}>
@@ -413,7 +413,7 @@ export default function Home() {
         </section>
 
         {/* MARQUEE */}
-        <div style={{overflow:"hidden",padding:"12px 0",borderTop:"1px solid rgba(249,115,22,.07)",borderBottom:"1px solid rgba(249,115,22,.07)",background:"rgba(255,255,255,.02)"}}>
+        <div style={{overflow:"hidden",padding:"12px 0",borderTop:`1px solid rgba(var(--ac-1),.07)`,borderBottom:`1px solid rgba(var(--ac-1),.07)`,background:"rgba(255,255,255,.02)"}}>
           <div className="marquee-track" style={{display:"flex",whiteSpace:"nowrap" as const,fontSize:10.5,fontWeight:700,letterSpacing:".18em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.20)"}}>
             {[...Array(12)].map((_,i)=><span key={i} style={{margin:"0 40px"}}>✦ Functional Testing ✦ Video Editing ✦ Bug Reporting ✦ API Testing ✦ Content Strategy ✦ TikTok Growth </span>)}
           </div>
@@ -436,8 +436,8 @@ export default function Home() {
               </motion.div>
               <div className="grid-2col">
                 {[
-                  {cat:"QA & Testing", skills:["Functional & UI Testing","Bug Reporting (Plane)","Manual API Testing","Requirement Analysis"], icon:"✓", acBg:"rgba(249,115,22,.12)", acBd:"rgba(249,115,22,.22)", dot:"#f97316", bar:"linear-gradient(90deg,#f97316,#fbbf24)"},
-                  {cat:"Content Creation", skills:["Video Editing","Content Strategy","Trend Analysis","Community Engagement"], icon:"▶", acBg:"rgba(239,68,68,.12)", acBd:"rgba(239,68,68,.22)", dot:"#ef4444", bar:"linear-gradient(90deg,#ef4444,#f97316)"},
+                  {cat:"QA & Testing", skills:["Functional & UI Testing","Bug Reporting (Plane)","Manual API Testing","Requirement Analysis"], icon:"✓", acBg:"rgba(var(--ac-1),.12)", acBd:"rgba(var(--ac-1),.22)", dot:"var(--ac-hex-1)", bar:"linear-gradient(90deg,var(--ac-hex-1),var(--ac-hex-2))"},
+                  {cat:"Content Creation", skills:["Video Editing","Content Strategy","Trend Analysis","Community Engagement"], icon:"▶", acBg:"rgba(239,68,68,.12)", acBd:"rgba(239,68,68,.22)", dot:"#ef4444", bar:"linear-gradient(90deg,#ef4444,var(--ac-hex-1))"},
                 ].map(c=>(
                   <motion.div key={c.cat} variants={v} className="g-card" style={{padding:28}}>
                     <div className="top-bar" style={{background:c.bar}}/>
@@ -479,7 +479,7 @@ export default function Home() {
               {[
                 {p:"Jun 2025 — Present",r:"Quality Assurance Specialist",c:"PT. BULLION ECOSYSTEM INTERNATIONAL · Bogor",tag:"Current",tc:"rgba(52,211,153,.10)",tb:"rgba(52,211,153,.25)",tt:"#34d399",
                  i:["End-to-end testing sistem event Tenar Buyer & Organizer Phase 2–4 dan Payment Gateway MVP.","Menyusun dan mengelola puluhan test case terstruktur.","Identifikasi dan pelaporan bug menggunakan Plane.","Koordinasi dengan developer untuk resolusi isu."]},
-                {p:"2025 — Present",r:"Freelance Gaming Content Creator",c:"Honor of Kings (Tencent / TikTok) · Remote",tag:"Active",tc:"rgba(249,115,22,.10)",tb:"rgba(249,115,22,.25)",tt:"#fdba74",
+                {p:"2025 — Present",r:"Freelance Gaming Content Creator",c:"Honor of Kings (Tencent / TikTok) · Remote",tag:"Active",tc:"rgba(var(--ac-1),.10)",tb:"rgba(var(--ac-1),.25)",tt:"var(--ac-text2)",
                  i:["Menyelesaikan kontrak 50 video promosi official HoK kampanye TikTok.","Aktif di HoK Creator Camp dengan jutaan penayangan akumulatif.","Kurasi & editing klip berkualitas dari in-game footage."]},
                 {p:"Agu 2024 — Jun 2025",r:"Internship Monitoring Server",c:"PT. BULLION ECOSYSTEM INTERNATIONAL · Bogor",tag:"Completed",tc:"rgba(255,255,255,.04)",tb:"rgba(255,255,255,.09)",tt:"rgba(245,240,232,.35)",
                  i:["Monitoring sistem produksi secara berkala.","Analisis error transaksi dan penanganan kendala operasional.","Dokumentasi hasil monitoring ke laporan teknis."]},
@@ -497,7 +497,7 @@ export default function Home() {
                       <ul style={{display:"flex",flexDirection:"column" as const,gap:10}}>
                         {exp.i.map((it,j)=>(
                           <li key={j} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:13.5,lineHeight:1.55,color:"rgba(245,240,232,.52)"}}>
-                            <CheckCircle2 style={{width:15,height:15,color:"#f97316",flexShrink:0,marginTop:2,opacity:.80}}/>
+                            <CheckCircle2 style={{width:15,height:15,color:"var(--ac-hex-1)",flexShrink:0,marginTop:2,opacity:.80}}/>
                             {it}
                           </li>
                         ))}
@@ -541,16 +541,16 @@ export default function Home() {
                   className="g-card" style={{padding:20,display:"flex",alignItems:"flex-start",gap:16,textDecoration:"none",position:"relative"}}>
                   <div className="top-bar"/>
                   {/* External link badge top-right */}
-                  <div style={{position:"absolute",top:14,right:14,padding:6,borderRadius:8,background:"rgba(249,115,22,.10)",border:"1px solid rgba(249,115,22,.18)"}}>
-                    <ExternalLink style={{width:12,height:12,color:"#f97316"}}/>
+                  <div style={{position:"absolute",top:14,right:14,padding:6,borderRadius:8,background:"rgba(var(--ac-1),.10)",border:"1px solid rgba(var(--ac-1),.18)"}}>
+                    <ExternalLink style={{width:12,height:12,color:"var(--ac-hex-1)"}}/>
                   </div>
-                  <div style={{padding:10,borderRadius:12,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)",flexShrink:0}}>
-                    <Award style={{width:16,height:16,color:"#f97316"}}/>
+                  <div style={{padding:10,borderRadius:12,background:"rgba(var(--ac-1),.09)",border:"1px solid rgba(var(--ac-1),.18)",flexShrink:0}}>
+                    <Award style={{width:16,height:16,color:"var(--ac-hex-1)"}}/>
                   </div>
                   <div style={{flex:1,minWidth:0,paddingRight:28}}>
                     <h4 style={{fontSize:13.5,fontWeight:700,color:"rgba(245,240,232,.85)",marginBottom:4,lineHeight:1.35}}>{c.t}</h4>
                     <p style={{fontSize:11,color:"rgba(245,240,232,.32)",marginBottom:10}}>{c.i}</p>
-                    <span style={{fontSize:10.5,fontFamily:"monospace",color:"#f97316",background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.15)",padding:"3px 10px",borderRadius:999}}>{c.d}</span>
+                    <span style={{fontSize:10.5,fontFamily:"monospace",color:"var(--ac-hex-1)",background:"rgba(var(--ac-1),.09)",border:"1px solid rgba(var(--ac-1),.15)",padding:"3px 10px",borderRadius:999}}>{c.d}</span>
                   </div>
                 </motion.a>
               ))}
@@ -705,10 +705,10 @@ export default function Home() {
               </div>
               <div style={{display:"flex",alignItems:"center",gap:10}}>
                 {/* Live badge */}
-                <span style={{display:"inline-flex",alignItems:"center",gap:6,padding:"6px 14px",borderRadius:999,background:"rgba(249,115,22,.10)",border:"1px solid rgba(249,115,22,.22)",fontSize:11,fontWeight:700,letterSpacing:".08em",color:"rgba(249,115,22,.90)"}}>
+                <span style={{display:"inline-flex",alignItems:"center",gap:6,padding:"6px 14px",borderRadius:999,background:"rgba(var(--ac-1),.10)",border:"1px solid rgba(var(--ac-1),.22)",fontSize:11,fontWeight:700,letterSpacing:".08em",color:`rgba(var(--ac-1),.90)`}}>
                   <span style={{position:"relative",display:"flex"}}>
-                    <span style={{position:"absolute",inset:0,borderRadius:"50%",background:"#f97316",opacity:.5,animation:"ping 1s cubic-bezier(0,0,.2,1) infinite"}}/>
-                    <span style={{width:6,height:6,borderRadius:"50%",background:"#f97316",display:"block"}}/>
+                    <span style={{position:"absolute",inset:0,borderRadius:"50%",background:"var(--ac-hex-1)",opacity:.5,animation:"ping 1s cubic-bezier(0,0,.2,1) infinite"}}/>
+                    <span style={{width:6,height:6,borderRadius:"50%",background:"var(--ac-hex-1)",display:"block"}}/>
                   </span>
                   Real-time
                 </span>
@@ -724,9 +724,9 @@ export default function Home() {
 
               {/* Best WPM */}
               <motion.div variants={vScale} className="g-card mt-stat-card">
-                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
-                <div className="mt-stat-icon-wrap" style={{background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
-                  <Keyboard style={{width:18,height:18,color:"#f97316"}}/>
+                <div className="top-bar" style={{background:`linear-gradient(90deg,var(--ac-hex-1),var(--ac-hex-2))`}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(var(--ac-1),.12)",border:"1px solid rgba(var(--ac-1),.22)"}}>
+                  <Keyboard style={{width:18,height:18,color:"var(--ac-hex-1)"}}/>
                 </div>
                 <div className="mt-stat-body">
                   <p className="mt-stat-val grad-orange">{mtLoading ? "—" : stats.bestWpm}</p>
@@ -781,12 +781,12 @@ export default function Home() {
 
               {/* Best Raw WPM */}
               <motion.div variants={vScale} className="g-card mt-stat-card">
-                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fb923c)"}}/>
-                <div className="mt-stat-icon-wrap" style={{background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
-                  <Zap style={{width:18,height:18,color:"#fb923c"}}/>
+                <div className="top-bar" style={{background:`linear-gradient(90deg,var(--ac-hex-1),var(--ac-hex-2))`}}/>
+                <div className="mt-stat-icon-wrap" style={{background:"rgba(var(--ac-1),.12)",border:"1px solid rgba(var(--ac-1),.22)"}}>
+                  <Zap style={{width:18,height:18,color:"var(--ac-hex-2)"}}/>
                 </div>
                 <div className="mt-stat-body">
-                  <p className="mt-stat-val" style={{background:"linear-gradient(135deg,#fb923c,#fbbf24)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>{mtLoading ? "—" : stats.bestRaw}</p>
+                  <p className="mt-stat-val grad-orange">{mtLoading ? "—" : stats.bestRaw}</p>
                   <p className="mt-stat-label">Best Raw WPM</p>
                   <p className="mt-stat-sub">Uncorrected speed</p>
                 </div>
@@ -825,10 +825,10 @@ export default function Home() {
 
               {/* WPM Progress Line Chart */}
               <motion.div variants={vScale} className="g-card" style={{padding:"28px 24px",flex:1,minWidth:0}}>
-                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
+                <div className="top-bar" style={{background:`linear-gradient(90deg,var(--ac-hex-1),var(--ac-hex-2))`}}/>
                 <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:24}}>
-                  <div style={{padding:8,borderRadius:10,background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
-                    <Activity style={{width:16,height:16,color:"#f97316"}}/>
+                  <div style={{padding:8,borderRadius:10,background:"rgba(var(--ac-1),.12)",border:"1px solid rgba(var(--ac-1),.22)"}}>
+                    <Activity style={{width:16,height:16,color:"var(--ac-hex-1)"}}/>
                   </div>
                   <h3 style={{fontWeight:800,fontSize:15,color:"rgba(245,240,232,.90)"}}>WPM Progress</h3>
                 </div>
@@ -852,7 +852,7 @@ export default function Home() {
 
         {/* CONTACT */}
         <section id="contact" style={{padding:"140px 24px",position:"relative",overflow:"hidden"}}>
-          <div style={{position:"absolute",width:560,height:560,borderRadius:"50%",background:"#f97316",filter:"blur(110px)",opacity:.10,top:"50%",left:"50%",transform:"translate(-50%,-50%)",pointerEvents:"none"}}/>
+          <div style={{position:"absolute",width:560,height:560,borderRadius:"50%",background:"var(--ac-hex-1)",filter:"blur(110px)",opacity:.10,top:"50%",left:"50%",transform:"translate(-50%,-50%)",pointerEvents:"none"}}/>
           <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             style={{maxWidth:600,margin:"0 auto",textAlign:"center",position:"relative",zIndex:10}}>
             <motion.span variants={v} className="eyebrow" style={{marginBottom:20}}>05 — Kontak</motion.span>
@@ -870,7 +870,7 @@ export default function Home() {
                 {href:"https://www.instagram.com/aprillio.bintang/",I:Camera,l:"Instagram"},
               ].map(({href,I,l})=>(
                 <a key={l} href={href} target="_blank" rel="noreferrer" className="btn btn-ghost">
-                  <I style={{width:16,height:16,color:"#f97316"}}/> {l}
+                  <I style={{width:16,height:16,color:"var(--ac-hex-1)"}}/> {l}
                 </a>
               ))}
               <a href="mailto:aprilliobintang455@gmail.com" className="btn btn-primary">
@@ -881,7 +881,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer style={{padding:"32px 24px",textAlign:"center",borderTop:"1px solid rgba(249,115,22,.08)",background:"rgba(255,255,255,.015)"}}>
+      <footer style={{padding:"32px 24px",textAlign:"center",borderTop:"1px solid rgba(var(--ac-1),.08)",background:"rgba(255,255,255,.015)"}}>
         <p style={{fontSize:11,color:"rgba(245,240,232,.22)",fontWeight:600,letterSpacing:".16em",textTransform:"uppercase" as const}}>
           © {new Date().getFullYear()} &nbsp;·&nbsp; Aprillio Bintang Perdana &nbsp;·&nbsp; Crafted with ✦
         </p>

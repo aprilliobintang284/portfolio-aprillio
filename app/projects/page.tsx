@@ -24,8 +24,8 @@ export default function Projects() {
             style={{textAlign:"center",maxWidth:560,margin:"0 auto 80px"}}>
             <motion.span variants={v} className="eyebrow" style={{marginBottom:16}}>QA Projects</motion.span>
             <motion.div variants={v} style={{display:"flex",justifyContent:"center",marginBottom:20}}>
-              <div style={{padding:14,borderRadius:18,background:"rgba(249,115,22,.12)",border:"1px solid rgba(249,115,22,.22)"}}>
-                <ShieldCheck style={{width:24,height:24,color:"#f97316"}}/>
+              <div style={{padding:14,borderRadius:18,background:"rgba(var(--ac-1),.12)",border:"1px solid rgba(var(--ac-1),.22)"}}>
+                <ShieldCheck style={{width:24,height:24,color:"var(--ac-hex-1)"}}/>
               </div>
             </motion.div>
             <motion.h1 variants={v} className="grad-amber"
@@ -48,22 +48,22 @@ export default function Projects() {
                items:[{I:CheckCircle2,t:"Validasi input pembuatan event (Form Validation)."},{I:Bug,t:"Reporting bug integrasi API melalui Plane."},{I:Lock,t:"Pengujian Role-Based Access Control (RBAC)."}]},
             ].map((p,i)=>(
               <motion.div key={i} initial="hidden" whileInView="show" viewport={VP} variants={vScale} className="g-card g-card-padded" style={{padding:32,display:"flex",flexDirection:"column" as const}}>
-                <div className="top-bar" style={{background:"linear-gradient(90deg,#f97316,#fbbf24)"}}/>
+                <div className="top-bar" style={{background:"linear-gradient(90deg,var(--ac-hex-1),var(--ac-hex-2))"}}/>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
                   <span className="chip chip-green">Production Live</span>
                   <a href={p.href} target="_blank" rel="noreferrer"
-                    style={{padding:10,borderRadius:"50%",background:"rgba(249,115,22,.10)",border:"1px solid rgba(249,115,22,.20)",color:"#f97316",display:"flex",cursor:"none"}}>
+                    style={{padding:10,borderRadius:"50%",background:"rgba(var(--ac-1),.10)",border:"1px solid rgba(var(--ac-1),.20)",color:"var(--ac-hex-1)",display:"flex",cursor:"none"}}>
                     <ExternalLink style={{width:16,height:16}}/>
                   </a>
                 </div>
                 <h2 style={{fontSize:22,fontWeight:900,color:"rgba(245,240,232,.90)",marginBottom:12}}>{p.title}</h2>
                 <p style={{fontSize:13.5,lineHeight:1.6,color:"rgba(245,240,232,.48)",marginBottom:24,flex:1}}>{p.desc}</p>
-                <div style={{paddingTop:20,borderTop:"1px solid rgba(249,115,22,.09)"}}>
+                <div style={{paddingTop:20,borderTop:"1px solid rgba(var(--ac-1),.09)"}}>
                   <p style={{fontSize:10,fontWeight:700,color:"rgba(245,240,232,.28)",letterSpacing:".14em",textTransform:"uppercase" as const,marginBottom:12}}>QA Scope</p>
                   <ul style={{display:"flex",flexDirection:"column" as const,gap:8}}>
                     {p.items.map(({I,t},j)=>(
                       <li key={j} style={{display:"flex",alignItems:"flex-start",gap:10,fontSize:13,color:"rgba(245,240,232,.52)"}}>
-                        <I style={{width:15,height:15,color:"#f97316",flexShrink:0,marginTop:2}}/>{t}
+                        <I style={{width:15,height:15,color:"var(--ac-hex-1)",flexShrink:0,marginTop:2}}/>{t}
                       </li>
                     ))}
                   </ul>
@@ -74,11 +74,11 @@ export default function Projects() {
 
           {/* WIP */}
           <motion.div initial="hidden" whileInView="show" viewport={VP} variants={vScale} className="g-card wip-card-padding"
-            style={{padding:56,textAlign:"center",background:"rgba(255,255,255,.02)",border:"1.5px dashed rgba(249,115,22,.16)"}}>
+            style={{padding:56,textAlign:"center",background:"rgba(255,255,255,.02)",border:"1.5px dashed rgba(var(--ac-1),.16)"}}>
 
             <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
-              <div style={{padding:14,borderRadius:18,background:"rgba(249,115,22,.09)",border:"1px solid rgba(249,115,22,.18)"}}>
-                <Lock style={{width:24,height:24,color:"#f97316"}}/>
+              <div style={{padding:14,borderRadius:18,background:"rgba(var(--ac-1),.09)",border:"1px solid rgba(var(--ac-1),.18)"}}>
+                <Lock style={{width:24,height:24,color:"var(--ac-hex-1)"}}/>
               </div>
             </div>
             <h2 style={{fontSize:20,fontWeight:900,color:"rgba(245,240,232,.45)",marginBottom:10}}>Payment Gateway MVP</h2>
@@ -90,7 +90,7 @@ export default function Projects() {
         </div>
       </main>
 
-      <footer style={{padding:"32px 24px",textAlign:"center",borderTop:"1px solid rgba(249,115,22,.08)",background:"rgba(255,255,255,.015)"}}>
+      <footer style={{padding:"32px 24px",textAlign:"center",borderTop:"1px solid rgba(var(--ac-1),.08)",background:"rgba(255,255,255,.015)"}}>
         <p style={{fontSize:11,color:"rgba(245,240,232,.22)",fontWeight:600,letterSpacing:".16em",textTransform:"uppercase" as const}}>
           © {new Date().getFullYear()} Aprillio Bintang Perdana &nbsp;·&nbsp; Crafted with ✦
         </p>
