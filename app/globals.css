@@ -1,5 +1,50 @@
 @import "tailwindcss";
 
+/* ── ANIMATABLE CSS CUSTOM PROPERTIES ───
+   @property lets the browser interpolate these
+   as typed color values during theme transition.
+─────────────────────────────────────────── */
+@property --ac-hex-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f97316;
+}
+@property --ac-hex-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fbbf24;
+}
+@property --ac-hex-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fb923c;
+}
+@property --ac-text {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fed7aa;
+}
+@property --ac-text2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fdba74;
+}
+@property --ac-aura-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(249,115,22,.18);
+}
+@property --ac-aura-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(245,158,11,.12);
+}
+@property --ac-aura-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(249,115,22,.08);
+}
+
 /* ════════════════════════════════════════════════
    COLOR THEME VARIABLES
    Default: Orange  |  Alternate: Green
@@ -48,7 +93,38 @@
   --selection-fg: #bbf7d0;
 }
 
-/* ════════════════════════════════════════════════
+/* ── SMOOTH THEME TRANSITION ────────────
+   Applied for ~600ms while toggling theme.
+   Uses @media to respect reduced-motion pref.
+─────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  /* Transition typed CSS vars (color) — enabled by @property above */
+  html {
+    transition:
+      --ac-hex-1 0.55s ease,
+      --ac-hex-2 0.55s ease,
+      --ac-hex-3 0.55s ease,
+      --ac-text  0.55s ease,
+      --ac-text2 0.55s ease,
+      --ac-aura-1 0.55s ease,
+      --ac-aura-2 0.55s ease,
+      --ac-aura-3 0.55s ease;
+  }
+  /* Broad element transitions during active toggle only */
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition:
+      color          0.45s ease,
+      background     0.45s ease,
+      background-color 0.45s ease,
+      border-color   0.45s ease,
+      box-shadow     0.45s ease,
+      fill           0.45s ease,
+      stroke         0.45s ease !important;
+  }
+}
+
    PORTFOLIO — Warm Dark × Orange Accent
    Reset placed inside @layer base so utilities
    (mx-auto, text-center etc.) properly override
