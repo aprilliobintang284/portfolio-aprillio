@@ -26,7 +26,7 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
       title={`Switch to ${isGreen ? "orange" : "green"} theme`}
       style={{
         display: "inline-flex", alignItems: "center", gap: 6,
-        padding: pad, borderRadius: 999, border: "none",
+        padding: pad, borderRadius: 999,
         background: isGreen ? "rgba(34,197,94,.12)" : "rgba(249,115,22,.12)",
         border: `1px solid ${isGreen ? "rgba(34,197,94,.28)" : "rgba(249,115,22,.22)"}`,
         cursor: "none",
