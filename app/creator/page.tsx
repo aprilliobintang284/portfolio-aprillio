@@ -22,12 +22,34 @@ export default function Creator() {
 
   return (
     <div data-page="creator" style={{minHeight:"100vh",position:"relative"}}>
-      <div className="bg-scene bg-scene-red"/>
-      {/* Fixed red orbs — brand-locked, not affected by color theme toggle */}
+      {/* Background scene — switches between red (orange mode) and default CSS var (green mode) */}
+      <div className={`bg-scene ${isGreen ? "" : "bg-scene-red"}`}/>
+      {/* Floating orbs — color follows theme */}
       <div style={{position:"fixed",inset:0,zIndex:-1,overflow:"hidden",pointerEvents:"none"}}>
-        <div style={{position:"absolute",width:420,height:420,borderRadius:"50%",background:"radial-gradient(circle, rgba(239,68,68,.18) 0%, transparent 70%)",filter:"blur(60px)",top:"10%",left:"-8%"}}/>
-        <div style={{position:"absolute",width:320,height:320,borderRadius:"50%",background:"radial-gradient(circle, rgba(220,38,38,.14) 0%, transparent 70%)",filter:"blur(50px)",top:"45%",right:"-6%"}}/>
-        <div style={{position:"absolute",width:240,height:240,borderRadius:"50%",background:"radial-gradient(circle, rgba(249,115,22,.10) 0%, transparent 70%)",filter:"blur(40px)",bottom:"15%",left:"30%"}}/>
+        <div style={{
+          position:"absolute",width:420,height:420,borderRadius:"50%",
+          background: isGreen
+            ? "radial-gradient(circle, rgba(34,197,94,.18) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(239,68,68,.18) 0%, transparent 70%)",
+          filter:"blur(60px)",top:"10%",left:"-8%",
+          transition:"background 0.6s ease",
+        }}/>
+        <div style={{
+          position:"absolute",width:320,height:320,borderRadius:"50%",
+          background: isGreen
+            ? "radial-gradient(circle, rgba(74,222,128,.14) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(220,38,38,.14) 0%, transparent 70%)",
+          filter:"blur(50px)",top:"45%",right:"-6%",
+          transition:"background 0.6s ease",
+        }}/>
+        <div style={{
+          position:"absolute",width:240,height:240,borderRadius:"50%",
+          background: isGreen
+            ? "radial-gradient(circle, rgba(34,197,94,.10) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(249,115,22,.10) 0%, transparent 70%)",
+          filter:"blur(40px)",bottom:"15%",left:"30%",
+          transition:"background 0.6s ease",
+        }}/>
       </div>
       <Navbar/>
       <main style={{paddingTop:"clamp(108px,14vw,160px)",paddingBottom:120}}>

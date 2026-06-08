@@ -115,13 +115,15 @@
   html.theme-transitioning *::before,
   html.theme-transitioning *::after {
     transition:
-      color          0.45s ease,
-      background     0.45s ease,
+      color            0.45s ease,
+      background       0.45s ease,
       background-color 0.45s ease,
-      border-color   0.45s ease,
-      box-shadow     0.45s ease,
-      fill           0.45s ease,
-      stroke         0.45s ease !important;
+      border-color     0.45s ease,
+      box-shadow       0.45s ease,
+      fill             0.45s ease,
+      stroke           0.45s ease,
+      left             0.38s cubic-bezier(.34,1.56,.64,1),
+      transform        0.38s ease !important;
   }
 }
 
