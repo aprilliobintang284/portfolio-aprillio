@@ -710,3 +710,25 @@
 @media (max-width: 420px) {
   .mt-grid-3 { grid-template-columns: 1fr; }
 }
+
+/* ── THEME TOGGLE ANIMATIONS ─────────────── */
+@keyframes togglePop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(.88); }
+  65%  { transform: scale(1.12); }
+  85%  { transform: scale(.97); }
+  100% { transform: scale(1); }
+}
+@keyframes toggleRipple {
+  0%   { opacity: 1; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+@keyframes thumbSpin {
+  0%   { transform: scale(1) rotate(0deg); }
+  40%  { transform: scale(0.7) rotate(-180deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.theme-toggle-pop {
+  animation: togglePop 0.42s cubic-bezier(.22,.68,0,1.2) !important;
+}
+

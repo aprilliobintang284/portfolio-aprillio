@@ -16,24 +16,35 @@ const LINKS = [
 
 function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
   const { colorTheme, toggleColorTheme } = useColorTheme();
+  const [animating, setAnimating] = useState(false);
   const isGreen = colorTheme === "green";
   const pad = size === "sm" ? "7px 12px" : "7px 14px";
 
+  const handleToggle = () => {
+    if (animating) return;
+    setAnimating(true);
+    toggleColorTheme();
+    setTimeout(() => setAnimating(false), 420);
+  };
+
   return (
     <button
-      onClick={toggleColorTheme}
+      onClick={handleToggle}
       aria-label={`Switch to ${isGreen ? "orange" : "green"} theme`}
       title={`Switch to ${isGreen ? "orange" : "green"} theme`}
+      className={animating ? "theme-toggle-pop" : ""}
       style={{
         display: "inline-flex", alignItems: "center", gap: 6,
         padding: pad, borderRadius: 999,
         background: isGreen ? "rgba(34,197,94,.12)" : "rgba(249,115,22,.12)",
         border: `1px solid ${isGreen ? "rgba(34,197,94,.28)" : "rgba(249,115,22,.22)"}`,
         cursor: "none",
-        transition: "background .4s, border-color .4s, transform .24s cubic-bezier(.22,.68,0,1.2)",
+        transition: "background .45s, border-color .45s",
         flexShrink: 0,
+        outline: "none",
+        WebkitTapHighlightColor: "transparent",
       }}
-      onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.08)")}
+      onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.06)")}
       onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
     >
       {/* Track */}
@@ -42,9 +53,19 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
         background: isGreen ? "rgba(34,197,94,.25)" : "rgba(249,115,22,.20)",
         border: `1px solid ${isGreen ? "rgba(34,197,94,.40)" : "rgba(249,115,22,.35)"}`,
         display: "inline-flex", alignItems: "center",
-        transition: "background .4s, border-color .4s",
+        transition: "background .45s, border-color .45s",
         flexShrink: 0,
+        overflow: "hidden",
       }}>
+        {/* Ripple flash on click */}
+        {animating && (
+          <span style={{
+            position: "absolute", inset: 0, borderRadius: 999,
+            background: isGreen ? "rgba(34,197,94,.35)" : "rgba(249,115,22,.35)",
+            animation: "toggleRipple .4s ease-out forwards",
+            pointerEvents: "none",
+          }}/>
+        )}
         {/* Thumb */}
         <span style={{
           position: "absolute",
@@ -52,9 +73,10 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
           width: 12, height: 12, borderRadius: "50%",
           background: isGreen ? "#22c55e" : "#f97316",
           boxShadow: isGreen ? "0 0 8px rgba(34,197,94,.70)" : "0 0 8px rgba(249,115,22,.70)",
-          transition: "left .3s cubic-bezier(.22,.68,0,1.2), background .4s, box-shadow .4s",
+          transition: "left .35s cubic-bezier(.34,1.56,.64,1), background .45s, box-shadow .45s",
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 7,
+          animation: animating ? "thumbSpin .4s ease" : "none",
         }}>
           {isGreen ? "🌿" : "🔥"}
         </span>
@@ -63,7 +85,9 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
       <span style={{
         fontSize: 10.5, fontWeight: 700, letterSpacing: ".06em",
         color: isGreen ? "#4ade80" : "#fdba74",
-        transition: "color .4s", whiteSpace: "nowrap",
+        transition: "color .45s, opacity .2s",
+        whiteSpace: "nowrap",
+        opacity: animating ? 0.6 : 1,
       }}>
         {isGreen ? "Green" : "Orange"}
       </span>

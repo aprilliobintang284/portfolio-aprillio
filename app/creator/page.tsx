@@ -2,6 +2,7 @@
 import { motion, type Variants } from "framer-motion";
 import { ExternalLink, PlayCircle, Zap, TrendingUp, Target, Video } from "lucide-react";
 import Navbar from "../components/Navbar";
+import { useColorTheme } from "../components/ThemeContext";
 
 const v: Variants = { hidden:{opacity:0,y:32}, show:{opacity:1,y:0,transition:{duration:.72,ease:[.22,1,.36,1]}} };
 const vScale: Variants = { hidden:{opacity:0,y:24,scale:.97}, show:{opacity:1,y:0,scale:1,transition:{duration:.70,ease:[.22,1,.36,1]}} };
@@ -16,6 +17,9 @@ const CAMPAIGNS=[
 ];
 
 export default function Creator() {
+  const { colorTheme } = useColorTheme();
+  const isGreen = colorTheme === "green";
+
   return (
     <div data-page="creator" style={{minHeight:"100vh",position:"relative"}}>
       <div className="bg-scene bg-scene-red"/>
@@ -32,26 +36,30 @@ export default function Creator() {
           {/* Header */}
           <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             style={{textAlign:"center",maxWidth:560,margin:"0 auto 64px"}}>
-            <motion.span variants={v} className="eyebrow" style={{color:"#ef4444",marginBottom:16}}>Creator Portfolio</motion.span>
+            {/* Eyebrow — follows theme */}
+            <motion.span variants={v} className="eyebrow" style={{marginBottom:16}}>Creator Portfolio</motion.span>
+            {/* Logo icon — stays red (TikTok brand) */}
             <motion.div variants={v} style={{display:"flex",justifyContent:"center",marginBottom:20}}>
               <div style={{padding:14,borderRadius:18,background:"rgba(239,68,68,.12)",border:"1px solid rgba(239,68,68,.22)"}}>
                 <PlayCircle style={{width:24,height:24,color:"#ef4444"}}/>
               </div>
             </motion.div>
-            <motion.h1 variants={v} className="grad-red"
+            {/* Title — follows theme */}
+            <motion.h1 variants={v} className={isGreen ? "grad-orange" : "grad-red"}
               style={{fontWeight:900,fontSize:"clamp(32px,5vw,58px)",letterSpacing:"-.03em",lineHeight:1.1,marginBottom:20}}>
               Digital Content.
             </motion.h1>
             <motion.p variants={v} style={{fontSize:14,lineHeight:1.6,color:"rgba(245,240,232,.45)",marginBottom:28}}>
               Kompilasi performa kampanye sebagai <strong style={{color:"rgba(245,240,232,.78)"}}>Creator Camp Member</strong> resmi untuk game <strong style={{color:"rgba(245,240,232,.78)"}}>Honor of Kings</strong>.
             </motion.p>
+            {/* TikTok CTA — stays red (brand button) */}
             <motion.a variants={v} href="https://www.tiktok.com/@scarawanderr" target="_blank" rel="noreferrer"
               className="btn" style={{background:"linear-gradient(135deg,#ef4444,#f97316)",color:"#fff",boxShadow:"0 6px 28px rgba(239,68,68,.40),inset 0 1px 0 rgba(255,255,255,.20)",display:"inline-flex"}}>
               Kunjungi TikTok <ExternalLink style={{width:16,height:16}}/>
             </motion.a>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats — follows theme */}
           <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}
             className="creator-stats-grid">
             {[
@@ -60,20 +68,20 @@ export default function Creator() {
               {l:"Followers",val:"2.1K",sub:"Niche Gaming Community",I:Target},
             ].map((x,i)=>(
               <motion.div key={i} variants={vScale} className="g-card" style={{padding:32,textAlign:"center"}}>
-                <div className="top-bar" style={{background:"linear-gradient(90deg,#ef4444,#f97316)"}}/>
+                <div className="top-bar" style={{background:`linear-gradient(90deg,var(--ac-hex-1),var(--ac-hex-2))`}}/>
                 <div style={{display:"flex",justifyContent:"center",marginBottom:16}}>
-                  <div style={{padding:12,borderRadius:14,background:"rgba(239,68,68,.09)",border:"1px solid rgba(239,68,68,.20)"}}>
-                    <x.I style={{width:16,height:16,color:"#ef4444"}}/>
+                  <div style={{padding:12,borderRadius:14,background:"rgba(var(--ac-1),.09)",border:"1px solid rgba(var(--ac-1),.20)"}}>
+                    <x.I style={{width:16,height:16,color:"var(--ac-hex-1)"}}/>
                   </div>
                 </div>
                 <p style={{fontSize:10,fontWeight:700,color:"rgba(245,240,232,.28)",letterSpacing:".14em",textTransform:"uppercase" as const,marginBottom:8}}>{x.l}</p>
-                <p className="grad-red" style={{fontWeight:900,fontSize:"clamp(28px,4vw,44px)",letterSpacing:"-.04em",marginBottom:6}}>{x.val}</p>
-                <p style={{fontSize:12,color:"rgba(239,68,68,.70)",fontWeight:600}}>{x.sub}</p>
+                <p className="grad-orange" style={{fontWeight:900,fontSize:"clamp(28px,4vw,44px)",letterSpacing:"-.04em",marginBottom:6}}>{x.val}</p>
+                <p style={{fontSize:12,color:"var(--ac-hex-2)",fontWeight:600}}>{x.sub}</p>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Campaigns */}
+          {/* Campaigns — stays brand colors (TikTok content) */}
           <motion.div initial="hidden" whileInView="show" viewport={VP} variants={s}>
             <motion.div variants={v} style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:32}}>
               <TrendingUp style={{width:16,height:16,color:"#ef4444"}}/>

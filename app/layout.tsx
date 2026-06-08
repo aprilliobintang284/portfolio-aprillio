@@ -22,6 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth">
+      {/* Blocking script: apply theme BEFORE first paint to prevent orange flash */}
+      <script dangerouslySetInnerHTML={{__html:`(function(){try{var t=localStorage.getItem('color-theme');if(t==='green')document.documentElement.setAttribute('data-color-theme','green');}catch(e){}})();`}} />
       <body className={`${inter.className} antialiased`}>
         <CustomCursor />
         <ColorThemeProvider>
