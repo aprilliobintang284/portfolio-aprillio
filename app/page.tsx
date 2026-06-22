@@ -401,14 +401,6 @@ export default function Home() {
               <a href="#contact" className="btn btn-ghost">Connect</a>
             </motion.div>
 
-            <motion.div variants={v} style={{display:"inline-flex",flexWrap:"wrap" as const,justifyContent:"center",gap:40,padding:"20px 40px",borderRadius:18,background:"rgba(255,255,255,.04)",border:"1px solid rgba(255,255,255,.08)"}}>
-              {[["3.8M","Total Views"],["110+","Videos"],["352+","QA Tests"],["108 WPM","Typing Speed"]].map(([val,lbl])=>(
-                <div key={lbl} style={{textAlign:"center"}}>
-                  <p className="grad-orange" style={{fontWeight:900,fontSize:"clamp(18px,2.5vw,26px)",letterSpacing:"-.04em",marginBottom:4}}>{val}</p>
-                  <p style={{fontSize:10,fontWeight:700,letterSpacing:".14em",textTransform:"uppercase" as const,color:"rgba(245,240,232,.30)"}}>{lbl}</p>
-                </div>
-              ))}
-            </motion.div>
           </motion.div>
         </section>
 
