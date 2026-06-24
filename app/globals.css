@@ -7,69 +7,69 @@
 @property --ac-hex-1 {
   syntax: '<color>';
   inherits: true;
-  initial-value: #f97316;
+  initial-value: #0ea5e9;
 }
 @property --ac-hex-2 {
   syntax: '<color>';
   inherits: true;
-  initial-value: #fbbf24;
+  initial-value: #38bdf8;
 }
 @property --ac-hex-3 {
   syntax: '<color>';
   inherits: true;
-  initial-value: #fb923c;
+  initial-value: #7dd3fc;
 }
 @property --ac-text {
   syntax: '<color>';
   inherits: true;
-  initial-value: #fed7aa;
+  initial-value: #bae6fd;
 }
 @property --ac-text2 {
   syntax: '<color>';
   inherits: true;
-  initial-value: #fdba74;
+  initial-value: #7dd3fc;
 }
 @property --ac-aura-1 {
   syntax: '<color>';
   inherits: true;
-  initial-value: rgba(249,115,22,.18);
+  initial-value: rgba(14,165,233,.18);
 }
 @property --ac-aura-2 {
   syntax: '<color>';
   inherits: true;
-  initial-value: rgba(245,158,11,.12);
+  initial-value: rgba(56,189,248,.12);
 }
 @property --ac-aura-3 {
   syntax: '<color>';
   inherits: true;
-  initial-value: rgba(249,115,22,.08);
+  initial-value: rgba(14,165,233,.08);
 }
 
 /* ════════════════════════════════════════════════
    COLOR THEME VARIABLES
-   Default: Orange  |  Alternate: Green
+   Default: Sky Blue  |  Alternate: Green
    Toggled via data-color-theme="green" on <html>
 ════════════════════════════════════════════════ */
 :root {
-  /* Orange theme (default) */
-  --ac-1:     249, 115, 22;   /* #f97316 */
-  --ac-2:     251, 191, 36;   /* #fbbf24 */
-  --ac-3:     245, 158, 11;   /* #f59e0b */
-  --ac-glow:  249, 115, 22;
-  --ac-hex-1: #f97316;
-  --ac-hex-2: #fbbf24;
-  --ac-hex-3: #fb923c;
-  --ac-text:  #fed7aa;
-  --ac-text2: #fdba74;
-  --ac-grad:  linear-gradient(135deg, #f97316 0%, #fbbf24 55%, #fed7aa 100%);
-  --ac-grad-h: linear-gradient(135deg, #f97316, #ea580c, #fb923c);
-  --ac-aura-1: rgba(249,115,22,.18);
-  --ac-aura-2: rgba(245,158,11,.12);
-  --ac-aura-3: rgba(249,115,22,.08);
-  --scrollbar-thumb: rgba(249,115,22,.22);
-  --scrollbar-thumb-hov: rgba(249,115,22,.45);
-  --selection-bg: rgba(249,115,22,.22);
-  --selection-fg: #fed7aa;
+  /* Sky Blue theme (default) */
+  --ac-1:     14, 165, 233;   /* #0ea5e9 */
+  --ac-2:     56, 189, 248;   /* #38bdf8 */
+  --ac-3:     125, 211, 252;  /* #7dd3fc */
+  --ac-glow:  14, 165, 233;
+  --ac-hex-1: #0ea5e9;
+  --ac-hex-2: #38bdf8;
+  --ac-hex-3: #7dd3fc;
+  --ac-text:  #bae6fd;
+  --ac-text2: #7dd3fc;
+  --ac-grad:  linear-gradient(135deg, #0ea5e9 0%, #38bdf8 55%, #bae6fd 100%);
+  --ac-grad-h: linear-gradient(135deg, #0ea5e9, #0284c7, #38bdf8);
+  --ac-aura-1: rgba(14,165,233,.18);
+  --ac-aura-2: rgba(56,189,248,.12);
+  --ac-aura-3: rgba(14,165,233,.08);
+  --scrollbar-thumb: rgba(14,165,233,.22);
+  --scrollbar-thumb-hov: rgba(14,165,233,.45);
+  --selection-bg: rgba(14,165,233,.22);
+  --selection-fg: #bae6fd;
 }
 
 [data-color-theme="green"] {

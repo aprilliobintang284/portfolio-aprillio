@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-type ColorTheme = "orange" | "green";
+type ColorTheme = "blue" | "green";
 
 interface ThemeCtx {
   colorTheme: ColorTheme;
@@ -9,12 +9,12 @@ interface ThemeCtx {
 }
 
 const ThemeContext = createContext<ThemeCtx>({
-  colorTheme: "orange",
+  colorTheme: "blue",
   toggleColorTheme: () => {},
 });
 
 export function ColorThemeProvider({ children }: { children: ReactNode }) {
-  const [colorTheme, setColorTheme] = useState<ColorTheme>("orange");
+  const [colorTheme, setColorTheme] = useState<ColorTheme>("blue");
 
   // On mount, read from localStorage
   useEffect(() => {
@@ -22,6 +22,9 @@ export function ColorThemeProvider({ children }: { children: ReactNode }) {
     if (stored === "green") {
       setColorTheme("green");
       document.documentElement.setAttribute("data-color-theme", "green");
+    } else {
+      // Ensure we're in blue mode (clear any old 'orange' value)
+      localStorage.setItem("color-theme", "blue");
     }
   }, []);
 
@@ -30,7 +33,7 @@ export function ColorThemeProvider({ children }: { children: ReactNode }) {
     // Start smooth transition
     html.classList.add("theme-transitioning");
     setColorTheme(prev => {
-      const next = prev === "orange" ? "green" : "orange";
+      const next = prev === "blue" ? "green" : "blue";
       localStorage.setItem("color-theme", next);
       if (next === "green") {
         html.setAttribute("data-color-theme", "green");

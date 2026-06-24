@@ -36,8 +36,8 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
       style={{
         display: "inline-flex", alignItems: "center", gap: 6,
         padding: pad, borderRadius: 999,
-        background: isGreen ? "rgba(34,197,94,.12)" : "rgba(249,115,22,.12)",
-        border: `1px solid ${isGreen ? "rgba(34,197,94,.28)" : "rgba(249,115,22,.22)"}`,
+        background: isGreen ? "rgba(34,197,94,.12)" : "rgba(14,165,233,.12)",
+        border: `1px solid ${isGreen ? "rgba(34,197,94,.28)" : "rgba(14,165,233,.28)"}`,
         cursor: "none",
         transition: "background .45s, border-color .45s",
         flexShrink: 0,
@@ -50,8 +50,8 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
       {/* Track */}
       <span style={{
         position: "relative", width: 32, height: 18, borderRadius: 999,
-        background: isGreen ? "rgba(34,197,94,.25)" : "rgba(249,115,22,.20)",
-        border: `1px solid ${isGreen ? "rgba(34,197,94,.40)" : "rgba(249,115,22,.35)"}`,
+        background: isGreen ? "rgba(34,197,94,.25)" : "rgba(14,165,233,.20)",
+        border: `1px solid ${isGreen ? "rgba(34,197,94,.40)" : "rgba(14,165,233,.40)"}`,
         display: "inline-flex", alignItems: "center",
         transition: "background .45s, border-color .45s",
         flexShrink: 0,
@@ -61,7 +61,7 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
         {animating && (
           <span style={{
             position: "absolute", inset: 0, borderRadius: 999,
-            background: isGreen ? "rgba(34,197,94,.35)" : "rgba(249,115,22,.35)",
+            background: isGreen ? "rgba(34,197,94,.35)" : "rgba(14,165,233,.35)",
             animation: "toggleRipple .4s ease-out forwards",
             pointerEvents: "none",
           }}/>
@@ -71,25 +71,25 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
           position: "absolute",
           left: isGreen ? 15 : 2,
           width: 12, height: 12, borderRadius: "50%",
-          background: isGreen ? "#22c55e" : "#f97316",
-          boxShadow: isGreen ? "0 0 8px rgba(34,197,94,.70)" : "0 0 8px rgba(249,115,22,.70)",
+          background: isGreen ? "#22c55e" : "#0ea5e9",
+          boxShadow: isGreen ? "0 0 8px rgba(34,197,94,.70)" : "0 0 8px rgba(14,165,233,.70)",
           transition: "left .35s cubic-bezier(.34,1.56,.64,1), background .45s, box-shadow .45s",
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 7,
           animation: animating ? "thumbSpin .4s ease" : "none",
         }}>
-          {isGreen ? "🌿" : "🔥"}
+          {isGreen ? "🌿" : "🌊"}
         </span>
       </span>
       {/* Label */}
       <span style={{
         fontSize: 10.5, fontWeight: 700, letterSpacing: ".06em",
-        color: isGreen ? "#4ade80" : "#fdba74",
+        color: isGreen ? "#4ade80" : "#7dd3fc",
         transition: "color .45s, opacity .2s",
         whiteSpace: "nowrap",
         opacity: animating ? 0.6 : 1,
       }}>
-        {isGreen ? "Green" : "Orange"}
+        {isGreen ? "Green" : "Blue"}
       </span>
     </button>
   );
