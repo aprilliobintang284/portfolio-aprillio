@@ -32,7 +32,7 @@ function ThemeToggle({ size = "md" }: { size?: "md" | "sm" }) {
       onClick={handleToggle}
       aria-label={`Switch to ${isGreen ? "orange" : "green"} theme`}
       title={`Switch to ${isGreen ? "orange" : "green"} theme`}
-      className={animating ? "theme-toggle-pop" : ""}
+      className=""
       style={{
         display: "inline-flex", alignItems: "center", gap: 6,
         padding: pad, borderRadius: 999,
