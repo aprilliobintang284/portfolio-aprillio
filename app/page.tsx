@@ -340,6 +340,7 @@ export default function Home() {
     {yr:"Jun 2022 — Jun 2024",title:"Rekayasa Perangkat Lunak",school:"SMK Negeri 4 Kendal",href:"https://smkn4kendal.sch.id"},
   ];
   const certs=[
+    {t:"#JuaraVibeCoding Participant",i:"Google Developer Groups",d:"May 2026",f:"/cert-googlevibecode.pdf"},
     {t:"Microsoft 365 Copilot",i:"Microsoft",d:"Apr 2026",f:"/cert-copilot.pdf"},
     {t:"Pelatihan Dasar Copilot",i:"Jobstreet & Microsoft",d:"Apr 2026",f:"/cert-jobstreet-copilot.pdf"},
     {t:"Analisis Data Excel",i:"Microsoft & Jobstreet",d:"Apr 2026",f:"/cert-excel.pdf"},
