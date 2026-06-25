@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { Mail, Link as LI, ArrowRight, CheckCircle2, Award, ExternalLink, Keyboard, Target, MousePointerClick, Clock, Zap, Activity, Video, Camera, Code, Sparkles, Flame, Trophy, BookOpen, Globe } from "lucide-react";
 import Navbar from "./components/Navbar";
 import ParallaxScene from "./components/ParallaxScene";
@@ -311,6 +312,7 @@ export default function Home() {
   const [contactSent, setContactSent] = useState(false);
   const [contactSending, setContactSending] = useState(false);
   const [contactError, setContactError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   function handleContactChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setContactForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -335,6 +337,7 @@ export default function Home() {
       console.log("EmailJS success:", result);
       setContactError(null);
       setContactSent(true);
+      setTurnstileToken(null);
       setContactForm({ name: "", email: "", message: "" });
       setTimeout(() => setContactSent(false), 5000);
     } catch (err: unknown) {
@@ -1030,8 +1033,16 @@ export default function Home() {
                       </div>
                     </div>
                   )}
-                  <button type="submit" className="btn btn-primary" disabled={contactSending || contactSent}
-                    style={{ justifyContent: "center", opacity: (contactSending || contactSent) ? .75 : 1, cursor: (contactSending || contactSent) ? "not-allowed" : "pointer" }}>
+                  {/* Cloudflare Turnstile */}
+                  <Turnstile
+                    siteKey="0x4AAAAAADq_B4aMz84j6QmW"
+                    onSuccess={token => setTurnstileToken(token)}
+                    onExpire={() => setTurnstileToken(null)}
+                    onError={() => setTurnstileToken(null)}
+                    options={{ theme: "dark", size: "flexible" }}
+                  />
+                  <button type="submit" className="btn btn-primary" disabled={contactSending || contactSent || !turnstileToken}
+                    style={{ justifyContent: "center", opacity: (contactSending || contactSent || !turnstileToken) ? .55 : 1, cursor: (contactSending || contactSent || !turnstileToken) ? "not-allowed" : "pointer" }}>
                     {contactSent
                       ? (<><CheckCircle2 style={{ width: 16, height: 16 }} /> Pesan Terkirim!</>)
                       : contactSending
