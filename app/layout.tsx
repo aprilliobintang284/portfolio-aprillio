@@ -21,7 +21,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    {/* suppressHydrationWarning: server can't know data-color-theme from localStorage */}
     <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
         {/* Blocking script: apply theme BEFORE first paint — must be inside body, not html */}
