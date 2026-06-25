@@ -959,7 +959,6 @@ export default function Home() {
                     </a>
                   ))}
                 </div>
-                <div style={{ flex: 1 }} />
                 {/* Email mini-card */}
                 <div style={{ marginTop: 18, padding: "14px 16px", borderRadius: 13, background: "rgba(var(--ac-1),.07)", border: "1px solid rgba(var(--ac-1),.18)", display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{ width: 36, height: 36, borderRadius: "50%", background: "rgba(var(--ac-1),.15)", border: "1px solid rgba(var(--ac-1),.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -1012,27 +1011,6 @@ export default function Home() {
                       onBlur={e => (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,.09)"}
                     />
                   </div>
-                  {/* Toast notifications */}
-                  {contactSent && (
-                    <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 16px", borderRadius: 12, background: "rgba(52,211,153,.10)", border: "1px solid rgba(52,211,153,.30)" }}>
-                      <CheckCircle2 style={{ width: 18, height: 18, color: "#34d399", flexShrink: 0 }} />
-                      <div>
-                        <p style={{ fontSize: 13, fontWeight: 700, color: "#34d399", marginBottom: 2 }}>Pesan terkirim!</p>
-                        <p style={{ fontSize: 11.5, color: "rgba(52,211,153,.65)" }}>Aku akan segera membalasnya. Terima kasih!</p>
-                      </div>
-                    </div>
-                  )}
-                  {contactError && (
-                    <div style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "14px 16px", borderRadius: 12, background: "rgba(239,68,68,.10)", border: "1px solid rgba(239,68,68,.30)" }}>
-                      <div style={{ width: 18, height: 18, borderRadius: "50%", background: "rgba(239,68,68,.20)", border: "1px solid rgba(239,68,68,.40)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
-                        <span style={{ fontSize: 11, fontWeight: 900, color: "#ef4444" }}>!</span>
-                      </div>
-                      <div>
-                        <p style={{ fontSize: 13, fontWeight: 700, color: "#ef4444", marginBottom: 2 }}>Gagal mengirim pesan</p>
-                        <p style={{ fontSize: 11.5, color: "rgba(239,68,68,.70)", lineHeight: 1.5 }}>{contactError}</p>
-                      </div>
-                    </div>
-                  )}
                   {/* Cloudflare Turnstile */}
                   <Turnstile
                     siteKey="0x4AAAAAADq_B4aMz84j6QmW"
@@ -1057,6 +1035,38 @@ export default function Home() {
           </motion.div>
         </section>
       </main>
+
+      {/* Floating toast notifications */}
+      <style>{`
+        @keyframes slideInRight { from { transform: translateX(110%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(110%); opacity: 0; } }
+      `}</style>
+      {(contactSent || contactError) && (
+        <div style={{ position: "fixed", bottom: 28, right: 24, zIndex: 9999, display: "flex", flexDirection: "column", gap: 10, pointerEvents: "none" }}>
+          {contactSent && (
+            <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 14, background: "rgba(10,12,18,.92)", border: "1px solid rgba(52,211,153,.35)", backdropFilter: "blur(16px)", boxShadow: "0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(52,211,153,.10)", minWidth: 260, animation: "slideInRight .35s cubic-bezier(.22,1,.36,1)", pointerEvents: "auto" }}>
+              <div style={{ width: 34, height: 34, borderRadius: "50%", background: "rgba(52,211,153,.15)", border: "1px solid rgba(52,211,153,.30)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <CheckCircle2 style={{ width: 17, height: 17, color: "#34d399" }} />
+              </div>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "#34d399", marginBottom: 2 }}>Pesan Terkirim!</p>
+                <p style={{ fontSize: 11.5, color: "rgba(52,211,153,.60)" }}>Aku akan segera membalasnya 👋</p>
+              </div>
+            </div>
+          )}
+          {contactError && (
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "14px 18px", borderRadius: 14, background: "rgba(10,12,18,.92)", border: "1px solid rgba(239,68,68,.35)", backdropFilter: "blur(16px)", boxShadow: "0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(239,68,68,.10)", minWidth: 260, animation: "slideInRight .35s cubic-bezier(.22,1,.36,1)", pointerEvents: "auto" }}>
+              <div style={{ width: 34, height: 34, borderRadius: "50%", background: "rgba(239,68,68,.15)", border: "1px solid rgba(239,68,68,.30)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                <span style={{ fontSize: 13, fontWeight: 900, color: "#ef4444" }}>✕</span>
+              </div>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "#ef4444", marginBottom: 2 }}>Gagal Mengirim</p>
+                <p style={{ fontSize: 11.5, color: "rgba(239,68,68,.65)", lineHeight: 1.5, maxWidth: 220 }}>{contactError}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid rgba(var(--ac-1),.08)", background: "rgba(255,255,255,.015)" }}>
         <p style={{ fontSize: 11, color: "rgba(245,240,232,.22)", fontWeight: 600, letterSpacing: ".16em", textTransform: "uppercase" as const }}>
