@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import CustomCursor from "./components/CustomCursor";
 import { ColorThemeProvider } from "./components/ThemeContext";
@@ -23,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        {/* Blocking script: apply theme BEFORE first paint — must be inside body, not html */}
-        <script dangerouslySetInnerHTML={{__html:`(function(){try{var t=localStorage.getItem('color-theme');if(t==='green')document.documentElement.setAttribute('data-color-theme','green');}catch(e){}})();`}} />
+        {/* Blocking script: apply theme BEFORE first paint */}
+        <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{__html:`(function(){try{var t=localStorage.getItem('color-theme');if(t==='green')document.documentElement.setAttribute('data-color-theme','green');}catch(e){}})();`}}/>
         <CustomCursor />
         <ColorThemeProvider>
           {children}

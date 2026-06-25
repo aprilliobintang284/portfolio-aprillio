@@ -734,3 +734,22 @@
   animation: togglePop 0.42s cubic-bezier(.22,.68,0,1.2) !important;
 }
 
+/* ── CONTACT SECTION GRID ───────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ── SPINNER ────────────────────────────── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
