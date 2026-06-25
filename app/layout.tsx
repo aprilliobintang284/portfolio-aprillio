@@ -21,10 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth">
-      {/* Blocking script: apply theme BEFORE first paint to prevent orange flash */}
-      <script dangerouslySetInnerHTML={{__html:`(function(){try{var t=localStorage.getItem('color-theme');if(t==='green')document.documentElement.setAttribute('data-color-theme','green');}catch(e){}})();`}} />
+    {/* suppressHydrationWarning: server can't know data-color-theme from localStorage */}
+    <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
+        {/* Blocking script: apply theme BEFORE first paint — must be inside body, not html */}
+        <script dangerouslySetInnerHTML={{__html:`(function(){try{var t=localStorage.getItem('color-theme');if(t==='green')document.documentElement.setAttribute('data-color-theme','green');}catch(e){}})();`}} />
         <CustomCursor />
         <ColorThemeProvider>
           {children}
