@@ -927,7 +927,7 @@ export default function Home() {
             </motion.div>
 
             {/* Two-column layout */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "stretch" }} className="contact-grid">
+            <div className="contact-grid">
 
               {/* LEFT — Social links */}
               <motion.div variants={v} className="g-card" style={{ padding: "36px 32px", display: "flex", flexDirection: "column" as const }}>
@@ -984,7 +984,7 @@ export default function Home() {
                 <p style={{ fontSize: 12.5, color: "rgba(245,240,232,.35)", marginBottom: 24 }}>Aku akan balas sesegera mungkin.</p>
                 <form onSubmit={handleContactSubmit} style={{ display: "flex", flexDirection: "column" as const, gap: 14 }}>
                   {/* Email + Name row */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  <div className="contact-form-row">
                     <div>
                       <label style={{ display: "block", fontSize: 11.5, fontWeight: 600, color: "rgba(245,240,232,.45)", marginBottom: 6 }}>Email</label>
                       <input type="email" name="email" required value={contactForm.email} onChange={handleContactChange} placeholder="email@kamu.com"
@@ -1042,7 +1042,7 @@ export default function Home() {
         @keyframes slideOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(110%); opacity: 0; } }
       `}</style>
       {(contactSent || contactError) && (
-        <div style={{ position: "fixed", bottom: 28, right: 24, zIndex: 9999, display: "flex", flexDirection: "column", gap: 10, pointerEvents: "none" }}>
+        <div className="contact-toast" style={{ position: "fixed", bottom: 28, right: 24, zIndex: 9999, display: "flex", flexDirection: "column" as const, gap: 10, pointerEvents: "none" }}>
           {contactSent && (
             <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 14, background: "rgba(10,12,18,.92)", border: "1px solid rgba(52,211,153,.35)", backdropFilter: "blur(16px)", boxShadow: "0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(52,211,153,.10)", minWidth: 260, animation: "slideInRight .35s cubic-bezier(.22,1,.36,1)", pointerEvents: "auto" }}>
               <div style={{ width: 34, height: 34, borderRadius: "50%", background: "rgba(52,211,153,.15)", border: "1px solid rgba(52,211,153,.30)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>

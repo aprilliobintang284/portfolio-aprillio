@@ -739,12 +739,27 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
-  align-items: start;
+  align-items: stretch;
+}
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  .contact-form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .contact-toast {
+    right: 12px !important;
+    bottom: 16px !important;
+    min-width: 0 !important;
+    left: 12px;
   }
 }
 
