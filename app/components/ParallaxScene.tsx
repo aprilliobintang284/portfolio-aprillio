@@ -12,18 +12,18 @@ export default function ParallaxScene() {
   const ref3 = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Skip parallax entirely on mobile — saves continuous RAF cost
+    if (window.innerWidth <= 768) return;
+
     let raf: number;
-    // Current interpolated Y for each shape
     let y1 = 0, y2 = 0, y3 = 0;
 
     const update = () => {
       const scrollY = window.scrollY;
-      // Target positions based on depth factor
       const t1 = scrollY * 0.10;
       const t2 = scrollY * 0.20;
       const t3 = scrollY * 0.30;
 
-      // Lerp factor — 0.08 = smooth, 0.15 = snappier
       const lf = 0.09;
       y1 += (t1 - y1) * lf;
       y2 += (t2 - y2) * lf;
