@@ -99,6 +99,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const path = usePathname();
   const router = useRouter();
+  const { colorTheme } = useColorTheme();
+  const logoSrc = colorTheme === "green" ? "/images/logo-green.png" : "/images/logo.png";
 
   const scrollTo = (anchor: string, closeMenu = false) => {
     if (closeMenu) setOpen(false);
@@ -138,7 +140,9 @@ export default function Navbar() {
           className="pill-nav"
           style={{ pointerEvents: "auto" }}
         >
-          <button onClick={() => scrollToTop()} className="logo" aria-label="Back to top">ABP.</button>
+          <button onClick={() => scrollToTop()} className="logo" aria-label="Back to top">
+            <img src={logoSrc} alt="Logo" className="logo-img" style={{ transition: "opacity .45s ease" }} />
+          </button>
           <span className="pill-divider" />
           {LINKS.map(l => <NavLink key={l.href} l={l} />)}
           <span className="pill-divider" />
@@ -153,7 +157,9 @@ export default function Navbar() {
       {/* ── MOBILE ── */}
       <header className="md:hidden">
         <div className="mobile-nav">
-          <button onClick={() => scrollToTop()} className="logo" aria-label="Back to top">ABP.</button>
+          <button onClick={() => scrollToTop()} className="logo" aria-label="Back to top">
+            <img src={logoSrc} alt="Logo" className="logo-img logo-img--sm" style={{ transition: "opacity .45s ease" }} />
+          </button>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <ThemeToggle size="sm" />
             <button

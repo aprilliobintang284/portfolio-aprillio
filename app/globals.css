@@ -238,17 +238,22 @@
 }
 .pill-divider { width: 1px; height: 16px; background: rgba(var(--ac-1),.14); margin: 0 4px; flex-shrink: 0; transition: background .5s; }
 .logo {
-  font-size: 15px; font-weight: 800; letter-spacing: -.04em;
-  background: var(--ac-grad);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  padding: 5px 12px; white-space: nowrap;
-  /* Back-to-top button behaviour */
+  padding: 4px 8px; white-space: nowrap;
   cursor: none;
   border: none;
+  background: none;
   transition: transform .28s cubic-bezier(.22,.68,0,1.2), opacity .2s;
-  display: inline-block;
+  display: inline-flex; align-items: center; justify-content: center;
 }
 .logo:hover { transform: scale(1.05); opacity: .85; }
+.logo-img {
+  height: 32px; width: auto;
+  display: block;
+  object-fit: contain;
+}
+.logo-img--sm {
+  height: 28px;
+}
 
 /* ── MOBILE NAV ─────────────────────────── */
 .mobile-nav {
