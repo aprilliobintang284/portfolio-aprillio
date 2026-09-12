@@ -20,8 +20,8 @@ export function ColorThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const stored = localStorage.getItem("color-theme") as ColorTheme | null;
     if (stored === "green") {
-      setColorTheme("green");
       document.documentElement.setAttribute("data-color-theme", "green");
+      queueMicrotask(() => setColorTheme("green"));
     } else {
       // Ensure we're in blue mode (clear any old 'orange' value)
       localStorage.setItem("color-theme", "blue");
