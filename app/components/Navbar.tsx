@@ -24,21 +24,11 @@ const SECTIONS: SectionNavItem[] = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
-  const [isMobile, setIsMobile] = useState(false);
   const path = usePathname();
   const router = useRouter();
   const { colorTheme, toggleColorTheme } = useColorTheme();
   const isGreen = colorTheme === "green";
   const logoSrc = isGreen ? "/images/logo-green.png" : "/images/logo.png";
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   // IntersectionObserver for active section tracking on homepage
   useEffect(() => {
@@ -105,75 +95,82 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── DESKTOP VERTICAL EDITORIAL RAIL ── */}
-      {!isMobile && (
-        <nav
-          className="hidden md:flex nav-rail"
-          role="navigation"
-          aria-label="Editorial navigation rail"
+      {/* ── DESKTOP VERTICAL EDITORIAL RAIL (CSS Media Query Controlled) ── */}
+      <nav
+        className="nav-rail"
+        role="navigation"
+        aria-label="Editorial navigation rail"
+      >
+        {/* Top Logo Monogram */}
+        <button
+          onClick={() => scrollToTop()}
+          className="rail-logo-btn"
+          aria-label="Kembali ke atas"
+          title="Aprillio Bintang"
         >
-          {/* Top Logo Monogram */}
-          <button
-            onClick={() => scrollToTop()}
-            className="rail-logo-btn"
-            aria-label="Kembali ke atas"
-            title="Aprillio Bintang"
-          >
-            <Image
-              src={logoSrc}
-              alt="Aprillio Monogram"
-              width={24}
-              height={24}
-              className="rail-logo-img"
-              priority
-            />
-            <span className="rail-tooltip">Aprillio Bintang</span>
-          </button>
+          <Image
+            src={logoSrc}
+            alt="Aprillio Monogram"
+            width={44}
+            height={24}
+            className="rail-logo-img"
+            priority
+          />
+          <span className="rail-tooltip">Aprillio Bintang</span>
+        </button>
 
-          <span className="rail-divider" />
+        <span className="rail-divider" />
 
-          {/* Section Navigation Dots */}
-          <div className="rail-items-group">
-            {SECTIONS.map(({ id, label }) => {
-              const isActive =
-                path === "/projects"
-                  ? id === "projects"
-                  : path === "/creator"
-                  ? id === "creator"
-                  : path === "/" && activeSection === id;
-              return (
-                <button
-                  key={id}
-                  onClick={() => scrollTo(id)}
-                  className={`rail-item-btn ${isActive ? "is-active" : ""}`}
-                  aria-label={`Scroll ke ${label}`}
-                >
-                  <span className="rail-dot" />
-                  <span className="rail-tooltip">{label}</span>
-                </button>
-              );
-            })}
-          </div>
+        {/* Section Navigation Dots */}
+        <div className="rail-items-group">
+          {SECTIONS.map(({ id, label }) => {
+            const isActive =
+              path === "/projects"
+                ? id === "projects"
+                : path === "/creator"
+                ? id === "creator"
+                : activeSection === id;
 
-          <span className="rail-divider" />
+            return (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`rail-item-btn ${isActive ? "is-active" : ""}`}
+                aria-label={`Pindah ke bagian ${label}`}
+                title={label}
+              >
+                <span className="rail-dot" />
+                <span className="rail-tooltip">{label}</span>
+              </button>
+            );
+          })}
+        </div>
 
-          {/* Theme Switcher Toggle */}
-          <button
-            onClick={toggleColorTheme}
-            className="rail-theme-btn"
-            aria-label={`Ganti tema ke ${isGreen ? "Blue" : "Green"}`}
-            title={`Ganti tema ke ${isGreen ? "Blue" : "Green"}`}
-          >
-            <span className="rail-theme-icon">{isGreen ? "🌿" : "🌊"}</span>
-            <span className="rail-tooltip">{isGreen ? "Mode Green" : "Mode Blue"}</span>
-          </button>
-        </nav>
-      )}
+        <span className="rail-divider" />
 
-      {/* ── MOBILE COMPACT TOP BAR ── */}
-      <header className="md:hidden mobile-top-bar">
+        {/* Bottom Theme Switcher */}
+        <button
+          onClick={toggleColorTheme}
+          className="rail-theme-btn"
+          aria-label={`Ganti tema ke ${isGreen ? "Blue" : "Green"}`}
+          title={`Ganti tema ke ${isGreen ? "Blue" : "Green"}`}
+        >
+          <span className="rail-theme-icon">{isGreen ? "🌿" : "🌊"}</span>
+          <span className="rail-tooltip">{isGreen ? "Mode Green" : "Mode Blue"}</span>
+        </button>
+      </nav>
+
+      {/* ── MOBILE COMPACT TOP BAR (CSS Media Query Controlled) ── */}
+      <header className="mobile-top-bar">
         <button onClick={() => scrollToTop()} className="mobile-logo-btn" aria-label="Home">
-          <Image src={logoSrc} alt="Logo" width={24} height={24} />
+          <Image
+            src={logoSrc}
+            alt="Aprillio Monogram"
+            width={44}
+            height={24}
+            className="mobile-logo-img"
+            priority
+          />
           <span style={{ fontSize: 13, fontWeight: 800, color: "rgba(245,240,232,.90)", letterSpacing: "-.02em" }}>
             Aprillio<span className="grad-orange">.</span>
           </span>

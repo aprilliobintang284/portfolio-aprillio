@@ -23,13 +23,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="scroll-smooth" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('color-theme');if(t==='green')document.documentElement.setAttribute('data-color-theme','green');}catch(e){}})();`,
-          }}
-        />
-      </head>
       <body className={`${inter.className} antialiased`}>
         <CustomCursor />
         <ColorThemeProvider>{children}</ColorThemeProvider>

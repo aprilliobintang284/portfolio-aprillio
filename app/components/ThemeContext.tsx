@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useServerInsertedHTML } from "next/navigation";
 
 type ColorTheme = "blue" | "green";
 
@@ -15,6 +16,16 @@ const ThemeContext = createContext<ThemeCtx>({
 
 export function ColorThemeProvider({ children }: { children: ReactNode }) {
   const [colorTheme, setColorTheme] = useState<ColorTheme>("blue");
+
+  // SSR-safe insertion into document head before first paint (no-theme-flash)
+  useServerInsertedHTML(() => (
+    <script
+      id="theme-init"
+      dangerouslySetInnerHTML={{
+        __html: `!function(){try{var t=localStorage.getItem("color-theme");t==="green"&&document.documentElement.setAttribute("data-color-theme","green")}catch(e){}}();`,
+      }}
+    />
+  ));
 
   // On mount, read from localStorage
   useEffect(() => {

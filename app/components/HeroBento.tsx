@@ -25,7 +25,7 @@ export default function HeroBento() {
           transition={{ duration: 0.5, delay: 0.15 }}
         >
           <span className="spot-ping-dot" />
-          <span>Tersedia untuk Kolaborasi</span>
+          <span>Available for QA &amp; Content Projects</span>
           <Sparkles style={{ width: 12, height: 12, color: "var(--ac-hex-1)", opacity: 0.8 }} />
         </motion.div>
 
