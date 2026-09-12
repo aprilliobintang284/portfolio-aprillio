@@ -77,10 +77,10 @@ export default function ProjectsPage() {
           {/* ══════════════════════════════════════════
               CHAPTER 01: TENAR EVENTS (BUYER)
               Rhythm: Image First → Metadata → Evidence → Scenarios → Result
-          ══════════════════════════════════════════ */}
           {/* ══════════════════════════════════════════
               CHAPTER 01: TENAR EVENTS (BUYER)
-              Asymmetric Split: Context & Metadata on Left, Compact Mobile Visual on Right
+              Sequential Rhythm:
+              Overview → [hero.png] → Metadata → Limitation → TAMPILAN PRODUK → Scenarios → Result
           ══════════════════════════════════════════ */}
           <motion.article
             initial="hidden"
@@ -89,129 +89,113 @@ export default function ProjectsPage() {
             variants={vScale}
             className="qa-project-chapter"
           >
-            {/* Asymmetric Hero Split */}
-            <div className="qa-buyer-split">
-              {/* Left Column: Context, Narrative, Meta & CTA */}
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                  <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--ac-hex-1)", letterSpacing: ".22em", textTransform: "uppercase" }}>
-                    01 — CASE STUDY
-                  </span>
-                </div>
-                <h2 style={{ fontSize: "clamp(28px, 4.2vw, 44px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "rgba(245,240,232,.98)", lineHeight: 1.15, margin: "4px 0 10px" }}>
-                  TENAR EVENTS (BUYER)
-                </h2>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
-                  <span className="chip chip-green">Production Live</span>
-                  <span style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.50)" }}>
-                    Mobile Web · B2C Event Ticketing
-                  </span>
-                </div>
-                <p className="qa-project-overview" style={{ maxWidth: 520, margin: "0 0 20px" }}>
-                  Platform e-ticketing publik yang melayani ribuan pencari tiket event dalam format mobile web. Pengujian berfokus pada kelancaran alur checkout tiket, pencegahan duplikasi order, dan akurasi filter pencarian event aktif.
-                </p>
-
-                {/* Structured Metadata Strip */}
-                <div className="qa-project-meta-strip" style={{ maxWidth: 540 }}>
-                  <div>
-                    <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                      QA Role
-                    </p>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                      Quality Assurance Specialist
-                    </p>
-                    <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                      Perencanaan skenario &amp; eksekusi testing
-                    </p>
-                  </div>
-
-                  <div>
-                    <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                      Tools &amp; Workflow
-                    </p>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                      Plane · Test Matrix
-                    </p>
-                    <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                      Pelacakan issue dan verifikasi bug lifecycle
-                    </p>
-                  </div>
-
-                  <div>
-                    <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                      Primary Focus
-                    </p>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                      E2E Buyer Flow &amp; UI
-                    </p>
-                    <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                      Search &amp; Filtering, Input Validation
-                    </p>
-                  </div>
-                </div>
-
-                {/* Honest Limitation Notice */}
-                <div className="qa-limitation-notice">
-                  <AlertCircle style={{ width: 15, height: 15, color: "#f59e0b", flexShrink: 0, marginTop: 2 }} />
-                  <div>
-                    <strong style={{ color: "#fbbf24", display: "block", marginBottom: 2 }}>
-                      Catatan Batasan Pengujian
-                    </strong>
-                    Full purchase completion could not be validated because no purchasable event/ticket was available in the accessible production environment.
-                  </div>
-                </div>
-
-                {/* Live Action */}
-                <div className="qa-live-action-bar">
-                  <a
-                    href="https://tenar.events/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn btn-primary btn-sm"
-                  >
-                    Buka Platform Live <ArrowUpRight style={{ width: 14, height: 14 }} />
-                  </a>
-                  <span className="qa-live-meta-url">tenar.events</span>
-                </div>
+            {/* 1. Chapter Header & Overview */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--ac-hex-1)", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                  01 — CASE STUDY
+                </span>
               </div>
+              <h2 style={{ fontSize: "clamp(28px, 4.2vw, 44px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "rgba(245,240,232,.98)", lineHeight: 1.15, margin: "4px 0 10px" }}>
+                TENAR EVENTS (BUYER)
+              </h2>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
+                <span className="chip chip-green">Production Live</span>
+                <span style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.50)" }}>
+                  Mobile Web · B2C Event Ticketing
+                </span>
+              </div>
+              <p className="qa-project-overview" style={{ maxWidth: 680, margin: "0 0 22px" }}>
+                Platform e-ticketing publik yang melayani ribuan pencari tiket event dalam format mobile web. Pengujian berfokus pada kelancaran alur checkout tiket, pencegahan duplikasi order, dan akurasi pencarian event aktif.
+              </p>
+            </div>
 
-              {/* Right Column: Hero Visual Anchor (Real Mobile Screenshot) */}
-              <div className="qa-primary-visual-wrap">
-                <div
-                  className="qa-mobile-frame"
-                  onClick={() =>
-                    setLightboxImg({
-                      src: "/images/projects/tenar-buyer/hero.png",
-                      alt: "Tenar Events Buyer Mobile Interface",
-                      caption: "Tenar Events (Buyer) — Antarmuka Utama Mobile Web",
-                      width: 430,
-                      height: 932,
-                    })
-                  }
-                  title="Klik untuk memperbesar screenshot (resolusi penuh 430x932)"
-                >
-                  <Image
-                    src="/images/projects/tenar-buyer/hero.png"
-                    alt="Tenar Events Buyer Mobile Interface"
-                    width={430}
-                    height={932}
-                    priority
-                  />
-                </div>
+            {/* 2. Primary Product Visual Anchor (Real Mobile Screenshot) */}
+            <div style={{ margin: "22px 0 26px" }}>
+              <div
+                className="qa-mobile-frame"
+                onClick={() =>
+                  setLightboxImg({
+                    src: "/images/projects/tenar-buyer/hero.png",
+                    alt: "Tenar Events Buyer Mobile Interface",
+                    caption: "Tenar Events (Buyer) — Antarmuka Utama Mobile Web",
+                    width: 430,
+                    height: 932,
+                  })
+                }
+                title="Klik untuk memperbesar screenshot (resolusi penuh 430x932)"
+              >
+                <Image
+                  src="/images/projects/tenar-buyer/hero.png"
+                  alt="Tenar Events Buyer Mobile Interface"
+                  width={430}
+                  height={932}
+                  priority
+                />
               </div>
             </div>
 
-            {/* Supporting Evidence Gallery */}
+            {/* 3. Structured Metadata Strip */}
+            <div className="qa-project-meta-strip" style={{ maxWidth: 860 }}>
+              <div>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                  QA Role
+                </p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
+                  Quality Assurance Specialist
+                </p>
+                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
+                  Perencanaan skenario &amp; eksekusi testing
+                </p>
+              </div>
+
+              <div>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                  Tools &amp; Workflow
+                </p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
+                  Plane · Test Matrix
+                </p>
+                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
+                  Pelacakan issue dan verifikasi bug lifecycle
+                </p>
+              </div>
+
+              <div>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                  Primary Focus
+                </p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
+                  E2E Buyer Flow &amp; UI
+                </p>
+                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
+                  Search Flow, Input Validation
+                </p>
+              </div>
+            </div>
+
+            {/* 4. Honest Limitation Notice */}
+            <div className="qa-limitation-notice">
+              <AlertCircle style={{ width: 15, height: 15, color: "#f59e0b", flexShrink: 0, marginTop: 2 }} />
+              <div>
+                <strong style={{ color: "#fbbf24", display: "block", marginBottom: 2 }}>
+                  Catatan Batasan Pengujian
+                </strong>
+                Full purchase completion could not be validated because no purchasable event/ticket was available in the accessible production environment.
+              </div>
+            </div>
+
+            {/* 5. TAMPILAN PRODUK (Real Product UI Screens) */}
             <div className="qa-evidence-section">
-              <p className="qa-evidence-title">Bukti &amp; Dokumentasi Pengujian Mobile</p>
+              <p className="qa-evidence-title">Tampilan Produk</p>
               <div className="qa-evidence-grid">
                 <div
                   className="qa-evidence-card"
                   onClick={() =>
                     setLightboxImg({
                       src: "/images/projects/tenar-buyer/event-detail.png",
-                      alt: "Detail Event & Pemilihan Kategori Tiket",
-                      caption: "Tenar Events (Buyer) — Detail Event & Pemilihan Kategori Tiket",
+                      alt: "Event Detail",
+                      caption: "Tenar Events (Buyer) — Event Detail",
                       width: 269,
                       height: 583,
                     })
@@ -221,7 +205,7 @@ export default function ProjectsPage() {
                   <div className="qa-evidence-thumb-wrap">
                     <Image
                       src="/images/projects/tenar-buyer/event-detail.png"
-                      alt="Event Detail Screenshot"
+                      alt="Event Detail"
                       width={269}
                       height={583}
                       loading="lazy"
@@ -238,8 +222,8 @@ export default function ProjectsPage() {
                   onClick={() =>
                     setLightboxImg({
                       src: "/images/projects/tenar-buyer/search-filter.png",
-                      alt: "Pencarian & Filter Kategori Event",
-                      caption: "Tenar Events (Buyer) — Pencarian & Filter Kategori Event",
+                      alt: "Search",
+                      caption: "Tenar Events (Buyer) — Search",
                       width: 269,
                       height: 583,
                     })
@@ -249,21 +233,21 @@ export default function ProjectsPage() {
                   <div className="qa-evidence-thumb-wrap">
                     <Image
                       src="/images/projects/tenar-buyer/search-filter.png"
-                      alt="Search & Filter Screenshot"
+                      alt="Search"
                       width={269}
                       height={583}
                       loading="lazy"
                     />
                   </div>
                   <div className="qa-evidence-caption">
-                    <span>Search &amp; Filter</span>
+                    <span>Search</span>
                     <Maximize2 style={{ width: 13, height: 13, opacity: 0.6 }} />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Verified Test Scenarios */}
+            {/* 6. SKENARIO PENGUJIAN TERVERIFIKASI (What was tested) */}
             <div className="qa-scenarios-panel">
               <div className="qa-scenarios-header">
                 <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 700, color: "rgba(245,240,232,.50)", textTransform: "uppercase", letterSpacing: ".10em" }}>
@@ -289,8 +273,8 @@ export default function ProjectsPage() {
                       desc: "Pengujian penolakan email invalid, pembatasan kuota pesanan, dan pencegahan submission ganda (double-click).",
                     },
                     {
-                      title: "Search & Filtering",
-                      desc: "Memastikan filter kategori event, lokasi kota, dan query pencarian menampilkan hasil akurat secara real-time.",
+                      title: "Search Functionality",
+                      desc: "Memastikan query pencarian event menampilkan hasil yang relevan dan akurat secara real-time.",
                     },
                   ].map((scenario, idx) => (
                     <li key={idx} className="qa-scenario-item">
@@ -309,7 +293,7 @@ export default function ProjectsPage() {
               </div>
             </div>
 
-            {/* Compact Result */}
+            {/* 7. Compact Result */}
             <div className="qa-result-callout">
               <div className="qa-result-badge">
                 <CheckCircle2 style={{ width: 16, height: 16 }} />
@@ -318,6 +302,19 @@ export default function ProjectsPage() {
               <p className="qa-result-desc">
                 Zero critical blocker bugs at public launch. Transaksi tiket dan alur e-ticketing beroperasi stabil bagi ribuan pengguna.
               </p>
+            </div>
+
+            {/* 8. Live Action */}
+            <div className="qa-live-action-bar">
+              <a
+                href="https://tenar.events/"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-primary btn-sm"
+              >
+                Buka Platform Live <ArrowUpRight style={{ width: 14, height: 14 }} />
+              </a>
+              <span className="qa-live-meta-url">tenar.events</span>
             </div>
           </motion.article>
 
@@ -514,7 +511,7 @@ export default function ProjectsPage() {
                   PAYMENT GATEWAY MVP
                 </h2>
                 <span className="chip" style={{ fontSize: 11, padding: "3px 10px", background: "rgba(245,158,11,.12)", borderColor: "rgba(245,158,11,.28)", color: "#fbbf24" }}>
-                  In Progress · Internal
+                  In Progress · Internal R&amp;D
                 </span>
               </div>
               <p className="qa-project-overview" style={{ maxWidth: 560, margin: "0 0 18px" }}>

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import {
@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import ParallaxScene from "../components/ParallaxScene";
+import Lightbox, { type LightboxImage } from "../components/Lightbox";
 
 const v: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -22,6 +23,8 @@ const VP = { once: true, margin: "-40px" } as const;
 const W = { maxWidth: 960, margin: "0 auto", padding: "0 24px" };
 
 export default function CreatorPage() {
+  const [lightboxImg, setLightboxImg] = useState<LightboxImage | null>(null);
+
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
       <div className="bg-scene bg-scene-red" />
@@ -36,7 +39,7 @@ export default function CreatorPage() {
             animate="show"
             variants={v}
             className="creator-media-header"
-            style={{ marginBottom: 28 }}
+            style={{ marginBottom: 32 }}
           >
             <span className="eyebrow" style={{ marginBottom: 12 }}>
               Creator Portfolio · Media &amp; Campaigns
@@ -66,38 +69,81 @@ export default function CreatorPage() {
             </p>
           </motion.header>
 
-          {/* ── 02. PERSONAL & EDITORIAL CREATOR PROFILE ── */}
-          <motion.div
+          {/* ── 02. REAL TIKTOK PROFILE SCREENSHOT & CREATOR PROFILE ── */}
+          <motion.section
             initial="hidden"
             whileInView="show"
             viewport={VP}
             variants={vScale}
-            className="creator-identity-block"
+            className="creator-profile-split"
           >
-            <div style={{ display: "flex", alignItems: "flex-start", gap: 20, flexWrap: "wrap", flex: 1, minWidth: 280 }}>
-              <div className="creator-profile-avatar-wrap">
-                <Image
-                  src="/images/creator/profil.png"
-                  alt="Aprillio Bintang (@scarawanderr)"
-                  width={150}
-                  height={150}
-                  className="creator-profile-avatar-img"
-                  priority
-                />
+            {/* Column 1: Real TikTok Profile Screenshot */}
+            <div
+              className="creator-profile-screenshot-frame"
+              onClick={() =>
+                setLightboxImg({
+                  src: "/images/creator/profil.png",
+                  alt: "Tangkapan Layar Profil Resmi TikTok @scarawanderr",
+                  caption: "Profil Resmi TikTok @scarawanderr — Honor of Kings Creator Camp",
+                  width: 800,
+                  height: 1600,
+                })
+              }
+              title="Klik untuk memperbesar tangkapan layar profil TikTok"
+            >
+              <Image
+                src="/images/creator/profil.png"
+                alt="Tangkapan Layar Profil Resmi TikTok @scarawanderr"
+                width={800}
+                height={1600}
+                className="creator-profile-screenshot-img"
+                priority
+              />
+            </div>
+
+            {/* Column 2: Creator Information & Pure Typography Metrics */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "#f97316", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                  CREATOR PROFILE
+                </span>
+              </div>
+              <h2 style={{ fontSize: "clamp(26px, 3.8vw, 38px)", fontWeight: 900, color: "rgba(245,240,232,.98)", letterSpacing: "-.03em", margin: "0 0 10px", lineHeight: 1.15 }}>
+                @scarawanderr
+              </h2>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
+                <span className="chip" style={{ background: "rgba(239,68,68,.10)", color: "#fca5a5", borderColor: "rgba(239,68,68,.22)", fontSize: 11 }}>
+                  Honor of Kings Creator Camp
+                </span>
+                <span style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.45)" }}>
+                  Official Tencent / TikTok Partner
+                </span>
+              </div>
+              <p style={{ fontSize: 14.5, lineHeight: 1.7, color: "rgba(245,240,232,.62)", margin: "0 0 20px", maxWidth: 540 }}>
+                Kurasi momen turnamen, video strategi makro hero, dan kampanye video pendek vertikal. Berfokus pada retensi penonton dan narasi audio yang sinkron dengan algoritma FYP TikTok.
+              </p>
+
+              {/* Metrics as Pure Typography (Not dashboard widgets) */}
+              <div className="creator-typography-metrics" style={{ marginBottom: 24 }}>
+                <div className="creator-type-metric-item">
+                  <span className="creator-type-metric-num">3.8M+</span>
+                  <span className="creator-type-metric-label">Views</span>
+                </div>
+                <div className="creator-type-metric-item">
+                  <span className="creator-type-metric-num">245K+</span>
+                  <span className="creator-type-metric-label">Likes</span>
+                </div>
+                <div className="creator-type-metric-item">
+                  <span className="creator-type-metric-num">2.1K</span>
+                  <span className="creator-type-metric-label">Followers</span>
+                </div>
+                <div className="creator-type-metric-item">
+                  <span className="creator-type-metric-num">50+</span>
+                  <span className="creator-type-metric-label">Videos</span>
+                </div>
               </div>
 
-              <div style={{ flex: 1, minWidth: 240 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 6 }}>
-                  <h2 style={{ fontSize: 20, fontWeight: 900, color: "rgba(245,240,232,.98)", letterSpacing: "-.02em", margin: 0 }}>
-                    @scarawanderr
-                  </h2>
-                  <span className="chip" style={{ background: "rgba(239,68,68,.10)", color: "#fca5a5", borderColor: "rgba(239,68,68,.22)", fontSize: 11 }}>
-                    Honor of Kings Creator Camp
-                  </span>
-                </div>
-                <p style={{ fontSize: 14, lineHeight: 1.6, color: "rgba(245,240,232,.58)", margin: "0 0 14px", maxWidth: 520 }}>
-                  Kurasi momen turnamen, video strategi makro hero, dan kampanye video pendek vertikal. Berfokus pada retensi penonton dan narasi audio yang sinkron.
-                </p>
+              <div>
                 <a
                   href="https://www.tiktok.com/@scarawanderr"
                   target="_blank"
@@ -108,27 +154,7 @@ export default function CreatorPage() {
                 </a>
               </div>
             </div>
-
-            {/* Metrics as Pure Typography (Not dashboard widgets) */}
-            <div className="creator-typography-metrics" style={{ width: "100%" }}>
-              <div className="creator-type-metric-item">
-                <span className="creator-type-metric-num">3.8M+</span>
-                <span className="creator-type-metric-label">Views</span>
-              </div>
-              <div className="creator-type-metric-item">
-                <span className="creator-type-metric-num">245K+</span>
-                <span className="creator-type-metric-label">Likes</span>
-              </div>
-              <div className="creator-type-metric-item">
-                <span className="creator-type-metric-num">2.1K</span>
-                <span className="creator-type-metric-label">Followers</span>
-              </div>
-              <div className="creator-type-metric-item">
-                <span className="creator-type-metric-num">50+</span>
-                <span className="creator-type-metric-label">Videos</span>
-              </div>
-            </div>
-          </motion.div>
+          </motion.section>
 
           {/* ── CHAPTER DIVIDER ── */}
           <hr className="qa-chapter-divider" />
@@ -405,6 +431,9 @@ export default function CreatorPage() {
           </motion.section>
         </div>
       </main>
+
+      {/* Lightbox Modal */}
+      <Lightbox image={lightboxImg} onClose={() => setLightboxImg(null)} />
 
       <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid rgba(var(--ac-1),.08)", background: "rgba(255,255,255,.015)" }}>
         <p style={{ fontSize: 11, color: "rgba(245,240,232,.25)", fontWeight: 500, letterSpacing: ".06em" }}>

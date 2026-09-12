@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useCallback } from "react";
-import Image from "next/image";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import { X } from "lucide-react";
 
 export interface LightboxImage {
@@ -20,11 +19,14 @@ export default function Lightbox({ image, onClose }: LightboxProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const triggerElementRef = useRef<HTMLElement | null>(null);
+  const [isPortrait, setIsPortrait] = useState(false);
 
-  // Store trigger element to restore focus on close
   useEffect(() => {
     if (image) {
       triggerElementRef.current = document.activeElement as HTMLElement | null;
+      if (image.height && image.width) {
+        setIsPortrait(image.height > image.width);
+      }
       closeBtnRef.current?.focus();
     } else if (triggerElementRef.current) {
       triggerElementRef.current.focus();
@@ -46,7 +48,6 @@ export default function Lightbox({ image, onClose }: LightboxProps) {
   useEffect(() => {
     if (!image) return;
 
-    // Prevent body scroll when lightbox is active
     const origOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -64,7 +65,7 @@ export default function Lightbox({ image, onClose }: LightboxProps) {
       ref={overlayRef}
       role="dialog"
       aria-modal="true"
-      aria-label={image.caption || image.alt || "Image preview"}
+      aria-label={image.caption || image.alt || "Pratinjau gambar"}
       className="lightbox-overlay"
       onClick={(e) => {
         if (e.target === overlayRef.current) {
@@ -72,9 +73,13 @@ export default function Lightbox({ image, onClose }: LightboxProps) {
         }
       }}
     >
-      {/* Top Close Bar */}
+      {/* Top Header Bar */}
       <div className="lightbox-header">
-        {image.caption && <span className="lightbox-caption">{image.caption}</span>}
+        {image.caption ? (
+          <span className="lightbox-caption">{image.caption}</span>
+        ) : (
+          <span />
+        )}
         <button
           ref={closeBtnRef}
           onClick={onClose}
@@ -86,22 +91,25 @@ export default function Lightbox({ image, onClose }: LightboxProps) {
         </button>
       </div>
 
-      {/* Image Stage */}
+      {/* Image Stage - Clicking outside the image closes */}
       <div className="lightbox-stage" onClick={onClose}>
-        <div
-          className="lightbox-image-container"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image.src}
+          alt={image.alt}
+          className={`lightbox-img ${isPortrait ? "lightbox-img-portrait" : "lightbox-img-landscape"}`}
           onClick={(e) => e.stopPropagation()}
-        >
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width || 1400}
-            height={image.height || 900}
-            className="lightbox-img"
-            priority
-          />
-        </div>
+          onLoad={(e) => {
+            const img = e.currentTarget;
+            if (img.naturalHeight > img.naturalWidth) {
+              setIsPortrait(true);
+            } else {
+              setIsPortrait(false);
+            }
+          }}
+        />
       </div>
     </div>
   );
 }
+

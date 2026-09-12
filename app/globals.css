@@ -1597,35 +1597,49 @@
   margin-bottom: clamp(36px, 5vw, 56px);
 }
 
-.creator-identity-block {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: clamp(20px, 3.5vw, 36px);
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 0;
+.creator-profile-split {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(28px, 4.5vw, 52px);
+  align-items: start;
   margin-bottom: clamp(44px, 6vw, 64px);
-  flex-wrap: wrap;
 }
 
-.creator-profile-avatar-wrap {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1.5px solid rgba(249, 115, 22, 0.40);
-  flex-shrink: 0;
+@media (max-width: 768px) {
+  .creator-profile-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
-.creator-profile-avatar-img {
+.creator-profile-screenshot-frame {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  max-width: 280px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #000;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65);
+  cursor: zoom-in;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+@media (max-width: 768px) {
+  .creator-profile-screenshot-frame {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+.creator-profile-screenshot-frame:hover {
+  transform: translateY(-2px);
+  border-color: rgba(249, 115, 22, 0.45);
+}
+
+.creator-profile-screenshot-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Metrics as pure typography, NOT dashboard widgets */
@@ -1721,13 +1735,13 @@
 .lightbox-overlay {
   position: fixed;
   inset: 0;
-  z-index: 300;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
-  background: rgba(8, 6, 5, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  animation: lightboxFadeIn 0.2s ease-out;
+  background: rgba(6, 5, 4, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: lightboxFadeIn 0.18s ease-out;
 }
 @keyframes lightboxFadeIn {
   from { opacity: 0; }
@@ -1737,8 +1751,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: 14px 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  z-index: 10;
 }
 .lightbox-caption {
   font-size: 13px;
@@ -1748,8 +1764,8 @@
 }
 .lightbox-close-btn {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(245, 240, 232, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(245, 240, 232, 0.90);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -1760,7 +1776,7 @@
   transition: all 0.2s ease;
 }
 .lightbox-close-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.20);
   color: #fff;
   transform: scale(1.05);
 }
@@ -1769,28 +1785,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
+  width: 100vw;
+  height: calc(100vh - 64px);
   overflow: hidden;
   cursor: zoom-out;
 }
-.lightbox-image-container {
-  max-width: 90vw;
-  max-height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+.lightbox-img {
+  display: block;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: default;
+  transition: opacity 0.2s ease;
 }
-.lightbox-img {
-  max-width: 90vw;
-  max-height: 82vh;
+.lightbox-img-portrait {
+  height: 88vh;
+  max-height: 88vh;
   width: auto;
+  max-width: 92vw;
+}
+.lightbox-img-landscape {
+  width: 92vw;
+  max-width: 92vw;
   height: auto;
-  object-fit: contain;
+  max-height: 88vh;
 }
 
 /* ── REAL SCREENSHOT FRAMES (QA ARCHIVE) ── */
