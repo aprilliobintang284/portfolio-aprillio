@@ -7,6 +7,7 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import {
   Mail,
   ArrowRight,
+  ArrowUpRight,
   CheckCircle2,
   Award,
   ExternalLink,
@@ -179,19 +180,19 @@ export default function Home() {
   }, []);
 
   const edu = [
-    { yr: "Agu 2025 — Sekarang", title: "S1 Sistem Informasi", school: "Universitas Terbuka", href: "https://ut.ac.id" },
-    { yr: "Jan 2026 — Sekarang", title: "S1 Manajemen", school: "Univ. Siber Muhammadiyah", href: "https://sibermu.ac.id" },
-    { yr: "2022 — 2024", title: "Rekayasa Perangkat Lunak", school: "SMK Negeri 4 Kendal", href: "https://smkn4kendal.sch.id" },
+    { yr: "2023 — PRESENT", title: "S1 Sistem Informasi", school: "Universitas Terbuka", href: "https://ut.ac.id" },
+    { yr: "2023 — PRESENT", title: "S1 Manajemen", school: "Univ. Siber Muhammadiyah (SiberMu)", href: "https://sibermu.ac.id" },
+    { yr: "2020 — 2023", title: "Rekayasa Perangkat Lunak", school: "SMK Negeri 4 Kendal (SMKN 4)", href: "https://smkn4kendal.sch.id" },
   ];
 
   const certs = [
-    { t: "#JuaraVibeCoding Participant", i: "Google Developer Groups", d: "May 2026", f: "/cert-googlevibecode.pdf" },
-    { t: "Microsoft 365 Copilot", i: "Microsoft", d: "Apr 2026", f: "/cert-copilot.pdf" },
-    { t: "Pelatihan Dasar Copilot", i: "Jobstreet & Microsoft", d: "Apr 2026", f: "/cert-jobstreet-copilot.pdf" },
-    { t: "Analisis Data Excel", i: "Microsoft & Jobstreet", d: "Apr 2026", f: "/cert-excel.pdf" },
-    { t: "QA Test Technique", i: "MySkill", d: "Apr 2026", f: "/cert-qa-technique.pdf" },
-    { t: "Quality Assurance Introduction", i: "MySkill", d: "Feb 2025", f: "/cert-qa-intro.pdf" },
-    { t: "Intensive Bootcamp Excel", i: "KarirNex", d: "Apr 2026", f: "/cert-excel-karirnex.pdf" },
+    { t: "QA Test Technique", i: "MySkill", yr: "2025", f: "/cert-qa-technique.pdf", isQA: true },
+    { t: "Quality Assurance Introduction", i: "MySkill", yr: "2025", f: "/cert-qa-intro.pdf", isQA: true },
+    { t: "Microsoft 365 Copilot", i: "Microsoft", yr: "2025", f: "/cert-copilot.pdf", isQA: false },
+    { t: "Analisis Data Excel", i: "Microsoft & Jobstreet", yr: "2025", f: "/cert-excel.pdf", isQA: false },
+    { t: "Pelatihan Dasar Copilot", i: "Jobstreet & Microsoft", yr: "2025", f: "/cert-jobstreet-copilot.pdf", isQA: false },
+    { t: "Intensive Bootcamp Excel", i: "KarirNex", yr: "2025", f: "/cert-excel-karirnex.pdf", isQA: false },
+    { t: "#JuaraVibeCoding Participant", i: "Google Developer Groups", yr: "2025", f: "/cert-googlevibecode.pdf", isQA: false },
   ];
 
   const campaigns = [
@@ -591,74 +592,66 @@ export default function Home() {
 
         <hr className="silk-divider" />
 
-        {/* 05 — EDUCATION & CERTIFICATIONS (CLEAN LIST / ROWS — NO CARDS) */}
+        {/* 05 — EDUCATION & CERTIFICATIONS (EDITORIAL CV / ARCHIVE) */}
         <section id="education" style={{ ...SEC }}>
           <div style={W}>
-            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v} style={{ marginBottom: 32 }}>
-              <span className="eyebrow" style={{ marginBottom: 12 }}>Latar Belakang</span>
+            <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v} style={{ marginBottom: 40 }}>
+              <span className="eyebrow" style={{ marginBottom: 12 }}>Curriculum Vitae</span>
               <h2 style={{ fontWeight: 900, fontSize: "clamp(28px,4vw,44px)", letterSpacing: "-.03em" }}>
-                Pendidikan &amp; <span className="grad-orange">Sertifikasi.</span>
+                Education &amp; <span className="grad-orange">Certifications.</span>
               </h2>
             </motion.div>
 
-            {/* Education: Clean Scannable Rows */}
-            <div className="edu-clean-list">
-              {edu.map((e, i) => (
-                <motion.a
-                  key={i}
-                  href={e.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={VP}
-                  variants={v}
-                  className="edu-clean-row"
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <School style={{ width: 16, height: 16, color: "var(--ac-hex-1)", flexShrink: 0 }} />
-                    <div>
-                      <h4 style={{ fontSize: 14, fontWeight: 800, color: "rgba(245,240,232,.90)" }}>{e.title}</h4>
-                      <p style={{ fontSize: 12, color: "rgba(245,240,232,.45)" }}>{e.school}</p>
+            <div className="edu-cert-editorial-grid">
+              {/* Left Column: Education Timeline */}
+              <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v}>
+                <h3 className="archive-subheading">Education</h3>
+                <div className="edu-timeline">
+                  {edu.map((e, i) => (
+                    <div key={i} className="edu-timeline-item">
+                      <div className="edu-timeline-node" />
+                      <div className="edu-timeline-date">{e.yr}</div>
+                      <h4 className="edu-timeline-institution">
+                        <a href={e.href} target="_blank" rel="noopener noreferrer">
+                          {e.school}
+                        </a>
+                      </h4>
+                      <p className="edu-timeline-degree">{e.title}</p>
                     </div>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontSize: 11, fontFamily: "monospace", color: "rgba(245,240,232,.40)" }}>{e.yr}</span>
-                    <ExternalLink style={{ width: 13, height: 13, color: "rgba(245,240,232,.30)" }} />
-                  </div>
-                </motion.a>
-              ))}
-            </div>
+                  ))}
+                </div>
+              </motion.div>
 
-            {/* Certifications: Clean scannable rows */}
-            <div className="cert-clean-list">
-              {certs.map((c, i) => (
-                <motion.a
-                  key={i}
-                  href={c.f}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={VP}
-                  variants={v}
-                  className="cert-clean-item"
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <Award style={{ width: 15, height: 15, color: "var(--ac-hex-1)", flexShrink: 0 }} />
-                    <div>
-                      <h4 style={{ fontSize: 13.5, fontWeight: 700, color: "rgba(245,240,232,.88)" }}>{c.t}</h4>
-                      <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)" }}>{c.i}</p>
+              {/* Right Column: Certifications Archive List */}
+              <motion.div initial="hidden" whileInView="show" viewport={VP} variants={v}>
+                <h3 className="archive-subheading">Certifications</h3>
+                <div className="cert-archive-list">
+                  {certs.map((c, i) => (
+                    <div
+                      key={i}
+                      className={`cert-archive-row ${c.isQA ? "cert-qa-emphasis" : ""}`}
+                    >
+                      <div className="cert-info">
+                        <span className="cert-title">{c.t}</span>
+                        {c.i && <span className="cert-issuer">{c.i}</span>}
+                      </div>
+                      <div className="cert-meta">
+                        <span className="cert-year">{c.yr}</span>
+                        <a
+                          href={c.f}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="cert-action-link"
+                          title={`Lihat Sertifikat ${c.t}`}
+                        >
+                          <span>Lihat Sertifikat</span>
+                          <ArrowUpRight style={{ width: 12, height: 12 }} />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontSize: 10.5, fontFamily: "monospace", color: "var(--ac-hex-1)", background: "rgba(var(--ac-1),.08)", padding: "2px 8px", borderRadius: 6 }}>
-                      {c.d}
-                    </span>
-                    <ExternalLink style={{ width: 12, height: 12, color: "rgba(245,240,232,.35)" }} />
-                  </div>
-                </motion.a>
-              ))}
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>

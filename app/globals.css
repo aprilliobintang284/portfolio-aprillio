@@ -1309,35 +1309,198 @@
   }
 }
 
-/* ── EDUCATION CLEAN LIST (NON-CARD) ────── */
-.edu-clean-list {
+/* ── EDUCATION & CERTIFICATIONS (EDITORIAL CV / ARCHIVE) ────── */
+.edu-cert-editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: clamp(36px, 6vw, 68px);
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .edu-cert-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.archive-subheading {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ac-hex-1);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Vertical Timeline for Education */
+.edu-timeline {
+  position: relative;
+  padding-left: 22px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 32px;
 }
-.edu-clean-row {
+
+.edu-timeline-item {
+  position: relative;
+}
+
+.edu-timeline-node {
+  position: absolute;
+  left: -26.5px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ac-hex-1);
+  box-shadow: 0 0 0 4px #080706;
+}
+
+.edu-timeline-date {
+  font-family: monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ac-hex-1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.edu-timeline-institution {
+  font-size: 16px;
+  font-weight: 800;
+  color: rgba(245, 240, 232, 0.96);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.edu-timeline-institution a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.edu-timeline-institution a:hover {
+  color: var(--ac-text);
+}
+
+.edu-timeline-degree {
+  font-size: 13.5px;
+  color: rgba(245, 240, 232, 0.58);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Compact Archive List for Certifications */
+.cert-archive-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-archive-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 13px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.15s ease;
+}
+
+.cert-archive-row:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cert-archive-row:hover {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.cert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.cert-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(245, 240, 232, 0.82);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.cert-qa-emphasis .cert-title {
+  font-weight: 700;
+  color: rgba(245, 240, 232, 0.98);
+}
+
+.cert-issuer {
+  font-size: 11.5px;
+  color: rgba(245, 240, 232, 0.42);
+  font-family: monospace;
+}
+
+.cert-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.cert-year {
+  font-size: 12px;
+  font-family: monospace;
+  color: rgba(245, 240, 232, 0.45);
+}
+
+.cert-qa-emphasis .cert-year {
+  color: var(--ac-hex-1);
+}
+
+.cert-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(245, 240, 232, 0.45);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: color 0.15s ease;
+  padding: 4px 6px;
+  border-radius: 4px;
 }
-.edu-clean-row:hover {
-  background: rgba(var(--ac-1), 0.05);
-  border-color: rgba(var(--ac-1), 0.20);
-  transform: translateX(3px);
+
+.cert-action-link:hover {
+  color: var(--ac-text);
 }
-@media (max-width: 640px) {
-  .edu-clean-row {
+
+.cert-qa-emphasis .cert-action-link {
+  color: rgba(245, 240, 232, 0.75);
+}
+
+.cert-qa-emphasis .cert-action-link:hover {
+  color: var(--ac-text);
+}
+
+@media (max-width: 540px) {
+  .cert-archive-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 8px;
+    padding: 12px 0;
+  }
+  .cert-meta {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
   }
 }
 
