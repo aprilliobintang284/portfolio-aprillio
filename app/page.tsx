@@ -180,19 +180,19 @@ export default function Home() {
   }, []);
 
   const edu = [
-    { yr: "2023 — PRESENT", title: "S1 Sistem Informasi", school: "Universitas Terbuka", href: "https://ut.ac.id" },
-    { yr: "2023 — PRESENT", title: "S1 Manajemen", school: "Univ. Siber Muhammadiyah (SiberMu)", href: "https://sibermu.ac.id" },
-    { yr: "2020 — 2023", title: "Rekayasa Perangkat Lunak", school: "SMK Negeri 4 Kendal (SMKN 4)", href: "https://smkn4kendal.sch.id" },
+    { yr: "Agu 2025 — Sekarang", title: "S1 Sistem Informasi", school: "Universitas Terbuka", href: "https://ut.ac.id" },
+    { yr: "Jan 2026 — Sekarang", title: "S1 Manajemen", school: "Univ. Siber Muhammadiyah", href: "https://sibermu.ac.id" },
+    { yr: "2022 — 2024", title: "Rekayasa Perangkat Lunak", school: "SMK Negeri 4 Kendal", href: "https://smkn4kendal.sch.id" },
   ];
 
   const certs = [
-    { t: "QA Test Technique", i: "MySkill", yr: "2025", f: "/cert-qa-technique.pdf", isQA: true },
-    { t: "Quality Assurance Introduction", i: "MySkill", yr: "2025", f: "/cert-qa-intro.pdf", isQA: true },
-    { t: "Microsoft 365 Copilot", i: "Microsoft", yr: "2025", f: "/cert-copilot.pdf", isQA: false },
-    { t: "Analisis Data Excel", i: "Microsoft & Jobstreet", yr: "2025", f: "/cert-excel.pdf", isQA: false },
-    { t: "Pelatihan Dasar Copilot", i: "Jobstreet & Microsoft", yr: "2025", f: "/cert-jobstreet-copilot.pdf", isQA: false },
-    { t: "Intensive Bootcamp Excel", i: "KarirNex", yr: "2025", f: "/cert-excel-karirnex.pdf", isQA: false },
-    { t: "#JuaraVibeCoding Participant", i: "Google Developer Groups", yr: "2025", f: "/cert-googlevibecode.pdf", isQA: false },
+    { t: "QA Test Technique", i: "MySkill", d: "Apr 2026", f: "/cert-qa-technique.pdf", isQA: true },
+    { t: "Quality Assurance Introduction", i: "MySkill", d: "Feb 2025", f: "/cert-qa-intro.pdf", isQA: true },
+    { t: "Microsoft 365 Copilot", i: "Microsoft", d: "Apr 2026", f: "/cert-copilot.pdf", isQA: false },
+    { t: "Pelatihan Dasar Copilot", i: "Jobstreet & Microsoft", d: "Apr 2026", f: "/cert-jobstreet-copilot.pdf", isQA: false },
+    { t: "Analisis Data Excel", i: "Microsoft & Jobstreet", d: "Apr 2026", f: "/cert-excel.pdf", isQA: false },
+    { t: "Intensive Bootcamp Excel", i: "KarirNex", d: "Apr 2026", f: "/cert-excel-karirnex.pdf", isQA: false },
+    { t: "#JuaraVibeCoding Participant", i: "Google Developer Groups", d: "May 2026", f: "/cert-googlevibecode.pdf", isQA: false },
   ];
 
   const campaigns = [
@@ -636,7 +636,7 @@ export default function Home() {
                         {c.i && <span className="cert-issuer">{c.i}</span>}
                       </div>
                       <div className="cert-meta">
-                        <span className="cert-year">{c.yr}</span>
+                        <span className="cert-year">{c.d}</span>
                         <a
                           href={c.f}
                           target="_blank"

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 export default function HeroBento() {
   return (
@@ -17,22 +17,11 @@ export default function HeroBento() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Available Badge */}
-        <motion.div
-          className="hero-spot-badge"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <span className="spot-ping-dot" />
-          <span>Available for QA &amp; Content Projects</span>
-          <Sparkles style={{ width: 12, height: 12, color: "var(--ac-hex-1)", opacity: 0.8 }} />
-        </motion.div>
-
         {/* Name */}
         <h1 className="hero-spot-name glow">
+          <span style={{ color: "rgba(245,240,232,.94)" }}>Hi, I&apos;m </span>
           <span style={{ color: "rgba(245,240,232,.94)" }}>Aprillio </span>
-          <span className="grad-orange">Bintang</span>
+          <span className="grad-orange">Bintang.</span>
         </h1>
 
         {/* Primary Identity */}
