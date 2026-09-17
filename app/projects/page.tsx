@@ -14,7 +14,6 @@ import {
   Maximize2,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
-import ParallaxScene from "../components/ParallaxScene";
 import Lightbox, { type LightboxImage } from "../components/Lightbox";
 
 const v: Variants = {
@@ -33,11 +32,10 @@ export default function ProjectsPage() {
 
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
-      <div className="bg-scene bg-scene-amber" />
-      <ParallaxScene />
+      <div className="bg-scene" />
       <Navbar />
 
-      <main style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110 }}>
+      <main className="sidebar-offset" style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110 }}>
         <div style={W}>
           {/* Header */}
           <motion.header
@@ -92,7 +90,7 @@ export default function ProjectsPage() {
             {/* 1. Chapter Header & Overview */}
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--ac-hex-1)", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   01 — CASE STUDY
                 </span>
               </div>
@@ -138,7 +136,7 @@ export default function ProjectsPage() {
             {/* 3. Structured Metadata Strip */}
             <div className="qa-project-meta-strip" style={{ maxWidth: 860 }}>
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   QA Role
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
@@ -150,7 +148,7 @@ export default function ProjectsPage() {
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Tools &amp; Workflow
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
@@ -162,7 +160,7 @@ export default function ProjectsPage() {
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Primary Focus
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
@@ -176,9 +174,9 @@ export default function ProjectsPage() {
 
             {/* 4. Honest Limitation Notice */}
             <div className="qa-limitation-notice">
-              <AlertCircle style={{ width: 15, height: 15, color: "#f59e0b", flexShrink: 0, marginTop: 2 }} />
+              <AlertCircle style={{ width: 15, height: 15, color: "var(--warning)", flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ color: "#fbbf24", display: "block", marginBottom: 2 }}>
+                <strong style={{ color: "var(--warning)", display: "block", marginBottom: 2 }}>
                   Catatan Batasan Pengujian
                 </strong>
                 Full purchase completion could not be validated because no purchasable event/ticket was available in the accessible production environment.
@@ -251,10 +249,10 @@ export default function ProjectsPage() {
             <div className="qa-scenarios-panel">
               <div className="qa-scenarios-header">
                 <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 700, color: "rgba(245,240,232,.50)", textTransform: "uppercase", letterSpacing: ".10em" }}>
-                  <Terminal style={{ width: 14, height: 14, color: "var(--ac-hex-1)" }} />
+                  <Terminal style={{ width: 14, height: 14, color: "var(--accent)" }} />
                   Skenario Pengujian Terverifikasi
                 </div>
-                <ShieldCheck style={{ width: 15, height: 15, color: "var(--ac-hex-1)" }} />
+                <ShieldCheck style={{ width: 15, height: 15, color: "var(--accent)" }} />
               </div>
 
               <div className="qa-scenarios-body">
@@ -278,7 +276,7 @@ export default function ProjectsPage() {
                     },
                   ].map((scenario, idx) => (
                     <li key={idx} className="qa-scenario-item">
-                      <CheckCircle2 style={{ width: 15, height: 15, color: "var(--ac-hex-1)", flexShrink: 0, marginTop: 3 }} />
+                      <CheckCircle2 style={{ width: 15, height: 15, color: "var(--accent)", flexShrink: 0, marginTop: 3 }} />
                       <div>
                         <strong style={{ color: "rgba(245,240,232,.92)", display: "block", fontSize: 13, marginBottom: 2 }}>
                           {scenario.title}
@@ -335,7 +333,7 @@ export default function ProjectsPage() {
             {/* Chapter Header */}
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--ac-hex-1)", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   02 — CASE STUDY
                 </span>
               </div>
@@ -356,7 +354,7 @@ export default function ProjectsPage() {
             {/* 1. Structured Metadata Strip (Metadata First Rhythm) */}
             <div className="qa-project-meta-strip" style={{ maxWidth: 860 }}>
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   QA Role
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
@@ -368,7 +366,7 @@ export default function ProjectsPage() {
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Tools &amp; Workflow
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
@@ -380,7 +378,7 @@ export default function ProjectsPage() {
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--ac-hex-1)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Primary Focus
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
@@ -420,10 +418,10 @@ export default function ProjectsPage() {
             <div className="qa-scenarios-panel">
               <div className="qa-scenarios-header">
                 <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 700, color: "rgba(245,240,232,.50)", textTransform: "uppercase", letterSpacing: ".10em" }}>
-                  <Bug style={{ width: 14, height: 14, color: "var(--ac-hex-1)" }} />
+                  <Bug style={{ width: 14, height: 14, color: "var(--accent)" }} />
                   Verified System Paths
                 </div>
-                <Layers style={{ width: 15, height: 15, color: "var(--ac-hex-1)" }} />
+                <Layers style={{ width: 15, height: 15, color: "var(--accent)" }} />
               </div>
 
               <div className="qa-scenarios-body">
@@ -447,7 +445,7 @@ export default function ProjectsPage() {
                     },
                   ].map((scenario, idx) => (
                     <li key={idx} className="qa-scenario-item">
-                      <CheckCircle2 style={{ width: 15, height: 15, color: "var(--ac-hex-1)", flexShrink: 0, marginTop: 3 }} />
+                      <CheckCircle2 style={{ width: 15, height: 15, color: "var(--accent)", flexShrink: 0, marginTop: 3 }} />
                       <div>
                         <strong style={{ color: "rgba(245,240,232,.92)", display: "block", fontSize: 13, marginBottom: 2 }}>
                           {scenario.title}
@@ -502,15 +500,15 @@ export default function ProjectsPage() {
           >
             <div style={{ marginBottom: 18 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "#f59e0b", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--warning)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   03 — INTERNAL R&amp;D
                 </span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", margin: "4px 0 10px" }}>
-                <h2 style={{ fontSize: "clamp(24px, 3.6vw, 36px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "rgba(245,240,232,.92)", lineHeight: 1.15, margin: 0 }}>
+                <h2 style={{ fontSize: "clamp(24px, 3.6vw, 36px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "var(--text-primary)", lineHeight: 1.15, margin: 0 }}>
                   PAYMENT GATEWAY MVP
                 </h2>
-                <span className="chip" style={{ fontSize: 11, padding: "3px 10px", background: "rgba(245,158,11,.12)", borderColor: "rgba(245,158,11,.28)", color: "#fbbf24" }}>
+                <span className="chip" style={{ fontSize: 11, padding: "3px 10px", background: "rgba(197, 150, 58, 0.12)", borderColor: "rgba(197, 150, 58, 0.30)", color: "var(--warning)" }}>
                   In Progress · Internal R&amp;D
                 </span>
               </div>
@@ -520,32 +518,32 @@ export default function ProjectsPage() {
             </div>
 
             {/* Current Testing Focus - Understated Editorial List */}
-            <div style={{ padding: "14px 18px", borderRadius: 10, background: "rgba(245,158,11,0.03)", borderLeft: "2px solid #f59e0b", maxWidth: 520 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11.5, color: "#fde68a", fontFamily: "monospace", marginBottom: 8 }}>
-                <Lock style={{ width: 13, height: 13, color: "#f59e0b", flexShrink: 0 }} />
+            <div style={{ padding: "14px 18px", borderRadius: 10, background: "rgba(197, 150, 58, 0.04)", borderLeft: "2px solid var(--warning)", maxWidth: 520 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11.5, color: "var(--warning)", fontFamily: "monospace", marginBottom: 8 }}>
+                <Lock style={{ width: 13, height: 13, color: "var(--warning)", flexShrink: 0 }} />
                 <span style={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: ".08em" }}>
                   Current Testing Focus
                 </span>
               </div>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 5, fontSize: 12.5, color: "rgba(245,240,232,.68)" }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 5, fontSize: 12.5, color: "var(--text-secondary)" }}>
                 <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#f59e0b" }} />
+                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
                   Webhook status validation
                 </li>
                 <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#f59e0b" }} />
+                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
                   Boundary value analysis
                 </li>
                 <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#f59e0b" }} />
+                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
                   Fallback timeout simulation
                 </li>
                 <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#f59e0b" }} />
+                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
                   Idempotency
                 </li>
                 <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#f59e0b" }} />
+                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
                   Failure handling
                 </li>
               </ul>
@@ -557,7 +555,7 @@ export default function ProjectsPage() {
       {/* Lightbox Modal */}
       <Lightbox image={lightboxImg} onClose={() => setLightboxImg(null)} />
 
-      <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid rgba(var(--ac-1),.08)", background: "rgba(255,255,255,.015)" }}>
+      <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid var(--border)", background: "var(--surface)" }}>
         <p style={{ fontSize: 11, color: "rgba(245,240,232,.25)", fontWeight: 500, letterSpacing: ".06em" }}>
           © 2026 Aprillio Bintang Perdana · QA Specialist &amp; Content Creator
         </p>

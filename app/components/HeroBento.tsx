@@ -6,10 +6,6 @@ import { ArrowRight, Mail } from "lucide-react";
 export default function HeroBento() {
   return (
     <section className="hero-spot">
-      {/* Subtle ambient background glow */}
-      <div className="hero-spot-orb hero-spot-orb-1" aria-hidden />
-      <div className="hero-spot-orb hero-spot-orb-2" aria-hidden />
-
       {/* Main Hero Content */}
       <motion.div
         className="hero-spot-content"
@@ -18,7 +14,7 @@ export default function HeroBento() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Name */}
-        <h1 className="hero-spot-name glow">
+        <h1 className="hero-spot-name">
           <span style={{ color: "rgba(245,240,232,.94)" }}>Hi, I&apos;m </span>
           <span style={{ color: "rgba(245,240,232,.94)" }}>Aprillio </span>
           <span className="grad-orange">Bintang.</span>

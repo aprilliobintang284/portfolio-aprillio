@@ -19,14 +19,15 @@ export default function Lightbox({ image, onClose }: LightboxProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const triggerElementRef = useRef<HTMLElement | null>(null);
-  const [isPortrait, setIsPortrait] = useState(false);
+  const [loadedPortrait, setLoadedPortrait] = useState<boolean | null>(null);
+
+  const isPortrait = loadedPortrait !== null
+    ? loadedPortrait
+    : Boolean(image?.height && image?.width && image.height > image.width);
 
   useEffect(() => {
     if (image) {
       triggerElementRef.current = document.activeElement as HTMLElement | null;
-      if (image.height && image.width) {
-        setIsPortrait(image.height > image.width);
-      }
       closeBtnRef.current?.focus();
     } else if (triggerElementRef.current) {
       triggerElementRef.current.focus();
@@ -101,11 +102,7 @@ export default function Lightbox({ image, onClose }: LightboxProps) {
           onClick={(e) => e.stopPropagation()}
           onLoad={(e) => {
             const img = e.currentTarget;
-            if (img.naturalHeight > img.naturalWidth) {
-              setIsPortrait(true);
-            } else {
-              setIsPortrait(false);
-            }
+            setLoadedPortrait(img.naturalHeight > img.naturalWidth);
           }}
         />
       </div>

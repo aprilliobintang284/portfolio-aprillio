@@ -8,7 +8,6 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
-import ParallaxScene from "../components/ParallaxScene";
 import Lightbox, { type LightboxImage } from "../components/Lightbox";
 
 const v: Variants = {
@@ -27,11 +26,10 @@ export default function CreatorPage() {
 
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
-      <div className="bg-scene bg-scene-red" />
-      <ParallaxScene />
+      <div className="bg-scene" />
       <Navbar />
 
-      <main style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110 }}>
+      <main className="sidebar-offset" style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110 }}>
         <div style={W}>
           {/* ── 01. COMPACT INTRO HEADER ── */}
           <motion.header
@@ -50,7 +48,7 @@ export default function CreatorPage() {
                 fontSize: "clamp(30px, 4.4vw, 48px)",
                 letterSpacing: "-.03em",
                 lineHeight: 1.15,
-                color: "rgba(245,240,232,.96)",
+                color: "var(--text-primary)",
                 marginBottom: 14,
               }}
             >
@@ -61,7 +59,7 @@ export default function CreatorPage() {
               style={{
                 fontSize: 15,
                 lineHeight: 1.7,
-                color: "rgba(245,240,232,.52)",
+                color: "var(--text-secondary)",
                 maxWidth: 640,
               }}
             >
@@ -104,22 +102,22 @@ export default function CreatorPage() {
             {/* Column 2: Creator Information & Pure Typography Metrics */}
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "#f97316", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   CREATOR PROFILE
                 </span>
               </div>
-              <h2 style={{ fontSize: "clamp(26px, 3.8vw, 38px)", fontWeight: 900, color: "rgba(245,240,232,.98)", letterSpacing: "-.03em", margin: "0 0 10px", lineHeight: 1.15 }}>
+              <h2 style={{ fontSize: "clamp(26px, 3.8vw, 38px)", fontWeight: 900, color: "var(--text-primary)", letterSpacing: "-.03em", margin: "0 0 10px", lineHeight: 1.15 }}>
                 @scarawanderr
               </h2>
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
-                <span className="chip" style={{ background: "rgba(239,68,68,.10)", color: "#fca5a5", borderColor: "rgba(239,68,68,.22)", fontSize: 11 }}>
+                <span className="chip" style={{ background: "rgba(229, 138, 58, 0.10)", color: "var(--creator)", borderColor: "rgba(229, 138, 58, 0.25)", fontSize: 11 }}>
                   Honor of Kings Creator Camp
                 </span>
-                <span style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.45)" }}>
+                <span style={{ fontSize: 13, fontFamily: "monospace", color: "var(--text-muted)" }}>
                   Official Tencent / TikTok Partner
                 </span>
               </div>
-              <p style={{ fontSize: 14.5, lineHeight: 1.7, color: "rgba(245,240,232,.62)", margin: "0 0 20px", maxWidth: 540 }}>
+              <p style={{ fontSize: 14.5, lineHeight: 1.7, color: "var(--text-secondary)", margin: "0 0 20px", maxWidth: 540 }}>
                 Kurasi momen turnamen, video strategi makro hero, dan kampanye video pendek vertikal. Berfokus pada retensi penonton dan narasi audio yang sinkron dengan algoritma FYP TikTok.
               </p>
 
@@ -172,18 +170,18 @@ export default function CreatorPage() {
           >
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "#f97316", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--creator)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   01 — FEATURED CAMPAIGN
                 </span>
               </div>
-              <h2 style={{ fontSize: "clamp(28px, 4.4vw, 44px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "rgba(245,240,232,.98)", lineHeight: 1.15, margin: "4px 0 10px" }}>
+              <h2 style={{ fontSize: "clamp(28px, 4.4vw, 44px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "var(--text-primary)", lineHeight: 1.15, margin: "4px 0 10px" }}>
                 EPIC DEFEATED MOMENT
               </h2>
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
-                <span className="chip" style={{ background: "rgba(249,115,22,.12)", color: "#fdba74", borderColor: "rgba(249,115,22,.28)" }}>
+                <span className="chip" style={{ background: "rgba(229, 138, 58, 0.12)", color: "var(--creator)", borderColor: "rgba(229, 138, 58, 0.30)" }}>
                   Top Performing #1
                 </span>
-                <span style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.50)" }}>
+                <span style={{ fontSize: 13, fontFamily: "monospace", color: "var(--text-muted)" }}>
                   Official HoK TikTok Community Challenge
                 </span>
               </div>
@@ -195,13 +193,13 @@ export default function CreatorPage() {
             {/* Central Dominant Metric Banner (Visual Focal Point) */}
             <div className="creator-epic-display">
               <div>
-                <span style={{ fontSize: 11, fontWeight: 700, color: "#f97316", letterSpacing: ".12em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: "var(--creator)", letterSpacing: ".12em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
                   Top Performing Video
                 </span>
-                <p style={{ fontSize: "clamp(34px, 5vw, 52px)", fontWeight: 900, color: "#fdba74", letterSpacing: "-.04em", lineHeight: 1, margin: 0 }}>
-                  471,400 <span style={{ fontSize: "clamp(18px, 2.5vw, 24px)", fontWeight: 700, color: "rgba(245,240,232,.65)", letterSpacing: "normal" }}>Views</span>
+                <p style={{ fontSize: "clamp(34px, 5vw, 52px)", fontWeight: 900, color: "var(--creator)", letterSpacing: "-.04em", lineHeight: 1, margin: 0 }}>
+                  471,400 <span style={{ fontSize: "clamp(18px, 2.5vw, 24px)", fontWeight: 700, color: "var(--text-secondary)", letterSpacing: "normal" }}>Views</span>
                 </p>
-                <p style={{ fontSize: 12.5, color: "rgba(245,240,232,.50)", margin: "6px 0 0" }}>
+                <p style={{ fontSize: 12.5, color: "var(--text-secondary)", margin: "6px 0 0" }}>
                   Struktur transisi beat-synced dengan retensi 3-detik pertama di FYP TikTok
                 </p>
               </div>
@@ -219,37 +217,37 @@ export default function CreatorPage() {
             {/* Editorial Metadata Strip */}
             <div className="qa-project-meta-strip" style={{ maxWidth: 860 }}>
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "#f97316", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Objective
                 </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>
                   Max FYP Retention Hook
                 </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
+                <p style={{ fontSize: 11.5, color: "var(--text-muted)", marginTop: 2 }}>
                   Transisi dramatis &amp; sinkronisasi audio beat
                 </p>
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "#f97316", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Format &amp; Platform
                 </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>
                   Vertical 9:16 · TikTok
                 </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
+                <p style={{ fontSize: 11.5, color: "var(--text-muted)", marginTop: 2 }}>
                   Optimalisasi layar smartphone
                 </p>
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "#f97316", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Production Role
                 </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>
                   Gameplay, Sound &amp; Editing
                 </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
+                <p style={{ fontSize: 11.5, color: "var(--text-muted)", marginTop: 2 }}>
                   Perekaman independen hingga post-production
                 </p>
               </div>
@@ -273,16 +271,16 @@ export default function CreatorPage() {
               className="creator-editorial-row"
             >
               <div>
-                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "#f59e0b", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
                   02 — ESPORTS CURATION
                 </span>
-                <h3 style={{ fontSize: "clamp(20px, 2.6vw, 26px)", fontWeight: 900, letterSpacing: "-.02em", color: "rgba(245,240,232,.98)", margin: "0 0 8px" }}>
+                <h3 style={{ fontSize: "clamp(20px, 2.6vw, 26px)", fontWeight: 900, letterSpacing: "-.02em", color: "var(--text-primary)", margin: "0 0 8px" }}>
                   THE CHARM OF ONIC HOK PLAYERS
                 </h3>
-                <p style={{ fontSize: 13.5, lineHeight: 1.65, color: "rgba(245,240,232,.58)", maxWidth: 580, margin: "0 0 10px" }}>
+                <p style={{ fontSize: 13.5, lineHeight: 1.65, color: "var(--text-secondary)", maxWidth: 580, margin: "0 0 10px" }}>
                   Kompilasi momen mikro turnamen dan mekanik hero tingkat tinggi dari atlet profesional Onic Esports, dikemas dengan narasi visual yang mendekatkan figur pro player ke audiens kasual.
                 </p>
-                <div style={{ display: "flex", gap: 14, fontSize: 12, color: "rgba(245,240,232,.42)", fontFamily: "monospace" }}>
+                <div style={{ display: "flex", gap: 14, fontSize: 12, color: "var(--text-muted)", fontFamily: "monospace" }}>
                   <span>Format: Vertical 9:16</span>
                   <span>·</span>
                   <span>Role: Strategy &amp; Video Editing</span>
@@ -290,8 +288,8 @@ export default function CreatorPage() {
               </div>
 
               <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
-                <span style={{ fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 900, color: "#fde68a", letterSpacing: "-.03em" }}>
-                  367,700 <span style={{ fontSize: 13, fontWeight: 600, color: "rgba(245,240,232,.5)" }}>Views</span>
+                <span style={{ fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 900, color: "var(--text-primary)", letterSpacing: "-.03em" }}>
+                  367,700 <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-muted)" }}>Views</span>
                 </span>
                 <a
                   href="https://www.tiktok.com/@scarawanderr/video/7510189240261643528"
@@ -313,16 +311,16 @@ export default function CreatorPage() {
               className="creator-editorial-row"
             >
               <div>
-                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "#ef4444", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
                   03 — SKIN RELEASE SPOTLIGHT
                 </span>
-                <h3 style={{ fontSize: "clamp(20px, 2.6vw, 26px)", fontWeight: 900, letterSpacing: "-.02em", color: "rgba(245,240,232,.98)", margin: "0 0 8px" }}>
+                <h3 style={{ fontSize: "clamp(20px, 2.6vw, 26px)", fontWeight: 900, letterSpacing: "-.02em", color: "var(--text-primary)", margin: "0 0 8px" }}>
                   CINEMATIC REVIEW MILADY SWAAMPSER
                 </h3>
-                <p style={{ fontSize: 13.5, lineHeight: 1.65, color: "rgba(245,240,232,.58)", maxWidth: 580, margin: "0 0 10px" }}>
+                <p style={{ fontSize: 13.5, lineHeight: 1.65, color: "var(--text-secondary)", maxWidth: 580, margin: "0 0 10px" }}>
                   Review sinematik efek visual skin Milady Swaampser yang menggabungkan demonstrasi efektivitas kombo skill di lane dan analisis skin value untuk mendorong awareness peluncuran item baru.
                 </p>
-                <div style={{ display: "flex", gap: 14, fontSize: 12, color: "rgba(245,240,232,.42)", fontFamily: "monospace" }}>
+                <div style={{ display: "flex", gap: 14, fontSize: 12, color: "var(--text-muted)", fontFamily: "monospace" }}>
                   <span>Format: Vertical 9:16</span>
                   <span>·</span>
                   <span>Role: Gameplay Capture &amp; Review</span>
@@ -330,8 +328,8 @@ export default function CreatorPage() {
               </div>
 
               <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
-                <span style={{ fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 900, color: "#fca5a5", letterSpacing: "-.03em" }}>
-                  198,000 <span style={{ fontSize: 13, fontWeight: 600, color: "rgba(245,240,232,.5)" }}>Views</span>
+                <span style={{ fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 900, color: "var(--text-primary)", letterSpacing: "-.03em" }}>
+                  198,000 <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-muted)" }}>Views</span>
                 </span>
                 <a
                   href="https://www.tiktok.com/@scarawanderr/video/7565946037865549063"
@@ -361,14 +359,14 @@ export default function CreatorPage() {
           >
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--ac-hex-1)", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   04 — PRODUCTION MILESTONES
                 </span>
               </div>
-              <h3 style={{ fontSize: "clamp(22px, 3.2vw, 32px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "rgba(245,240,232,.98)", lineHeight: 1.15, margin: "4px 0 6px" }}>
+              <h3 style={{ fontSize: "clamp(22px, 3.2vw, 32px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "var(--text-primary)", lineHeight: 1.15, margin: "4px 0 6px" }}>
                 CREATOR PRODUCTION ARCHIVE
               </h3>
-              <p style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.50)", margin: 0 }}>
+              <p style={{ fontSize: 13, fontFamily: "monospace", color: "var(--text-muted)", margin: 0 }}>
                 2025 — Sekarang · Rekam Jejak Kontrak Resmi &amp; Kampanye Publisher
               </p>
             </div>
@@ -402,21 +400,21 @@ export default function CreatorPage() {
                     justifyContent: "space-between",
                     padding: "12px 16px",
                     borderRadius: 10,
-                    background: "rgba(255, 255, 255, 0.02)",
-                    border: "1px solid rgba(255, 255, 255, 0.05)",
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
                     gap: 16,
                     flexWrap: "wrap",
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ padding: 6, borderRadius: 6, background: "rgba(var(--ac-1),.08)", color: "var(--ac-hex-1)", flexShrink: 0 }}>
+                    <div style={{ padding: 6, borderRadius: 6, background: "rgba(46, 168, 230, 0.08)", color: "var(--accent)", flexShrink: 0 }}>
                       <Video style={{ width: 14, height: 14 }} />
                     </div>
                     <div>
-                      <h4 style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)", margin: 0 }}>
+                      <h4 style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>
                         {item.title}
                       </h4>
-                      <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.42)", margin: "2px 0 0" }}>
+                      <p style={{ fontSize: 11.5, color: "var(--text-muted)", margin: "2px 0 0" }}>
                         {item.partner} · {item.deliverable}
                       </p>
                     </div>
@@ -435,8 +433,8 @@ export default function CreatorPage() {
       {/* Lightbox Modal */}
       <Lightbox image={lightboxImg} onClose={() => setLightboxImg(null)} />
 
-      <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid rgba(var(--ac-1),.08)", background: "rgba(255,255,255,.015)" }}>
-        <p style={{ fontSize: 11, color: "rgba(245,240,232,.25)", fontWeight: 500, letterSpacing: ".06em" }}>
+      <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid var(--border)", background: "var(--surface)" }}>
+        <p style={{ fontSize: 11, color: "var(--text-muted)", fontWeight: 500, letterSpacing: ".06em" }}>
           © 2026 Aprillio Bintang Perdana · QA Specialist &amp; Content Creator
         </p>
       </footer>

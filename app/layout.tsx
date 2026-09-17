@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "./components/CustomCursor";
-import { ColorThemeProvider } from "./components/ThemeContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aprillio Bintang — QA Specialist & Content Creator",
+  title: "Aprillio — QA Specialist",
   description:
-    "Aprillio Bintang Perdana — Quality Assurance Specialist & Gaming Content Creator. Personal Portfolio & Selected Work.",
+    "Aprillio Bintang Perdana — Quality Assurance Specialist & Gaming Content Creator.",
 };
 
 export default function RootLayout({
@@ -25,7 +24,7 @@ export default function RootLayout({
     <html lang="id" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
         <CustomCursor />
-        <ColorThemeProvider>{children}</ColorThemeProvider>
+        {children}
       </body>
     </html>
   );
