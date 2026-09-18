@@ -2,27 +2,47 @@
 
 # ✦ Aprillio Bintang — Portfolio
 
-**A premium, real-time personal portfolio built with Next.js 16, Framer Motion, and glassmorphism design.**
+**QA Specialist & Gaming Content Creator**
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-aprillio.vercel.app-black?style=for-the-badge)](https://portfolio-aprillio.vercel.app)
+A modern, high-performance personal portfolio built with **Next.js 16**, **TypeScript**, **Framer Motion**, and a custom natural editorial dark design system.
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-portfolio--aprillio.vercel.app-141413?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-aprillio.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-latest-FF0055?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-FF0055?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion)
 
 </div>
 
 ---
 
-## ✨ Features
+## ✨ Overview & Key Features
 
-- 🎨 **iOS-inspired Glassmorphism** — frosted glass cards with blur, shine, and depth
-- ⚡ **Real-time Data** — live stats fetched from MonkeyType & Duolingo APIs
-- 🖱️ **Custom Cursor** — lightweight CSS-only animated cursor
-- 🌀 **Parallax Backgrounds** — smooth `requestAnimationFrame`-based floating shapes
-- 📊 **Interactive SVG Charts** — hover-tooltip WPM line chart & accuracy bar chart
-- 📱 **Fully Responsive** — optimized for desktop, tablet, and mobile
-- 🌙 **Dark Mode First** — premium dark aesthetic with curated color palette
-- 🔄 **Scroll Animations** — staggered entry animations via Framer Motion
+### 🧪 Quality Assurance & Manual Testing Showcase (`/projects`)
+- **Real-world Case Studies**: Comprehensive QA test documentation for web applications (e.g., *Tenar Event Platform*).
+- **Test Artifacts**: Test scenarios, positive/negative test matrix, and categorized bug reports (P1/P2/P3 severity).
+- **Interactive Evidence Lightbox**: Full-resolution preview of test runs, step-by-step reproduction steps, and system limitations.
+
+### 🎮 Esports & Gaming Content Creation (`/creator`)
+- **Content Media Hub**: Video highlights, tournament news, and gameplay clips centered around *Honor of Kings* (HOK) and competitive esports.
+- **Audience Metrics**: Engagement stats, follower metrics, and cross-platform channels (TikTok, Instagram, YouTube).
+
+### ⚡ Live Personal Performance Modules
+- **Duolingo Integration**: Real-time language learning streak, total XP, and active course progress fetched dynamically via custom API route.
+- **MonkeyType Performance Dashboard**: Typing speed (WPM), accuracy, consistency, test counts, and interactive SVG performance curves.
+
+### 🎨 Natural Editorial Design System
+- **Curated Dark Palette**: Warm near-black background (`#0D0D0C`), surface elevation (`#141413`), subtle neutral borders (`#292824`), and refined typography (`#F1EEE8` / `#A5A19A` / `#6F6C66`).
+- **Accent Rhythm**: Signature Aprillio cyan accent (`#2EA8E6`) used with restraint for interactive focus.
+- **Zero Distractions**: No unnecessary neon glows, heavy glassmorphism, or artificial blur filters.
+
+### 🧭 Precision Navigation & Layout
+- **Desktop Sidebar / Rail**: Fixed desktop sidebar with active section tracking and smooth anchor navigation.
+- **Mobile Drawer**: Responsive top bar with animated slide-out navigation menu.
+- **Editorial 4-Column Footer**: Balanced closing statement featuring identity, navigation anchors, external social links with brand icons, and a smooth back-to-top control.
+
+### 🔒 Secure Contact Form
+- Integrated **Cloudflare Turnstile** bot verification to protect the messaging endpoint against spam and automated abuse.
 
 ---
 
@@ -32,27 +52,40 @@
 portfolio-aprillio/
 ├── app/
 │   ├── api/
-│   │   ├── duolingo/route.ts     # Duolingo proxy (streak, XP, courses)
-│   │   └── monkeytype/route.ts   # MonkeyType proxy (WPM, accuracy, charts)
+│   │   ├── duolingo/route.ts       # Duolingo API proxy (streak, XP, language courses)
+│   │   └── monkeytype/route.ts     # MonkeyType API proxy (WPM, accuracy, charts)
 │   ├── components/
-│   │   ├── Navbar.tsx            # Sticky glassmorphism navbar
-│   │   ├── CustomCursor.tsx      # CSS-only custom cursor
-│   │   └── ParallaxScene.tsx     # Animated background shapes
-│   ├── globals.css               # Design system & component styles
-│   ├── layout.tsx                # Root layout & metadata
-│   └── page.tsx                  # Main portfolio page
-├── .env.local                    # API keys (not committed)
-└── next.config.ts
+│   │   ├── CustomCursor.tsx        # Subtle custom cursor
+│   │   ├── HeroBento.tsx           # Two-column hero with blended workspace visual
+│   │   ├── Lightbox.tsx            # Fullscreen modal image viewer for QA evidence
+│   │   ├── Navbar.tsx              # Sidebar (desktop) & drawer header (mobile)
+│   │   └── ParallaxScene.tsx       # Subtle background canvas elements
+│   ├── creator/
+│   │   └── page.tsx                # Creator Media & esports showcase page
+│   ├── projects/
+│   │   └── page.tsx                # QA Projects & test documentation page
+│   ├── globals.css                 # Editorial design system, tokens & layouts
+│   ├── layout.tsx                  # Root layout, metadata & fonts
+│   └── page.tsx                    # Homepage (Hero, About, Exp, Edu, Personal, Contact, Footer)
+├── public/
+│   ├── images/
+│   │   ├── creator/                # Creator portfolio assets
+│   │   ├── hero/                   # Workspace photography
+│   │   ├── personal/               # Official Duolingo asset
+│   │   └── projects/               # QA test evidence & case study captures
+│   └── cert-*.pdf                  # Academic & professional certifications
+├── .env.local                      # API keys (local development)
+└── next.config.ts                  # Next.js configuration
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
-### 1. Clone the repo
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/aprilliobintang455-boop/portfolio-aprillio.git
+git clone https://github.com/aprilliobintang284/portfolio-aprillio.git
 cd portfolio-aprillio
 ```
 
@@ -62,15 +95,14 @@ cd portfolio-aprillio
 npm install
 ```
 
-### 3. Set up environment variables
+### 3. Configure environment variables
 
 Create a `.env.local` file in the root directory:
 
 ```env
+# MonkeyType ApeKey (Settings → Ape Keys on monkeytype.com)
 MONKEYTYPE_APE_KEY=your_monkeytype_ape_key_here
 ```
-
-> 🔑 Get your MonkeyType ApeKey from: **monkeytype.com → Settings → Ape Keys**
 
 ### 4. Run the development server
 
@@ -78,90 +110,54 @@ MONKEYTYPE_APE_KEY=your_monkeytype_ape_key_here
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the portfolio.
 
 ---
 
-## 🛠️ Customization Guide
+## 📡 API Routes & Live Data
 
-### Change personal info
-Edit `app/page.tsx` — search for your name, bio, skills, and project entries.
+| Route | Method | Description | Cache / Fallback |
+|---|---|---|---|
+| `/api/duolingo` | `GET` | Fetches active streak, XP, and active languages | In-memory ISR cache + static fallback |
+| `/api/monkeytype` | `GET` | Fetches all-time best WPM, accuracy, consistency, and typing charts | ApeKey auth + static fallback |
 
-### Change Duolingo username
-Edit `app/api/duolingo/route.ts`:
-```ts
-const USERNAME = "YourDuolingoUsername";
-```
-
-### Change MonkeyType username
-Edit `app/api/monkeytype/route.ts`:
-```ts
-const USERNAME = "YourMonkeyTypeUsername";
-```
-
-### Change color palette
-All design tokens are in `app/globals.css` under the `:root` section.
-
-### Add/edit sections
-Each section in `page.tsx` is clearly labeled with a comment:
-```tsx
-{/* DUOLINGO PROGRESS */}
-{/* TYPING PERFORMANCE — MonkeyType Dashboard */}
-```
-
----
-
-## 🌐 Deploy to Vercel
-
-### One-click deploy
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/aprilliobintang455-boop/portfolio-aprillio)
-
-### Manual deploy
-
-1. Push your code to GitHub
-2. Import the repo at [vercel.com/new](https://vercel.com/new)
-3. Add environment variable in **Project Settings → Environment Variables**:
-   ```
-   MONKEYTYPE_APE_KEY = your_key_here
-   ```
-4. Deploy ✓
-
----
-
-## 📡 API Routes
-
-| Route | Description | Auth required |
-|---|---|---|
-| `GET /api/duolingo` | Streak, Total XP, active courses | No |
-| `GET /api/monkeytype` | Personal bests, avg WPM, chart data | ApeKey for chart data |
-
-Both routes include **retry logic**, **5-second timeout**, and **static fallback** so the UI never breaks even when APIs are down.
+*Both routes include automatic error handling and static fallback data so the interface renders reliably even during network or API downtime.*
 
 ---
 
 ## 🧰 Tech Stack
 
-| Technology | Usage |
+| Domain | Technology |
 |---|---|
-| [Next.js 16](https://nextjs.org) | App router, API routes, ISR caching |
-| [TypeScript](https://www.typescriptlang.org) | Type safety |
-| [Framer Motion](https://www.framer.com/motion) | Scroll & entry animations |
-| [Lucide React](https://lucide.dev) | Icons |
-| Vanilla CSS | Glassmorphism design system |
-| Pure SVG | Interactive charts (no chart library) |
+| **Framework** | [Next.js 16](https://nextjs.org) (App Router) |
+| **Language** | [TypeScript 5](https://www.typescriptlang.org) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com) + Scoped Vanilla CSS Tokens |
+| **Motion** | [Framer Motion](https://www.framer.com/motion) |
+| **Icons** | [Lucide React](https://lucide.dev) & Custom Brand SVGs |
+| **Security** | [@marsidev/react-turnstile](https://github.com/marsidev/react-turnstile) (Cloudflare Turnstile) |
+| **Deployment** | [Vercel](https://vercel.com) |
+
+---
+
+## 🌐 Deployment
+
+The project is configured for continuous deployment with **Vercel**:
+
+1. Push your repository to GitHub.
+2. Import the project in the [Vercel Dashboard](https://vercel.com/new).
+3. Add your `MONKEYTYPE_APE_KEY` in **Settings → Environment Variables**.
+4. Deploy!
 
 ---
 
 ## 📄 License
 
-This project is open source under the [MIT License](LICENSE).
-Feel free to fork, customize, and use it for your own portfolio! ⭐
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
 <div align="center">
 
-Made with ☕ by **Aprillio Bintang**
+Crafted with care by **Aprillio Bintang Perdana** • 2026
 
 </div>
