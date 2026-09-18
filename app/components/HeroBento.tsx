@@ -44,7 +44,7 @@ export default function HeroBento() {
 
         {/* Description */}
         <p className="hero-intro-text">
-          Saya fokus pada quality assurance, pengujian sistem, dan memastikan produk digital bekerja dengan baik. Di sisi lain, saya juga membuat konten gaming, terutama seputar Honor of Kings, untuk berbagi pengalaman dan membangun komunitas.
+          Fokus pada quality assurance dan pengujian sistem, dengan ketertarikan pada produk digital dan bagaimana membuatnya lebih baik. Di luar itu, aktif membuat konten seputar Honor of Kings dan esports.
         </p>
 
         {/* CTAs */}

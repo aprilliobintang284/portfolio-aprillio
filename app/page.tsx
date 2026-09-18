@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   Code2,
   Video,
+  Flame,
 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import HeroBento from "./components/HeroBento";
@@ -254,12 +255,6 @@ export default function Home() {
             <div className="about-editorial-layout">
               {/* Left & Center Column: Content */}
               <div className="about-main-col">
-                {/* Eyebrow Label with subtle horizontal line */}
-                <motion.div variants={v} className="about-eyebrow-row">
-                  <span className="about-eyebrow-text">TENTANG SAYA</span>
-                  <span className="about-eyebrow-line" />
-                </motion.div>
-
                 {/* Main Heading */}
                 <motion.h2 variants={v} className="about-heading">
                   Tentang <span style={{ color: "#2EA8E6" }}>Saya.</span>
@@ -456,208 +451,217 @@ export default function Home() {
         </section>
 
         {/* ═══ 5. PERSONAL (DUOLINGO & MONKEYTYPE) ═══ */}
-        <section id="personal" className="ref-doc-section">
-          <motion.div className="ref-container-920" initial="hidden" whileInView="show" viewport={VP} variants={s}>
-            <motion.h2 variants={v} className="ref-section-heading">
-              Personal
-            </motion.h2>
+        <section id="personal" className="personal-section-wrap">
+          <motion.div className="personal-wide-container" initial="hidden" whileInView="show" viewport={VP} variants={s}>
+            <div className="personal-editorial-layout">
+              {/* Left Column: Contextual Introduction */}
+              <div className="personal-intro-col">
+                <div>
+                  <motion.div variants={v} className="personal-eyebrow-row">
+                    <span className="personal-eyebrow-dot" />
+                    <span className="personal-eyebrow-text">PERSONAL</span>
+                    <span className="personal-eyebrow-line" />
+                  </motion.div>
 
-            <div className="personal-modules-side-by-side">
-              {/* ── Duolingo Module ── */}
-              <motion.div variants={v} className="personal-card-box">
-                <div className="personal-card-header">
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div className="duo-icon-box" style={{ background: "rgba(88, 204, 2, 0.15)", border: "1px solid rgba(88, 204, 2, 0.3)" }}>
-                      <svg viewBox="0 0 24 24" width={16} height={16} fill="#58CC02">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2.5 12a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm5 0a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-                      </svg>
+                  <motion.h2 variants={v} className="personal-main-heading">
+                    Hal-hal kecil<br />
+                    yang <span style={{ color: "#2EA8E6" }}>berarti.</span>
+                  </motion.h2>
+
+                  <motion.p variants={v} className="personal-intro-desc">
+                    Selain pengujian QA dan membuat konten, saya juga punya beberapa kebiasaan yang membantu saya tetap konsisten, fokus, dan berkembang. Dua di antaranya adalah belajar bahasa di Duolingo dan melatih kecepatan mengetik di Monkeytype.
+                  </motion.p>
+                </div>
+
+                <motion.div variants={v} className="personal-quote-block">
+                  <blockquote className="personal-quote-text">
+                    &ldquo;Small habits,<br />
+                    big progress.&rdquo;
+                  </blockquote>
+                  <div className="personal-quote-accent-bar" />
+                </motion.div>
+              </div>
+
+              {/* Right Columns: Duolingo & MonkeyType Modules */}
+              <div className="personal-cards-wrap">
+                {/* ── Duolingo Module ── */}
+                <motion.div variants={v} className="personal-card-box">
+                  {/* Header */}
+                  <div className="personal-card-header">
+                    <div className="personal-header-left">
+                      <div className="duo-owl-avatar">
+                        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                          <ellipse cx="10.5" cy="15" rx="5.5" ry="6.5" fill="#FFFFFF" />
+                          <ellipse cx="11.5" cy="15" rx="3" ry="3.5" fill="#4B4B4B" />
+                          <circle cx="12.5" cy="13.5" r="1" fill="#FFFFFF" />
+                          <ellipse cx="21.5" cy="15" rx="5.5" ry="6.5" fill="#FFFFFF" />
+                          <ellipse cx="20.5" cy="15" rx="3" ry="3.5" fill="#4B4B4B" />
+                          <circle cx="21.5" cy="13.5" r="1" fill="#FFFFFF" />
+                          <path d="M14 18.5C14 18.5 16 22 18 18.5H14Z" fill="#FF9600" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                          <span className="personal-card-title">Duolingo</span>
+                          <ArrowUpRight style={{ width: 14, height: 14, color: "var(--text-muted)" }} />
+                        </div>
+                        <p className="personal-card-subtitle">Belajar hari ini, kesempatan lebih banyak esok.</p>
+                      </div>
                     </div>
-                    <span className="personal-brand-name">Duolingo</span>
+                    <span className="personal-header-meta">{duoStreak} day streak</span>
                   </div>
+
+                  {/* Body: Streak Panel & Languages List */}
+                  <div className="duo-card-content-grid">
+                    {/* Left Streak Panel */}
+                    <div className="duo-streak-panel">
+                      <div className="duo-streak-header">
+                        <Flame style={{ width: 14, height: 14, color: "#FF9600" }} />
+                        <span className="duo-streak-label">Streak</span>
+                      </div>
+                      <div className="duo-streak-val">{duoStreak}</div>
+                      <p className="duo-streak-sub">hari berturut-turut</p>
+                      <p className="duo-streak-note">
+                        Konsisten belajar, selangkah lebih dekat ke kesempatan baru.
+                      </p>
+                    </div>
+
+                    {/* Right Languages Panel */}
+                    <div className="duo-languages-panel">
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 2 }}>
+                        <h4 className="duo-languages-title">Bahasa yang sedang dipelajari</h4>
+                        <span style={{ fontSize: 10, fontFamily: "monospace", color: "#6F6C66", fontWeight: 600 }}>
+                          {formatNumber(duoTotalXp)} Total XP
+                        </span>
+                      </div>
+                      <div className="duo-languages-list">
+                        {duoCourses.map((c, i) => {
+                          const flag = getFlagForCourse(c);
+                          const pct = Math.min(100, Math.max(15, Math.round((c.xp / maxCourseXp) * 100)));
+                          return (
+                            <div key={i} className="duo-lang-item">
+                              <div className="duo-lang-head">
+                                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                                  {flag && (
+                                    <Image
+                                      src={`https://flagcdn.com/w40/${flag.code}.png`}
+                                      alt={flag.name}
+                                      width={18}
+                                      height={13}
+                                      style={{ borderRadius: 2, flexShrink: 0, objectFit: "cover" }}
+                                      unoptimized
+                                    />
+                                  )}
+                                  <span className="duo-lang-name">{flag?.name ?? c.title}</span>
+                                </div>
+                                <span className="duo-lang-xp">{formatNumber(c.xp)} XP</span>
+                              </div>
+                              <div className="duo-bar-track">
+                                <div className="duo-bar-fill" style={{ width: `${pct}%` }} />
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Footer Button */}
                   <a
                     href="https://www.duolingo.com/profile/AprillioBi"
                     target="_blank"
                     rel="noreferrer"
-                    className="personal-profile-link"
+                    className="personal-card-btn"
                   >
-                    Lihat Profil <ArrowUpRight style={{ width: 12, height: 12 }} />
+                    <span>Lihat Profil Duolingo</span>
+                    <ArrowUpRight style={{ width: 14, height: 14 }} />
                   </a>
-                </div>
+                </motion.div>
 
-                {/* Top highlight stats */}
-                <div className="personal-top-stat-row">
-                  <div className="personal-stat-col">
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 18 }}>🔥</span>
-                      <span className="personal-stat-num">{duoStreak}</span>
-                    </div>
-                    <span className="personal-stat-label">Day Streak</span>
-                  </div>
-
-                  <div className="personal-stat-col">
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 18 }}>🏆</span>
-                      <span className="personal-stat-num">{formatNumber(duoTotalXp)}</span>
-                    </div>
-                    <span className="personal-stat-label">Total XP</span>
-                  </div>
-                </div>
-
-                {/* Language Rows with Progress Bars */}
-                <div className="duo-language-rows">
-                  {duoCourses.map((c, i) => {
-                    const flag = getFlagForCourse(c);
-                    const pct = Math.min(100, Math.max(12, Math.round((c.xp / maxCourseXp) * 100)));
-
-                    return (
-                      <div key={i} className="duo-lang-row">
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, width: 140, flexShrink: 0 }}>
-                          {flag && (
-                            <Image
-                              src={`https://flagcdn.com/w40/${flag.code}.png`}
-                              alt={flag.name}
-                              width={20}
-                              height={14}
-                              style={{ borderRadius: 2, flexShrink: 0, objectFit: "cover" }}
-                              unoptimized
-                            />
-                          )}
-                          <span className="duo-lang-name">{flag?.name ?? c.title}</span>
-                        </div>
-
-                        {/* Progress Bar */}
-                        <div className="duo-progress-track">
-                          <div className="duo-progress-fill" style={{ width: `${pct}%` }} />
-                        </div>
-
-                        <span className="duo-xp-badge">{formatNumber(c.xp)} XP</span>
+                {/* ── MonkeyType Module ── */}
+                <motion.div variants={v} className="personal-card-box">
+                  {/* Header */}
+                  <div className="personal-card-header">
+                    <div className="personal-header-left">
+                      <div className="monkey-mt-avatar">
+                        <span>mt</span>
                       </div>
-                    );
-                  })}
-                </div>
-              </motion.div>
-
-              {/* ── MonkeyType Module ── */}
-              <motion.div variants={v} className="personal-card-box">
-                <div className="personal-card-header">
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div className="monkey-icon-box" style={{ background: "rgba(226, 183, 20, 0.15)", border: "1px solid rgba(226, 183, 20, 0.3)" }}>
-                      <svg viewBox="0 0 24 24" width={15} height={15} fill="#E2B714">
-                        <path d="M20 5H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z"/>
-                      </svg>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                          <span className="personal-card-title">Monkeytype</span>
+                          <ArrowUpRight style={{ width: 14, height: 14, color: "var(--text-muted)" }} />
+                        </div>
+                        <p className="personal-card-subtitle">Latihan kecil, hasil yang nyata.</p>
+                      </div>
                     </div>
-                    <span className="personal-brand-name">MonkeyType</span>
+                    <span className="personal-header-meta">Typing progress</span>
                   </div>
+
+                  {/* 4 Metric Columns in a Row */}
+                  <div className="monkey-metrics-row">
+                    <div className="monkey-metric-cell">
+                      <span className="monkey-cell-label">WPM</span>
+                      <div className="monkey-cell-val">{mtBestWpm}</div>
+                      <span className="monkey-cell-tag" title={`Best Raw: ${mtBestRaw} WPM`}>raw: {mtBestRaw}</span>
+                    </div>
+                    <div className="monkey-metric-cell">
+                      <span className="monkey-cell-label">ACC</span>
+                      <div className="monkey-cell-val">{mtAcc}%</div>
+                      <span className="monkey-cell-tag">best</span>
+                    </div>
+                    <div className="monkey-metric-cell">
+                      <span className="monkey-cell-label">Consistency</span>
+                      <div className="monkey-cell-val">{mtConsistency}%</div>
+                      <span className="monkey-cell-tag">avg: {mtAvgWpm}</span>
+                    </div>
+                    <div className="monkey-metric-cell">
+                      <span className="monkey-cell-label">Tests</span>
+                      <div className="monkey-cell-val">{formatNumber(mtTests)}</div>
+                      <span className="monkey-cell-tag">{mtTime}</span>
+                    </div>
+                  </div>
+
+                  {/* Mini Visualization: Typing Progress (Last 7 Days) */}
+                  <div className="monkey-chart-panel">
+                    <div className="monkey-chart-head">
+                      <span className="monkey-chart-caption">Typing Progress (Last 7 Days)</span>
+                      <span className="monkey-chart-trend-badge">+12% ↗ dari minggu</span>
+                    </div>
+                    <div className="monkey-bars-container">
+                      {[
+                        { day: "Mon", h: 56 },
+                        { day: "Tue", h: 68 },
+                        { day: "Wed", h: 84 },
+                        { day: "Thu", h: 72 },
+                        { day: "Fri", h: 92 },
+                        { day: "Sat", h: 64 },
+                        { day: "Sun", h: 96 },
+                      ].map((bar, idx) => (
+                        <div key={idx} className="monkey-bar-col">
+                          <div className="monkey-bar-track">
+                            <div
+                              className="monkey-bar-pillar"
+                              style={{ height: `${bar.h}%` }}
+                            />
+                          </div>
+                          <span className="monkey-bar-day">{bar.day}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Footer Button */}
                   <a
                     href="https://monkeytype.com/profile/Aprillio"
                     target="_blank"
                     rel="noreferrer"
-                    className="personal-profile-link"
+                    className="personal-card-btn"
                   >
-                    Lihat Profil <ArrowUpRight style={{ width: 12, height: 12 }} />
+                    <span>Lihat Profil Monkeytype</span>
+                    <ArrowUpRight style={{ width: 14, height: 14 }} />
                   </a>
-                </div>
-
-                {/* Top highlight stats */}
-                <div className="personal-top-stat-row">
-                  <div className="personal-stat-col">
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                      <span className="personal-stat-num">{mtBestWpm}</span>
-                      <span style={{ fontSize: 13, fontWeight: 700, color: "var(--text-secondary)" }}>Best WPM</span>
-                    </div>
-                    <span className="personal-stat-label">Avg: {mtAvgWpm} WPM</span>
-                  </div>
-                </div>
-
-                {/* 2x2 Stats Grid */}
-                <div className="monkey-stats-grid">
-                  <div className="monkey-stat-box">
-                    <div className="monkey-stat-head">
-                      <span>🎯</span>
-                      <span className="monkey-stat-value">{mtAcc}%</span>
-                    </div>
-                    <p className="monkey-stat-caption">Accuracy</p>
-                    <p className="monkey-stat-sub">Consistency: {mtConsistency}%</p>
-                  </div>
-
-                  <div className="monkey-stat-box">
-                    <div className="monkey-stat-head">
-                      <span>✨</span>
-                      <span className="monkey-stat-value">{formatNumber(mtTests)}</span>
-                    </div>
-                    <p className="monkey-stat-caption">Tests Completed</p>
-                    <p className="monkey-stat-sub">21% completion</p>
-                  </div>
-
-                  <div className="monkey-stat-box">
-                    <div className="monkey-stat-head">
-                      <span>⏱️</span>
-                      <span className="monkey-stat-value">{mtTime}</span>
-                    </div>
-                    <p className="monkey-stat-caption">Time Typing</p>
-                    <p className="monkey-stat-sub">3.3k started</p>
-                  </div>
-
-                  <div className="monkey-stat-box">
-                    <div className="monkey-stat-head">
-                      <span>⚡</span>
-                      <span className="monkey-stat-value">125</span>
-                    </div>
-                    <p className="monkey-stat-caption">Best Raw WPM</p>
-                    <p className="monkey-stat-sub">Typing speed</p>
-                  </div>
-                </div>
-
-                {/* MonkeyType Trend Line Visualization matching reference blueprint */}
-                <div className="monkey-chart-section">
-                  <div className="monkey-chart-header">
-                    <span className="monkey-chart-title">Recent WPM [Last 10 Tests]</span>
-                    <span className="monkey-chart-best-raw">{mtBestRaw} Best Raw WPM</span>
-                  </div>
-                  <div className="monkey-chart-body">
-                    {/* SVG Line Chart */}
-                    <div className="monkey-chart-y-axis">
-                      <span>140</span>
-                      <span>105</span>
-                      <span>70</span>
-                      <span>35</span>
-                    </div>
-                    <div className="monkey-chart-svg-wrap">
-                      <svg viewBox="0 0 320 48" className="monkey-chart-svg" preserveAspectRatio="none">
-                        <line x1="0" y1="4" x2="320" y2="4" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                        <line x1="0" y1="18" x2="320" y2="18" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                        <line x1="0" y1="32" x2="320" y2="32" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                        <line x1="0" y1="46" x2="320" y2="46" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-                        {(() => {
-                          const points = [88, 94, 91, 98, 93, 101, 96, 104, 98, 108];
-                          const coords = points.map((p, i) => {
-                            const x = (i / (points.length - 1)) * 308 + 6;
-                            const y = 46 - ((p - 35) / (140 - 35)) * 40 - 2;
-                            return { x, y, p };
-                          });
-                          const pathStr = coords.reduce((acc, pt, idx) => idx === 0 ? `M ${pt.x} ${pt.y}` : `${acc} L ${pt.x} ${pt.y}`, "");
-                          return (
-                            <>
-                              <path d={pathStr} fill="none" stroke="var(--accent)" strokeWidth="1.8" />
-                              {coords.map((pt, idx) => (
-                                <circle
-                                  key={idx}
-                                  cx={pt.x}
-                                  cy={pt.y}
-                                  r={idx === coords.length - 1 ? 3.5 : 2.5}
-                                  fill={idx === coords.length - 1 ? "var(--accent)" : "#141413"}
-                                  stroke="var(--accent)"
-                                  strokeWidth="1.5"
-                                />
-                              ))}
-                            </>
-                          );
-                        })()}
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </section>

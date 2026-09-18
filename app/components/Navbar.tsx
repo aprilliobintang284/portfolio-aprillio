@@ -218,16 +218,6 @@ export default function Navbar() {
             </a>
           ))}
         </div>
-
-        {/* Footer Identity Block */}
-        <div className="sidebar-footer-profile">
-          <div className="sidebar-avatar-badge">AB</div>
-          <div>
-            <p className="sidebar-location">Kendal, Indonesia</p>
-            <p className="sidebar-copyright">© 2026</p>
-            <p className="sidebar-author">Aprillio Bintang Perdana</p>
-          </div>
-        </div>
       </aside>
 
       {/* ══ MOBILE COMPACT TOP BAR ══ */}
