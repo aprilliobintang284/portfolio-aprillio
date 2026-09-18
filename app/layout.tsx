@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aprillio — QA Specialist",
+  title: "Aprillio | QA Specialist",
   description:
     "Aprillio Bintang Perdana — Quality Assurance Specialist & Gaming Content Creator.",
 };

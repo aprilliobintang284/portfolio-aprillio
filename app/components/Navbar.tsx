@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -82,29 +82,80 @@ export default function Navbar() {
   const router = useRouter();
   const logoSrc = "/images/logo.png";
 
-  // IntersectionObserver for active section tracking on homepage
-  useEffect(() => {
-    if (path !== "/") return;
+  const isManualScrollRef = useRef(false);
+  const manualScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          setActiveSection(visible.target.id);
-        }
-      },
-      { threshold: [0.15, 0.4], rootMargin: "-15% 0px -25% 0px" }
-    );
+  // Reliable reading-line active section calculation
+  const determineActiveSection = useCallback(() => {
+    if (typeof window === "undefined" || path !== "/") return;
 
-    SECTIONS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    // Check bottom of page — activate the last section (#contact)
+    const scrollBottom = window.scrollY + window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    if (scrollBottom >= documentHeight - 60) {
+      setActiveSection("contact");
+      return;
+    }
 
-    return () => observer.disconnect();
+    // Trigger point: ~35% from the top of the viewport (between 30% and 40%)
+    const triggerPoint = window.innerHeight * 0.35;
+
+    // If above the first section (Hero area), default to 'about'
+    const firstSection = document.getElementById(SECTIONS[0].id);
+    if (firstSection) {
+      const firstRect = firstSection.getBoundingClientRect();
+      if (firstRect.top > triggerPoint) {
+        setActiveSection(SECTIONS[0].id);
+        return;
+      }
+    }
+
+    // Identify which section is currently crossing the reading trigger line
+    let currentActive = SECTIONS[0].id;
+    for (let i = 0; i < SECTIONS.length; i++) {
+      const section = SECTIONS[i];
+      const el = document.getElementById(section.id);
+      if (!el) continue;
+
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= triggerPoint) {
+        currentActive = section.id;
+      } else {
+        break;
+      }
+    }
+
+    setActiveSection(currentActive);
   }, [path]);
+
+  // Initial load / hash handling and scroll listener
+  useEffect(() => {
+    if (typeof window === "undefined" || path !== "/") return;
+
+    // Check if initial URL has a hash matching one of our sections
+    const initialHash = window.location.hash.replace("#", "");
+    if (initialHash && SECTIONS.some((s) => s.id === initialHash)) {
+      setActiveSection(initialHash);
+    } else {
+      determineActiveSection();
+    }
+
+    const handleScroll = () => {
+      if (isManualScrollRef.current) return;
+      determineActiveSection();
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      if (manualScrollTimeoutRef.current) {
+        clearTimeout(manualScrollTimeoutRef.current);
+      }
+    };
+  }, [path, determineActiveSection]);
 
   const scrollTo = useCallback(
     (anchor: string, closeMenu = false) => {
@@ -112,12 +163,34 @@ export default function Navbar() {
 
       if (path !== "/") {
         router.push(`/#${anchor}`);
-      } else {
-        const el = document.getElementById(anchor);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      // 1. Immediately highlight the clicked section
+      setActiveSection(anchor);
+
+      // 2. Lock scroll detection during smooth scroll animation to avoid race conditions
+      isManualScrollRef.current = true;
+      if (manualScrollTimeoutRef.current) {
+        clearTimeout(manualScrollTimeoutRef.current);
+      }
+      manualScrollTimeoutRef.current = setTimeout(() => {
+        isManualScrollRef.current = false;
+        determineActiveSection();
+      }, 950);
+
+      // 3. Update hash without page jump
+      if (window.history.pushState) {
+        window.history.pushState(null, "", `#${anchor}`);
+      }
+
+      // 4. Smoothly scroll to the target section
+      const el = document.getElementById(anchor);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     },
-    [path, router]
+    [path, router, determineActiveSection]
   );
 
   const scrollToTop = useCallback(
@@ -126,10 +199,23 @@ export default function Navbar() {
       if (path !== "/") {
         router.push("/");
       } else {
+        setActiveSection("about");
+        isManualScrollRef.current = true;
+        if (manualScrollTimeoutRef.current) {
+          clearTimeout(manualScrollTimeoutRef.current);
+        }
+        manualScrollTimeoutRef.current = setTimeout(() => {
+          isManualScrollRef.current = false;
+          determineActiveSection();
+        }, 950);
+
+        if (window.history.pushState) {
+          window.history.pushState(null, "", "/");
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
-    [path, router]
+    [path, router, determineActiveSection]
   );
 
   return (

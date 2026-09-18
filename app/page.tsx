@@ -16,6 +16,9 @@ import {
   ArrowRight,
   Briefcase,
   Users,
+  Sparkles,
+  GraduationCap,
+  ArrowUp,
 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import HeroBento from "./components/HeroBento";
@@ -495,17 +498,13 @@ export default function Home() {
                   {/* Header */}
                   <div className="personal-card-header">
                     <div className="personal-header-left">
-                      <div className="duo-owl-avatar">
-                        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-                          <ellipse cx="10.5" cy="15" rx="5.5" ry="6.5" fill="#FFFFFF" />
-                          <ellipse cx="11.5" cy="15" rx="3" ry="3.5" fill="#4B4B4B" />
-                          <circle cx="12.5" cy="13.5" r="1" fill="#FFFFFF" />
-                          <ellipse cx="21.5" cy="15" rx="5.5" ry="6.5" fill="#FFFFFF" />
-                          <ellipse cx="20.5" cy="15" rx="3" ry="3.5" fill="#4B4B4B" />
-                          <circle cx="21.5" cy="13.5" r="1" fill="#FFFFFF" />
-                          <path d="M14 18.5C14 18.5 16 22 18 18.5H14Z" fill="#FF9600" />
-                        </svg>
-                      </div>
+                      <Image
+                        src="/images/personal/duolingo.png"
+                        alt="Duolingo"
+                        width={48}
+                        height={48}
+                        className="duo-owl-img"
+                      />
                       <div>
                         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                           <span className="personal-card-title">Duolingo</span>
@@ -885,6 +884,206 @@ export default function Home() {
             </div>
           </motion.div>
         </section>
+
+        {/* ═══ 7. FOOTER — EDITORIAL CLOSING SECTION ═══ */}
+        <footer className="footer-wrap">
+          <div className="footer-container">
+            {/* 4-column Main Grid */}
+            <div className="footer-grid">
+              {/* Column 1: Identity */}
+              <div className="footer-col footer-col-identity">
+                <div className="footer-brand-header">
+                  <Image
+                    src="/images/logo.png"
+                    alt="Aprillio Bintang"
+                    width={38}
+                    height={38}
+                    className="footer-logo-img"
+                  />
+                  <div>
+                    <h3 className="footer-brand-name">Aprillio Bintang</h3>
+                    <p className="footer-brand-role">QA Specialist &amp; Content Creator</p>
+                  </div>
+                </div>
+
+                <p className="footer-bio-text">
+                  Building better products through quality, and sharing the journey along the way.
+                </p>
+
+                {/* 4 Social Icon Buttons */}
+                <div className="footer-social-row">
+                  <a
+                    href="https://github.com/aprilliobintang284"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-icon-btn"
+                    aria-label="GitHub"
+                  >
+                    <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/aprilliobintang"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-icon-btn"
+                    aria-label="LinkedIn"
+                  >
+                    <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@scarawanderr"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-icon-btn"
+                    aria-label="TikTok"
+                  >
+                    <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor">
+                      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/aprillio.bintang/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-icon-btn"
+                    aria-label="Instagram"
+                  >
+                    <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              {/* Column 2: Navigasi */}
+              <div className="footer-col footer-col-nav">
+                <h4 className="footer-col-title">Navigasi</h4>
+                <nav className="footer-link-list">
+                  <a href="#about" className="footer-nav-link">
+                    <User className="footer-link-icon" />
+                    <span>Tentang</span>
+                  </a>
+                  <a href="#experience" className="footer-nav-link">
+                    <Briefcase className="footer-link-icon" />
+                    <span>Pengalaman</span>
+                  </a>
+                  <a href="#education" className="footer-nav-link">
+                    <GraduationCap className="footer-link-icon" />
+                    <span>Pendidikan</span>
+                  </a>
+                  <a href="#personal" className="footer-nav-link">
+                    <Sparkles className="footer-link-icon" />
+                    <span>Personal</span>
+                  </a>
+                  <a href="#contact" className="footer-nav-link">
+                    <Mail className="footer-link-icon" />
+                    <span>Kontak</span>
+                  </a>
+                </nav>
+              </div>
+
+              {/* Column 3: Terhubung */}
+              <div className="footer-col footer-col-social">
+                <h4 className="footer-col-title">Terhubung</h4>
+                <div className="footer-link-list">
+                  <a
+                    href="https://github.com/aprilliobintang284"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-link"
+                  >
+                    <span className="footer-social-brand-icon">
+                      <svg viewBox="0 0 24 24" width={15} height={15} fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                    </span>
+                    <span>GitHub</span>
+                    <ArrowUpRight className="footer-external-arrow" />
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/aprilliobintang"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-link"
+                  >
+                    <span className="footer-social-brand-tile footer-tile-linkedin">
+                      <svg viewBox="0 0 24 24" width={11} height={11} fill="#FFFFFF">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
+                    </span>
+                    <span>LinkedIn</span>
+                    <ArrowUpRight className="footer-external-arrow" />
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@scarawanderr"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-link"
+                  >
+                    <span className="footer-social-brand-icon">
+                      <svg viewBox="0 0 24 24" width={14} height={14} fill="currentColor">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                      </svg>
+                    </span>
+                    <span>TikTok</span>
+                    <ArrowUpRight className="footer-external-arrow" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/aprillio.bintang/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-social-link"
+                  >
+                    <span className="footer-social-brand-tile footer-tile-instagram">
+                      <svg viewBox="0 0 24 24" width={11} height={11} fill="#FFFFFF">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                      </svg>
+                    </span>
+                    <span>Instagram</span>
+                    <ArrowUpRight className="footer-external-arrow" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Column 4: Far-Right Quote */}
+              <div className="footer-col footer-col-quote">
+                <div className="footer-quote-inner">
+                  <blockquote className="footer-quote-text">
+                    &ldquo;Better products.<br />
+                    Better experiences.&rdquo;
+                  </blockquote>
+                  <div className="footer-quote-divider" />
+                  <p className="footer-quote-sub">
+                    Testing today<br />
+                    for a better tomorrow.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="footer-bottom-row">
+              <span className="footer-copyright">
+                &copy; 2026 Aprillio Bintang Perdana. All rights reserved.
+              </span>
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="footer-back-to-top-btn"
+                aria-label="Kembali ke atas"
+              >
+                <span className="footer-back-to-top-circle">
+                  <ArrowUp style={{ width: 14, height: 14 }} />
+                </span>
+                <span>Kembali ke atas</span>
+              </button>
+            </div>
+          </div>
+        </footer>
       </main>
 
       {/* Toast Notification */}
