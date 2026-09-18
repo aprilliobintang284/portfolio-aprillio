@@ -1,42 +1,59 @@
 "use client";
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 
 export default function HeroBento() {
   return (
-    <section className="hero-spot">
-      {/* Main Hero Content */}
+    <section className="hero-fullbleed-container">
+      {/* Background: Full-Bleed Workspace Image (Desktop Only) */}
+      <div className="hero-fullbleed-bg">
+        <Image
+          src="/images/hero/workspace.png"
+          alt="Aprillio Workspace"
+          fill
+          priority
+          unoptimized
+          sizes="(min-width: 769px) 100vw, 1px"
+          className="hero-fullbleed-img"
+        />
+      </div>
+
+      {/* Foreground Content: Text sits over the dark left portion of the background */}
       <motion.div
-        className="hero-spot-content"
-        initial={{ opacity: 0, y: 18 }}
+        className="hero-fullbleed-content"
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Name */}
-        <h1 className="hero-spot-name">
-          <span style={{ color: "rgba(245,240,232,.94)" }}>Hi, I&apos;m </span>
-          <span style={{ color: "rgba(245,240,232,.94)" }}>Aprillio </span>
-          <span className="grad-orange">Bintang.</span>
+        {/* Eyebrow */}
+        <p className="hero-eyebrow">WELCOME TO MY DIGITAL SPACE</p>
+
+        {/* Heading */}
+        <h1 className="hero-name-heading">
+          Hi, I&apos;m Aprillio<br />
+          <span style={{ color: "var(--accent)" }}>Bintang</span> Perdana.
         </h1>
 
-        {/* Primary Identity */}
-        <p className="hero-spot-role">
+        {/* Role */}
+        <p className="hero-role-heading">
           QA Specialist &amp; Content Creator
         </p>
 
-        {/* Concise, human first-person supporting text */}
-        <p className="hero-spot-desc">
-          Memastikan keandalan fungsionalitas sistem web sebelum digunakan pengguna, sekaligus memproduksi konten gaming &amp; kampanye video berbasis data audiens.
+        {/* Description */}
+        <p className="hero-intro-text">
+          Saya fokus pada quality assurance, pengujian sistem, dan memastikan produk digital bekerja dengan baik. Di sisi lain, saya juga membuat konten gaming, terutama seputar Honor of Kings, untuk berbagi pengalaman dan membangun komunitas.
         </p>
 
-        {/* Clear 1-2 CTAs */}
-        <div className="hero-spot-cta">
-          <a href="#projects" className="btn btn-primary">
-            Lihat Proyek <ArrowRight style={{ width: 15, height: 15 }} />
-          </a>
-          <a href="#contact" className="btn btn-ghost">
-            <Mail style={{ width: 15, height: 15 }} /> Hubungi Saya
+        {/* CTAs */}
+        <div className="hero-cta-group">
+          <Link href="/projects" className="btn btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            Lihat Proyek <ArrowRight style={{ width: 14, height: 14 }} />
+          </Link>
+          <a href="#contact" className="btn btn-ghost" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <Mail style={{ width: 14, height: 14 }} /> Hubungi Saya
           </a>
         </div>
       </motion.div>
