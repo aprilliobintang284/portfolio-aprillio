@@ -10,6 +10,12 @@ import {
   Code2,
   Video,
   Flame,
+  User,
+  MessageSquare,
+  Send,
+  ArrowRight,
+  Briefcase,
+  Users,
 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import HeroBento from "./components/HeroBento";
@@ -668,33 +674,61 @@ export default function Home() {
 
         {/* ═══ 6. CONTACT (KONTAK) — FINAL SECTION (NO FOOTER AFTER THIS) ═══ */}
         <section id="contact" className="ref-doc-section" style={{ paddingBottom: 80 }}>
-          <motion.div className="ref-container-920" initial="hidden" whileInView="show" viewport={VP} variants={s}>
+          <motion.div className="contact-wide-container" initial="hidden" whileInView="show" viewport={VP} variants={s}>
             <div className="contact-reference-grid">
-              {/* Left Column: Info & Socials */}
+              {/* Left Column: Info, Opportunities, Socials & Email */}
               <motion.div variants={v} className="contact-left-col">
-                <h2 className="ref-section-heading">Kontak</h2>
+                <div className="contact-eyebrow-text">LET&apos;S CONNECT</div>
+                <h2 className="contact-main-heading">Kontak</h2>
                 <p className="contact-desc-text">
-                  Terbuka untuk diskusi proyek pengujian QA, kolaborasi konten, atau sekadar bertukar pikiran seputar industri tech.
+                  Terbuka untuk diskusi seputar peluang kerja, kolaborasi konten, atau sekadar ngobrol soal teknologi, game, dan hal menarik lainnya.
                 </p>
 
-                <h3 className="contact-subtitle">Platform Komunikasi</h3>
-                <div className="contact-socials-list">
+                {/* 3 Compact Opportunity Cards */}
+                <div className="contact-opportunities-grid">
+                  <div className="contact-opp-card">
+                    <div className="contact-opp-icon">
+                      <Briefcase style={{ width: 18, height: 18 }} />
+                    </div>
+                    <h4 className="contact-opp-title">Peluang Kerja</h4>
+                    <p className="contact-opp-desc">Full-time, internship, atau project freelance.</p>
+                  </div>
+
+                  <div className="contact-opp-card">
+                    <div className="contact-opp-icon">
+                      <Users style={{ width: 18, height: 18 }} />
+                    </div>
+                    <h4 className="contact-opp-title">Kolaborasi Konten</h4>
+                    <p className="contact-opp-desc">Gaming, tech, atau komunitas.</p>
+                  </div>
+
+                  <div className="contact-opp-card">
+                    <div className="contact-opp-icon">
+                      <MessageSquare style={{ width: 18, height: 18 }} />
+                    </div>
+                    <h4 className="contact-opp-title">Diskusi &amp; Lainnya</h4>
+                    <p className="contact-opp-desc">Ide, saran, atau sekadar ngobrol.</p>
+                  </div>
+                </div>
+
+                <h3 className="contact-subtitle">Temukan Saya di</h3>
+                <div className="contact-socials-row">
                   {[
-                    {
-                      href: "https://linkedin.com/in/aprilliobintang",
-                      l: "LinkedIn",
-                      icon: (
-                        <svg viewBox="0 0 24 24" width={13} height={13} fill="currentColor">
-                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                        </svg>
-                      ),
-                    },
                     {
                       href: "https://github.com/aprilliobintang284",
                       l: "GitHub",
                       icon: (
-                        <svg viewBox="0 0 24 24" width={13} height={13} fill="currentColor">
+                        <svg viewBox="0 0 24 24" width={14} height={14} fill="currentColor">
                           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      href: "https://linkedin.com/in/aprilliobintang",
+                      l: "LinkedIn",
+                      icon: (
+                        <svg viewBox="0 0 24 24" width={14} height={14} fill="currentColor">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
                       ),
                     },
@@ -702,7 +736,7 @@ export default function Home() {
                       href: "https://www.tiktok.com/@scarawanderr",
                       l: "TikTok",
                       icon: (
-                        <svg viewBox="0 0 24 24" width={13} height={13} fill="currentColor">
+                        <svg viewBox="0 0 24 24" width={14} height={14} fill="currentColor">
                           <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
                         </svg>
                       ),
@@ -711,7 +745,7 @@ export default function Home() {
                       href: "https://www.instagram.com/aprillio.bintang/",
                       l: "Instagram",
                       icon: (
-                        <svg viewBox="0 0 24 24" width={13} height={13} fill="currentColor">
+                        <svg viewBox="0 0 24 24" width={14} height={14} fill="currentColor">
                           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
                         </svg>
                       ),
@@ -725,7 +759,8 @@ export default function Home() {
                       className="contact-social-btn"
                     >
                       <span className="contact-social-icon">{icon}</span>
-                      <span className="contact-social-label">{l}</span>
+                      <span>{l}</span>
+                      <ArrowUpRight style={{ width: 11, height: 11, opacity: 0.6 }} />
                     </a>
                   ))}
                 </div>
@@ -738,82 +773,114 @@ export default function Home() {
                   }}
                   title="Klik untuk menyalin email"
                 >
-                  <Mail style={{ width: 14, height: 14, color: "var(--accent)" }} />
-                  <span className="contact-email-text">aprilliobintang284@gmail.com</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <Mail style={{ width: 16, height: 16, color: "#2EA8E6", flexShrink: 0 }} />
+                    <span className="contact-email-text">aprilliobintang284@gmail.com</span>
+                  </div>
+                  <ArrowRight style={{ width: 14, height: 14, color: "var(--text-muted)", flexShrink: 0 }} />
                 </div>
               </motion.div>
 
               {/* Middle Column: Form */}
               <motion.div variants={v} className="contact-right-col">
-                <h3 className="contact-subtitle">Kirim Pesan</h3>
+                <h3 className="contact-form-title">Kirim Pesan</h3>
+                <p className="contact-form-desc">
+                  Punya pertanyaan atau ingin bekerja sama? Tulis pesanmu di sini.
+                </p>
+
                 <form onSubmit={handleContactSubmit} className="contact-form-box">
                   <div className="contact-form-inputs-row">
-                    <input
-                      type="text"
-                      name="name"
+                    <div className="contact-input-wrap">
+                      <User className="contact-input-icon" style={{ width: 15, height: 15 }} />
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={contactForm.name}
+                        onChange={handleContactChange}
+                        placeholder="Nama Anda"
+                        className="contact-input-field"
+                      />
+                    </div>
+                    <div className="contact-input-wrap">
+                      <Mail className="contact-input-icon" style={{ width: 15, height: 15 }} />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={contactForm.email}
+                        onChange={handleContactChange}
+                        placeholder="Email Anda"
+                        className="contact-input-field"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="contact-textarea-wrap">
+                    <MessageSquare className="contact-textarea-icon" style={{ width: 15, height: 15 }} />
+                    <textarea
+                      name="message"
                       required
-                      value={contactForm.name}
+                      maxLength={500}
+                      value={contactForm.message}
                       onChange={handleContactChange}
-                      placeholder="Nama Anda"
-                      className="contact-input-field"
+                      placeholder="Tulis pesan Anda..."
+                      className="contact-textarea-field"
                     />
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={contactForm.email}
-                      onChange={handleContactChange}
-                      placeholder="email@anda.com"
-                      className="contact-input-field"
+                    <span className="contact-char-count">{contactForm.message.length}/500</span>
+                  </div>
+
+                  {/* Cloudflare Turnstile */}
+                  <div className="contact-turnstile-wrap">
+                    <Turnstile
+                      siteKey="0x4AAAAAADq_B4aMz84j6QmW"
+                      onSuccess={(token) => setTurnstileToken(token)}
+                      onExpire={() => setTurnstileToken(null)}
+                      onError={() => setTurnstileToken(null)}
+                      options={{ theme: "dark", size: "normal" }}
                     />
                   </div>
-                  <textarea
-                    name="message"
-                    required
-                    rows={4}
-                    value={contactForm.message}
-                    onChange={handleContactChange}
-                    placeholder="Ceritakan kebutuhan Anda..."
-                    className="contact-textarea-field"
-                  />
-                  <Turnstile
-                    siteKey="0x4AAAAAADq_B4aMz84j6QmW"
-                    onSuccess={(token) => setTurnstileToken(token)}
-                    onExpire={() => setTurnstileToken(null)}
-                    onError={() => setTurnstileToken(null)}
-                    options={{ theme: "dark", size: "flexible" }}
-                  />
+
+                  {/* Submit Button */}
                   <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="contact-submit-btn"
                     disabled={contactSending || contactSent || !turnstileToken}
                     style={{
-                      width: "100%",
-                      justifyContent: "center",
                       opacity: contactSending || contactSent || !turnstileToken ? 0.55 : 1,
                       cursor: contactSending || contactSent || !turnstileToken ? "not-allowed" : "pointer",
                     }}
                   >
                     {contactSent ? (
                       <>
-                        <CheckCircle2 style={{ width: 15, height: 15 }} /> Terkirim!
+                        <CheckCircle2 style={{ width: 16, height: 16 }} /> Terkirim!
                       </>
                     ) : contactSending ? (
                       <>Mengirim…</>
                     ) : (
                       <>
-                        <Mail style={{ width: 15, height: 15 }} /> Kirim Pesan
+                        <Send style={{ width: 14, height: 14 }} />
+                        <span>Kirim Pesan</span>
+                        <ArrowRight style={{ width: 14, height: 14 }} />
                       </>
                     )}
                   </button>
+
+                  {/* Response / help text */}
+                  <p className="contact-form-help-text">
+                    Saya akan berusaha membalas secepat mungkin. Terima kasih! ✨
+                  </p>
                 </form>
               </motion.div>
 
               {/* Right Column: Editorial Quote */}
               <div className="contact-quote-col">
-                <p className="contact-quote-text">
-                  &ldquo;Let&apos;s build something better together.&rdquo;
-                </p>
+                <div className="contact-quote-content">
+                  <blockquote className="contact-quote-text">
+                    &ldquo;Good conversations lead to great opportunities.&rdquo;
+                  </blockquote>
+                  <div className="contact-quote-accent-bar" />
+                </div>
               </div>
             </div>
           </motion.div>
