@@ -249,48 +249,72 @@ export default function Home() {
         <HeroBento />
 
         {/* ═══ 2. ABOUT (TENTANG SAYA) ═══ */}
-        <section id="about" className="ref-doc-section">
-          <motion.div className="ref-container-920" initial="hidden" whileInView="show" viewport={VP} variants={s}>
-            <div className="about-header-row">
-              <div>
-                <motion.h2 variants={v} className="ref-section-heading">
-                  Tentang Saya
+        <section id="about" className="about-section-wrap">
+          <motion.div className="about-wide-container" initial="hidden" whileInView="show" viewport={VP} variants={s}>
+            <div className="about-editorial-layout">
+              {/* Left & Center Column: Content */}
+              <div className="about-main-col">
+                {/* Eyebrow Label with subtle horizontal line */}
+                <motion.div variants={v} className="about-eyebrow-row">
+                  <span className="about-eyebrow-text">TENTANG SAYA</span>
+                  <span className="about-eyebrow-line" />
+                </motion.div>
+
+                {/* Main Heading */}
+                <motion.h2 variants={v} className="about-heading">
+                  Tentang <span style={{ color: "#2EA8E6" }}>Saya.</span>
                 </motion.h2>
-                <motion.p variants={v} className="about-main-desc">
-                  Sebagai <strong style={{ color: "var(--text-primary)" }}>Quality Assurance Specialist</strong>, saya percaya pada keandalan, proses yang terstruktur, dan produk digital berdampak nyata. Di waktu yang sama, saya aktif sebagai <strong style={{ color: "var(--text-primary)" }}>Content Creator</strong> untuk Honor of Kings — membagikan konten, membentuk komunitas, dan menikmati proses kreatifnya.
-                </motion.p>
+
+                {/* Personal Introduction Paragraphs */}
+                <motion.div variants={v} className="about-intro-text-wrap">
+                  <p className="about-intro-p">
+                    Saya adalah lulusan SMK yang fokus pada quality assurance, pengujian sistem, dan memastikan produk digital bekerja dengan baik. Di sisi lain, saya juga membuat konten seputar game Honor of Kings dan scene esports-nya, mulai dari highlight, clip gameplay, hingga informasi dan update turnamen.
+                  </p>
+                  <p className="about-intro-p">
+                    Saya percaya bahwa rasa ingin tahu, belajar secara konsisten, dan berbagi pengalaman adalah cara terbaik untuk terus berkembang dan memberi manfaat bagi orang lain.
+                  </p>
+                </motion.div>
+
+                {/* Two Feature Blocks Side-by-Side */}
+                <motion.div variants={v} className="about-features-row">
+                  {/* Left: Quality Assurance & Testing */}
+                  <div className="about-feature-item">
+                    <div className="about-feature-icon-box">
+                      <Code2 style={{ width: 22, height: 22, color: "#2EA8E6" }} />
+                    </div>
+                    <div className="about-feature-body">
+                      <h3 className="about-feature-label">QUALITY ASSURANCE &amp; TESTING</h3>
+                      <p className="about-feature-desc">
+                        Melakukan pengujian sistem, menemukan bug, dan memastikan setiap fitur bekerja dengan baik sebelum sampai ke pengguna.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Right: Konten Honor of Kings & Esports */}
+                  <div className="about-feature-item">
+                    <div className="about-feature-icon-box">
+                      <Video style={{ width: 22, height: 22, color: "#2EA8E6" }} />
+                    </div>
+                    <div className="about-feature-body">
+                      <h3 className="about-feature-label">KONTEN HONOR OF KINGS &amp; ESPORTS</h3>
+                      <p className="about-feature-desc">
+                        Membuat konten seputar Honor of Kings, seperti highlight, clip gameplay, update turnamen, dan informasi seputar scene esports.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-              <motion.div variants={v} className="about-side-quote">
-                <p>&ldquo;Curious about how things work, and how to make them better.&rdquo;</p>
+
+              {/* Far Right: Separated Quote Column with Divider */}
+              <motion.div variants={v} className="about-quote-col">
+                <div className="about-quote-content">
+                  <blockquote className="about-quote-text">
+                    &ldquo;Curious about how things work, and how to make them better.&rdquo;
+                  </blockquote>
+                  <div className="about-quote-accent-bar" />
+                </div>
               </motion.div>
             </div>
-
-            {/* Two Professional Feature Boxes */}
-            <motion.div variants={v} className="about-feature-grid">
-              <div className="about-feature-card">
-                <div className="about-feature-icon-wrap">
-                  <Code2 style={{ width: 18, height: 18, color: "var(--accent)" }} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <h3 className="about-feature-title">Quality Assurance &amp; Testing</h3>
-                  <p className="about-feature-skills">
-                    Functional Testing, E2E Testing, Bug Reporting, Cross-browser Testing, Manual API Verification, Regression Testing
-                  </p>
-                </div>
-              </div>
-
-              <div className="about-feature-card">
-                <div className="about-feature-icon-wrap">
-                  <Video style={{ width: 18, height: 18, color: "var(--accent)" }} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <h3 className="about-feature-title">Content Creation &amp; Media</h3>
-                  <p className="about-feature-skills">
-                    Video Editing &amp; Pacing, Content Strategy, HoK Creator Camp, Audience Retention Analytics, Community Growth
-                  </p>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </section>
 
