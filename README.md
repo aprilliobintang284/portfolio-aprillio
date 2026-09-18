@@ -6,7 +6,7 @@
 
 A modern, high-performance personal portfolio built with **Next.js 16**, **TypeScript**, **Framer Motion**, and a custom natural editorial dark design system.
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-portfolio--aprillio.vercel.app-141413?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-aprillio.vercel.app)
+[![Website](https://img.shields.io/badge/🌐_Website-aprillio.pro-141413?style=for-the-badge&logoColor=white)](https://aprillio.pro)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
