@@ -637,9 +637,13 @@ export default function Home() {
                   {/* Header */}
                   <div className="personal-card-header">
                     <div className="personal-header-left">
-                      <div className="monkey-mt-avatar">
-                        <span>mt</span>
-                      </div>
+                      <Image
+                        src="/images/personal/monkeytype.png"
+                        alt="Monkeytype"
+                        width={48}
+                        height={48}
+                        className="monkey-logo-img"
+                      />
                       <div>
                         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                           <span className="personal-card-title">Monkeytype</span>

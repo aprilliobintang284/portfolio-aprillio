@@ -1060,20 +1060,20 @@
     border-radius: 10px;
   }
 }
-.monkey-mt-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: #191918;
-  border: 1px solid #E2B714;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.monkey-logo-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: contain;
   flex-shrink: 0;
-  font-family: monospace;
-  font-weight: 900;
-  font-size: 14px;
-  color: #E2B714;
+  display: block;
+}
+@media (max-width: 640px) {
+  .monkey-logo-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
 }
 .personal-card-title {
   font-size: 14px;
