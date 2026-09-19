@@ -3706,9 +3706,34 @@
   }
 }
 
+/* ════════════════════════════════════════════════
+   RESPONSIVE COPY DENSITY (DESKTOP FULL VS MOBILE CONCISE)
+   ════════════════════════════════════════════════ */
+.copy-desktop {
+  display: block;
+}
+.copy-mobile {
+  display: none;
+}
+.copy-inline-desktop {
+  display: inline;
+}
+.copy-inline-mobile {
+  display: none;
+}
 
-
-
-
-
+@media (max-width: 768px) {
+  .copy-desktop {
+    display: none !important;
+  }
+  .copy-mobile {
+    display: block !important;
+  }
+  .copy-inline-desktop {
+    display: none !important;
+  }
+  .copy-inline-mobile {
+    display: inline !important;
+  }
+}
 

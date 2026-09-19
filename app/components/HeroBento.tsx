@@ -44,7 +44,12 @@ export default function HeroBento() {
 
         {/* Description */}
         <p className="hero-intro-text">
-          Fokus pada quality assurance dan pengujian sistem, dengan ketertarikan pada produk digital dan bagaimana membuatnya lebih baik. Di luar itu, aktif membuat konten seputar Honor of Kings dan esports.
+          <span className="copy-desktop">
+            Fokus pada quality assurance dan pengujian sistem, dengan ketertarikan pada produk digital dan bagaimana membuatnya lebih baik. Di luar itu, aktif membuat konten seputar Honor of Kings dan esports.
+          </span>
+          <span className="copy-mobile">
+            Fokus pada QA dan pengujian sistem, sambil aktif membuat konten Honor of Kings dan esports.
+          </span>
         </p>
 
         {/* CTAs */}

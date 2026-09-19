@@ -272,10 +272,20 @@ export default function Home() {
                 {/* Personal Introduction Paragraphs */}
                 <motion.div variants={v} className="about-intro-text-wrap">
                   <p className="about-intro-p">
-                    Saya adalah lulusan SMK yang fokus pada quality assurance, pengujian sistem, dan memastikan produk digital bekerja dengan baik. Di sisi lain, saya juga membuat konten seputar game Honor of Kings dan scene esports-nya, mulai dari highlight, clip gameplay, hingga informasi dan update turnamen.
+                    <span className="copy-desktop">
+                      Saya adalah lulusan SMK yang fokus pada quality assurance, pengujian sistem, dan memastikan produk digital bekerja dengan baik. Di sisi lain, saya juga membuat konten seputar game Honor of Kings dan scene esports-nya, mulai dari highlight, clip gameplay, hingga informasi dan update turnamen.
+                    </span>
+                    <span className="copy-mobile">
+                      Lulusan SMK yang fokus pada quality assurance dan pengujian sistem. Di luar itu, aktif membuat konten Honor of Kings dan esports.
+                    </span>
                   </p>
                   <p className="about-intro-p">
-                    Saya percaya bahwa rasa ingin tahu, belajar secara konsisten, dan berbagi pengalaman adalah cara terbaik untuk terus berkembang dan memberi manfaat bagi orang lain.
+                    <span className="copy-desktop">
+                      Saya percaya bahwa rasa ingin tahu, belajar secara konsisten, dan berbagi pengalaman adalah cara terbaik untuk terus berkembang dan memberi manfaat bagi orang lain.
+                    </span>
+                    <span className="copy-mobile">
+                      Suka belajar, mencoba hal baru, dan terus mencari cara untuk membuat sesuatu menjadi lebih baik.
+                    </span>
                   </p>
                 </motion.div>
 
@@ -289,7 +299,12 @@ export default function Home() {
                     <div className="about-feature-body">
                       <h3 className="about-feature-label">QUALITY ASSURANCE &amp; TESTING</h3>
                       <p className="about-feature-desc">
-                        Melakukan pengujian sistem, menemukan bug, dan memastikan setiap fitur bekerja dengan baik sebelum sampai ke pengguna.
+                        <span className="copy-desktop">
+                          Melakukan pengujian sistem, menemukan bug, dan memastikan setiap fitur bekerja dengan baik sebelum sampai ke pengguna.
+                        </span>
+                        <span className="copy-mobile">
+                          Pengujian sistem, mencari bug, dan memastikan fitur bekerja dengan baik.
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -302,7 +317,12 @@ export default function Home() {
                     <div className="about-feature-body">
                       <h3 className="about-feature-label">KONTEN HONOR OF KINGS &amp; ESPORTS</h3>
                       <p className="about-feature-desc">
-                        Membuat konten seputar Honor of Kings, seperti highlight, clip gameplay, update turnamen, dan informasi seputar scene esports.
+                        <span className="copy-desktop">
+                          Membuat konten seputar Honor of Kings, seperti highlight, clip gameplay, update turnamen, dan informasi seputar scene esports.
+                        </span>
+                        <span className="copy-mobile">
+                          Membuat highlight, clip gameplay, dan konten seputar esports.
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -343,9 +363,18 @@ export default function Home() {
                   <h3 className="ref-role-title">Quality Assurance Specialist</h3>
                   <p className="ref-company-name">PT. BULLION ECOSYSTEM INTERNATIONAL · Bogor</p>
                   <ul className="ref-timeline-bullets">
-                    <li>· End-to-end testing menyeluruh untuk platform tiket Tenar (Buyer &amp; Organizer) Phase 2–4 serta Payment Gateway MVP.</li>
-                    <li>· Menyusun puluhan test case fungsional, memvalidasi alur checkout tiket dan integrasi form event.</li>
-                    <li>· Mencatat dan mengelola status pelaporan bug secara berkala di Plane, berkoordinasi langsung dengan developer.</li>
+                    <li>
+                      <span className="copy-desktop">· End-to-end testing menyeluruh untuk platform tiket Tenar (Buyer &amp; Organizer) Phase 2–4 serta Payment Gateway MVP.</span>
+                      <span className="copy-mobile">· End-to-end testing platform Tenar (Buyer &amp; Organizer) dan Payment Gateway MVP.</span>
+                    </li>
+                    <li>
+                      <span className="copy-desktop">· Menyusun puluhan test case fungsional, memvalidasi alur checkout tiket dan integrasi form event.</span>
+                      <span className="copy-mobile">· Menyusun test case fungsional, validasi checkout tiket, dan form event.</span>
+                    </li>
+                    <li>
+                      <span className="copy-desktop">· Mencatat dan mengelola status pelaporan bug secara berkala di Plane, berkoordinasi langsung dengan developer.</span>
+                      <span className="copy-mobile">· Melaporkan dan mengelola bug di Plane bersama developer.</span>
+                    </li>
                   </ul>
                 </div>
               </motion.div>
@@ -363,9 +392,18 @@ export default function Home() {
                   <h3 className="ref-role-title">Freelance Gaming Content Creator</h3>
                   <p className="ref-company-name">Honor of Kings (Tencent / TikTok) · Remote</p>
                   <ul className="ref-timeline-bullets">
-                    <li>· Menyelesaikan konten &amp; 50+ video promosi resmi kampanye TikTok untuk game Honor of Kings.</li>
-                    <li>· Anggota aktif HoK Creator Camp dengan akumulasi penayangan jutaan penonton.</li>
-                    <li>· Menjalankan seluruh siklus produksi: perekaman gameplay, narasi, editing, sound design, dan pacing video.</li>
+                    <li>
+                      <span className="copy-desktop">· Menyelesaikan konten &amp; 50+ video promosi resmi kampanye TikTok untuk game Honor of Kings.</span>
+                      <span className="copy-mobile">· Memproduksi 50+ video kampanye resmi TikTok untuk Honor of Kings.</span>
+                    </li>
+                    <li>
+                      <span className="copy-desktop">· Anggota aktif HoK Creator Camp dengan akumulasi penayangan jutaan penonton.</span>
+                      <span className="copy-mobile">· Anggota HoK Creator Camp dengan jutaan akumulasi penayangan.</span>
+                    </li>
+                    <li>
+                      <span className="copy-desktop">· Menjalankan seluruh siklus produksi: perekaman gameplay, narasi, editing, sound design, dan pacing video.</span>
+                      <span className="copy-mobile">· Perekaman gameplay, narasi, editing, sound design, dan pacing video.</span>
+                    </li>
                   </ul>
                 </div>
               </motion.div>
@@ -382,8 +420,14 @@ export default function Home() {
                   <h3 className="ref-role-title">Internship Monitoring Server</h3>
                   <p className="ref-company-name">PT. BULLION ECOSYSTEM INTERNATIONAL · Bogor</p>
                   <ul className="ref-timeline-bullets">
-                    <li>· Pemantauan operasional server produksi secara berkala untuk menjaga uptime dan stabilitas sistem.</li>
-                    <li>· Menganalisis error transaksi dan mendokumentasikan kendala operasional ke laporan teknis.</li>
+                    <li>
+                      <span className="copy-desktop">· Pemantauan operasional server produksi secara berkala untuk menjaga uptime dan stabilitas sistem.</span>
+                      <span className="copy-mobile">· Monitoring server produksi untuk menjaga uptime dan stabilitas.</span>
+                    </li>
+                    <li>
+                      <span className="copy-desktop">· Menganalisis error transaksi dan mendokumentasikan kendala operasional ke laporan teknis.</span>
+                      <span className="copy-mobile">· Menganalisis error transaksi dan menyusun laporan teknis.</span>
+                    </li>
                   </ul>
                 </div>
               </motion.div>
@@ -478,7 +522,12 @@ export default function Home() {
                   </motion.h2>
 
                   <motion.p variants={v} className="personal-intro-desc">
-                    Selain pengujian QA dan membuat konten, saya juga punya beberapa kebiasaan yang membantu saya tetap konsisten, fokus, dan berkembang. Dua di antaranya adalah belajar bahasa di Duolingo dan melatih kecepatan mengetik di Monkeytype.
+                    <span className="copy-desktop">
+                      Selain pengujian QA dan membuat konten, saya juga punya beberapa kebiasaan yang membantu saya tetap konsisten, fokus, dan berkembang. Dua di antaranya adalah belajar bahasa di Duolingo dan melatih kecepatan mengetik di Monkeytype.
+                    </span>
+                    <span className="copy-mobile">
+                      Beberapa kebiasaan kecil yang membantu tetap konsisten, fokus, dan berkembang.
+                    </span>
                   </motion.p>
                 </div>
 
@@ -680,7 +729,12 @@ export default function Home() {
                 <div className="contact-eyebrow-text">LET&apos;S CONNECT</div>
                 <h2 className="contact-main-heading">Kontak</h2>
                 <p className="contact-desc-text">
-                  Terbuka untuk diskusi seputar peluang kerja, kolaborasi konten, atau sekadar ngobrol soal teknologi, game, dan hal menarik lainnya.
+                  <span className="copy-desktop">
+                    Terbuka untuk diskusi seputar peluang kerja, kolaborasi konten, atau sekadar ngobrol soal teknologi, game, dan hal menarik lainnya.
+                  </span>
+                  <span className="copy-mobile">
+                    Terbuka untuk peluang kerja, kolaborasi konten, atau sekadar ngobrol soal teknologi dan game.
+                  </span>
                 </p>
 
                 {/* 3 Compact Opportunity Cards */}
@@ -690,7 +744,10 @@ export default function Home() {
                       <Briefcase style={{ width: 18, height: 18 }} />
                     </div>
                     <h4 className="contact-opp-title">Peluang Kerja</h4>
-                    <p className="contact-opp-desc">Full-time, internship, atau project freelance.</p>
+                    <p className="contact-opp-desc">
+                      <span className="copy-desktop">Full-time, internship, atau project freelance.</span>
+                      <span className="copy-mobile">Full-time, internship, atau freelance.</span>
+                    </p>
                   </div>
 
                   <div className="contact-opp-card">
@@ -706,7 +763,10 @@ export default function Home() {
                       <MessageSquare style={{ width: 18, height: 18 }} />
                     </div>
                     <h4 className="contact-opp-title">Diskusi &amp; Lainnya</h4>
-                    <p className="contact-opp-desc">Ide, saran, atau sekadar ngobrol.</p>
+                    <p className="contact-opp-desc">
+                      <span className="copy-desktop">Ide, saran, atau sekadar ngobrol.</span>
+                      <span className="copy-mobile">Ide, saran, atau ngobrol santai.</span>
+                    </p>
                   </div>
                 </div>
 
