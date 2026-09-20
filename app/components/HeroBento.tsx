@@ -9,7 +9,7 @@ export default function HeroBento() {
   return (
     <section className="hero-fullbleed-container">
       {/* Background: Full-Bleed Workspace Image (Desktop Only) */}
-      <div className="hero-fullbleed-bg">
+      <div className="hero-fullbleed-bg desktop-only-hero">
         <Image
           src="/images/hero/workspace.png"
           alt="Aprillio Workspace"
@@ -21,7 +21,7 @@ export default function HeroBento() {
         />
       </div>
 
-      {/* Foreground Content: Text sits over the dark left portion of the background */}
+      {/* Foreground Content: Text sits over the dark clean background */}
       <motion.div
         className="hero-fullbleed-content"
         initial={{ opacity: 0, y: 16 }}
@@ -29,7 +29,9 @@ export default function HeroBento() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Eyebrow */}
-        <p className="hero-eyebrow">WELCOME TO MY DIGITAL SPACE</p>
+        <p className="hero-eyebrow">
+          WELCOME TO MY DIGITAL SPACE
+        </p>
 
         {/* Heading */}
         <h1 className="hero-name-heading">
@@ -62,6 +64,19 @@ export default function HeroBento() {
           </a>
         </div>
       </motion.div>
+
+      {/* Mobile Workspace: 1:1 Square Visual Layer (Layered inside Hero, not a separate card) */}
+      <div className="hero-mobile-visual mobile-only-hero">
+        <Image
+          src="/images/hero/workspace-mobile.png"
+          alt="Aprillio Workspace"
+          width={390}
+          height={390}
+          priority
+          unoptimized
+          className="hero-mobile-square-img"
+        />
+      </div>
     </section>
   );
 }

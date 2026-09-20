@@ -78,12 +78,51 @@ const SOCIALS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
+  const [isScrolled, setIsScrolled] = useState(false);
   const path = usePathname();
   const router = useRouter();
   const logoSrc = "/images/logo.png";
 
   const isManualScrollRef = useRef(false);
   const manualScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Monitor scroll for top navbar transparent vs scrolled state
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (path !== "/") {
+      setIsScrolled(true);
+      return;
+    }
+    const checkScroll = () => {
+      setIsScrolled(window.scrollY > 35);
+    };
+    checkScroll();
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    return () => window.removeEventListener("scroll", checkScroll);
+  }, [path]);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Handle ESC key to close drawer
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   // Reliable reading-line active section calculation
   const determineActiveSection = useCallback(() => {
@@ -307,91 +346,168 @@ export default function Navbar() {
       </aside>
 
       {/* ══ MOBILE COMPACT TOP BAR ══ */}
-      <header className="mobile-top-bar">
+      <header className={`mobile-top-bar ${isScrolled ? "is-scrolled" : "is-transparent"}`}>
         <button onClick={() => scrollToTop()} className="mobile-logo-btn" aria-label="Home">
           <Image
             src={logoSrc}
             alt="Aprillio Monogram"
-            width={38}
-            height={22}
+            width={34}
+            height={20}
             className="mobile-logo-img"
             priority
           />
-          <span style={{ fontSize: 13, fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-.02em" }}>
+          <span className="mobile-logo-text">
             Aprillio<span style={{ color: "var(--accent)" }}>.</span>
           </span>
         </button>
 
         <button
           onClick={() => setOpen(!open)}
-          className="mobile-menu-btn"
-          aria-label="Buka menu navigasi"
+          className={`mobile-menu-btn ${open ? "is-open" : ""}`}
+          aria-label={open ? "Tutup menu navigasi" : "Buka menu navigasi"}
+          aria-expanded={open}
         >
-          {open ? <X style={{ width: 18, height: 18 }} /> : <Menu style={{ width: 18, height: 18 }} />}
+          <span className="hamburger-line line-1" />
+          <span className="hamburger-line line-2" />
+          <span className="hamburger-line line-3" />
         </button>
+      </header>
 
-        <AnimatePresence>
-          {open && (
+      {/* ══ MOBILE NAVIGATION DRAWER & BACKDROP ══ */}
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Dark translucent backdrop with restrained blur */}
             <motion.div
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="mobile-nav-backdrop"
+              onClick={() => setOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Right-sliding Navigation Drawer */}
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
               className="mobile-nav-drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigasi Mobile"
             >
-              <div style={{ display: "flex", flexDirection: "column", gap: 6, width: "100%", maxWidth: 320 }}>
-                <p style={{ fontSize: 10.5, fontWeight: 700, color: "var(--text-muted)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 6 }}>
-                  Navigasi
-                </p>
-
-                {SECTIONS.map(({ id, label, icon: Icon }) => (
-                  <button
-                    key={id}
-                    onClick={() => scrollTo(id, true)}
-                    className="mobile-drawer-link"
-                  >
-                    <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <Icon style={{ width: 15, height: 15, color: "var(--accent)" }} />
-                      {label}
-                    </span>
-                    <ChevronRight style={{ width: 14, height: 14, opacity: 0.4 }} />
-                  </button>
-                ))}
-
-                <div style={{ height: 1, background: "var(--border)", margin: "10px 0" }} />
-
-                <p style={{ fontSize: 10.5, fontWeight: 700, color: "var(--text-muted)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 6 }}>
-                  Portfolio
-                </p>
-
-                <Link
-                  href="/projects"
-                  onClick={() => setOpen(false)}
-                  className="mobile-drawer-link"
+              {/* Drawer Top Header */}
+              <div className="mobile-drawer-header">
+                <button
+                  onClick={() => scrollToTop(true)}
+                  className="mobile-logo-btn"
+                  aria-label="Home"
                 >
-                  <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <ShieldCheck style={{ width: 15, height: 15, color: "var(--accent)" }} />
-                    QA Projects
+                  <Image
+                    src={logoSrc}
+                    alt="Aprillio Monogram"
+                    width={34}
+                    height={20}
+                    className="mobile-logo-img"
+                  />
+                  <span className="mobile-logo-text">
+                    Aprillio<span style={{ color: "var(--accent)" }}>.</span>
                   </span>
-                  <ChevronRight style={{ width: 14, height: 14, opacity: 0.4 }} />
-                </Link>
+                </button>
 
-                <Link
-                  href="/creator"
+                <button
                   onClick={() => setOpen(false)}
-                  className="mobile-drawer-link"
+                  className="mobile-drawer-close-btn"
+                  aria-label="Tutup menu navigasi"
                 >
-                  <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <Video style={{ width: 15, height: 15, color: "var(--accent)" }} />
-                    Creator Media
-                  </span>
-                  <ChevronRight style={{ width: 14, height: 14, opacity: 0.4 }} />
-                </Link>
+                  <X style={{ width: 18, height: 18 }} />
+                </button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+
+              {/* Drawer Scrollable Body */}
+              <div className="mobile-drawer-body">
+                {/* 1. NAVIGASI */}
+                <div className="mobile-drawer-group">
+                  <p className="mobile-drawer-label">NAVIGASI</p>
+                  <div className="mobile-drawer-items">
+                    {SECTIONS.map(({ id, label, icon: Icon }) => {
+                      const isActive = path === "/" && activeSection === id;
+                      return (
+                        <button
+                          key={id}
+                          onClick={() => scrollTo(id, true)}
+                          className={`mobile-drawer-item ${isActive ? "is-active" : ""}`}
+                        >
+                          <span className="mobile-drawer-item-left">
+                            <Icon className="mobile-drawer-icon" />
+                            <span>{label}</span>
+                          </span>
+                          <ChevronRight className="mobile-drawer-chevron" />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="mobile-drawer-divider" />
+
+                {/* 2. PORTFOLIO */}
+                <div className="mobile-drawer-group">
+                  <p className="mobile-drawer-label">PORTFOLIO</p>
+                  <div className="mobile-drawer-items">
+                    {PORTFOLIO_ITEMS.map(({ href, label, icon: Icon }) => {
+                      const isActive = path === href;
+                      return (
+                        <Link
+                          key={href}
+                          href={href}
+                          onClick={() => setOpen(false)}
+                          className={`mobile-drawer-item ${isActive ? "is-active" : ""}`}
+                        >
+                          <span className="mobile-drawer-item-left">
+                            <Icon className="mobile-drawer-icon" />
+                            <span>{label}</span>
+                          </span>
+                          <ChevronRight className="mobile-drawer-chevron" />
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="mobile-drawer-divider" />
+
+                {/* 3. LINKS */}
+                <div className="mobile-drawer-group">
+                  <p className="mobile-drawer-label">LINKS</p>
+                  <div className="mobile-drawer-items">
+                    {SOCIALS.map(({ href, label, icon }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mobile-drawer-item mobile-drawer-external"
+                      >
+                        <span className="mobile-drawer-item-left">
+                          <span className="mobile-drawer-social-icon">
+                            {icon}
+                          </span>
+                          <span>{label}</span>
+                        </span>
+                        <ChevronRight className="mobile-drawer-chevron" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
