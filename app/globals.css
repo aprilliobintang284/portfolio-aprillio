@@ -3114,20 +3114,617 @@
   border: none;
 }
 
-/* Asymmetric hero split for Project 01 */
-.qa-buyer-split {
-  display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
-  gap: clamp(24px, 4vw, 48px);
-  align-items: start;
-  margin-bottom: 28px;
+/* ════════════════════════════════════════════════
+   PROJECTS PAGE: FLUID HORIZONTAL LAYOUT
+   Naturally uses available space beside desktop sidebar.
+   No artificial narrow centered width locks.
+   ════════════════════════════════════════════════ */
+.projects-fluid-container {
+  width: 100%;
+  padding-left: clamp(20px, 3.8vw, 56px);
+  padding-right: clamp(20px, 3.8vw, 56px);
+  box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  .qa-buyer-split {
+/* ════════════════════════════════════════════════
+   CHAPTER 01: TENAR EVENTS (BUYER) — NATURAL EDITORIAL CASE STUDY
+   Typography · Whitespace · Real Screenshots · Restrained Design
+   ════════════════════════════════════════════════ */
+
+/* Hero Container */
+.qa-buyer-editorial-hero {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(16px, 2.5vw, 32px);
+  margin-bottom: clamp(40px, 5vw, 56px);
+}
+
+/* Two-column Hero Grid */
+.qa-buyer-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: clamp(32px, 4.5vw, 60px);
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .qa-buyer-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* Left Column: Editorial Content */
+.qa-buyer-intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-buyer-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  font-family: monospace;
+  color: var(--accent);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.qa-buyer-title {
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin: 6px 0 12px;
+}
+
+.qa-buyer-title-accent {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.qa-buyer-subhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.qa-buyer-category {
+  font-size: 13px;
+  font-family: monospace;
+  color: var(--text-secondary);
+}
+
+.qa-buyer-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(245, 240, 232, 0.72);
+  margin-bottom: 24px;
+  max-width: 640px;
+}
+
+/* Horizontal Metadata Row (No card, no rounded boxes) */
+.qa-buyer-meta-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+
+@media (max-width: 640px) {
+  .qa-buyer-meta-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.qa-buyer-meta-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-buyer-meta-label {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: monospace;
+  color: var(--accent);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.qa-buyer-meta-val {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.qa-buyer-meta-sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  line-height: 1.45;
+}
+
+/* Limitation Notice (Subtle editorial note with amber line) */
+.qa-buyer-limitation {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-left: 2px solid var(--warning);
+  background: rgba(197, 150, 58, 0.04);
+  max-width: 640px;
+}
+
+.qa-buyer-limitation-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.qa-buyer-limitation-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--warning);
+  letter-spacing: .02em;
+}
+
+.qa-buyer-limitation-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Right Column: Simple Realistic iPhone Frame (No glow, no 3D distortion) */
+.qa-buyer-device-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qa-buyer-iphone {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 44px;
+  padding: 9px;
+  background: #191918;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 20px 45px -12px rgba(0, 0, 0, 0.75),
+    0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+@media (hover: hover) {
+  .qa-buyer-iphone:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 26px 54px -12px rgba(0, 0, 0, 0.85),
+      0 6px 16px -2px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+@media (max-width: 960px) {
+  .qa-buyer-iphone {
+    max-width: 270px;
+  }
+}
+
+.qa-buyer-iphone-screen {
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 430 / 932;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qa-buyer-iphone-island {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 18px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.qa-buyer-iphone-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Product Section (Tampilan Produk): Clean 2-Column Screenshot Focus */
+.qa-buyer-gallery {
+  margin: clamp(40px, 5vw, 60px) 0;
+}
+
+.qa-buyer-gallery-head,
+.qa-buyer-scenarios-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.qa-buyer-gallery-title {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.qa-buyer-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 36px);
+}
+
+@media (max-width: 680px) {
+  .qa-buyer-gallery-grid {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+}
+
+.qa-buyer-screenshot-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.qa-buyer-screenshot-frame {
+  position: relative;
+  width: 100%;
+  padding: clamp(14px, 2vw, 22px) clamp(10px, 1.5vw, 16px);
+  background: #131312;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.qa-buyer-screenshot-item:hover .qa-buyer-screenshot-frame {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.qa-buyer-screenshot-img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 640px;
+  object-fit: contain;
+  display: block;
+}
+
+.qa-buyer-screenshot-caption {
+  padding: 12px 0 0;
+}
+
+.qa-buyer-screenshot-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.qa-buyer-screenshot-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Testing Scenarios: Editorial List with Thin Dividers */
+.qa-buyer-scenarios {
+  margin: clamp(44px, 5vw, 64px) 0 32px;
+}
+
+.qa-buyer-scenarios-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-buyer-scenario-item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.qa-buyer-scenario-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 600px) {
+  .qa-buyer-scenario-item {
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+  }
+}
+
+.qa-buyer-scenario-num {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: .08em;
+}
+
+.qa-buyer-scenario-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qa-buyer-scenario-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.qa-buyer-scenario-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 800px;
+}
+
+/* Production Result: Subtle green vertical indicator */
+.qa-buyer-production-result {
+  border-left: 2px solid var(--success);
+  padding: 10px 0 10px 18px;
+  margin: clamp(32px, 4vw, 44px) 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.qa-buyer-production-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  font-family: monospace;
+  color: var(--success);
+}
+
+.qa-buyer-production-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.qa-buyer-production-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 720px;
+}
+
+/* CTA */
+.qa-buyer-cta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ════════════════════════════════════════════════
+   CHAPTER 02: TENAR ORGANIZER — TWO-COLUMN EDITORIAL
+   Left: Compact Laptop Mockup (Supporting Evidence)
+   Right: Title, Specs, Verified Paths, Result, CTA
+   ════════════════════════════════════════════════ */
+.qa-organizer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(36px, 5vw, 68px);
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .qa-organizer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.qa-organizer-visual-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1025px) {
+  .qa-organizer-visual-sticky {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+.qa-organizer-content-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Laptop Mockup (HTML/CSS, Realistic & Restrained) */
+.qa-laptop-container {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.qa-laptop-frame {
+  width: 100%;
+  position: relative;
+}
+
+/* Laptop Lid (Screen Bezel) */
+.qa-laptop-lid {
+  background: #171716;
+  border-radius: 12px 12px 2px 2px;
+  padding: 9px 9px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 
+    0 16px 36px -8px rgba(0, 0, 0, 0.70),
+    0 4px 12px -2px rgba(0, 0, 0, 0.40);
+  position: relative;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+@media (hover: hover) {
+  .qa-laptop-container:hover .qa-laptop-lid {
+    border-color: rgba(255, 255, 255, 0.20);
+    transform: translateY(-2px);
+  }
+}
+
+.qa-laptop-camera-dot {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #2a2a28;
+  border-radius: 50%;
+}
+
+.qa-laptop-screen {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0d0d0c;
+  aspect-ratio: 1917 / 971;
+  display: block;
+}
+
+.qa-laptop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Laptop Base (Minimalist keyboard chassis silhouette) */
+.qa-laptop-base {
+  width: 106%;
+  margin-left: -3%;
+  height: 10px;
+  background: linear-gradient(180deg, #252523 0%, #151514 100%);
+  border-radius: 0 0 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
+  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.75);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.qa-laptop-base-notch {
+  width: 52px;
+  height: 3px;
+  background: #0f0f0e;
+  border-radius: 0 0 3px 3px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: none;
+}
+
+.qa-laptop-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4px 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.qa-laptop-caption span {
+  font-family: monospace;
+  letter-spacing: .02em;
+}
+
+/* Verified System Paths within Chapter 02 */
+.qa-organizer-paths {
+  margin: 20px 0 24px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.qa-organizer-paths-head {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.55);
+}
+
+.qa-organizer-paths-list {
+  padding: 6px 16px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+}
+
+.qa-organizer-path-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.qa-organizer-path-item:last-child {
+  border-bottom: none;
 }
 
 .qa-chapter-header-group {
@@ -3478,6 +4075,17 @@
   color: var(--text-primary);
   letter-spacing: 0.02em;
 }
+.lightbox-counter {
+  font-size: 12px;
+  font-family: monospace;
+  color: var(--accent);
+  background: rgba(232, 89, 12, 0.12);
+  border: 1px solid rgba(232, 89, 12, 0.28);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
 .lightbox-close-btn {
   background: var(--surface-elevated);
   border: 1px solid var(--border);
@@ -3507,6 +4115,44 @@
   height: calc(100vh - 64px);
   overflow: hidden;
   cursor: zoom-out;
+  position: relative;
+}
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(22, 22, 21, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(245, 240, 232, 0.85);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox-nav-btn:hover {
+  background: #262624;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-50%) scale(1.08);
+}
+.lightbox-nav-prev {
+  left: clamp(14px, 2.5vw, 32px);
+}
+.lightbox-nav-next {
+  right: clamp(14px, 2.5vw, 32px);
+}
+@media (max-width: 640px) {
+  .lightbox-nav-btn {
+    width: 38px;
+    height: 38px;
+  }
 }
 .lightbox-img {
   display: block;

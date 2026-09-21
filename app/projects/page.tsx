@@ -25,18 +25,48 @@ const vScale: Variants = {
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 const VP = { once: true, margin: "-40px" } as const;
-const W = { maxWidth: 960, margin: "0 auto", padding: "0 24px" };
+
+const PROJECT_GALLERY: LightboxImage[] = [
+  {
+    src: "/images/projects/tenar-buyer/hero.png",
+    alt: "Tenar Events Buyer Mobile Interface",
+    caption: "Tenar Events (Buyer) — Antarmuka Utama Mobile Web",
+    width: 430,
+    height: 932,
+  },
+  {
+    src: "/images/projects/tenar-buyer/event-detail.png",
+    alt: "Event Detail",
+    caption: "Tenar Events (Buyer) — Event Detail: Halaman detail event, informasi, dan pembelian tiket",
+    width: 269,
+    height: 583,
+  },
+  {
+    src: "/images/projects/tenar-buyer/search-filter.png",
+    alt: "Search",
+    caption: "Tenar Events (Buyer) — Search: Hasil pencarian event secara real-time",
+    width: 269,
+    height: 583,
+  },
+  {
+    src: "/images/projects/tenar-organizer/hero.png",
+    alt: "Tenar Organizer CMS Dashboard",
+    caption: "Tenar Organizer — Dashboard CMS Manajemen Event & Tiket",
+    width: 1917,
+    height: 971,
+  },
+];
 
 export default function ProjectsPage() {
-  const [lightboxImg, setLightboxImg] = useState<LightboxImage | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
       <div className="bg-scene" />
       <Navbar />
 
-      <main className="sidebar-offset" style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110 }}>
-        <div style={W}>
+      <main className="sidebar-offset" style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110, overflowX: "clip" }}>
+        <div className="projects-fluid-container">
           {/* Header */}
           <motion.header
             initial="hidden"
@@ -74,11 +104,7 @@ export default function ProjectsPage() {
 
           {/* ══════════════════════════════════════════
               CHAPTER 01: TENAR EVENTS (BUYER)
-              Rhythm: Image First → Metadata → Evidence → Scenarios → Result
-          {/* ══════════════════════════════════════════
-              CHAPTER 01: TENAR EVENTS (BUYER)
-              Sequential Rhythm:
-              Overview → [hero.png] → Metadata → Limitation → TAMPILAN PRODUK → Scenarios → Result
+              Natural Editorial Case Study · Real Screenshots · Balanced Layout
           ══════════════════════════════════════════ */}
           <motion.article
             initial="hidden"
@@ -87,223 +113,204 @@ export default function ProjectsPage() {
             variants={vScale}
             className="qa-project-chapter"
           >
-            {/* 1. Chapter Header & Overview */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
-                  01 — CASE STUDY
-                </span>
-              </div>
-              <h2 style={{ fontSize: "clamp(28px, 4.2vw, 44px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "rgba(245,240,232,.98)", lineHeight: 1.15, margin: "4px 0 10px" }}>
-                TENAR EVENTS (BUYER)
-              </h2>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
-                <span className="chip chip-green">Production Live</span>
-                <span style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.50)" }}>
-                  Mobile Web · B2C Event Ticketing
-                </span>
-              </div>
-              <p className="qa-project-overview" style={{ maxWidth: 680, margin: "0 0 22px" }}>
-                Platform e-ticketing publik yang melayani ribuan pencari tiket event dalam format mobile web. Pengujian berfokus pada kelancaran alur checkout tiket, pencegahan duplikasi order, dan akurasi pencarian event aktif.
-              </p>
-            </div>
+            {/* 1. Clean Two-Column Editorial Hero */}
+            <section className="qa-buyer-editorial-hero">
+              <div className="qa-buyer-hero-grid">
+                {/* LEFT: Editorial Hierarchy, Metadata & Limitation */}
+                <div className="qa-buyer-intro">
+                  <span className="qa-buyer-eyebrow">01 — CASE STUDY</span>
 
-            {/* 2. Primary Product Visual Anchor (Real Mobile Screenshot) */}
-            <div style={{ margin: "22px 0 26px" }}>
-              <div
-                className="qa-mobile-frame"
-                onClick={() =>
-                  setLightboxImg({
-                    src: "/images/projects/tenar-buyer/hero.png",
-                    alt: "Tenar Events Buyer Mobile Interface",
-                    caption: "Tenar Events (Buyer) — Antarmuka Utama Mobile Web",
-                    width: 430,
-                    height: 932,
-                  })
-                }
-                title="Klik untuk memperbesar screenshot (resolusi penuh 430x932)"
-              >
-                <Image
-                  src="/images/projects/tenar-buyer/hero.png"
-                  alt="Tenar Events Buyer Mobile Interface"
-                  width={430}
-                  height={932}
-                  priority
-                />
-              </div>
-            </div>
+                  <h2 className="qa-buyer-title">
+                    Tenar Events <span className="qa-buyer-title-accent">(Buyer)</span>
+                  </h2>
 
-            {/* 3. Structured Metadata Strip */}
-            <div className="qa-project-meta-strip" style={{ maxWidth: 860 }}>
-              <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                  QA Role
-                </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                  Quality Assurance Specialist
-                </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                  Perencanaan skenario &amp; eksekusi testing
-                </p>
+                  <div className="qa-buyer-subhead">
+                    <span className="chip chip-green">Production Live</span>
+                    <span className="qa-buyer-category">
+                      Mobile Web · B2C Event Ticketing
+                    </span>
+                  </div>
+
+                  <p className="qa-buyer-desc">
+                    Platform e-ticketing publik yang melayani ribuan pencari tiket event dalam format mobile web. Pengujian berfokus pada kelancaran alur checkout tiket, pencegahan duplikasi order, dan akurasi pencarian event aktif.
+                  </p>
+
+                  {/* Horizontal Metadata Row */}
+                  <div className="qa-buyer-meta-row">
+                    <div className="qa-buyer-meta-col">
+                      <span className="qa-buyer-meta-label">QA Role</span>
+                      <span className="qa-buyer-meta-val">Quality Assurance Specialist</span>
+                      <span className="qa-buyer-meta-sub">Perencanaan skenario &amp; eksekusi testing.</span>
+                    </div>
+
+                    <div className="qa-buyer-meta-col">
+                      <span className="qa-buyer-meta-label">Tools &amp; Workflow</span>
+                      <span className="qa-buyer-meta-val">Plane · Test Matrix</span>
+                      <span className="qa-buyer-meta-sub">Pelacakan issue dan verifikasi bug lifecycle.</span>
+                    </div>
+
+                    <div className="qa-buyer-meta-col">
+                      <span className="qa-buyer-meta-label">Primary Focus</span>
+                      <span className="qa-buyer-meta-val">E2E Buyer Flow &amp; UI</span>
+                      <span className="qa-buyer-meta-sub">Search Flow, Validation, dan stabilitas transaksi.</span>
+                    </div>
+                  </div>
+
+                  {/* Editorial Limitation Note */}
+                  <div className="qa-buyer-limitation">
+                    <div>
+                      <div className="qa-buyer-limitation-header">
+                        <AlertCircle style={{ width: 13, height: 13, color: "var(--warning)" }} />
+                        <span className="qa-buyer-limitation-title">Catatan Batasan Pengujian</span>
+                      </div>
+                      <p className="qa-buyer-limitation-desc">
+                        Full purchase completion could not be validated because no purchasable event/ticket was available in the accessible production environment.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* RIGHT: Simple Realistic iPhone Mockup */}
+                <div className="qa-buyer-device-stage">
+                  <div
+                    className="qa-buyer-iphone"
+                    onClick={() => setLightboxIndex(0)}
+                    title="Klik untuk memperbesar screenshot (resolusi penuh 430x932)"
+                  >
+                    <div className="qa-buyer-iphone-screen">
+                      <div className="qa-buyer-iphone-island" />
+                      <Image
+                        src="/images/projects/tenar-buyer/hero.png"
+                        alt="Tenar Events Buyer Mobile Interface"
+                        width={430}
+                        height={932}
+                        className="qa-buyer-iphone-img"
+                        priority
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 2. Product Screenshots Gallery (Tampilan Produk) */}
+            <div className="qa-buyer-gallery">
+              <div className="qa-buyer-gallery-head">
+                <span className="qa-buyer-eyebrow" style={{ fontSize: 11 }}>PRODUCT</span>
+                <h3 className="qa-buyer-gallery-title">Tampilan Produk</h3>
               </div>
 
-              <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                  Tools &amp; Workflow
-                </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                  Plane · Test Matrix
-                </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                  Pelacakan issue dan verifikasi bug lifecycle
-                </p>
-              </div>
-
-              <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                  Primary Focus
-                </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                  E2E Buyer Flow &amp; UI
-                </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                  Search Flow, Input Validation
-                </p>
-              </div>
-            </div>
-
-            {/* 4. Honest Limitation Notice */}
-            <div className="qa-limitation-notice">
-              <AlertCircle style={{ width: 15, height: 15, color: "var(--warning)", flexShrink: 0, marginTop: 2 }} />
-              <div>
-                <strong style={{ color: "var(--warning)", display: "block", marginBottom: 2 }}>
-                  Catatan Batasan Pengujian
-                </strong>
-                Full purchase completion could not be validated because no purchasable event/ticket was available in the accessible production environment.
-              </div>
-            </div>
-
-            {/* 5. TAMPILAN PRODUK (Real Product UI Screens) */}
-            <div className="qa-evidence-section">
-              <p className="qa-evidence-title">Tampilan Produk</p>
-              <div className="qa-evidence-grid">
+              <div className="qa-buyer-gallery-grid">
+                {/* Event Detail */}
                 <div
-                  className="qa-evidence-card"
-                  onClick={() =>
-                    setLightboxImg({
-                      src: "/images/projects/tenar-buyer/event-detail.png",
-                      alt: "Event Detail",
-                      caption: "Tenar Events (Buyer) — Event Detail",
-                      width: 269,
-                      height: 583,
-                    })
-                  }
-                  title="Perbesar gambar"
+                  className="qa-buyer-screenshot-item"
+                  onClick={() => setLightboxIndex(1)}
+                  title="Perbesar screenshot Event Detail"
                 >
-                  <div className="qa-evidence-thumb-wrap">
+                  <div className="qa-buyer-screenshot-frame">
                     <Image
                       src="/images/projects/tenar-buyer/event-detail.png"
                       alt="Event Detail"
-                      width={269}
-                      height={583}
+                      width={380}
+                      height={823}
+                      className="qa-buyer-screenshot-img"
                       loading="lazy"
                     />
                   </div>
-                  <div className="qa-evidence-caption">
-                    <span>Event Detail</span>
-                    <Maximize2 style={{ width: 13, height: 13, opacity: 0.6 }} />
+                  <div className="qa-buyer-screenshot-caption">
+                    <div className="qa-buyer-screenshot-name">
+                      Event Detail
+                      <Maximize2 style={{ width: 12, height: 12, opacity: 0.4 }} />
+                    </div>
+                    <p className="qa-buyer-screenshot-desc">
+                      Halaman detail event, informasi penyelenggara, dan alur seleksi tiket.
+                    </p>
                   </div>
                 </div>
 
+                {/* Search */}
                 <div
-                  className="qa-evidence-card"
-                  onClick={() =>
-                    setLightboxImg({
-                      src: "/images/projects/tenar-buyer/search-filter.png",
-                      alt: "Search",
-                      caption: "Tenar Events (Buyer) — Search",
-                      width: 269,
-                      height: 583,
-                    })
-                  }
-                  title="Perbesar gambar"
+                  className="qa-buyer-screenshot-item"
+                  onClick={() => setLightboxIndex(2)}
+                  title="Perbesar screenshot Search"
                 >
-                  <div className="qa-evidence-thumb-wrap">
+                  <div className="qa-buyer-screenshot-frame">
                     <Image
                       src="/images/projects/tenar-buyer/search-filter.png"
                       alt="Search"
-                      width={269}
-                      height={583}
+                      width={380}
+                      height={823}
+                      className="qa-buyer-screenshot-img"
                       loading="lazy"
                     />
                   </div>
-                  <div className="qa-evidence-caption">
-                    <span>Search</span>
-                    <Maximize2 style={{ width: 13, height: 13, opacity: 0.6 }} />
+                  <div className="qa-buyer-screenshot-caption">
+                    <div className="qa-buyer-screenshot-name">
+                      Search
+                      <Maximize2 style={{ width: 12, height: 12, opacity: 0.4 }} />
+                    </div>
+                    <p className="qa-buyer-screenshot-desc">
+                      Pencarian event real-time dengan filter kota dan kategori event aktif.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 6. SKENARIO PENGUJIAN TERVERIFIKASI (What was tested) */}
-            <div className="qa-scenarios-panel">
-              <div className="qa-scenarios-header">
-                <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 700, color: "rgba(245,240,232,.50)", textTransform: "uppercase", letterSpacing: ".10em" }}>
-                  <Terminal style={{ width: 14, height: 14, color: "var(--accent)" }} />
-                  Skenario Pengujian Terverifikasi
-                </div>
-                <ShieldCheck style={{ width: 15, height: 15, color: "var(--accent)" }} />
+            {/* 3. Testing Scenario (Simple Editorial List with Thin Dividers) */}
+            <div className="qa-buyer-scenarios">
+              <div className="qa-buyer-scenarios-head">
+                <span className="qa-buyer-eyebrow" style={{ fontSize: 11 }}>TESTING SCENARIO</span>
+                <h3 className="qa-buyer-gallery-title">Skenario Pengujian Kunci</h3>
               </div>
 
-              <div className="qa-scenarios-body">
-                <ul style={{ display: "flex", flexDirection: "column", gap: 0, listStyle: "none" }}>
-                  {[
-                    {
-                      title: "Alur Checkout / Buyer Flow",
-                      desc: "Pengujian seleksi kuota tiket, form data pemesan, alur redirect pembayaran, dan verifikasi konfirmasi order.",
-                    },
-                    {
-                      title: "Cross-Browser & Mobile Responsiveness",
-                      desc: "Verifikasi visual dan kelancaran form checkout pada Chrome Android, Safari iOS, dan browser mobile viewports.",
-                    },
-                    {
-                      title: "Validation & Edge Cases",
-                      desc: "Pengujian penolakan email invalid, pembatasan kuota pesanan, dan pencegahan submission ganda (double-click).",
-                    },
-                    {
-                      title: "Search Functionality",
-                      desc: "Memastikan query pencarian event menampilkan hasil yang relevan dan akurat secara real-time.",
-                    },
-                  ].map((scenario, idx) => (
-                    <li key={idx} className="qa-scenario-item">
-                      <CheckCircle2 style={{ width: 15, height: 15, color: "var(--accent)", flexShrink: 0, marginTop: 3 }} />
-                      <div>
-                        <strong style={{ color: "rgba(245,240,232,.92)", display: "block", fontSize: 13, marginBottom: 2 }}>
-                          {scenario.title}
-                        </strong>
-                        <span style={{ fontSize: 12, color: "rgba(245,240,232,.48)", lineHeight: 1.6, display: "block" }}>
-                          {scenario.desc}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+              <div className="qa-buyer-scenarios-list">
+                {[
+                  {
+                    num: "01",
+                    title: "Alur Checkout / Buyer Flow",
+                    desc: "Pengujian seleksi kuota tiket, form data pemesan, alur redirect pembayaran, dan verifikasi konfirmasi order.",
+                  },
+                  {
+                    num: "02",
+                    title: "Cross-Browser & Mobile Responsiveness",
+                    desc: "Verifikasi visual dan kelancaran form checkout pada Chrome Android, Safari iOS, dan browser mobile viewports.",
+                  },
+                  {
+                    num: "03",
+                    title: "Validation & Edge Cases",
+                    desc: "Pengujian penolakan email invalid, pembatasan kuota pesanan, dan pencegahan submission ganda (double-click).",
+                  },
+                  {
+                    num: "04",
+                    title: "Search Functionality",
+                    desc: "Memastikan query pencarian event menampilkan hasil yang relevan dan akurat secara real-time.",
+                  },
+                ].map((scenario) => (
+                  <div key={scenario.num} className="qa-buyer-scenario-item">
+                    <span className="qa-buyer-scenario-num">{scenario.num}</span>
+                    <div className="qa-buyer-scenario-content">
+                      <strong className="qa-buyer-scenario-title">{scenario.title}</strong>
+                      <p className="qa-buyer-scenario-desc">{scenario.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* 7. Compact Result */}
-            <div className="qa-result-callout">
-              <div className="qa-result-badge">
-                <CheckCircle2 style={{ width: 16, height: 16 }} />
-                <span>Production Live</span>
+            {/* 4. Production Result */}
+            <div className="qa-buyer-production-result">
+              <div className="qa-buyer-production-badge">
+                <span className="qa-buyer-production-dot" aria-hidden="true" />
+                PRODUCTION LIVE
               </div>
-              <p className="qa-result-desc">
+              <p className="qa-buyer-production-desc">
                 Zero critical blocker bugs at public launch. Transaksi tiket dan alur e-ticketing beroperasi stabil bagi ribuan pengguna.
               </p>
             </div>
 
-            {/* 8. Live Action */}
-            <div className="qa-live-action-bar">
+            {/* 5. Final CTA */}
+            <div className="qa-buyer-cta">
               <a
                 href="https://tenar.events/"
                 target="_blank"
@@ -321,7 +328,9 @@ export default function ProjectsPage() {
 
           {/* ══════════════════════════════════════════
               CHAPTER 02: TENAR ORGANIZER
-              Rhythm: Metadata → Dashboard Image → Scope → Paths → Result
+              Two-column Editorial Layout:
+              Left: Compact Laptop Mockup (Supporting Evidence)
+              Right: Title, Specs, Verified Paths, Result, CTA
           ══════════════════════════════════════════ */}
           <motion.article
             initial="hidden"
@@ -330,157 +339,152 @@ export default function ProjectsPage() {
             variants={vScale}
             className="qa-project-chapter"
           >
-            {/* Chapter Header */}
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
-                  02 — CASE STUDY
-                </span>
-              </div>
-              <h2 style={{ fontSize: "clamp(28px, 4.2vw, 44px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "rgba(245,240,232,.98)", lineHeight: 1.15, margin: "4px 0 10px" }}>
-                TENAR ORGANIZER
-              </h2>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
-                <span className="chip chip-green">Production Live</span>
-                <span style={{ fontSize: 13, fontFamily: "monospace", color: "rgba(245,240,232,.50)" }}>
-                  B2B · Event Organizer CMS
-                </span>
-              </div>
-              <p className="qa-project-overview" style={{ maxWidth: 680, margin: "0 0 22px" }}>
-                Dashboard CMS bagi penyelenggara acara untuk mempublikasikan event, mengatur alokasi kuota tiket bertingkat, dan memantau analitik penjualan secara real-time.
-              </p>
-            </div>
-
-            {/* 1. Structured Metadata Strip (Metadata First Rhythm) */}
-            <div className="qa-project-meta-strip" style={{ maxWidth: 860 }}>
-              <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                  QA Role
-                </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                  Quality Assurance Specialist
-                </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                  Form validation, RBAC verification &amp; regression
-                </p>
-              </div>
-
-              <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                  Tools &amp; Workflow
-                </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                  Plane · API Inspection
-                </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                  Pelaporan terperinci bug integrasi API backend
-                </p>
-              </div>
-
-              <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
-                  Primary Focus
-                </p>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(245,240,232,.90)" }}>
-                  Form Validation &amp; RBAC
-                </p>
-                <p style={{ fontSize: 11.5, color: "rgba(245,240,232,.40)", marginTop: 2 }}>
-                  Ticket Inventory, API / System Integration
-                </p>
-              </div>
-            </div>
-
-            {/* 2. Large Dashboard Screenshot (Visual Anchor) */}
-            <div
-              className="qa-dashboard-frame"
-              onClick={() =>
-                setLightboxImg({
-                  src: "/images/projects/tenar-organizer/hero.png",
-                  alt: "Tenar Organizer CMS Dashboard",
-                  caption: "Tenar Organizer — Dashboard CMS Manajemen Event & Tiket",
-                  width: 1917,
-                  height: 971,
-                })
-              }
-              title="Klik untuk memperbesar screenshot dashboard"
-            >
-              <Image
-                src="/images/projects/tenar-organizer/hero.png"
-                alt="Tenar Organizer CMS Dashboard Screenshot"
-                width={1917}
-                height={971}
-                style={{ width: "100%", height: "auto", display: "block" }}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 3. Verified System Paths */}
-            <div className="qa-scenarios-panel">
-              <div className="qa-scenarios-header">
-                <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 700, color: "rgba(245,240,232,.50)", textTransform: "uppercase", letterSpacing: ".10em" }}>
-                  <Bug style={{ width: 14, height: 14, color: "var(--accent)" }} />
-                  Verified System Paths
-                </div>
-                <Layers style={{ width: 15, height: 15, color: "var(--accent)" }} />
-              </div>
-
-              <div className="qa-scenarios-body">
-                <ul style={{ display: "flex", flexDirection: "column", gap: 0, listStyle: "none" }}>
-                  {[
-                    {
-                      title: "Multi-Step Event Creation",
-                      desc: "Pengujian integritas form upload poster promosi, konfigurasi jadwal, penetapan kuota tiket, dan validasi data input.",
-                    },
-                    {
-                      title: "Role-Based Access Control (RBAC)",
-                      desc: "Memastikan hak akses promotor, tim finansial, dan scanner gate terisolasi secara ketat tanpa kebocoran data.",
-                    },
-                    {
-                      title: "Ticket Inventory / Quota Synchronization",
-                      desc: "Verifikasi pembaruan kuota real-time saat transaksi berlangsung untuk mencegah kelebihan penjualan (over-selling).",
-                    },
-                    {
-                      title: "Bug Lifecycle / Regression",
-                      desc: "Dokumentasi error API terstruktur di Plane dan eksekusi regression testing sebelum release ke production.",
-                    },
-                  ].map((scenario, idx) => (
-                    <li key={idx} className="qa-scenario-item">
-                      <CheckCircle2 style={{ width: 15, height: 15, color: "var(--accent)", flexShrink: 0, marginTop: 3 }} />
-                      <div>
-                        <strong style={{ color: "rgba(245,240,232,.92)", display: "block", fontSize: 13, marginBottom: 2 }}>
-                          {scenario.title}
-                        </strong>
-                        <span style={{ fontSize: 12, color: "rgba(245,240,232,.48)", lineHeight: 1.6, display: "block" }}>
-                          {scenario.desc}
-                        </span>
+            <div className="qa-organizer-grid">
+              {/* LEFT COLUMN: Compact Laptop Mockup */}
+              <div className="qa-organizer-visual-col">
+                <div className="qa-organizer-visual-sticky">
+                  <div
+                    className="qa-laptop-container"
+                    onClick={() => setLightboxIndex(3)}
+                    title="Klik untuk memperbesar screenshot Tenar Organizer (resolusi penuh 1917x971)"
+                  >
+                    <div className="qa-laptop-frame">
+                      {/* Top Screen Lid */}
+                      <div className="qa-laptop-lid">
+                        <div className="qa-laptop-camera-dot" />
+                        <div className="qa-laptop-screen">
+                          <Image
+                            src="/images/projects/tenar-organizer/hero.png"
+                            alt="Tenar Organizer CMS Dashboard Screenshot"
+                            width={1917}
+                            height={971}
+                            className="qa-laptop-img"
+                            loading="lazy"
+                          />
+                        </div>
                       </div>
-                    </li>
-                  ))}
-                </ul>
+                      {/* Bottom Base */}
+                      <div className="qa-laptop-base">
+                        <div className="qa-laptop-base-notch" />
+                      </div>
+                    </div>
+                    <div className="qa-laptop-caption">
+                      <span>Tenar Organizer CMS — Dashboard Overview</span>
+                      <Maximize2 style={{ width: 12, height: 12, opacity: 0.5 }} />
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* 4. Result & Action */}
-            <div className="qa-result-callout">
-              <div className="qa-result-badge">
-                <CheckCircle2 style={{ width: 16, height: 16 }} />
-                <span>Production Live</span>
+              {/* RIGHT COLUMN: Title, Description, Metadata, Paths, Result, CTA */}
+              <div className="qa-organizer-content-col">
+                <div style={{ marginBottom: 18 }}>
+                  <span className="qa-buyer-eyebrow">
+                    02 — CASE STUDY
+                  </span>
+                  <h2 className="qa-buyer-title" style={{ margin: "6px 0 10px" }}>
+                    TENAR ORGANIZER
+                  </h2>
+                  <div className="qa-buyer-subhead">
+                    <span className="chip chip-green">Production Live</span>
+                    <span className="qa-buyer-category">
+                      B2B · Event Organizer CMS
+                    </span>
+                  </div>
+                  <p className="qa-buyer-desc" style={{ marginBottom: 20 }}>
+                    Dashboard CMS bagi penyelenggara acara untuk mempublikasikan event, mengatur alokasi kuota tiket bertingkat, dan memantau analitik penjualan secara real-time.
+                  </p>
+                </div>
+
+                {/* Horizontal Metadata Row */}
+                <div className="qa-buyer-meta-row" style={{ maxWidth: "100%", marginBottom: 20 }}>
+                  <div className="qa-buyer-meta-col">
+                    <span className="qa-buyer-meta-label">QA Role</span>
+                    <span className="qa-buyer-meta-val">Quality Assurance Specialist</span>
+                    <span className="qa-buyer-meta-sub">Form validation, RBAC verification &amp; regression</span>
+                  </div>
+
+                  <div className="qa-buyer-meta-col">
+                    <span className="qa-buyer-meta-label">Tools &amp; Workflow</span>
+                    <span className="qa-buyer-meta-val">Plane · API Inspection</span>
+                    <span className="qa-buyer-meta-sub">Pelaporan terperinci bug integrasi API backend</span>
+                  </div>
+
+                  <div className="qa-buyer-meta-col">
+                    <span className="qa-buyer-meta-label">Primary Focus</span>
+                    <span className="qa-buyer-meta-val">Form Validation &amp; RBAC</span>
+                    <span className="qa-buyer-meta-sub">Ticket Inventory, API / System Integration</span>
+                  </div>
+                </div>
+
+                {/* Verified System Paths */}
+                <div className="qa-organizer-paths">
+                  <div className="qa-organizer-paths-head">
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <Bug style={{ width: 14, height: 14, color: "var(--accent)" }} />
+                      <span>Verified System Paths</span>
+                    </div>
+                    <Layers style={{ width: 14, height: 14, color: "var(--accent)", opacity: 0.7 }} />
+                  </div>
+
+                  <ul className="qa-organizer-paths-list">
+                    {[
+                      {
+                        title: "Multi-Step Event Creation",
+                        desc: "Pengujian integritas form upload poster promosi, konfigurasi jadwal, penetapan kuota tiket, dan validasi data input.",
+                      },
+                      {
+                        title: "Role-Based Access Control (RBAC)",
+                        desc: "Memastikan hak akses promotor, tim finansial, dan scanner gate terisolasi secara ketat tanpa kebocoran data.",
+                      },
+                      {
+                        title: "Ticket Inventory / Quota Synchronization",
+                        desc: "Verifikasi pembaruan kuota real-time saat transaksi berlangsung untuk mencegah kelebihan penjualan (over-selling).",
+                      },
+                      {
+                        title: "Bug Lifecycle / Regression",
+                        desc: "Dokumentasi error API terstruktur di Plane dan eksekusi regression testing sebelum release ke production.",
+                      },
+                    ].map((scenario, idx) => (
+                      <li key={idx} className="qa-organizer-path-item">
+                        <CheckCircle2 style={{ width: 15, height: 15, color: "var(--accent)", flexShrink: 0, marginTop: 2 }} />
+                        <div>
+                          <strong style={{ color: "rgba(245,240,232,.92)", display: "block", fontSize: 13, marginBottom: 2 }}>
+                            {scenario.title}
+                          </strong>
+                          <span style={{ fontSize: 12, color: "rgba(245,240,232,.50)", lineHeight: 1.6, display: "block" }}>
+                            {scenario.desc}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Production Result - Subtle Green Indicator Line */}
+                <div className="qa-buyer-production-result" style={{ marginTop: 4, marginBottom: 20 }}>
+                  <div className="qa-buyer-production-badge">
+                    <span className="qa-buyer-production-dot" aria-hidden="true" />
+                    PRODUCTION LIVE
+                  </div>
+                  <p className="qa-buyer-production-desc">
+                    Stable production behavior and verified critical organizer workflows.
+                  </p>
+                </div>
+
+                {/* CTA Button */}
+                <div className="qa-buyer-cta">
+                  <a
+                    href="https://organizer.tenar.events/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Buka Dashboard Organizer <ArrowUpRight style={{ width: 14, height: 14 }} />
+                  </a>
+                  <span className="qa-live-meta-url">organizer.tenar.events</span>
+                </div>
               </div>
-              <p className="qa-result-desc">
-                Stable production behavior and verified critical organizer workflows.
-              </p>
-            </div>
-
-            <div className="qa-live-action-bar">
-              <a
-                href="https://organizer.tenar.events/"
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-primary btn-sm"
-              >
-                Buka Dashboard Organizer <ArrowUpRight style={{ width: 14, height: 14 }} />
-              </a>
-              <span className="qa-live-meta-url">organizer.tenar.events</span>
             </div>
           </motion.article>
 
@@ -553,7 +557,12 @@ export default function ProjectsPage() {
       </main>
 
       {/* Lightbox Modal */}
-      <Lightbox image={lightboxImg} onClose={() => setLightboxImg(null)} />
+      <Lightbox
+        images={PROJECT_GALLERY}
+        currentIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onNavigate={(idx) => setLightboxIndex(idx)}
+      />
 
       <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid var(--border)", background: "var(--surface)" }}>
         <p style={{ fontSize: 11, color: "rgba(245,240,232,.25)", fontWeight: 500, letterSpacing: ".06em" }}>
