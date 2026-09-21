@@ -511,7 +511,6 @@ export default function Home() {
               <div className="personal-intro-col">
                 <div>
                   <motion.div variants={v} className="personal-eyebrow-row">
-                    <span className="personal-eyebrow-dot" />
                     <span className="personal-eyebrow-text">PERSONAL</span>
                     <span className="personal-eyebrow-line" />
                   </motion.div>
@@ -928,11 +927,6 @@ export default function Home() {
                       </>
                     )}
                   </button>
-
-                  {/* Response / help text */}
-                  <p className="contact-form-help-text">
-                    Saya akan berusaha membalas secepat mungkin. Terima kasih! ✨
-                  </p>
                 </form>
               </motion.div>
 
