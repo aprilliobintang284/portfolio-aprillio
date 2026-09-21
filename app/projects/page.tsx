@@ -4,14 +4,7 @@ import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import {
   CheckCircle2,
-  Bug,
-  ShieldCheck,
-  Lock,
-  Layers,
   ArrowUpRight,
-  Terminal,
-  AlertCircle,
-  Maximize2,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Lightbox, { type LightboxImage } from "../components/Lightbox";
@@ -35,18 +28,32 @@ const PROJECT_GALLERY: LightboxImage[] = [
     height: 932,
   },
   {
-    src: "/images/projects/tenar-buyer/event-detail.png",
-    alt: "Event Detail",
-    caption: "Tenar Events (Buyer) — Event Detail: Halaman detail event, informasi, dan pembelian tiket",
-    width: 269,
-    height: 583,
+    src: "/images/projects/tenar-buyer/event-category.png",
+    alt: "Event Category",
+    caption: "Tenar Events (Buyer) — Event Category: Menampilkan event berdasarkan kategori yang dipilih pengguna",
+    width: 360,
+    height: 800,
   },
   {
-    src: "/images/projects/tenar-buyer/search-filter.png",
+    src: "/images/projects/tenar-buyer/search.png",
     alt: "Search",
-    caption: "Tenar Events (Buyer) — Search: Hasil pencarian event secara real-time",
-    width: 269,
-    height: 583,
+    caption: "Tenar Events (Buyer) — Search: Pencarian event berdasarkan kata kunci untuk menemukan event yang diinginkan",
+    width: 460,
+    height: 1024,
+  },
+  {
+    src: "/images/projects/tenar-buyer/event-detail.png",
+    alt: "Event Detail",
+    caption: "Tenar Events (Buyer) — Event Detail: Detail event, informasi venue, dan pemilihan tiket",
+    width: 265,
+    height: 1024,
+  },
+  {
+    src: "/images/projects/tenar-buyer/order-summary.png",
+    alt: "Order Summary",
+    caption: "Tenar Events (Buyer) — Order Summary: Ringkasan data pesanan sebelum tiket diproses",
+    width: 374,
+    height: 1024,
   },
   {
     src: "/images/projects/tenar-organizer/hero.png",
@@ -103,7 +110,7 @@ export default function ProjectsPage() {
           </motion.header>
 
           {/* ══════════════════════════════════════════
-              CHAPTER 01: TENAR EVENTS (BUYER)
+              TENAR EVENTS (BUYER)
               Natural Editorial Case Study · Real Screenshots · Balanced Layout
           ══════════════════════════════════════════ */}
           <motion.article
@@ -116,10 +123,8 @@ export default function ProjectsPage() {
             {/* 1. Clean Two-Column Editorial Hero */}
             <section className="qa-buyer-editorial-hero">
               <div className="qa-buyer-hero-grid">
-                {/* LEFT: Editorial Hierarchy, Metadata & Limitation */}
+                {/* LEFT: Editorial Hierarchy & Metadata */}
                 <div className="qa-buyer-intro">
-                  <span className="qa-buyer-eyebrow">01 — CASE STUDY</span>
-
                   <h2 className="qa-buyer-title">
                     Tenar Events <span className="qa-buyer-title-accent">(Buyer)</span>
                   </h2>
@@ -155,19 +160,6 @@ export default function ProjectsPage() {
                       <span className="qa-buyer-meta-sub">Search Flow, Validation, dan stabilitas transaksi.</span>
                     </div>
                   </div>
-
-                  {/* Editorial Limitation Note */}
-                  <div className="qa-buyer-limitation">
-                    <div>
-                      <div className="qa-buyer-limitation-header">
-                        <AlertCircle style={{ width: 13, height: 13, color: "var(--warning)" }} />
-                        <span className="qa-buyer-limitation-title">Catatan Batasan Pengujian</span>
-                      </div>
-                      <p className="qa-buyer-limitation-desc">
-                        Full purchase completion could not be validated because no purchasable event/ticket was available in the accessible production environment.
-                      </p>
-                    </div>
-                  </div>
                 </div>
 
                 {/* RIGHT: Simple Realistic iPhone Mockup */}
@@ -193,76 +185,112 @@ export default function ProjectsPage() {
               </div>
             </section>
 
-            {/* 2. Product Screenshots Gallery (Tampilan Produk) */}
+            {/* 2. Product Screenshots Gallery (Tampilan Produk) - 2x2 Editorial Grid */}
             <div className="qa-buyer-gallery">
-              <div className="qa-buyer-gallery-head">
-                <span className="qa-buyer-eyebrow" style={{ fontSize: 11 }}>PRODUCT</span>
-                <h3 className="qa-buyer-gallery-title">Tampilan Produk</h3>
-              </div>
+              <h3 className="qa-buyer-gallery-title">Tampilan Produk</h3>
 
               <div className="qa-buyer-gallery-grid">
-                {/* Event Detail */}
+                {/* Row 1, Item 1: Event Category */}
                 <div
                   className="qa-buyer-screenshot-item"
                   onClick={() => setLightboxIndex(1)}
-                  title="Perbesar screenshot Event Detail"
+                >
+                  <div className="qa-buyer-screenshot-frame">
+                    <Image
+                      src="/images/projects/tenar-buyer/event-category.png"
+                      alt="Event Category"
+                      width={360}
+                      height={800}
+                      className="qa-buyer-screenshot-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-buyer-screenshot-caption">
+                    <strong className="qa-buyer-screenshot-name">Event Category</strong>
+                    <p className="qa-buyer-screenshot-desc">
+                      Menampilkan event berdasarkan kategori yang dipilih pengguna.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 1, Item 2: Search */}
+                <div
+                  className="qa-buyer-screenshot-item"
+                  onClick={() => setLightboxIndex(2)}
+                >
+                  <div className="qa-buyer-screenshot-frame">
+                    <Image
+                      src="/images/projects/tenar-buyer/search.png"
+                      alt="Search"
+                      width={460}
+                      height={1024}
+                      className="qa-buyer-screenshot-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-buyer-screenshot-caption">
+                    <strong className="qa-buyer-screenshot-name">Search</strong>
+                    <p className="qa-buyer-screenshot-desc">
+                      Pencarian event berdasarkan kata kunci untuk menemukan event yang diinginkan.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 2, Item 3: Event Detail */}
+                <div
+                  className="qa-buyer-screenshot-item"
+                  onClick={() => setLightboxIndex(3)}
                 >
                   <div className="qa-buyer-screenshot-frame">
                     <Image
                       src="/images/projects/tenar-buyer/event-detail.png"
                       alt="Event Detail"
-                      width={380}
-                      height={823}
+                      width={265}
+                      height={1024}
                       className="qa-buyer-screenshot-img"
                       loading="lazy"
                     />
+                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
                   </div>
                   <div className="qa-buyer-screenshot-caption">
-                    <div className="qa-buyer-screenshot-name">
-                      Event Detail
-                      <Maximize2 style={{ width: 12, height: 12, opacity: 0.4 }} />
-                    </div>
+                    <strong className="qa-buyer-screenshot-name">Event Detail</strong>
                     <p className="qa-buyer-screenshot-desc">
-                      Halaman detail event, informasi penyelenggara, dan alur seleksi tiket.
+                      Detail event, informasi venue, dan pemilihan tiket.
                     </p>
                   </div>
                 </div>
 
-                {/* Search */}
+                {/* Row 2, Item 4: Order Summary */}
                 <div
                   className="qa-buyer-screenshot-item"
-                  onClick={() => setLightboxIndex(2)}
-                  title="Perbesar screenshot Search"
+                  onClick={() => setLightboxIndex(4)}
                 >
                   <div className="qa-buyer-screenshot-frame">
                     <Image
-                      src="/images/projects/tenar-buyer/search-filter.png"
-                      alt="Search"
-                      width={380}
-                      height={823}
+                      src="/images/projects/tenar-buyer/order-summary.png"
+                      alt="Order Summary"
+                      width={374}
+                      height={1024}
                       className="qa-buyer-screenshot-img"
                       loading="lazy"
                     />
+                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
                   </div>
                   <div className="qa-buyer-screenshot-caption">
-                    <div className="qa-buyer-screenshot-name">
-                      Search
-                      <Maximize2 style={{ width: 12, height: 12, opacity: 0.4 }} />
-                    </div>
+                    <strong className="qa-buyer-screenshot-name">Order Summary</strong>
                     <p className="qa-buyer-screenshot-desc">
-                      Pencarian event real-time dengan filter kota dan kategori event aktif.
+                      Ringkasan data pesanan sebelum tiket diproses.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 3. Testing Scenario (Simple Editorial List with Thin Dividers) */}
+            {/* 3. Testing Scenarios (Editorial List with Thin Dividers) */}
             <div className="qa-buyer-scenarios">
-              <div className="qa-buyer-scenarios-head">
-                <span className="qa-buyer-eyebrow" style={{ fontSize: 11 }}>TESTING SCENARIO</span>
-                <h3 className="qa-buyer-gallery-title">Skenario Pengujian Kunci</h3>
-              </div>
+              <h3 className="qa-buyer-gallery-title">Skenario Pengujian Kunci</h3>
 
               <div className="qa-buyer-scenarios-list">
                 {[
@@ -300,11 +328,8 @@ export default function ProjectsPage() {
 
             {/* 4. Production Result */}
             <div className="qa-buyer-production-result">
-              <div className="qa-buyer-production-badge">
-                <span className="qa-buyer-production-dot" aria-hidden="true" />
-                PRODUCTION LIVE
-              </div>
               <p className="qa-buyer-production-desc">
+                <strong style={{ color: "var(--success)" }}>Production Live: </strong>
                 Zero critical blocker bugs at public launch. Transaksi tiket dan alur e-ticketing beroperasi stabil bagi ribuan pengguna.
               </p>
             </div>
@@ -327,7 +352,7 @@ export default function ProjectsPage() {
           <hr className="qa-chapter-divider" />
 
           {/* ══════════════════════════════════════════
-              CHAPTER 02: TENAR ORGANIZER
+              TENAR ORGANIZER
               Two-column Editorial Layout:
               Left: Compact Laptop Mockup (Supporting Evidence)
               Right: Title, Specs, Verified Paths, Result, CTA
@@ -345,7 +370,7 @@ export default function ProjectsPage() {
                 <div className="qa-organizer-visual-sticky">
                   <div
                     className="qa-laptop-container"
-                    onClick={() => setLightboxIndex(3)}
+                    onClick={() => setLightboxIndex(5)}
                     title="Klik untuk memperbesar screenshot Tenar Organizer (resolusi penuh 1917x971)"
                   >
                     <div className="qa-laptop-frame">
@@ -370,7 +395,6 @@ export default function ProjectsPage() {
                     </div>
                     <div className="qa-laptop-caption">
                       <span>Tenar Organizer CMS — Dashboard Overview</span>
-                      <Maximize2 style={{ width: 12, height: 12, opacity: 0.5 }} />
                     </div>
                   </div>
                 </div>
@@ -379,10 +403,7 @@ export default function ProjectsPage() {
               {/* RIGHT COLUMN: Title, Description, Metadata, Paths, Result, CTA */}
               <div className="qa-organizer-content-col">
                 <div style={{ marginBottom: 18 }}>
-                  <span className="qa-buyer-eyebrow">
-                    02 — CASE STUDY
-                  </span>
-                  <h2 className="qa-buyer-title" style={{ margin: "6px 0 10px" }}>
+                  <h2 className="qa-buyer-title" style={{ margin: "0 0 10px" }}>
                     TENAR ORGANIZER
                   </h2>
                   <div className="qa-buyer-subhead">
@@ -417,15 +438,11 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Verified System Paths */}
+                {/* Verified System Paths (Editorial Divider-based List) */}
                 <div className="qa-organizer-paths">
-                  <div className="qa-organizer-paths-head">
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <Bug style={{ width: 14, height: 14, color: "var(--accent)" }} />
-                      <span>Verified System Paths</span>
-                    </div>
-                    <Layers style={{ width: 14, height: 14, color: "var(--accent)", opacity: 0.7 }} />
-                  </div>
+                  <h3 className="qa-organizer-paths-title">
+                    Verified System Paths
+                  </h3>
 
                   <ul className="qa-organizer-paths-list">
                     {[
@@ -447,7 +464,7 @@ export default function ProjectsPage() {
                       },
                     ].map((scenario, idx) => (
                       <li key={idx} className="qa-organizer-path-item">
-                        <CheckCircle2 style={{ width: 15, height: 15, color: "var(--accent)", flexShrink: 0, marginTop: 2 }} />
+                        <CheckCircle2 style={{ width: 14, height: 14, color: "var(--accent)", flexShrink: 0, marginTop: 3 }} />
                         <div>
                           <strong style={{ color: "rgba(245,240,232,.92)", display: "block", fontSize: 13, marginBottom: 2 }}>
                             {scenario.title}
@@ -461,13 +478,10 @@ export default function ProjectsPage() {
                   </ul>
                 </div>
 
-                {/* Production Result - Subtle Green Indicator Line */}
+                {/* Production Result */}
                 <div className="qa-buyer-production-result" style={{ marginTop: 4, marginBottom: 20 }}>
-                  <div className="qa-buyer-production-badge">
-                    <span className="qa-buyer-production-dot" aria-hidden="true" />
-                    PRODUCTION LIVE
-                  </div>
                   <p className="qa-buyer-production-desc">
+                    <strong style={{ color: "var(--success)" }}>Production Live: </strong>
                     Stable production behavior and verified critical organizer workflows.
                   </p>
                 </div>
@@ -492,7 +506,7 @@ export default function ProjectsPage() {
           <hr className="qa-chapter-divider" />
 
           {/* ══════════════════════════════════════════
-              CHAPTER 03: PAYMENT GATEWAY MVP (IN PROGRESS)
+              PAYMENT GATEWAY MVP
               Subdued visual weight · Zero fabricated screenshots
           ══════════════════════════════════════════ */}
           <motion.article
@@ -502,13 +516,8 @@ export default function ProjectsPage() {
             variants={vScale}
             className="qa-mvp-chapter"
           >
-            <div style={{ marginBottom: 18 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--warning)", letterSpacing: ".22em", textTransform: "uppercase" }}>
-                  03 — INTERNAL R&amp;D
-                </span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", margin: "4px 0 10px" }}>
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", margin: "0 0 10px" }}>
                 <h2 style={{ fontSize: "clamp(24px, 3.6vw, 36px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "var(--text-primary)", lineHeight: 1.15, margin: 0 }}>
                   PAYMENT GATEWAY MVP
                 </h2>
@@ -516,19 +525,16 @@ export default function ProjectsPage() {
                   In Progress · Internal R&amp;D
                 </span>
               </div>
-              <p className="qa-project-overview" style={{ maxWidth: 560, margin: "0 0 18px" }}>
+              <p className="qa-project-overview" style={{ maxWidth: 640, margin: "0 0 18px" }}>
                 Pengujian integrasi sistem pembayaran otomatis internal bullions — difokuskan pada ketahanan transaksi, penanganan kegagalan jaringan, dan validasi status webhook.
               </p>
             </div>
 
             {/* Current Testing Focus - Understated Editorial List */}
-            <div style={{ padding: "14px 18px", borderRadius: 10, background: "rgba(197, 150, 58, 0.04)", borderLeft: "2px solid var(--warning)", maxWidth: 520 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11.5, color: "var(--warning)", fontFamily: "monospace", marginBottom: 8 }}>
-                <Lock style={{ width: 13, height: 13, color: "var(--warning)", flexShrink: 0 }} />
-                <span style={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: ".08em" }}>
-                  Current Testing Focus
-                </span>
-              </div>
+            <div style={{ padding: "12px 18px", borderLeft: "2px solid var(--warning)", background: "rgba(197, 150, 58, 0.03)", maxWidth: 540 }}>
+              <h3 style={{ fontSize: 12.5, fontWeight: 700, color: "var(--warning)", margin: "0 0 8px", letterSpacing: ".02em" }}>
+                Current Testing Focus
+              </h3>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 5, fontSize: 12.5, color: "var(--text-secondary)" }}>
                 <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
