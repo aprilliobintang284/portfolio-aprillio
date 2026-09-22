@@ -3521,11 +3521,10 @@
   flex-direction: column;
 }
 
-@media (min-width: 1025px) {
-  .qa-organizer-visual-sticky {
-    position: sticky;
-    top: 96px;
-  }
+.qa-organizer-visual-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .qa-organizer-content-col {
@@ -3534,7 +3533,7 @@
   flex-direction: column;
 }
 
-/* Laptop Mockup (HTML/CSS, Realistic & Restrained, ~12% Larger) */
+/* Laptop Mockup (HTML/CSS, Realistic & Restrained) */
 .qa-laptop-container {
   width: 100%;
   max-width: 650px;
@@ -3634,7 +3633,115 @@
   letter-spacing: .02em;
 }
 
-/* Verified System Paths within Tenar Organizer - Divider-based, no card */
+/* Supporting Product Evidence Gallery (2-Row x 2-Column under Laptop) */
+.qa-organizer-supporting-gallery {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 14px;
+  row-gap: 18px;
+  width: 100%;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 540px) {
+  .qa-organizer-supporting-gallery {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+}
+
+.qa-organizer-supporting-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.qa-organizer-supporting-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.50);
+  background: #0d0d0c;
+  overflow: hidden;
+  transition: transform 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+}
+
+@media (hover: hover) {
+  .qa-organizer-supporting-item:hover .qa-organizer-supporting-frame {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* Secondary Tier: Event List & Ticket Management (Slightly lighter visual weight) */
+.qa-organizer-supporting-frame--secondary {
+  border-color: rgba(255, 255, 255, 0.08);
+  opacity: 0.94;
+}
+
+@media (hover: hover) {
+  .qa-organizer-supporting-item--secondary:hover .qa-organizer-supporting-frame--secondary {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.20);
+    transform: translateY(-2px);
+  }
+}
+
+.qa-organizer-supporting-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.qa-organizer-supporting-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: linear-gradient(to bottom, rgba(13, 13, 12, 0) 0%, rgba(13, 13, 12, 0.65) 100%);
+  pointer-events: none;
+}
+
+.qa-organizer-supporting-caption {
+  padding: 8px 1px 0;
+}
+
+.qa-organizer-supporting-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(245, 240, 232, 0.92);
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+.qa-organizer-supporting-desc {
+  font-size: 11.5px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.qa-organizer-supporting-item--secondary .qa-organizer-supporting-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(245, 240, 232, 0.88);
+}
+
+.qa-organizer-supporting-item--secondary .qa-organizer-supporting-desc {
+  font-size: 11px;
+  color: rgba(245, 240, 232, 0.45);
+}
+
+/* Yang Diuji (Numbered Editorial List, Divider-based, No Card) */
 .qa-organizer-paths {
   margin: 18px 0 22px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -3646,7 +3753,7 @@
   font-size: 13.5px;
   font-weight: 700;
   color: var(--text-primary);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   letter-spacing: -0.01em;
 }
 
@@ -3660,7 +3767,7 @@
 
 .qa-organizer-path-item {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   gap: 12px;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -3668,6 +3775,37 @@
 
 .qa-organizer-path-item:last-child {
   border-bottom: none;
+}
+
+.qa-organizer-path-num {
+  font-family: monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.qa-organizer-path-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-organizer-path-title {
+  color: rgba(245, 240, 232, 0.92);
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.qa-organizer-path-desc {
+  font-size: 12px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.6;
+  margin: 0;
 }
 
 .qa-chapter-header-group {

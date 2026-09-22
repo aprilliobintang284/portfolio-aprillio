@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import {
-  CheckCircle2,
   ArrowUpRight,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
@@ -57,10 +56,38 @@ const PROJECT_GALLERY: LightboxImage[] = [
   },
   {
     src: "/images/projects/tenar-organizer/hero.png",
-    alt: "Tenar Organizer CMS Dashboard",
-    caption: "Tenar Organizer — Dashboard CMS Manajemen Event & Tiket",
+    alt: "Tenar Organizer Dashboard",
+    caption: "Tenar Organizer — Dashboard Overview: Ringkasan statistik event, penjualan, dan metrik operasional",
     width: 1917,
     height: 971,
+  },
+  {
+    src: "/images/projects/tenar-organizer/review-configuration.png",
+    alt: "Review / Event Configuration",
+    caption: "Tenar Organizer — Review / Event Configuration: Konfigurasi event, form buyer dan attendee, serta pengaturan tiket sebelum dipublikasikan",
+    width: 967,
+    height: 1024,
+  },
+  {
+    src: "/images/projects/tenar-organizer/order-management.png",
+    alt: "Order Management",
+    caption: "Tenar Organizer — Order Management: Pemantauan pesanan, status transaksi, penjualan, dan data order",
+    width: 1001,
+    height: 1024,
+  },
+  {
+    src: "/images/projects/tenar-organizer/event-list.png",
+    alt: "Event List",
+    caption: "Tenar Organizer — Event List: Pengelolaan event yang sudah dipublikasikan dan status event yang sedang aktif",
+    width: 1024,
+    height: 855,
+  },
+  {
+    src: "/images/projects/tenar-organizer/ticket-management.png",
+    alt: "Ticket Management",
+    caption: "Tenar Organizer — Ticket Management: Pemantauan tiket, data peserta, status tiket, dan proses check-in",
+    width: 1024,
+    height: 885,
   },
 ];
 
@@ -354,8 +381,8 @@ export default function ProjectsPage() {
           {/* ══════════════════════════════════════════
               TENAR ORGANIZER
               Two-column Editorial Layout:
-              Left: Compact Laptop Mockup (Supporting Evidence)
-              Right: Title, Specs, Verified Paths, Result, CTA
+              Left: Laptop Mockup (Dashboard) + 2-Column Supporting Gallery
+              Right: Title, Specs, Yang Diuji, Result, CTA
           ══════════════════════════════════════════ */}
           <motion.article
             initial="hidden"
@@ -365,13 +392,14 @@ export default function ProjectsPage() {
             className="qa-project-chapter"
           >
             <div className="qa-organizer-grid">
-              {/* LEFT COLUMN: Compact Laptop Mockup */}
+              {/* LEFT COLUMN: Laptop Mockup (Dashboard) + 2-Column Supporting Gallery */}
               <div className="qa-organizer-visual-col">
-                <div className="qa-organizer-visual-sticky">
+                <div className="qa-organizer-visual-wrap">
+                  {/* Laptop Mockup: Dashboard */}
                   <div
                     className="qa-laptop-container"
                     onClick={() => setLightboxIndex(5)}
-                    title="Klik untuk memperbesar screenshot Tenar Organizer (resolusi penuh 1917x971)"
+                    title="Klik untuk memperbesar screenshot Tenar Organizer Dashboard (resolusi penuh 1917x971)"
                   >
                     <div className="qa-laptop-frame">
                       {/* Top Screen Lid */}
@@ -380,7 +408,7 @@ export default function ProjectsPage() {
                         <div className="qa-laptop-screen">
                           <Image
                             src="/images/projects/tenar-organizer/hero.png"
-                            alt="Tenar Organizer CMS Dashboard Screenshot"
+                            alt="Tenar Organizer Dashboard Screenshot"
                             width={1917}
                             height={971}
                             className="qa-laptop-img"
@@ -397,14 +425,125 @@ export default function ProjectsPage() {
                       <span>Tenar Organizer CMS — Dashboard Overview</span>
                     </div>
                   </div>
+
+                  {/* 2-Column Supporting Gallery: Review / Event Configuration | Order Management */}
+                  <div className="qa-organizer-supporting-gallery">
+                    {/* Item 1: Review / Event Configuration */}
+                    <div
+                      className="qa-organizer-supporting-item"
+                      onClick={() => setLightboxIndex(6)}
+                      title="Klik untuk memperbesar Review / Event Configuration"
+                    >
+                      <div className="qa-organizer-supporting-frame">
+                        <Image
+                          src="/images/projects/tenar-organizer/review-configuration.png"
+                          alt="Review / Event Configuration"
+                          width={967}
+                          height={1024}
+                          className="qa-organizer-supporting-img"
+                          loading="lazy"
+                        />
+                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                      </div>
+                      <div className="qa-organizer-supporting-caption">
+                        <strong className="qa-organizer-supporting-title">
+                          Review / Event Configuration
+                        </strong>
+                        <p className="qa-organizer-supporting-desc">
+                          Konfigurasi event, form buyer dan attendee, serta pengaturan tiket sebelum dipublikasikan.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Row 1, Item 2: Order Management */}
+                    <div
+                      className="qa-organizer-supporting-item"
+                      onClick={() => setLightboxIndex(7)}
+                      title="Klik untuk memperbesar Order Management"
+                    >
+                      <div className="qa-organizer-supporting-frame">
+                        <Image
+                          src="/images/projects/tenar-organizer/order-management.png"
+                          alt="Order Management"
+                          width={1001}
+                          height={1024}
+                          className="qa-organizer-supporting-img"
+                          loading="lazy"
+                        />
+                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                      </div>
+                      <div className="qa-organizer-supporting-caption">
+                        <strong className="qa-organizer-supporting-title">
+                          Order Management
+                        </strong>
+                        <p className="qa-organizer-supporting-desc">
+                          Pemantauan pesanan, status transaksi, penjualan, dan data order.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Row 2, Item 3: Event List */}
+                    <div
+                      className="qa-organizer-supporting-item qa-organizer-supporting-item--secondary"
+                      onClick={() => setLightboxIndex(8)}
+                      title="Klik untuk memperbesar Event List"
+                    >
+                      <div className="qa-organizer-supporting-frame qa-organizer-supporting-frame--secondary">
+                        <Image
+                          src="/images/projects/tenar-organizer/event-list.png"
+                          alt="Event List"
+                          width={1024}
+                          height={855}
+                          className="qa-organizer-supporting-img"
+                          loading="lazy"
+                        />
+                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                      </div>
+                      <div className="qa-organizer-supporting-caption">
+                        <strong className="qa-organizer-supporting-title">
+                          Event List
+                        </strong>
+                        <p className="qa-organizer-supporting-desc">
+                          Pengelolaan event yang sudah dipublikasikan dan status event yang sedang aktif.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Row 2, Item 4: Ticket Management */}
+                    <div
+                      className="qa-organizer-supporting-item qa-organizer-supporting-item--secondary"
+                      onClick={() => setLightboxIndex(9)}
+                      title="Klik untuk memperbesar Ticket Management"
+                    >
+                      <div className="qa-organizer-supporting-frame qa-organizer-supporting-frame--secondary">
+                        <Image
+                          src="/images/projects/tenar-organizer/ticket-management.png"
+                          alt="Ticket Management"
+                          width={1024}
+                          height={885}
+                          className="qa-organizer-supporting-img"
+                          loading="lazy"
+                        />
+                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                      </div>
+                      <div className="qa-organizer-supporting-caption">
+                        <strong className="qa-organizer-supporting-title">
+                          Ticket Management
+                        </strong>
+                        <p className="qa-organizer-supporting-desc">
+                          Pemantauan tiket, data peserta, status tiket, dan proses check-in.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: Title, Description, Metadata, Paths, Result, CTA */}
+              {/* RIGHT COLUMN: Title, Description, Metadata, Yang Diuji, Result, CTA */}
               <div className="qa-organizer-content-col">
                 <div style={{ marginBottom: 18 }}>
                   <h2 className="qa-buyer-title" style={{ margin: "0 0 10px" }}>
-                    TENAR ORGANIZER
+                    Tenar Organizer
                   </h2>
                   <div className="qa-buyer-subhead">
                     <span className="chip chip-green">Production Live</span>
@@ -413,7 +552,7 @@ export default function ProjectsPage() {
                     </span>
                   </div>
                   <p className="qa-buyer-desc" style={{ marginBottom: 20 }}>
-                    Dashboard CMS bagi penyelenggara acara untuk mempublikasikan event, mengatur alokasi kuota tiket bertingkat, dan memantau analitik penjualan secara real-time.
+                    Dashboard untuk penyelenggara acara yang digunakan untuk mengelola event, konfigurasi tiket, pesanan, dan data peserta dari satu platform.
                   </p>
                 </div>
 
@@ -422,67 +561,71 @@ export default function ProjectsPage() {
                   <div className="qa-buyer-meta-col">
                     <span className="qa-buyer-meta-label">QA Role</span>
                     <span className="qa-buyer-meta-val">Quality Assurance Specialist</span>
-                    <span className="qa-buyer-meta-sub">Form validation, RBAC verification &amp; regression</span>
+                    <span className="qa-buyer-meta-sub">Pengujian alur pengelolaan event, validasi form dan konfigurasi, serta verifikasi data pesanan dan tiket.</span>
                   </div>
 
                   <div className="qa-buyer-meta-col">
                     <span className="qa-buyer-meta-label">Tools &amp; Workflow</span>
                     <span className="qa-buyer-meta-val">Plane · API Inspection</span>
-                    <span className="qa-buyer-meta-sub">Pelaporan terperinci bug integrasi API backend</span>
+                    <span className="qa-buyer-meta-sub">Pelacakan bug, dokumentasi pengujian, dan pemeriksaan respons API.</span>
                   </div>
 
                   <div className="qa-buyer-meta-col">
                     <span className="qa-buyer-meta-label">Primary Focus</span>
-                    <span className="qa-buyer-meta-val">Form Validation &amp; RBAC</span>
-                    <span className="qa-buyer-meta-sub">Ticket Inventory, API / System Integration</span>
+                    <span className="qa-buyer-meta-val">Event, Order &amp; Ticket Management</span>
+                    <span className="qa-buyer-meta-sub">Validasi konfigurasi event, alur pesanan, data tiket, dan status transaksi.</span>
                   </div>
                 </div>
 
-                {/* Verified System Paths (Editorial Divider-based List) */}
+                {/* Yang Diuji (Numbered Editorial List) */}
                 <div className="qa-organizer-paths">
                   <h3 className="qa-organizer-paths-title">
-                    Verified System Paths
+                    Yang Diuji
                   </h3>
 
-                  <ul className="qa-organizer-paths-list">
+                  <div className="qa-organizer-paths-list">
                     {[
                       {
-                        title: "Multi-Step Event Creation",
-                        desc: "Pengujian integritas form upload poster promosi, konfigurasi jadwal, penetapan kuota tiket, dan validasi data input.",
+                        num: "01",
+                        title: "Event Creation & Configuration",
+                        desc: "Memeriksa alur pembuatan event, kelengkapan form, konfigurasi buyer/attendee, serta pengaturan tiket sebelum event dipublikasikan.",
                       },
                       {
-                        title: "Role-Based Access Control (RBAC)",
-                        desc: "Memastikan hak akses promotor, tim finansial, dan scanner gate terisolasi secara ketat tanpa kebocoran data.",
+                        num: "02",
+                        title: "Event Publishing & Management",
+                        desc: "Memverifikasi perubahan status event, publish/unpublish, daftar event, dan konsistensi informasi yang ditampilkan.",
                       },
                       {
-                        title: "Ticket Inventory / Quota Synchronization",
-                        desc: "Verifikasi pembaruan kuota real-time saat transaksi berlangsung untuk mencegah kelebihan penjualan (over-selling).",
+                        num: "03",
+                        title: "Order & Transaction Management",
+                        desc: "Memeriksa data pesanan, status transaksi, jumlah tiket, promo, serta ringkasan penjualan pada halaman Order Management.",
                       },
                       {
-                        title: "Bug Lifecycle / Regression",
-                        desc: "Dokumentasi error API terstruktur di Plane dan eksekusi regression testing sebelum release ke production.",
+                        num: "04",
+                        title: "Ticket Management & Check-in",
+                        desc: "Memverifikasi status tiket, data peserta, face recognition, serta perubahan status tiket dari active, used, hingga expired.",
                       },
-                    ].map((scenario, idx) => (
-                      <li key={idx} className="qa-organizer-path-item">
-                        <CheckCircle2 style={{ width: 14, height: 14, color: "var(--accent)", flexShrink: 0, marginTop: 3 }} />
-                        <div>
-                          <strong style={{ color: "rgba(245,240,232,.92)", display: "block", fontSize: 13, marginBottom: 2 }}>
+                    ].map((scenario) => (
+                      <div key={scenario.num} className="qa-organizer-path-item">
+                        <span className="qa-organizer-path-num">{scenario.num}</span>
+                        <div className="qa-organizer-path-content">
+                          <strong className="qa-organizer-path-title">
                             {scenario.title}
                           </strong>
-                          <span style={{ fontSize: 12, color: "rgba(245,240,232,.50)", lineHeight: 1.6, display: "block" }}>
+                          <p className="qa-organizer-path-desc">
                             {scenario.desc}
-                          </span>
+                          </p>
                         </div>
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 {/* Production Result */}
                 <div className="qa-buyer-production-result" style={{ marginTop: 4, marginBottom: 20 }}>
                   <p className="qa-buyer-production-desc">
                     <strong style={{ color: "var(--success)" }}>Production Live: </strong>
-                    Stable production behavior and verified critical organizer workflows.
+                    Alur utama pengelolaan event, pesanan, dan tiket telah digunakan dalam environment production.
                   </p>
                 </div>
 
