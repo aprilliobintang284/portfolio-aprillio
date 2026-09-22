@@ -18,6 +18,14 @@ const vScale: Variants = {
 };
 const VP = { once: true, margin: "-40px" } as const;
 
+const paymentGatewayDashboardImage: LightboxImage = {
+  src: "/images/projects/payment-gateway/dashboard.png",
+  alt: "Payment Gateway Dashboard",
+  caption: "Payment Gateway MVP — Dashboard: Ringkasan volume transaksi, saldo payment, dan disbursement",
+  width: 1672,
+  height: 941,
+};
+
 const PROJECT_GALLERY: LightboxImage[] = [
   {
     src: "/images/projects/tenar-buyer/hero.png",
@@ -88,6 +96,49 @@ const PROJECT_GALLERY: LightboxImage[] = [
     caption: "Tenar Organizer — Ticket Management: Pemantauan tiket, data peserta, status tiket, dan proses check-in",
     width: 1024,
     height: 885,
+  },
+  paymentGatewayDashboardImage,
+  {
+    src: "/images/projects/payment-gateway/transaction-report.png",
+    alt: "Transaction Report — Payment",
+    caption: "Payment Gateway MVP — Transaction Report — Payment: Daftar transaksi dengan pencarian, filter, payment channel, dan berbagai status transaksi",
+    width: 1024,
+    height: 728,
+  },
+  {
+    src: "/images/projects/payment-gateway/transaction-details.png",
+    alt: "Transaction Details — Payment",
+    caption: "Payment Gateway MVP — Transaction Details — Payment: Detail transaksi, riwayat status, informasi order, dan rincian pembayaran",
+    width: 1024,
+    height: 728,
+  },
+  {
+    src: "/images/projects/payment-gateway/disbursement-report.png",
+    alt: "Transaction Report — Disbursement",
+    caption: "Payment Gateway MVP — Transaction Report — Disbursement: Pemantauan disbursement berdasarkan ID, nominal, dan status proses",
+    width: 1024,
+    height: 728,
+  },
+  {
+    src: "/images/projects/payment-gateway/payment-method.png",
+    alt: "Payment Method",
+    caption: "Payment Gateway MVP — Payment Method: Pengelolaan channel pembayaran beserta status aktif dan nonaktif",
+    width: 1024,
+    height: 728,
+  },
+  {
+    src: "/images/projects/payment-gateway/user-management.png",
+    alt: "User Management",
+    caption: "Payment Gateway MVP — User Management: Pengelolaan pengguna dan status akses dalam sistem payment gateway",
+    width: 1024,
+    height: 728,
+  },
+  {
+    src: "/images/projects/payment-gateway/role-management.png",
+    alt: "Role Management",
+    caption: "Payment Gateway MVP — Role Management: Pengaturan role dan akses menu berdasarkan kebutuhan pengguna",
+    width: 1024,
+    height: 728,
   },
 ];
 
@@ -212,9 +263,9 @@ export default function ProjectsPage() {
               </div>
             </section>
 
-            {/* 2. Product Screenshots Gallery (Tampilan Produk) - 2x2 Editorial Grid */}
+            {/* 2. Product Screenshots Gallery (Layar Produk) - 2x2 Editorial Grid */}
             <div className="qa-buyer-gallery">
-              <h3 className="qa-buyer-gallery-title">Tampilan Produk</h3>
+              <h3 className="qa-buyer-gallery-title">Layar Produk</h3>
 
               <div className="qa-buyer-gallery-grid">
                 {/* Row 1, Item 1: Event Category */}
@@ -650,56 +701,326 @@ export default function ProjectsPage() {
 
           {/* ══════════════════════════════════════════
               PAYMENT GATEWAY MVP
-              Subdued visual weight · Zero fabricated screenshots
+              Editorial Case Study · Real Product Screenshots · Authentic QA Documentation
           ══════════════════════════════════════════ */}
           <motion.article
             initial="hidden"
             whileInView="show"
             viewport={VP}
             variants={vScale}
-            className="qa-mvp-chapter"
+            className="qa-project-chapter"
           >
-            <div style={{ marginBottom: 16 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", margin: "0 0 10px" }}>
-                <h2 style={{ fontSize: "clamp(24px, 3.6vw, 36px)", fontWeight: 900, letterSpacing: "-.03em", textTransform: "uppercase", color: "var(--text-primary)", lineHeight: 1.15, margin: 0 }}>
-                  PAYMENT GATEWAY MVP
-                </h2>
-                <span className="chip" style={{ fontSize: 11, padding: "3px 10px", background: "rgba(197, 150, 58, 0.12)", borderColor: "rgba(197, 150, 58, 0.30)", color: "var(--warning)" }}>
-                  In Progress · Internal R&amp;D
-                </span>
+            {/* 1. Payment Gateway Hero: Left Project Info + Right Laptop Mockup */}
+            <div className="qa-gateway-hero-grid">
+              {/* LEFT COLUMN: Project Information & Horizontal Metadata */}
+              <div className="qa-gateway-content-col">
+                <div style={{ marginBottom: 18 }}>
+                  <h2 className="qa-buyer-title" style={{ margin: "0 0 10px" }}>
+                    Payment Gateway MVP
+                  </h2>
+                  <div className="qa-buyer-subhead">
+                    <span
+                      className="chip"
+                      style={{
+                        fontSize: 11,
+                        padding: "3px 10px",
+                        background: "rgba(197, 150, 58, 0.12)",
+                        borderColor: "rgba(197, 150, 58, 0.30)",
+                        color: "var(--warning)",
+                      }}
+                    >
+                      In Progress · Internal R&amp;D
+                    </span>
+                    <span className="qa-buyer-category">
+                      Internal · Payment Infrastructure
+                    </span>
+                  </div>
+                  <p className="qa-buyer-desc" style={{ marginBottom: 20 }}>
+                    Pengujian sistem payment gateway internal untuk memvalidasi alur transaksi, status pembayaran, disbursement, dan integrasi payment channel.
+                  </p>
+                </div>
+
+                {/* Horizontal Metadata Row */}
+                <div className="qa-buyer-meta-row" style={{ maxWidth: "100%", marginBottom: 0 }}>
+                  <div className="qa-buyer-meta-col">
+                    <span className="qa-buyer-meta-label">QA Role</span>
+                    <span className="qa-buyer-meta-val">Quality Assurance Specialist</span>
+                    <span className="qa-buyer-meta-sub">Pengujian status transaksi, validasi data, dan penanganan kondisi gagal pada alur pembayaran.</span>
+                  </div>
+
+                  <div className="qa-buyer-meta-col">
+                    <span className="qa-buyer-meta-label">Tools &amp; Workflow</span>
+                    <span className="qa-buyer-meta-val">Plane · API Inspection</span>
+                    <span className="qa-buyer-meta-sub">Pelacakan bug, pemeriksaan respons API, dan dokumentasi hasil pengujian.</span>
+                  </div>
+
+                  <div className="qa-buyer-meta-col">
+                    <span className="qa-buyer-meta-label">Primary Focus</span>
+                    <span className="qa-buyer-meta-val">Transaction &amp; Payment Flow</span>
+                    <span className="qa-buyer-meta-sub">Validasi status transaksi, webhook, timeout, idempotency, dan failure handling.</span>
+                  </div>
+                </div>
               </div>
-              <p className="qa-project-overview" style={{ maxWidth: 640, margin: "0 0 18px" }}>
-                Pengujian integrasi sistem pembayaran otomatis internal bullions — difokuskan pada ketahanan transaksi, penanganan kegagalan jaringan, dan validasi status webhook.
-              </p>
+
+              {/* RIGHT COLUMN: Laptop Mockup (Dashboard) */}
+              <div className="qa-gateway-visual-col">
+                <div
+                  className="qa-laptop-container"
+                  onClick={() => setLightboxIndex(10)}
+                  title="Klik untuk memperbesar screenshot Payment Gateway Dashboard"
+                >
+                  <div className="qa-laptop-frame">
+                    <div className="qa-laptop-lid">
+                      <div className="qa-laptop-camera-dot" />
+                      <div className="qa-laptop-screen qa-laptop-screen--16-9">
+                        <Image
+                          src={paymentGatewayDashboardImage.src}
+                          alt={paymentGatewayDashboardImage.alt}
+                          width={paymentGatewayDashboardImage.width}
+                          height={paymentGatewayDashboardImage.height}
+                          className="qa-laptop-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <div className="qa-laptop-base">
+                      <div className="qa-laptop-base-notch" />
+                    </div>
+                  </div>
+                  <div className="qa-laptop-caption">
+                    <span>Payment Gateway — Dashboard Overview</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Current Testing Focus - Understated Editorial List */}
-            <div style={{ padding: "12px 18px", borderLeft: "2px solid var(--warning)", background: "rgba(197, 150, 58, 0.03)", maxWidth: 540 }}>
-              <h3 style={{ fontSize: 12.5, fontWeight: 700, color: "var(--warning)", margin: "0 0 8px", letterSpacing: ".02em" }}>
-                Current Testing Focus
-              </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 5, fontSize: 12.5, color: "var(--text-secondary)" }}>
-                <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
-                  Webhook status validation
-                </li>
-                <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
-                  Boundary value analysis
-                </li>
-                <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
-                  Fallback timeout simulation
-                </li>
-                <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
-                  Idempotency
-                </li>
-                <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--warning)" }} />
-                  Failure handling
-                </li>
-              </ul>
+            {/* 2. Layar Produk: 3-Column x 2-Row Compact Editorial Grid */}
+            <div className="qa-gateway-gallery-section">
+              <h3 className="qa-buyer-gallery-title">Layar Produk</h3>
+
+              <div className="qa-gateway-gallery-3col">
+                {/* Row 1, Item 1: Transaction Report — Payment */}
+                <div
+                  className="qa-gateway-gallery-card"
+                  onClick={() => setLightboxIndex(11)}
+                  title="Klik untuk memperbesar Transaction Report — Payment"
+                >
+                  <div className="qa-gateway-gallery-thumb">
+                    <Image
+                      src="/images/projects/payment-gateway/transaction-report.png"
+                      alt="Transaction Report — Payment"
+                      width={1024}
+                      height={728}
+                      className="qa-gateway-gallery-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-gateway-gallery-meta">
+                    <strong className="qa-gateway-gallery-title">
+                      Transaction Report — Payment
+                    </strong>
+                    <p className="qa-gateway-gallery-desc">
+                      Daftar transaksi dengan pencarian, filter, payment channel, dan berbagai status transaksi.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 1, Item 2: Transaction Details — Payment */}
+                <div
+                  className="qa-gateway-gallery-card"
+                  onClick={() => setLightboxIndex(12)}
+                  title="Klik untuk memperbesar Transaction Details — Payment"
+                >
+                  <div className="qa-gateway-gallery-thumb">
+                    <Image
+                      src="/images/projects/payment-gateway/transaction-details.png"
+                      alt="Transaction Details — Payment"
+                      width={1024}
+                      height={728}
+                      className="qa-gateway-gallery-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-gateway-gallery-meta">
+                    <strong className="qa-gateway-gallery-title">
+                      Transaction Details — Payment
+                    </strong>
+                    <p className="qa-gateway-gallery-desc">
+                      Detail transaksi, riwayat status, informasi order, dan rincian pembayaran.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 1, Item 3: Transaction Report — Disbursement */}
+                <div
+                  className="qa-gateway-gallery-card"
+                  onClick={() => setLightboxIndex(13)}
+                  title="Klik untuk memperbesar Transaction Report — Disbursement"
+                >
+                  <div className="qa-gateway-gallery-thumb">
+                    <Image
+                      src="/images/projects/payment-gateway/disbursement-report.png"
+                      alt="Transaction Report — Disbursement"
+                      width={1024}
+                      height={728}
+                      className="qa-gateway-gallery-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-gateway-gallery-meta">
+                    <strong className="qa-gateway-gallery-title">
+                      Transaction Report — Disbursement
+                    </strong>
+                    <p className="qa-gateway-gallery-desc">
+                      Pemantauan disbursement berdasarkan ID, nominal, dan status proses.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 2, Item 4: Payment Method */}
+                <div
+                  className="qa-gateway-gallery-card"
+                  onClick={() => setLightboxIndex(14)}
+                  title="Klik untuk memperbesar Payment Method"
+                >
+                  <div className="qa-gateway-gallery-thumb">
+                    <Image
+                      src="/images/projects/payment-gateway/payment-method.png"
+                      alt="Payment Method"
+                      width={1024}
+                      height={728}
+                      className="qa-gateway-gallery-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-gateway-gallery-meta">
+                    <strong className="qa-gateway-gallery-title">
+                      Payment Method
+                    </strong>
+                    <p className="qa-gateway-gallery-desc">
+                      Pengelolaan channel pembayaran beserta status aktif dan nonaktif.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 2, Item 5: User Management */}
+                <div
+                  className="qa-gateway-gallery-card"
+                  onClick={() => setLightboxIndex(15)}
+                  title="Klik untuk memperbesar User Management"
+                >
+                  <div className="qa-gateway-gallery-thumb">
+                    <Image
+                      src="/images/projects/payment-gateway/user-management.png"
+                      alt="User Management"
+                      width={1024}
+                      height={728}
+                      className="qa-gateway-gallery-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-gateway-gallery-meta">
+                    <strong className="qa-gateway-gallery-title">
+                      User Management
+                    </strong>
+                    <p className="qa-gateway-gallery-desc">
+                      Pengelolaan pengguna dan status akses dalam sistem payment gateway.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 2, Item 6: Role Management */}
+                <div
+                  className="qa-gateway-gallery-card"
+                  onClick={() => setLightboxIndex(16)}
+                  title="Klik untuk memperbesar Role Management"
+                >
+                  <div className="qa-gateway-gallery-thumb">
+                    <Image
+                      src="/images/projects/payment-gateway/role-management.png"
+                      alt="Role Management"
+                      width={1024}
+                      height={728}
+                      className="qa-gateway-gallery-img"
+                      loading="lazy"
+                    />
+                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                  </div>
+                  <div className="qa-gateway-gallery-meta">
+                    <strong className="qa-gateway-gallery-title">
+                      Role Management
+                    </strong>
+                    <p className="qa-gateway-gallery-desc">
+                      Pengaturan role dan akses menu berdasarkan kebutuhan pengguna.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Testing Section: Yang Diuji */}
+            <div className="qa-gateway-scenarios">
+              <h3 className="qa-buyer-gallery-title">Yang Diuji</h3>
+
+              <div className="qa-gateway-scenarios-grid">
+                {[
+                  {
+                    num: "01",
+                    title: "Transaction & Status Validation",
+                    desc: "Validasi perubahan status transaksi dari proses pembayaran hingga settlement, refund, expired, dan kondisi gagal.",
+                  },
+                  {
+                    num: "02",
+                    title: "Webhook & API Validation",
+                    desc: "Memeriksa respons API dan webhook serta memastikan perubahan status diterima sesuai respons integrasi.",
+                  },
+                  {
+                    num: "03",
+                    title: "Timeout, Retry & Failure Handling",
+                    desc: "Menguji timeout, kegagalan koneksi, fallback, dan kemungkinan request ulang pada proses transaksi.",
+                  },
+                  {
+                    num: "04",
+                    title: "Idempotency & Duplicate Transaction",
+                    desc: "Memastikan request berulang tidak menghasilkan transaksi atau proses pembayaran ganda.",
+                  },
+                  {
+                    num: "05",
+                    title: "Payment Method",
+                    desc: "Memverifikasi transaksi pada berbagai channel pembayaran yang tersedia.",
+                  },
+                  {
+                    num: "06",
+                    title: "User & Role Access",
+                    desc: "Memverifikasi akses menu dan fungsi berdasarkan role pengguna yang ditentukan.",
+                  },
+                ].map((scenario) => (
+                  <div key={scenario.num} className="qa-gateway-scenario-item">
+                    <span className="qa-gateway-scenario-num">{scenario.num}</span>
+                    <div className="qa-gateway-scenario-content">
+                      <strong className="qa-gateway-scenario-title">
+                        {scenario.title}
+                      </strong>
+                      <p className="qa-gateway-scenario-desc">
+                        {scenario.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 4. Internal R&D Status Result */}
+            <div className="qa-gateway-status-result">
+              <p className="qa-gateway-status-desc">
+                <strong style={{ color: "var(--warning)" }}>In Progress · Internal R&amp;D: </strong>
+                Fokus pengembangan berada pada validasi alur transaksi dan ketahanan integrasi terhadap berbagai kondisi error.
+              </p>
             </div>
           </motion.article>
         </div>

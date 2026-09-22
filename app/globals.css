@@ -3313,7 +3313,7 @@
   display: block;
 }
 
-/* Product Section (Tampilan Produk): Editorial Mobile Showcase */
+/* Product Section (Layar Produk): Editorial Mobile Showcase */
 .qa-buyer-gallery {
   margin: clamp(40px, 5vw, 64px) 0;
 }
@@ -3588,6 +3588,10 @@
   display: block;
 }
 
+.qa-laptop-screen--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
 .qa-laptop-img {
   width: 100%;
   height: 100%;
@@ -3804,6 +3808,231 @@
 .qa-organizer-path-desc {
   font-size: 12px;
   color: rgba(245, 240, 232, 0.50);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ════════════════════════════════════════════════
+   PAYMENT GATEWAY MVP — EDITORIAL QA CASE STUDY
+   1. Hero Grid (Left Info, Right Laptop)
+   2. Layar Produk (3-Column x 2-Row Compact Grid)
+   3. Yang Diuji (2-Column Scenarios Grid 01-06)
+   4. Status Summary Result Box
+   ════════════════════════════════════════════════ */
+.qa-gateway-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(32px, 4.5vw, 56px);
+  align-items: center;
+  margin-bottom: clamp(36px, 4.5vw, 52px);
+}
+
+@media (max-width: 1024px) {
+  .qa-gateway-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.qa-gateway-content-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-gateway-visual-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. Compact 3-Column x 2-Row Product Gallery (Layar Produk) */
+.qa-gateway-gallery-section {
+  margin: clamp(24px, 3.2vw, 36px) auto clamp(32px, 4vw, 44px);
+  width: 100%;
+  max-width: 960px;
+}
+
+.qa-gateway-gallery-section .qa-buyer-gallery-title {
+  margin: 0 0 clamp(18px, 2.4vw, 26px);
+}
+
+.qa-gateway-gallery-3col {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(16px, 2.2vw, 24px);
+  row-gap: clamp(28px, 3.5vw, 38px);
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.qa-gateway-gallery-card {
+  display: flex;
+  flex-direction: column;
+  width: 83%;
+  max-width: 255px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .qa-gateway-gallery-section {
+    max-width: 640px;
+  }
+  .qa-gateway-gallery-3col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 640px;
+    row-gap: 28px;
+  }
+  .qa-gateway-gallery-card {
+    width: 86%;
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 560px) {
+  .qa-gateway-gallery-section {
+    max-width: 100%;
+  }
+  .qa-gateway-gallery-3col {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    row-gap: 24px;
+  }
+  .qa-gateway-gallery-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+.qa-gateway-gallery-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1024 / 728;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.50);
+  background: #0d0d0c;
+  overflow: hidden;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+@media (hover: hover) {
+  .qa-gateway-gallery-card:hover .qa-gateway-gallery-thumb {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+}
+
+.qa-gateway-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.qa-gateway-gallery-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(to bottom, rgba(13, 13, 12, 0) 0%, rgba(13, 13, 12, 0.60) 100%);
+  pointer-events: none;
+}
+
+.qa-gateway-gallery-meta {
+  padding: 11px 1px 0;
+  width: 100%;
+}
+
+.qa-gateway-gallery-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(245, 240, 232, 0.92);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.qa-gateway-gallery-desc {
+  font-size: 11.5px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.56;
+  margin: 0;
+}
+
+/* 3. Payment Gateway Scenarios (Yang Diuji 01-06) */
+.qa-gateway-scenarios {
+  margin: clamp(32px, 4vw, 48px) 0 20px;
+}
+
+.qa-gateway-scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(24px, 4vw, 48px);
+  row-gap: 0;
+}
+
+@media (max-width: 768px) {
+  .qa-gateway-scenarios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qa-gateway-scenario-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.qa-gateway-scenario-num {
+  font-family: monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--warning);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.qa-gateway-scenario-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-gateway-scenario-title {
+  color: rgba(245, 240, 232, 0.92);
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.qa-gateway-scenario-desc {
+  font-size: 12px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 4. Internal R&D Status Result */
+.qa-gateway-status-result {
+  padding: 14px 18px;
+  border-left: 2px solid var(--warning);
+  background: rgba(197, 150, 58, 0.03);
+  margin-top: 24px;
+}
+
+.qa-gateway-status-desc {
+  font-size: 13px;
+  color: rgba(245, 240, 232, 0.72);
   line-height: 1.6;
   margin: 0;
 }
