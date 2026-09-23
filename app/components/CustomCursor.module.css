@@ -1,0 +1,22 @@
+.custom-cursor {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: none !important;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    transform: translate3d(-100px, -100px, 0);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    transition: background 0.45s ease;
+  }
+}

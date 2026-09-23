@@ -1,0 +1,1292 @@
+/* ══ PROJECTS PAGE MODULE ══ */
+
+@media (min-width: 769px) {
+  .sidebar-offset {
+    margin-left: 210px;
+  }
+}
+
+.chip-green {
+  background: rgba(73, 168, 120, 0.12);
+  border: 1px solid rgba(73, 168, 120, 0.30);
+  color: var(--success);
+}
+
+/* ── PAGE-LEVEL RESPONSIVE ──────────────── */
+/* Projects page: 2-col → 1-col */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .projects-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+
+/* ══════════════════════════════════════════
+   QA CASE-STUDY ARCHIVE (/projects)
+   Clear chapter separation, strong title hierarchy,
+   and dedicated test evidence containers
+══════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   QA CASE-STUDY ARCHIVE (/projects)
+   Clear chapter separation, strong title hierarchy,
+   and dedicated test evidence containers
+══════════════════════════════════════════ */
+.qa-archive-header {
+  margin-bottom: clamp(40px, 5.5vw, 64px);
+}
+
+/* Open, uncarded editorial case-study chapter */
+.qa-project-chapter {
+  position: relative;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+}
+
+.qa-chapter-divider {
+  height: 1px;
+  margin: clamp(48px, 6vw, 68px) 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+}
+
+/* ════════════════════════════════════════════════
+   PROJECTS PAGE: FLUID HORIZONTAL LAYOUT
+   Naturally uses available space beside desktop sidebar.
+   No artificial narrow centered width locks.
+   ════════════════════════════════════════════════ */
+.projects-fluid-container {
+  width: 100%;
+  padding-left: clamp(20px, 3.8vw, 56px);
+  padding-right: clamp(20px, 3.8vw, 56px);
+  box-sizing: border-box;
+}
+
+/* ════════════════════════════════════════════════
+   TENAR EVENTS (BUYER) — NATURAL EDITORIAL CASE STUDY
+   Typography · Whitespace · Real Screenshots · Restrained Design
+   ════════════════════════════════════════════════ */
+
+/* Hero Container */
+.qa-buyer-editorial-hero {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(16px, 2.5vw, 28px);
+  margin-bottom: clamp(36px, 4.5vw, 48px);
+}
+
+/* Two-column Hero Grid */
+.qa-buyer-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: clamp(32px, 4.5vw, 60px);
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .qa-buyer-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Left Column: Editorial Content */
+.qa-buyer-intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-buyer-title {
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+
+.qa-buyer-title-accent {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.qa-buyer-subhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.qa-buyer-category {
+  font-size: 13px;
+  font-family: monospace;
+  color: var(--text-secondary);
+}
+
+.qa-buyer-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(245, 240, 232, 0.72);
+  margin-bottom: 20px;
+  max-width: 640px;
+}
+
+/* Horizontal Metadata Row (No card, no rounded boxes) */
+.qa-buyer-meta-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+
+@media (max-width: 640px) {
+  .qa-buyer-meta-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.qa-buyer-meta-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-buyer-meta-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: monospace;
+  color: var(--accent);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.qa-buyer-meta-val {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.qa-buyer-meta-sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  line-height: 1.45;
+}
+
+/* Right Column: Simple Realistic iPhone Frame (No glow, no 3D distortion) */
+.qa-buyer-device-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qa-buyer-iphone {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 44px;
+  padding: 9px;
+  background: #191918;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 20px 45px -12px rgba(0, 0, 0, 0.75),
+    0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+@media (hover: hover) {
+  .qa-buyer-iphone:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 26px 54px -12px rgba(0, 0, 0, 0.85),
+      0 6px 16px -2px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+@media (max-width: 960px) {
+  .qa-buyer-iphone {
+    max-width: 270px;
+  }
+}
+
+.qa-buyer-iphone-screen {
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 430 / 932;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qa-buyer-iphone-island {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 18px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.qa-buyer-iphone-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Product Section (Layar Produk): Editorial Mobile Showcase */
+.qa-buyer-gallery {
+  margin: clamp(40px, 5vw, 64px) 0;
+}
+
+.qa-buyer-gallery-title {
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 clamp(24px, 3vw, 36px);
+}
+
+.qa-buyer-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(28px, 4vw, 64px);
+  row-gap: clamp(36px, 5vw, 60px);
+  justify-items: center;
+}
+
+@media (max-width: 640px) {
+  .qa-buyer-gallery-grid {
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+  }
+}
+
+.qa-buyer-screenshot-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 240px;
+  cursor: pointer;
+}
+
+.qa-buyer-screenshot-frame {
+  position: relative;
+  width: 100%;
+  height: 370px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.55);
+  background: transparent;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transition: transform 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+}
+
+.qa-buyer-screenshot-item:hover .qa-buyer-screenshot-frame {
+  transform: translateY(-2px) scale(1.015);
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+.qa-buyer-screenshot-img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.qa-buyer-screenshot-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(13, 13, 12, 0) 0%, rgba(13, 13, 12, 0.65) 100%);
+  pointer-events: none;
+}
+
+.qa-buyer-screenshot-caption {
+  width: 100%;
+  padding: 14px 2px 0;
+  text-align: left;
+}
+
+.qa-buyer-screenshot-name {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+
+.qa-buyer-screenshot-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Testing Scenarios: Editorial List with Thin Dividers */
+.qa-buyer-scenarios {
+  margin: clamp(36px, 4.5vw, 52px) 0 28px;
+}
+
+.qa-buyer-scenarios-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-buyer-scenario-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.qa-buyer-scenario-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+@media (max-width: 600px) {
+  .qa-buyer-scenario-item {
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    padding: 14px 0;
+  }
+}
+
+.qa-buyer-scenario-num {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: .06em;
+}
+
+.qa-buyer-scenario-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.qa-buyer-scenario-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.qa-buyer-scenario-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 800px;
+}
+
+/* Production Result: Subtle green vertical indicator */
+.qa-buyer-production-result {
+  border-left: 2px solid var(--success);
+  padding: 4px 0 4px 16px;
+  margin: clamp(24px, 3.5vw, 36px) 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-buyer-production-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 720px;
+}
+
+/* CTA */
+.qa-buyer-cta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ════════════════════════════════════════════════
+   TENAR ORGANIZER — TWO-COLUMN EDITORIAL
+   Left: Compact Laptop Mockup (10-20% larger, Supporting Evidence)
+   Right: Title, Specs, Verified Paths, Result, CTA
+   ════════════════════════════════════════════════ */
+.qa-organizer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: clamp(32px, 4.5vw, 56px);
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .qa-organizer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.qa-organizer-visual-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-organizer-visual-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-organizer-content-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Laptop Mockup (HTML/CSS, Realistic & Restrained) */
+.qa-laptop-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.qa-laptop-frame {
+  width: 100%;
+  position: relative;
+}
+
+/* Laptop Lid (Screen Bezel) */
+.qa-laptop-lid {
+  background: #171716;
+  border-radius: 12px 12px 2px 2px;
+  padding: 10px 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 
+    0 16px 36px -8px rgba(0, 0, 0, 0.70),
+    0 4px 12px -2px rgba(0, 0, 0, 0.40);
+  position: relative;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+@media (hover: hover) {
+  .qa-laptop-container:hover .qa-laptop-lid {
+    border-color: rgba(255, 255, 255, 0.20);
+    transform: translateY(-2px);
+  }
+}
+
+.qa-laptop-camera-dot {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #2a2a28;
+  border-radius: 50%;
+}
+
+.qa-laptop-screen {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0d0d0c;
+  aspect-ratio: 1917 / 971;
+  display: block;
+}
+
+.qa-laptop-screen--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.qa-laptop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Laptop Base (Minimalist keyboard chassis silhouette) */
+.qa-laptop-base {
+  width: 106%;
+  margin-left: -3%;
+  height: 10px;
+  background: linear-gradient(180deg, #252523 0%, #151514 100%);
+  border-radius: 0 0 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
+  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.75);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.qa-laptop-base-notch {
+  width: 54px;
+  height: 3px;
+  background: #0f0f0e;
+  border-radius: 0 0 3px 3px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: none;
+}
+
+.qa-laptop-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.qa-laptop-caption span {
+  font-family: monospace;
+  letter-spacing: .02em;
+}
+
+/* Supporting Product Evidence Gallery (2-Row x 2-Column under Laptop) */
+.qa-organizer-supporting-gallery {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 14px;
+  row-gap: 18px;
+  width: 100%;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 540px) {
+  .qa-organizer-supporting-gallery {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+}
+
+.qa-organizer-supporting-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.qa-organizer-supporting-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.50);
+  background: #0d0d0c;
+  overflow: hidden;
+  transition: transform 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+}
+
+@media (hover: hover) {
+  .qa-organizer-supporting-item:hover .qa-organizer-supporting-frame {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* Secondary Tier: Event List & Ticket Management (Slightly lighter visual weight) */
+.qa-organizer-supporting-frame--secondary {
+  border-color: rgba(255, 255, 255, 0.08);
+  opacity: 0.94;
+}
+
+@media (hover: hover) {
+  .qa-organizer-supporting-item--secondary:hover .qa-organizer-supporting-frame--secondary {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.20);
+    transform: translateY(-2px);
+  }
+}
+
+.qa-organizer-supporting-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.qa-organizer-supporting-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: linear-gradient(to bottom, rgba(13, 13, 12, 0) 0%, rgba(13, 13, 12, 0.65) 100%);
+  pointer-events: none;
+}
+
+.qa-organizer-supporting-caption {
+  padding: 8px 1px 0;
+}
+
+.qa-organizer-supporting-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(245, 240, 232, 0.92);
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+.qa-organizer-supporting-desc {
+  font-size: 11.5px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.qa-organizer-supporting-item--secondary .qa-organizer-supporting-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(245, 240, 232, 0.88);
+}
+
+.qa-organizer-supporting-item--secondary .qa-organizer-supporting-desc {
+  font-size: 11px;
+  color: rgba(245, 240, 232, 0.45);
+}
+
+/* Yang Diuji (Numbered Editorial List, Divider-based, No Card) */
+.qa-organizer-paths {
+  margin: 18px 0 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 0 6px;
+}
+
+.qa-organizer-paths-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.qa-organizer-paths-list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+}
+
+.qa-organizer-path-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.qa-organizer-path-item:last-child {
+  border-bottom: none;
+}
+
+.qa-organizer-path-num {
+  font-family: monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.qa-organizer-path-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-organizer-path-title {
+  color: rgba(245, 240, 232, 0.92);
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.qa-organizer-path-desc {
+  font-size: 12px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ════════════════════════════════════════════════
+   PAYMENT GATEWAY MVP — EDITORIAL QA CASE STUDY
+   1. Hero Grid (Left Info, Right Laptop)
+   2. Layar Produk (3-Column x 2-Row Compact Grid)
+   3. Yang Diuji (2-Column Scenarios Grid 01-06)
+   4. Status Summary Result Box
+   ════════════════════════════════════════════════ */
+.qa-gateway-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(32px, 4.5vw, 56px);
+  align-items: center;
+  margin-bottom: clamp(36px, 4.5vw, 52px);
+}
+
+@media (max-width: 1024px) {
+  .qa-gateway-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.qa-gateway-content-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-gateway-visual-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. Compact 3-Column x 2-Row Product Gallery (Layar Produk) */
+.qa-gateway-gallery-section {
+  margin: clamp(24px, 3.2vw, 36px) auto clamp(32px, 4vw, 44px);
+  width: 100%;
+  max-width: 960px;
+}
+
+.qa-gateway-gallery-section .qa-buyer-gallery-title {
+  margin: 0 0 clamp(18px, 2.4vw, 26px);
+}
+
+.qa-gateway-gallery-3col {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(16px, 2.2vw, 24px);
+  row-gap: clamp(28px, 3.5vw, 38px);
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.qa-gateway-gallery-card {
+  display: flex;
+  flex-direction: column;
+  width: 83%;
+  max-width: 255px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .qa-gateway-gallery-section {
+    max-width: 640px;
+  }
+  .qa-gateway-gallery-3col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 640px;
+    row-gap: 28px;
+  }
+  .qa-gateway-gallery-card {
+    width: 86%;
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 560px) {
+  .qa-gateway-gallery-section {
+    max-width: 100%;
+  }
+  .qa-gateway-gallery-3col {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    row-gap: 24px;
+  }
+  .qa-gateway-gallery-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+.qa-gateway-gallery-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1024 / 728;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.50);
+  background: #0d0d0c;
+  overflow: hidden;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+@media (hover: hover) {
+  .qa-gateway-gallery-card:hover .qa-gateway-gallery-thumb {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+}
+
+.qa-gateway-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.qa-gateway-gallery-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(to bottom, rgba(13, 13, 12, 0) 0%, rgba(13, 13, 12, 0.60) 100%);
+  pointer-events: none;
+}
+
+.qa-gateway-gallery-meta {
+  padding: 11px 1px 0;
+  width: 100%;
+}
+
+.qa-gateway-gallery-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(245, 240, 232, 0.92);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.qa-gateway-gallery-desc {
+  font-size: 11.5px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.56;
+  margin: 0;
+}
+
+/* 3. Payment Gateway Scenarios (Yang Diuji 01-06) */
+.qa-gateway-scenarios {
+  margin: clamp(32px, 4vw, 48px) 0 20px;
+}
+
+.qa-gateway-scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(24px, 4vw, 48px);
+  row-gap: 0;
+}
+
+@media (max-width: 768px) {
+  .qa-gateway-scenarios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qa-gateway-scenario-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.qa-gateway-scenario-num {
+  font-family: monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--warning);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.qa-gateway-scenario-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-gateway-scenario-title {
+  color: rgba(245, 240, 232, 0.92);
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.qa-gateway-scenario-desc {
+  font-size: 12px;
+  color: rgba(245, 240, 232, 0.50);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 4. Internal R&D Status Result */
+.qa-gateway-status-result {
+  padding: 14px 18px;
+  border-left: 2px solid var(--warning);
+  background: rgba(197, 150, 58, 0.03);
+  margin-top: 24px;
+}
+
+.qa-gateway-status-desc {
+  font-size: 13px;
+  color: rgba(245, 240, 232, 0.72);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.qa-chapter-header-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.qa-chapter-num-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.qa-chapter-big-num {
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 900;
+  font-family: monospace;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.qa-chapter-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.52);
+}
+
+.qa-project-title {
+  font-size: clamp(28px, 4.2vw, 42px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  color: rgba(245, 240, 232, 0.98);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.qa-project-subtitle {
+  font-size: 13px;
+  font-family: monospace;
+  color: rgba(245, 240, 232, 0.48);
+  letter-spacing: .02em;
+  margin-bottom: 18px;
+}
+
+.qa-project-overview {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(245, 240, 232, 0.62);
+  margin-bottom: 22px;
+}
+
+/* Restrained metadata strip */
+.qa-project-meta-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 800px) {
+  .qa-project-meta-strip {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+}
+
+.qa-live-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.qa-live-meta-url {
+  font-size: 12px;
+  font-family: monospace;
+  color: var(--text-muted);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 6px;
+}
+
+/* Scenarios: clean editorial panel */
+.qa-scenarios-panel {
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+  max-width: 860px;
+}
+
+.qa-scenarios-header {
+  padding: 12px 18px;
+  background: var(--surface-elevated);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qa-scenarios-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 640px) {
+  .qa-scenarios-body {
+    padding: 16px;
+  }
+}
+
+.qa-scenario-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.qa-scenario-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.qa-result-callout {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: rgba(73, 168, 120, 0.08);
+  border: 1px solid rgba(73, 168, 120, 0.22);
+  border-left: 3px solid var(--success);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 720px;
+}
+
+.qa-result-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--success);
+}
+
+.qa-result-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Chapter 03: Payment Gateway MVP */
+.qa-mvp-chapter {
+  position: relative;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  max-width: 760px;
+}
+
+
+/* ── REAL SCREENSHOT FRAMES (QA ARCHIVE) ── */
+.qa-primary-visual-wrap {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.qa-mobile-frame {
+  max-width: 240px;
+  max-height: 460px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65);
+  cursor: zoom-in;
+  margin: 0 auto;
+  position: relative;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.qa-mobile-frame img {
+  width: 100%;
+  height: 100%;
+  max-height: 460px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.qa-mobile-frame:hover {
+  transform: translateY(-2px);
+  border-color: #383733;
+}
+
+.qa-dashboard-frame {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.65);
+  cursor: zoom-in;
+  margin: 24px 0;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.qa-dashboard-frame:hover {
+  transform: translateY(-2px);
+  border-color: #383733;
+}
+
+.qa-evidence-section {
+  margin: 28px 0 20px;
+  max-width: 680px;
+}
+
+.qa-evidence-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.qa-evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 540px) {
+  .qa-evidence-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qa-evidence-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: zoom-in;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.qa-evidence-card:hover {
+  transform: translateY(-2px);
+  border-color: #383733;
+}
+
+.qa-evidence-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.qa-evidence-caption {
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.qa-limitation-notice {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+}

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import styles from "./CustomCursor.module.css";
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -38,5 +39,5 @@ export default function CustomCursor() {
     };
   }, []);
 
-  return <div ref={dotRef} className="custom-cursor" aria-hidden="true" />;
+  return <div ref={dotRef} className={styles["custom-cursor"]} aria-hidden="true" />;
 }

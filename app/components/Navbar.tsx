@@ -5,7 +5,6 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Menu,
   X,
   User,
   Briefcase,
@@ -16,6 +15,7 @@ import {
   Video,
   ChevronRight,
 } from "lucide-react";
+import styles from "./Navbar.module.css";
 
 interface SectionNavItem {
   id: string;
@@ -90,6 +90,7 @@ export default function Navbar() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (path !== "/") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsScrolled(true);
       return;
     }
@@ -174,6 +175,7 @@ export default function Navbar() {
     // Check if initial URL has a hash matching one of our sections
     const initialHash = window.location.hash.replace("#", "");
     if (initialHash && SECTIONS.some((s) => s.id === initialHash)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveSection(initialHash);
     } else {
       determineActiveSection();
@@ -260,16 +262,16 @@ export default function Navbar() {
   return (
     <>
       {/* ══ DESKTOP EDITORIAL SIDEBAR ══ */}
-      <aside className="sidebar" role="navigation" aria-label="Sidebar navigation">
+      <aside className={styles["sidebar"]} role="navigation" aria-label="Sidebar navigation">
         {/* Identity */}
-        <div className="sidebar-identity">
-          <button onClick={() => scrollToTop()} className="sidebar-logo-btn" aria-label="Home">
+        <div className={styles["sidebar-identity"]}>
+          <button onClick={() => scrollToTop()} className={styles["sidebar-logo-btn"]} aria-label="Home">
             <Image
               src={logoSrc}
               alt="Aprillio Monogram"
               width={38}
               height={22}
-              className="sidebar-logo-img"
+              className={styles["sidebar-logo-img"]}
               priority
             />
           </button>
@@ -277,16 +279,16 @@ export default function Navbar() {
             onClick={() => scrollToTop()}
             style={{ background: "none", border: "none", cursor: "pointer", textAlign: "left" as const, padding: 0 }}
           >
-            <p className="sidebar-name">Aprillio Bintang</p>
-            <p className="sidebar-role">QA &amp; Creator</p>
+            <p className={styles["sidebar-name"]}>Aprillio Bintang</p>
+            <p className={styles["sidebar-role"]}>QA &amp; Creator</p>
           </button>
         </div>
 
-        <div className="sidebar-divider" />
+        <div className={styles["sidebar-divider"]} />
 
         {/* Main Navigation */}
-        <div className="sidebar-nav-group">
-          <p className="sidebar-nav-label">Main</p>
+        <div className={styles["sidebar-nav-group"]}>
+          <p className={styles["sidebar-nav-label"]}>Main</p>
           {SECTIONS.map(({ id, label, icon: Icon }) => {
             const isActive = path === "/" && activeSection === id;
 
@@ -294,7 +296,7 @@ export default function Navbar() {
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className={`sidebar-nav-item ${isActive ? "is-active" : ""}`}
+                className={`${styles["sidebar-nav-item"]} ${isActive ? styles["is-active"] : ""}`}
               >
                 <Icon style={{ width: 16, height: 16, flexShrink: 0, opacity: isActive ? 1 : 0.7 }} />
                 <span>{label}</span>
@@ -303,18 +305,18 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="sidebar-divider" />
+        <div className={styles["sidebar-divider"]} />
 
         {/* Deep-Dive Portfolio Links */}
-        <div className="sidebar-nav-group">
-          <p className="sidebar-nav-label">Portfolio</p>
+        <div className={styles["sidebar-nav-group"]}>
+          <p className={styles["sidebar-nav-label"]}>Portfolio</p>
           {PORTFOLIO_ITEMS.map(({ href, label, icon: Icon }) => {
             const isActive = path === href;
             return (
               <Link
                 key={href}
                 href={href}
-                className={`sidebar-nav-item ${isActive ? "is-active" : ""}`}
+                className={`${styles["sidebar-nav-item"]} ${isActive ? styles["is-active"] : ""}`}
               >
                 <Icon style={{ width: 16, height: 16, flexShrink: 0, opacity: isActive ? 1 : 0.7 }} />
                 <span>{label}</span>
@@ -323,18 +325,18 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="sidebar-divider" />
+        <div className={styles["sidebar-divider"]} />
 
         {/* External Links */}
-        <div className="sidebar-nav-group">
-          <p className="sidebar-nav-label">Links</p>
+        <div className={styles["sidebar-nav-group"]}>
+          <p className={styles["sidebar-nav-label"]}>Links</p>
           {SOCIALS.map(({ href, label, icon }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noreferrer"
-              className="sidebar-nav-item sidebar-external"
+              className={`${styles["sidebar-nav-item"]} ${styles["sidebar-external"]}`}
             >
               <span style={{ width: 16, height: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, opacity: 0.7 }}>
                 {icon}
@@ -346,30 +348,30 @@ export default function Navbar() {
       </aside>
 
       {/* ══ MOBILE COMPACT TOP BAR ══ */}
-      <header className={`mobile-top-bar ${isScrolled ? "is-scrolled" : "is-transparent"}`}>
-        <button onClick={() => scrollToTop()} className="mobile-logo-btn" aria-label="Home">
+      <header className={`${styles["mobile-top-bar"]} ${isScrolled ? styles["is-scrolled"] : styles["is-transparent"]}`}>
+        <button onClick={() => scrollToTop()} className={styles["mobile-logo-btn"]} aria-label="Home">
           <Image
             src={logoSrc}
             alt="Aprillio Monogram"
             width={34}
             height={20}
-            className="mobile-logo-img"
+            className={styles["mobile-logo-img"]}
             priority
           />
-          <span className="mobile-logo-text">
+          <span className={styles["mobile-logo-text"]}>
             Aprillio<span style={{ color: "var(--accent)" }}>.</span>
           </span>
         </button>
 
         <button
           onClick={() => setOpen(!open)}
-          className={`mobile-menu-btn ${open ? "is-open" : ""}`}
+          className={`${styles["mobile-menu-btn"]} ${open ? styles["is-open"] : ""}`}
           aria-label={open ? "Tutup menu navigasi" : "Buka menu navigasi"}
           aria-expanded={open}
         >
-          <span className="hamburger-line line-1" />
-          <span className="hamburger-line line-2" />
-          <span className="hamburger-line line-3" />
+          <span className={`${styles["hamburger-line"]} ${styles["line-1"]}`} />
+          <span className={`${styles["hamburger-line"]} ${styles["line-2"]}`} />
+          <span className={`${styles["hamburger-line"]} ${styles["line-3"]}`} />
         </button>
       </header>
 
@@ -383,7 +385,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="mobile-nav-backdrop"
+              className={styles["mobile-nav-backdrop"]}
               onClick={() => setOpen(false)}
               aria-hidden="true"
             />
@@ -394,16 +396,16 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="mobile-nav-drawer"
+              className={styles["mobile-nav-drawer"]}
               role="dialog"
               aria-modal="true"
               aria-label="Navigasi Mobile"
             >
               {/* Drawer Top Header */}
-              <div className="mobile-drawer-header">
+              <div className={styles["mobile-drawer-header"]}>
                 <button
                   onClick={() => scrollToTop(true)}
-                  className="mobile-logo-btn"
+                  className={styles["mobile-logo-btn"]}
                   aria-label="Home"
                 >
                   <Image
@@ -411,16 +413,16 @@ export default function Navbar() {
                     alt="Aprillio Monogram"
                     width={34}
                     height={20}
-                    className="mobile-logo-img"
+                    className={styles["mobile-logo-img"]}
                   />
-                  <span className="mobile-logo-text">
+                  <span className={styles["mobile-logo-text"]}>
                     Aprillio<span style={{ color: "var(--accent)" }}>.</span>
                   </span>
                 </button>
 
                 <button
                   onClick={() => setOpen(false)}
-                  className="mobile-drawer-close-btn"
+                  className={styles["mobile-drawer-close-btn"]}
                   aria-label="Tutup menu navigasi"
                 >
                   <X style={{ width: 18, height: 18 }} />
@@ -428,36 +430,36 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Scrollable Body */}
-              <div className="mobile-drawer-body">
+              <div className={styles["mobile-drawer-body"]}>
                 {/* 1. NAVIGASI */}
-                <div className="mobile-drawer-group">
-                  <p className="mobile-drawer-label">NAVIGASI</p>
-                  <div className="mobile-drawer-items">
+                <div className={styles["mobile-drawer-group"]}>
+                  <p className={styles["mobile-drawer-label"]}>NAVIGASI</p>
+                  <div className={styles["mobile-drawer-items"]}>
                     {SECTIONS.map(({ id, label, icon: Icon }) => {
                       const isActive = path === "/" && activeSection === id;
                       return (
                         <button
                           key={id}
                           onClick={() => scrollTo(id, true)}
-                          className={`mobile-drawer-item ${isActive ? "is-active" : ""}`}
+                          className={`${styles["mobile-drawer-item"]} ${isActive ? styles["is-active"] : ""}`}
                         >
-                          <span className="mobile-drawer-item-left">
-                            <Icon className="mobile-drawer-icon" />
+                          <span className={styles["mobile-drawer-item-left"]}>
+                            <Icon className={styles["mobile-drawer-icon"]} />
                             <span>{label}</span>
                           </span>
-                          <ChevronRight className="mobile-drawer-chevron" />
+                          <ChevronRight className={styles["mobile-drawer-chevron"]} />
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                <div className="mobile-drawer-divider" />
+                <div className={styles["mobile-drawer-divider"]} />
 
                 {/* 2. PORTFOLIO */}
-                <div className="mobile-drawer-group">
-                  <p className="mobile-drawer-label">PORTFOLIO</p>
-                  <div className="mobile-drawer-items">
+                <div className={styles["mobile-drawer-group"]}>
+                  <p className={styles["mobile-drawer-label"]}>PORTFOLIO</p>
+                  <div className={styles["mobile-drawer-items"]}>
                     {PORTFOLIO_ITEMS.map(({ href, label, icon: Icon }) => {
                       const isActive = path === href;
                       return (
@@ -465,40 +467,40 @@ export default function Navbar() {
                           key={href}
                           href={href}
                           onClick={() => setOpen(false)}
-                          className={`mobile-drawer-item ${isActive ? "is-active" : ""}`}
+                          className={`${styles["mobile-drawer-item"]} ${isActive ? styles["is-active"] : ""}`}
                         >
-                          <span className="mobile-drawer-item-left">
-                            <Icon className="mobile-drawer-icon" />
+                          <span className={styles["mobile-drawer-item-left"]}>
+                            <Icon className={styles["mobile-drawer-icon"]} />
                             <span>{label}</span>
                           </span>
-                          <ChevronRight className="mobile-drawer-chevron" />
+                          <ChevronRight className={styles["mobile-drawer-chevron"]} />
                         </Link>
                       );
                     })}
                   </div>
                 </div>
 
-                <div className="mobile-drawer-divider" />
+                <div className={styles["mobile-drawer-divider"]} />
 
                 {/* 3. LINKS */}
-                <div className="mobile-drawer-group">
-                  <p className="mobile-drawer-label">LINKS</p>
-                  <div className="mobile-drawer-items">
+                <div className={styles["mobile-drawer-group"]}>
+                  <p className={styles["mobile-drawer-label"]}>LINKS</p>
+                  <div className={styles["mobile-drawer-items"]}>
                     {SOCIALS.map(({ href, label, icon }) => (
                       <a
                         key={label}
                         href={href}
                         target="_blank"
                         rel="noreferrer"
-                        className="mobile-drawer-item mobile-drawer-external"
+                        className={`${styles["mobile-drawer-item"]} ${styles["mobile-drawer-external"]}`}
                       >
-                        <span className="mobile-drawer-item-left">
-                          <span className="mobile-drawer-social-icon">
+                        <span className={styles["mobile-drawer-item-left"]}>
+                          <span className={styles["mobile-drawer-social-icon"]}>
                             {icon}
                           </span>
                           <span>{label}</span>
                         </span>
-                        <ChevronRight className="mobile-drawer-chevron" />
+                        <ChevronRight className={styles["mobile-drawer-chevron"]} />
                       </a>
                     ))}
                   </div>

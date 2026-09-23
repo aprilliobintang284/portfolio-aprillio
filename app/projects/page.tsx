@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Lightbox, { type LightboxImage } from "../components/Lightbox";
+import styles from "./page.module.css";
 
 const v: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -150,14 +151,14 @@ export default function ProjectsPage() {
       <div className="bg-scene" />
       <Navbar />
 
-      <main className="sidebar-offset" style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110, overflowX: "clip" }}>
-        <div className="projects-fluid-container">
+      <main className={styles["sidebar-offset"]} style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110, overflowX: "clip" }}>
+        <div className={styles["projects-fluid-container"]}>
           {/* Header */}
           <motion.header
             initial="hidden"
             animate="show"
             variants={v}
-            className="qa-archive-header"
+            className={styles["qa-archive-header"]}
           >
             <span className="eyebrow" style={{ marginBottom: 12 }}>
               QA Work &amp; Case Studies
@@ -196,65 +197,65 @@ export default function ProjectsPage() {
             whileInView="show"
             viewport={VP}
             variants={vScale}
-            className="qa-project-chapter"
+            className={styles["qa-project-chapter"]}
           >
             {/* 1. Clean Two-Column Editorial Hero */}
-            <section className="qa-buyer-editorial-hero">
-              <div className="qa-buyer-hero-grid">
+            <section className={styles["qa-buyer-editorial-hero"]}>
+              <div className={styles["qa-buyer-hero-grid"]}>
                 {/* LEFT: Editorial Hierarchy & Metadata */}
-                <div className="qa-buyer-intro">
-                  <h2 className="qa-buyer-title">
-                    Tenar Events <span className="qa-buyer-title-accent">(Buyer)</span>
+                <div className={styles["qa-buyer-intro"]}>
+                  <h2 className={styles["qa-buyer-title"]}>
+                    Tenar Events <span className={styles["qa-buyer-title-accent"]}>(Buyer)</span>
                   </h2>
 
-                  <div className="qa-buyer-subhead">
-                    <span className="chip chip-green">Production Live</span>
-                    <span className="qa-buyer-category">
+                  <div className={styles["qa-buyer-subhead"]}>
+                    <span className={`chip ${styles["chip-green"]}`}>Production Live</span>
+                    <span className={styles["qa-buyer-category"]}>
                       Mobile Web · B2C Event Ticketing
                     </span>
                   </div>
 
-                  <p className="qa-buyer-desc">
+                  <p className={styles["qa-buyer-desc"]}>
                     Platform e-ticketing publik yang melayani ribuan pencari tiket event dalam format mobile web. Pengujian berfokus pada kelancaran alur checkout tiket, pencegahan duplikasi order, dan akurasi pencarian event aktif.
                   </p>
 
                   {/* Horizontal Metadata Row */}
-                  <div className="qa-buyer-meta-row">
-                    <div className="qa-buyer-meta-col">
-                      <span className="qa-buyer-meta-label">QA Role</span>
-                      <span className="qa-buyer-meta-val">Quality Assurance Specialist</span>
-                      <span className="qa-buyer-meta-sub">Perencanaan skenario &amp; eksekusi testing.</span>
+                  <div className={styles["qa-buyer-meta-row"]}>
+                    <div className={styles["qa-buyer-meta-col"]}>
+                      <span className={styles["qa-buyer-meta-label"]}>QA Role</span>
+                      <span className={styles["qa-buyer-meta-val"]}>Quality Assurance Specialist</span>
+                      <span className={styles["qa-buyer-meta-sub"]}>Perencanaan skenario &amp; eksekusi testing.</span>
                     </div>
 
-                    <div className="qa-buyer-meta-col">
-                      <span className="qa-buyer-meta-label">Tools &amp; Workflow</span>
-                      <span className="qa-buyer-meta-val">Plane · Test Matrix</span>
-                      <span className="qa-buyer-meta-sub">Pelacakan issue dan verifikasi bug lifecycle.</span>
+                    <div className={styles["qa-buyer-meta-col"]}>
+                      <span className={styles["qa-buyer-meta-label"]}>Tools &amp; Workflow</span>
+                      <span className={styles["qa-buyer-meta-val"]}>Plane · Test Matrix</span>
+                      <span className={styles["qa-buyer-meta-sub"]}>Pelacakan issue dan verifikasi bug lifecycle.</span>
                     </div>
 
-                    <div className="qa-buyer-meta-col">
-                      <span className="qa-buyer-meta-label">Primary Focus</span>
-                      <span className="qa-buyer-meta-val">E2E Buyer Flow &amp; UI</span>
-                      <span className="qa-buyer-meta-sub">Search Flow, Validation, dan stabilitas transaksi.</span>
+                    <div className={styles["qa-buyer-meta-col"]}>
+                      <span className={styles["qa-buyer-meta-label"]}>Primary Focus</span>
+                      <span className={styles["qa-buyer-meta-val"]}>E2E Buyer Flow &amp; UI</span>
+                      <span className={styles["qa-buyer-meta-sub"]}>Search Flow, Validation, dan stabilitas transaksi.</span>
                     </div>
                   </div>
                 </div>
 
                 {/* RIGHT: Simple Realistic iPhone Mockup */}
-                <div className="qa-buyer-device-stage">
+                <div className={styles["qa-buyer-device-stage"]}>
                   <div
-                    className="qa-buyer-iphone"
+                    className={styles["qa-buyer-iphone"]}
                     onClick={() => setLightboxIndex(0)}
                     title="Klik untuk memperbesar screenshot (resolusi penuh 430x932)"
                   >
-                    <div className="qa-buyer-iphone-screen">
-                      <div className="qa-buyer-iphone-island" />
+                    <div className={styles["qa-buyer-iphone-screen"]}>
+                      <div className={styles["qa-buyer-iphone-island"]} />
                       <Image
                         src="/images/projects/tenar-buyer/hero.png"
                         alt="Tenar Events Buyer Mobile Interface"
                         width={430}
                         height={932}
-                        className="qa-buyer-iphone-img"
+                        className={styles["qa-buyer-iphone-img"]}
                         priority
                       />
                     </div>
@@ -264,29 +265,29 @@ export default function ProjectsPage() {
             </section>
 
             {/* 2. Product Screenshots Gallery (Layar Produk) - 2x2 Editorial Grid */}
-            <div className="qa-buyer-gallery">
-              <h3 className="qa-buyer-gallery-title">Layar Produk</h3>
+            <div className={styles["qa-buyer-gallery"]}>
+              <h3 className={styles["qa-buyer-gallery-title"]}>Layar Produk</h3>
 
-              <div className="qa-buyer-gallery-grid">
+              <div className={styles["qa-buyer-gallery-grid"]}>
                 {/* Row 1, Item 1: Event Category */}
                 <div
-                  className="qa-buyer-screenshot-item"
+                  className={styles["qa-buyer-screenshot-item"]}
                   onClick={() => setLightboxIndex(1)}
                 >
-                  <div className="qa-buyer-screenshot-frame">
+                  <div className={styles["qa-buyer-screenshot-frame"]}>
                     <Image
                       src="/images/projects/tenar-buyer/event-category.png"
                       alt="Event Category"
                       width={360}
                       height={800}
-                      className="qa-buyer-screenshot-img"
+                      className={styles["qa-buyer-screenshot-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
+                    <div className={styles["qa-buyer-screenshot-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-buyer-screenshot-caption">
-                    <strong className="qa-buyer-screenshot-name">Event Category</strong>
-                    <p className="qa-buyer-screenshot-desc">
+                  <div className={styles["qa-buyer-screenshot-caption"]}>
+                    <strong className={styles["qa-buyer-screenshot-name"]}>Event Category</strong>
+                    <p className={styles["qa-buyer-screenshot-desc"]}>
                       Menampilkan event berdasarkan kategori yang dipilih pengguna.
                     </p>
                   </div>
@@ -294,23 +295,23 @@ export default function ProjectsPage() {
 
                 {/* Row 1, Item 2: Search */}
                 <div
-                  className="qa-buyer-screenshot-item"
+                  className={styles["qa-buyer-screenshot-item"]}
                   onClick={() => setLightboxIndex(2)}
                 >
-                  <div className="qa-buyer-screenshot-frame">
+                  <div className={styles["qa-buyer-screenshot-frame"]}>
                     <Image
                       src="/images/projects/tenar-buyer/search.png"
                       alt="Search"
                       width={460}
                       height={1024}
-                      className="qa-buyer-screenshot-img"
+                      className={styles["qa-buyer-screenshot-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
+                    <div className={styles["qa-buyer-screenshot-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-buyer-screenshot-caption">
-                    <strong className="qa-buyer-screenshot-name">Search</strong>
-                    <p className="qa-buyer-screenshot-desc">
+                  <div className={styles["qa-buyer-screenshot-caption"]}>
+                    <strong className={styles["qa-buyer-screenshot-name"]}>Search</strong>
+                    <p className={styles["qa-buyer-screenshot-desc"]}>
                       Pencarian event berdasarkan kata kunci untuk menemukan event yang diinginkan.
                     </p>
                   </div>
@@ -318,23 +319,23 @@ export default function ProjectsPage() {
 
                 {/* Row 2, Item 3: Event Detail */}
                 <div
-                  className="qa-buyer-screenshot-item"
+                  className={styles["qa-buyer-screenshot-item"]}
                   onClick={() => setLightboxIndex(3)}
                 >
-                  <div className="qa-buyer-screenshot-frame">
+                  <div className={styles["qa-buyer-screenshot-frame"]}>
                     <Image
                       src="/images/projects/tenar-buyer/event-detail.png"
                       alt="Event Detail"
                       width={265}
                       height={1024}
-                      className="qa-buyer-screenshot-img"
+                      className={styles["qa-buyer-screenshot-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
+                    <div className={styles["qa-buyer-screenshot-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-buyer-screenshot-caption">
-                    <strong className="qa-buyer-screenshot-name">Event Detail</strong>
-                    <p className="qa-buyer-screenshot-desc">
+                  <div className={styles["qa-buyer-screenshot-caption"]}>
+                    <strong className={styles["qa-buyer-screenshot-name"]}>Event Detail</strong>
+                    <p className={styles["qa-buyer-screenshot-desc"]}>
                       Detail event, informasi venue, dan pemilihan tiket.
                     </p>
                   </div>
@@ -342,23 +343,23 @@ export default function ProjectsPage() {
 
                 {/* Row 2, Item 4: Order Summary */}
                 <div
-                  className="qa-buyer-screenshot-item"
+                  className={styles["qa-buyer-screenshot-item"]}
                   onClick={() => setLightboxIndex(4)}
                 >
-                  <div className="qa-buyer-screenshot-frame">
+                  <div className={styles["qa-buyer-screenshot-frame"]}>
                     <Image
                       src="/images/projects/tenar-buyer/order-summary.png"
                       alt="Order Summary"
                       width={374}
                       height={1024}
-                      className="qa-buyer-screenshot-img"
+                      className={styles["qa-buyer-screenshot-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-buyer-screenshot-fade" aria-hidden="true" />
+                    <div className={styles["qa-buyer-screenshot-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-buyer-screenshot-caption">
-                    <strong className="qa-buyer-screenshot-name">Order Summary</strong>
-                    <p className="qa-buyer-screenshot-desc">
+                  <div className={styles["qa-buyer-screenshot-caption"]}>
+                    <strong className={styles["qa-buyer-screenshot-name"]}>Order Summary</strong>
+                    <p className={styles["qa-buyer-screenshot-desc"]}>
                       Ringkasan data pesanan sebelum tiket diproses.
                     </p>
                   </div>
@@ -367,10 +368,10 @@ export default function ProjectsPage() {
             </div>
 
             {/* 3. Testing Scenarios (Editorial List with Thin Dividers) */}
-            <div className="qa-buyer-scenarios">
-              <h3 className="qa-buyer-gallery-title">Skenario Pengujian Kunci</h3>
+            <div className={styles["qa-buyer-scenarios"]}>
+              <h3 className={styles["qa-buyer-gallery-title"]}>Skenario Pengujian Kunci</h3>
 
-              <div className="qa-buyer-scenarios-list">
+              <div className={styles["qa-buyer-scenarios-list"]}>
                 {[
                   {
                     num: "01",
@@ -393,11 +394,11 @@ export default function ProjectsPage() {
                     desc: "Memastikan query pencarian event menampilkan hasil yang relevan dan akurat secara real-time.",
                   },
                 ].map((scenario) => (
-                  <div key={scenario.num} className="qa-buyer-scenario-item">
-                    <span className="qa-buyer-scenario-num">{scenario.num}</span>
-                    <div className="qa-buyer-scenario-content">
-                      <strong className="qa-buyer-scenario-title">{scenario.title}</strong>
-                      <p className="qa-buyer-scenario-desc">{scenario.desc}</p>
+                  <div key={scenario.num} className={styles["qa-buyer-scenario-item"]}>
+                    <span className={styles["qa-buyer-scenario-num"]}>{scenario.num}</span>
+                    <div className={styles["qa-buyer-scenario-content"]}>
+                      <strong className={styles["qa-buyer-scenario-title"]}>{scenario.title}</strong>
+                      <p className={styles["qa-buyer-scenario-desc"]}>{scenario.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -405,15 +406,15 @@ export default function ProjectsPage() {
             </div>
 
             {/* 4. Production Result */}
-            <div className="qa-buyer-production-result">
-              <p className="qa-buyer-production-desc">
+            <div className={styles["qa-buyer-production-result"]}>
+              <p className={styles["qa-buyer-production-desc"]}>
                 <strong style={{ color: "var(--success)" }}>Production Live: </strong>
                 Zero critical blocker bugs at public launch. Transaksi tiket dan alur e-ticketing beroperasi stabil bagi ribuan pengguna.
               </p>
             </div>
 
             {/* 5. Final CTA */}
-            <div className="qa-buyer-cta">
+            <div className={styles["qa-buyer-cta"]}>
               <a
                 href="https://tenar.events/"
                 target="_blank"
@@ -422,12 +423,12 @@ export default function ProjectsPage() {
               >
                 Buka Platform Live <ArrowUpRight style={{ width: 14, height: 14 }} />
               </a>
-              <span className="qa-live-meta-url">tenar.events</span>
+              <span className={styles["qa-live-meta-url"]}>tenar.events</span>
             </div>
           </motion.article>
 
           {/* ── SUBSTANTIAL VERTICAL CHAPTER SEPARATION ── */}
-          <hr className="qa-chapter-divider" />
+          <hr className={styles["qa-chapter-divider"]} />
 
           {/* ══════════════════════════════════════════
               TENAR ORGANIZER
@@ -440,67 +441,67 @@ export default function ProjectsPage() {
             whileInView="show"
             viewport={VP}
             variants={vScale}
-            className="qa-project-chapter"
+            className={styles["qa-project-chapter"]}
           >
-            <div className="qa-organizer-grid">
+            <div className={styles["qa-organizer-grid"]}>
               {/* LEFT COLUMN: Laptop Mockup (Dashboard) + 2-Column Supporting Gallery */}
-              <div className="qa-organizer-visual-col">
-                <div className="qa-organizer-visual-wrap">
+              <div className={styles["qa-organizer-visual-col"]}>
+                <div className={styles["qa-organizer-visual-wrap"]}>
                   {/* Laptop Mockup: Dashboard */}
                   <div
-                    className="qa-laptop-container"
+                    className={styles["qa-laptop-container"]}
                     onClick={() => setLightboxIndex(5)}
                     title="Klik untuk memperbesar screenshot Tenar Organizer Dashboard (resolusi penuh 1917x971)"
                   >
-                    <div className="qa-laptop-frame">
+                    <div className={styles["qa-laptop-frame"]}>
                       {/* Top Screen Lid */}
-                      <div className="qa-laptop-lid">
-                        <div className="qa-laptop-camera-dot" />
-                        <div className="qa-laptop-screen">
+                      <div className={styles["qa-laptop-lid"]}>
+                        <div className={styles["qa-laptop-camera-dot"]} />
+                        <div className={styles["qa-laptop-screen"]}>
                           <Image
                             src="/images/projects/tenar-organizer/hero.png"
                             alt="Tenar Organizer Dashboard Screenshot"
                             width={1917}
                             height={971}
-                            className="qa-laptop-img"
+                            className={styles["qa-laptop-img"]}
                             loading="lazy"
                           />
                         </div>
                       </div>
                       {/* Bottom Base */}
-                      <div className="qa-laptop-base">
-                        <div className="qa-laptop-base-notch" />
+                      <div className={styles["qa-laptop-base"]}>
+                        <div className={styles["qa-laptop-base-notch"]} />
                       </div>
                     </div>
-                    <div className="qa-laptop-caption">
+                    <div className={styles["qa-laptop-caption"]}>
                       <span>Tenar Organizer CMS — Dashboard Overview</span>
                     </div>
                   </div>
 
                   {/* 2-Column Supporting Gallery: Review / Event Configuration | Order Management */}
-                  <div className="qa-organizer-supporting-gallery">
+                  <div className={styles["qa-organizer-supporting-gallery"]}>
                     {/* Item 1: Review / Event Configuration */}
                     <div
-                      className="qa-organizer-supporting-item"
+                      className={styles["qa-organizer-supporting-item"]}
                       onClick={() => setLightboxIndex(6)}
                       title="Klik untuk memperbesar Review / Event Configuration"
                     >
-                      <div className="qa-organizer-supporting-frame">
+                      <div className={styles["qa-organizer-supporting-frame"]}>
                         <Image
                           src="/images/projects/tenar-organizer/review-configuration.png"
                           alt="Review / Event Configuration"
                           width={967}
                           height={1024}
-                          className="qa-organizer-supporting-img"
+                          className={styles["qa-organizer-supporting-img"]}
                           loading="lazy"
                         />
-                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                        <div className={styles["qa-organizer-supporting-fade"]} aria-hidden="true" />
                       </div>
-                      <div className="qa-organizer-supporting-caption">
-                        <strong className="qa-organizer-supporting-title">
+                      <div className={styles["qa-organizer-supporting-caption"]}>
+                        <strong className={styles["qa-organizer-supporting-title"]}>
                           Review / Event Configuration
                         </strong>
-                        <p className="qa-organizer-supporting-desc">
+                        <p className={styles["qa-organizer-supporting-desc"]}>
                           Konfigurasi event, form buyer dan attendee, serta pengaturan tiket sebelum dipublikasikan.
                         </p>
                       </div>
@@ -508,26 +509,26 @@ export default function ProjectsPage() {
 
                     {/* Row 1, Item 2: Order Management */}
                     <div
-                      className="qa-organizer-supporting-item"
+                      className={styles["qa-organizer-supporting-item"]}
                       onClick={() => setLightboxIndex(7)}
                       title="Klik untuk memperbesar Order Management"
                     >
-                      <div className="qa-organizer-supporting-frame">
+                      <div className={styles["qa-organizer-supporting-frame"]}>
                         <Image
                           src="/images/projects/tenar-organizer/order-management.png"
                           alt="Order Management"
                           width={1001}
                           height={1024}
-                          className="qa-organizer-supporting-img"
+                          className={styles["qa-organizer-supporting-img"]}
                           loading="lazy"
                         />
-                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                        <div className={styles["qa-organizer-supporting-fade"]} aria-hidden="true" />
                       </div>
-                      <div className="qa-organizer-supporting-caption">
-                        <strong className="qa-organizer-supporting-title">
+                      <div className={styles["qa-organizer-supporting-caption"]}>
+                        <strong className={styles["qa-organizer-supporting-title"]}>
                           Order Management
                         </strong>
-                        <p className="qa-organizer-supporting-desc">
+                        <p className={styles["qa-organizer-supporting-desc"]}>
                           Pemantauan pesanan, status transaksi, penjualan, dan data order.
                         </p>
                       </div>
@@ -535,26 +536,26 @@ export default function ProjectsPage() {
 
                     {/* Row 2, Item 3: Event List */}
                     <div
-                      className="qa-organizer-supporting-item qa-organizer-supporting-item--secondary"
+                      className={`${styles["qa-organizer-supporting-item"]} ${styles["qa-organizer-supporting-item--secondary"]}`}
                       onClick={() => setLightboxIndex(8)}
                       title="Klik untuk memperbesar Event List"
                     >
-                      <div className="qa-organizer-supporting-frame qa-organizer-supporting-frame--secondary">
+                      <div className={`${styles["qa-organizer-supporting-frame"]} ${styles["qa-organizer-supporting-frame--secondary"]}`}>
                         <Image
                           src="/images/projects/tenar-organizer/event-list.png"
                           alt="Event List"
                           width={1024}
                           height={855}
-                          className="qa-organizer-supporting-img"
+                          className={styles["qa-organizer-supporting-img"]}
                           loading="lazy"
                         />
-                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                        <div className={styles["qa-organizer-supporting-fade"]} aria-hidden="true" />
                       </div>
-                      <div className="qa-organizer-supporting-caption">
-                        <strong className="qa-organizer-supporting-title">
+                      <div className={styles["qa-organizer-supporting-caption"]}>
+                        <strong className={styles["qa-organizer-supporting-title"]}>
                           Event List
                         </strong>
-                        <p className="qa-organizer-supporting-desc">
+                        <p className={styles["qa-organizer-supporting-desc"]}>
                           Pengelolaan event yang sudah dipublikasikan dan status event yang sedang aktif.
                         </p>
                       </div>
@@ -562,26 +563,26 @@ export default function ProjectsPage() {
 
                     {/* Row 2, Item 4: Ticket Management */}
                     <div
-                      className="qa-organizer-supporting-item qa-organizer-supporting-item--secondary"
+                      className={`${styles["qa-organizer-supporting-item"]} ${styles["qa-organizer-supporting-item--secondary"]}`}
                       onClick={() => setLightboxIndex(9)}
                       title="Klik untuk memperbesar Ticket Management"
                     >
-                      <div className="qa-organizer-supporting-frame qa-organizer-supporting-frame--secondary">
+                      <div className={`${styles["qa-organizer-supporting-frame"]} ${styles["qa-organizer-supporting-frame--secondary"]}`}>
                         <Image
                           src="/images/projects/tenar-organizer/ticket-management.png"
                           alt="Ticket Management"
                           width={1024}
                           height={885}
-                          className="qa-organizer-supporting-img"
+                          className={styles["qa-organizer-supporting-img"]}
                           loading="lazy"
                         />
-                        <div className="qa-organizer-supporting-fade" aria-hidden="true" />
+                        <div className={styles["qa-organizer-supporting-fade"]} aria-hidden="true" />
                       </div>
-                      <div className="qa-organizer-supporting-caption">
-                        <strong className="qa-organizer-supporting-title">
+                      <div className={styles["qa-organizer-supporting-caption"]}>
+                        <strong className={styles["qa-organizer-supporting-title"]}>
                           Ticket Management
                         </strong>
-                        <p className="qa-organizer-supporting-desc">
+                        <p className={styles["qa-organizer-supporting-desc"]}>
                           Pemantauan tiket, data peserta, status tiket, dan proses check-in.
                         </p>
                       </div>
@@ -591,50 +592,50 @@ export default function ProjectsPage() {
               </div>
 
               {/* RIGHT COLUMN: Title, Description, Metadata, Yang Diuji, Result, CTA */}
-              <div className="qa-organizer-content-col">
+              <div className={styles["qa-organizer-content-col"]}>
                 <div style={{ marginBottom: 18 }}>
-                  <h2 className="qa-buyer-title" style={{ margin: "0 0 10px" }}>
+                  <h2 className={styles["qa-buyer-title"]} style={{ margin: "0 0 10px" }}>
                     Tenar Organizer
                   </h2>
-                  <div className="qa-buyer-subhead">
-                    <span className="chip chip-green">Production Live</span>
-                    <span className="qa-buyer-category">
+                  <div className={styles["qa-buyer-subhead"]}>
+                    <span className={`chip ${styles["chip-green"]}`}>Production Live</span>
+                    <span className={styles["qa-buyer-category"]}>
                       B2B · Event Organizer CMS
                     </span>
                   </div>
-                  <p className="qa-buyer-desc" style={{ marginBottom: 20 }}>
+                  <p className={styles["qa-buyer-desc"]} style={{ marginBottom: 20 }}>
                     Dashboard untuk penyelenggara acara yang digunakan untuk mengelola event, konfigurasi tiket, pesanan, dan data peserta dari satu platform.
                   </p>
                 </div>
 
                 {/* Horizontal Metadata Row */}
-                <div className="qa-buyer-meta-row" style={{ maxWidth: "100%", marginBottom: 20 }}>
-                  <div className="qa-buyer-meta-col">
-                    <span className="qa-buyer-meta-label">QA Role</span>
-                    <span className="qa-buyer-meta-val">Quality Assurance Specialist</span>
-                    <span className="qa-buyer-meta-sub">Pengujian alur pengelolaan event, validasi form dan konfigurasi, serta verifikasi data pesanan dan tiket.</span>
+                <div className={styles["qa-buyer-meta-row"]} style={{ maxWidth: "100%", marginBottom: 20 }}>
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>QA Role</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Quality Assurance Specialist</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Pengujian alur pengelolaan event, validasi form dan konfigurasi, serta verifikasi data pesanan dan tiket.</span>
                   </div>
 
-                  <div className="qa-buyer-meta-col">
-                    <span className="qa-buyer-meta-label">Tools &amp; Workflow</span>
-                    <span className="qa-buyer-meta-val">Plane · API Inspection</span>
-                    <span className="qa-buyer-meta-sub">Pelacakan bug, dokumentasi pengujian, dan pemeriksaan respons API.</span>
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>Tools &amp; Workflow</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Plane · API Inspection</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Pelacakan bug, dokumentasi pengujian, dan pemeriksaan respons API.</span>
                   </div>
 
-                  <div className="qa-buyer-meta-col">
-                    <span className="qa-buyer-meta-label">Primary Focus</span>
-                    <span className="qa-buyer-meta-val">Event, Order &amp; Ticket Management</span>
-                    <span className="qa-buyer-meta-sub">Validasi konfigurasi event, alur pesanan, data tiket, dan status transaksi.</span>
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>Primary Focus</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Event, Order &amp; Ticket Management</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Validasi konfigurasi event, alur pesanan, data tiket, dan status transaksi.</span>
                   </div>
                 </div>
 
                 {/* Yang Diuji (Numbered Editorial List) */}
-                <div className="qa-organizer-paths">
-                  <h3 className="qa-organizer-paths-title">
+                <div className={styles["qa-organizer-paths"]}>
+                  <h3 className={styles["qa-organizer-paths-title"]}>
                     Yang Diuji
                   </h3>
 
-                  <div className="qa-organizer-paths-list">
+                  <div className={styles["qa-organizer-paths-list"]}>
                     {[
                       {
                         num: "01",
@@ -657,13 +658,13 @@ export default function ProjectsPage() {
                         desc: "Memverifikasi status tiket, data peserta, face recognition, serta perubahan status tiket dari active, used, hingga expired.",
                       },
                     ].map((scenario) => (
-                      <div key={scenario.num} className="qa-organizer-path-item">
-                        <span className="qa-organizer-path-num">{scenario.num}</span>
-                        <div className="qa-organizer-path-content">
-                          <strong className="qa-organizer-path-title">
+                      <div key={scenario.num} className={styles["qa-organizer-path-item"]}>
+                        <span className={styles["qa-organizer-path-num"]}>{scenario.num}</span>
+                        <div className={styles["qa-organizer-path-content"]}>
+                          <strong className={styles["qa-organizer-path-title"]}>
                             {scenario.title}
                           </strong>
-                          <p className="qa-organizer-path-desc">
+                          <p className={styles["qa-organizer-path-desc"]}>
                             {scenario.desc}
                           </p>
                         </div>
@@ -673,15 +674,15 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Production Result */}
-                <div className="qa-buyer-production-result" style={{ marginTop: 4, marginBottom: 20 }}>
-                  <p className="qa-buyer-production-desc">
+                <div className={styles["qa-buyer-production-result"]} style={{ marginTop: 4, marginBottom: 20 }}>
+                  <p className={styles["qa-buyer-production-desc"]}>
                     <strong style={{ color: "var(--success)" }}>Production Live: </strong>
                     Alur utama pengelolaan event, pesanan, dan tiket telah digunakan dalam environment production.
                   </p>
                 </div>
 
                 {/* CTA Button */}
-                <div className="qa-buyer-cta">
+                <div className={styles["qa-buyer-cta"]}>
                   <a
                     href="https://organizer.tenar.events/"
                     target="_blank"
@@ -690,14 +691,14 @@ export default function ProjectsPage() {
                   >
                     Buka Dashboard Organizer <ArrowUpRight style={{ width: 14, height: 14 }} />
                   </a>
-                  <span className="qa-live-meta-url">organizer.tenar.events</span>
+                  <span className={styles["qa-live-meta-url"]}>organizer.tenar.events</span>
                 </div>
               </div>
             </div>
           </motion.article>
 
           {/* ── SUBSTANTIAL VERTICAL CHAPTER SEPARATION ── */}
-          <hr className="qa-chapter-divider" />
+          <hr className={styles["qa-chapter-divider"]} />
 
           {/* ══════════════════════════════════════════
               PAYMENT GATEWAY MVP
@@ -708,17 +709,17 @@ export default function ProjectsPage() {
             whileInView="show"
             viewport={VP}
             variants={vScale}
-            className="qa-project-chapter"
+            className={styles["qa-project-chapter"]}
           >
             {/* 1. Payment Gateway Hero: Left Project Info + Right Laptop Mockup */}
-            <div className="qa-gateway-hero-grid">
+            <div className={styles["qa-gateway-hero-grid"]}>
               {/* LEFT COLUMN: Project Information & Horizontal Metadata */}
-              <div className="qa-gateway-content-col">
+              <div className={styles["qa-gateway-content-col"]}>
                 <div style={{ marginBottom: 18 }}>
-                  <h2 className="qa-buyer-title" style={{ margin: "0 0 10px" }}>
+                  <h2 className={styles["qa-buyer-title"]} style={{ margin: "0 0 10px" }}>
                     Payment Gateway MVP
                   </h2>
-                  <div className="qa-buyer-subhead">
+                  <div className={styles["qa-buyer-subhead"]}>
                     <span
                       className="chip"
                       style={{
@@ -731,63 +732,63 @@ export default function ProjectsPage() {
                     >
                       In Progress · Internal R&amp;D
                     </span>
-                    <span className="qa-buyer-category">
+                    <span className={styles["qa-buyer-category"]}>
                       Internal · Payment Infrastructure
                     </span>
                   </div>
-                  <p className="qa-buyer-desc" style={{ marginBottom: 20 }}>
+                  <p className={styles["qa-buyer-desc"]} style={{ marginBottom: 20 }}>
                     Pengujian sistem payment gateway internal untuk memvalidasi alur transaksi, status pembayaran, disbursement, dan integrasi payment channel.
                   </p>
                 </div>
 
                 {/* Horizontal Metadata Row */}
-                <div className="qa-buyer-meta-row" style={{ maxWidth: "100%", marginBottom: 0 }}>
-                  <div className="qa-buyer-meta-col">
-                    <span className="qa-buyer-meta-label">QA Role</span>
-                    <span className="qa-buyer-meta-val">Quality Assurance Specialist</span>
-                    <span className="qa-buyer-meta-sub">Pengujian status transaksi, validasi data, dan penanganan kondisi gagal pada alur pembayaran.</span>
+                <div className={styles["qa-buyer-meta-row"]} style={{ maxWidth: "100%", marginBottom: 0 }}>
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>QA Role</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Quality Assurance Specialist</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Pengujian status transaksi, validasi data, dan penanganan kondisi gagal pada alur pembayaran.</span>
                   </div>
 
-                  <div className="qa-buyer-meta-col">
-                    <span className="qa-buyer-meta-label">Tools &amp; Workflow</span>
-                    <span className="qa-buyer-meta-val">Plane · API Inspection</span>
-                    <span className="qa-buyer-meta-sub">Pelacakan bug, pemeriksaan respons API, dan dokumentasi hasil pengujian.</span>
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>Tools &amp; Workflow</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Plane · API Inspection</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Pelacakan bug, pemeriksaan respons API, dan dokumentasi hasil pengujian.</span>
                   </div>
 
-                  <div className="qa-buyer-meta-col">
-                    <span className="qa-buyer-meta-label">Primary Focus</span>
-                    <span className="qa-buyer-meta-val">Transaction &amp; Payment Flow</span>
-                    <span className="qa-buyer-meta-sub">Validasi status transaksi, webhook, timeout, idempotency, dan failure handling.</span>
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>Primary Focus</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Transaction &amp; Payment Flow</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Validasi status transaksi, webhook, timeout, idempotency, dan failure handling.</span>
                   </div>
                 </div>
               </div>
 
               {/* RIGHT COLUMN: Laptop Mockup (Dashboard) */}
-              <div className="qa-gateway-visual-col">
+              <div className={styles["qa-gateway-visual-col"]}>
                 <div
-                  className="qa-laptop-container"
+                  className={styles["qa-laptop-container"]}
                   onClick={() => setLightboxIndex(10)}
                   title="Klik untuk memperbesar screenshot Payment Gateway Dashboard"
                 >
-                  <div className="qa-laptop-frame">
-                    <div className="qa-laptop-lid">
-                      <div className="qa-laptop-camera-dot" />
-                      <div className="qa-laptop-screen qa-laptop-screen--16-9">
+                  <div className={styles["qa-laptop-frame"]}>
+                    <div className={styles["qa-laptop-lid"]}>
+                      <div className={styles["qa-laptop-camera-dot"]} />
+                      <div className={`${styles["qa-laptop-screen"]} ${styles["qa-laptop-screen--16-9"]}`}>
                         <Image
                           src={paymentGatewayDashboardImage.src}
                           alt={paymentGatewayDashboardImage.alt}
                           width={paymentGatewayDashboardImage.width}
                           height={paymentGatewayDashboardImage.height}
-                          className="qa-laptop-img"
+                          className={styles["qa-laptop-img"]}
                           loading="lazy"
                         />
                       </div>
                     </div>
-                    <div className="qa-laptop-base">
-                      <div className="qa-laptop-base-notch" />
+                    <div className={styles["qa-laptop-base"]}>
+                      <div className={styles["qa-laptop-base-notch"]} />
                     </div>
                   </div>
-                  <div className="qa-laptop-caption">
+                  <div className={styles["qa-laptop-caption"]}>
                     <span>Payment Gateway — Dashboard Overview</span>
                   </div>
                 </div>
@@ -795,32 +796,32 @@ export default function ProjectsPage() {
             </div>
 
             {/* 2. Layar Produk: 3-Column x 2-Row Compact Editorial Grid */}
-            <div className="qa-gateway-gallery-section">
-              <h3 className="qa-buyer-gallery-title">Layar Produk</h3>
+            <div className={styles["qa-gateway-gallery-section"]}>
+              <h3 className={styles["qa-buyer-gallery-title"]}>Layar Produk</h3>
 
-              <div className="qa-gateway-gallery-3col">
+              <div className={styles["qa-gateway-gallery-3col"]}>
                 {/* Row 1, Item 1: Transaction Report — Payment */}
                 <div
-                  className="qa-gateway-gallery-card"
+                  className={styles["qa-gateway-gallery-card"]}
                   onClick={() => setLightboxIndex(11)}
                   title="Klik untuk memperbesar Transaction Report — Payment"
                 >
-                  <div className="qa-gateway-gallery-thumb">
+                  <div className={styles["qa-gateway-gallery-thumb"]}>
                     <Image
                       src="/images/projects/payment-gateway/transaction-report.png"
                       alt="Transaction Report — Payment"
                       width={1024}
                       height={728}
-                      className="qa-gateway-gallery-img"
+                      className={styles["qa-gateway-gallery-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                    <div className={styles["qa-gateway-gallery-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-gateway-gallery-meta">
-                    <strong className="qa-gateway-gallery-title">
+                  <div className={styles["qa-gateway-gallery-meta"]}>
+                    <strong className={styles["qa-gateway-gallery-title"]}>
                       Transaction Report — Payment
                     </strong>
-                    <p className="qa-gateway-gallery-desc">
+                    <p className={styles["qa-gateway-gallery-desc"]}>
                       Daftar transaksi dengan pencarian, filter, payment channel, dan berbagai status transaksi.
                     </p>
                   </div>
@@ -828,26 +829,26 @@ export default function ProjectsPage() {
 
                 {/* Row 1, Item 2: Transaction Details — Payment */}
                 <div
-                  className="qa-gateway-gallery-card"
+                  className={styles["qa-gateway-gallery-card"]}
                   onClick={() => setLightboxIndex(12)}
                   title="Klik untuk memperbesar Transaction Details — Payment"
                 >
-                  <div className="qa-gateway-gallery-thumb">
+                  <div className={styles["qa-gateway-gallery-thumb"]}>
                     <Image
                       src="/images/projects/payment-gateway/transaction-details.png"
                       alt="Transaction Details — Payment"
                       width={1024}
                       height={728}
-                      className="qa-gateway-gallery-img"
+                      className={styles["qa-gateway-gallery-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                    <div className={styles["qa-gateway-gallery-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-gateway-gallery-meta">
-                    <strong className="qa-gateway-gallery-title">
+                  <div className={styles["qa-gateway-gallery-meta"]}>
+                    <strong className={styles["qa-gateway-gallery-title"]}>
                       Transaction Details — Payment
                     </strong>
-                    <p className="qa-gateway-gallery-desc">
+                    <p className={styles["qa-gateway-gallery-desc"]}>
                       Detail transaksi, riwayat status, informasi order, dan rincian pembayaran.
                     </p>
                   </div>
@@ -855,26 +856,26 @@ export default function ProjectsPage() {
 
                 {/* Row 1, Item 3: Transaction Report — Disbursement */}
                 <div
-                  className="qa-gateway-gallery-card"
+                  className={styles["qa-gateway-gallery-card"]}
                   onClick={() => setLightboxIndex(13)}
                   title="Klik untuk memperbesar Transaction Report — Disbursement"
                 >
-                  <div className="qa-gateway-gallery-thumb">
+                  <div className={styles["qa-gateway-gallery-thumb"]}>
                     <Image
                       src="/images/projects/payment-gateway/disbursement-report.png"
                       alt="Transaction Report — Disbursement"
                       width={1024}
                       height={728}
-                      className="qa-gateway-gallery-img"
+                      className={styles["qa-gateway-gallery-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                    <div className={styles["qa-gateway-gallery-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-gateway-gallery-meta">
-                    <strong className="qa-gateway-gallery-title">
+                  <div className={styles["qa-gateway-gallery-meta"]}>
+                    <strong className={styles["qa-gateway-gallery-title"]}>
                       Transaction Report — Disbursement
                     </strong>
-                    <p className="qa-gateway-gallery-desc">
+                    <p className={styles["qa-gateway-gallery-desc"]}>
                       Pemantauan disbursement berdasarkan ID, nominal, dan status proses.
                     </p>
                   </div>
@@ -882,26 +883,26 @@ export default function ProjectsPage() {
 
                 {/* Row 2, Item 4: Payment Method */}
                 <div
-                  className="qa-gateway-gallery-card"
+                  className={styles["qa-gateway-gallery-card"]}
                   onClick={() => setLightboxIndex(14)}
                   title="Klik untuk memperbesar Payment Method"
                 >
-                  <div className="qa-gateway-gallery-thumb">
+                  <div className={styles["qa-gateway-gallery-thumb"]}>
                     <Image
                       src="/images/projects/payment-gateway/payment-method.png"
                       alt="Payment Method"
                       width={1024}
                       height={728}
-                      className="qa-gateway-gallery-img"
+                      className={styles["qa-gateway-gallery-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                    <div className={styles["qa-gateway-gallery-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-gateway-gallery-meta">
-                    <strong className="qa-gateway-gallery-title">
+                  <div className={styles["qa-gateway-gallery-meta"]}>
+                    <strong className={styles["qa-gateway-gallery-title"]}>
                       Payment Method
                     </strong>
-                    <p className="qa-gateway-gallery-desc">
+                    <p className={styles["qa-gateway-gallery-desc"]}>
                       Pengelolaan channel pembayaran beserta status aktif dan nonaktif.
                     </p>
                   </div>
@@ -909,26 +910,26 @@ export default function ProjectsPage() {
 
                 {/* Row 2, Item 5: User Management */}
                 <div
-                  className="qa-gateway-gallery-card"
+                  className={styles["qa-gateway-gallery-card"]}
                   onClick={() => setLightboxIndex(15)}
                   title="Klik untuk memperbesar User Management"
                 >
-                  <div className="qa-gateway-gallery-thumb">
+                  <div className={styles["qa-gateway-gallery-thumb"]}>
                     <Image
                       src="/images/projects/payment-gateway/user-management.png"
                       alt="User Management"
                       width={1024}
                       height={728}
-                      className="qa-gateway-gallery-img"
+                      className={styles["qa-gateway-gallery-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                    <div className={styles["qa-gateway-gallery-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-gateway-gallery-meta">
-                    <strong className="qa-gateway-gallery-title">
+                  <div className={styles["qa-gateway-gallery-meta"]}>
+                    <strong className={styles["qa-gateway-gallery-title"]}>
                       User Management
                     </strong>
-                    <p className="qa-gateway-gallery-desc">
+                    <p className={styles["qa-gateway-gallery-desc"]}>
                       Pengelolaan pengguna dan status akses dalam sistem payment gateway.
                     </p>
                   </div>
@@ -936,26 +937,26 @@ export default function ProjectsPage() {
 
                 {/* Row 2, Item 6: Role Management */}
                 <div
-                  className="qa-gateway-gallery-card"
+                  className={styles["qa-gateway-gallery-card"]}
                   onClick={() => setLightboxIndex(16)}
                   title="Klik untuk memperbesar Role Management"
                 >
-                  <div className="qa-gateway-gallery-thumb">
+                  <div className={styles["qa-gateway-gallery-thumb"]}>
                     <Image
                       src="/images/projects/payment-gateway/role-management.png"
                       alt="Role Management"
                       width={1024}
                       height={728}
-                      className="qa-gateway-gallery-img"
+                      className={styles["qa-gateway-gallery-img"]}
                       loading="lazy"
                     />
-                    <div className="qa-gateway-gallery-fade" aria-hidden="true" />
+                    <div className={styles["qa-gateway-gallery-fade"]} aria-hidden="true" />
                   </div>
-                  <div className="qa-gateway-gallery-meta">
-                    <strong className="qa-gateway-gallery-title">
+                  <div className={styles["qa-gateway-gallery-meta"]}>
+                    <strong className={styles["qa-gateway-gallery-title"]}>
                       Role Management
                     </strong>
-                    <p className="qa-gateway-gallery-desc">
+                    <p className={styles["qa-gateway-gallery-desc"]}>
                       Pengaturan role dan akses menu berdasarkan kebutuhan pengguna.
                     </p>
                   </div>
@@ -964,10 +965,10 @@ export default function ProjectsPage() {
             </div>
 
             {/* 3. Testing Section: Yang Diuji */}
-            <div className="qa-gateway-scenarios">
-              <h3 className="qa-buyer-gallery-title">Yang Diuji</h3>
+            <div className={styles["qa-gateway-scenarios"]}>
+              <h3 className={styles["qa-buyer-gallery-title"]}>Yang Diuji</h3>
 
-              <div className="qa-gateway-scenarios-grid">
+              <div className={styles["qa-gateway-scenarios-grid"]}>
                 {[
                   {
                     num: "01",
@@ -1000,13 +1001,13 @@ export default function ProjectsPage() {
                     desc: "Memverifikasi akses menu dan fungsi berdasarkan role pengguna yang ditentukan.",
                   },
                 ].map((scenario) => (
-                  <div key={scenario.num} className="qa-gateway-scenario-item">
-                    <span className="qa-gateway-scenario-num">{scenario.num}</span>
-                    <div className="qa-gateway-scenario-content">
-                      <strong className="qa-gateway-scenario-title">
+                  <div key={scenario.num} className={styles["qa-gateway-scenario-item"]}>
+                    <span className={styles["qa-gateway-scenario-num"]}>{scenario.num}</span>
+                    <div className={styles["qa-gateway-scenario-content"]}>
+                      <strong className={styles["qa-gateway-scenario-title"]}>
                         {scenario.title}
                       </strong>
-                      <p className="qa-gateway-scenario-desc">
+                      <p className={styles["qa-gateway-scenario-desc"]}>
                         {scenario.desc}
                       </p>
                     </div>
@@ -1016,8 +1017,8 @@ export default function ProjectsPage() {
             </div>
 
             {/* 4. Internal R&D Status Result */}
-            <div className="qa-gateway-status-result">
-              <p className="qa-gateway-status-desc">
+            <div className={styles["qa-gateway-status-result"]}>
+              <p className={styles["qa-gateway-status-desc"]}>
                 <strong style={{ color: "var(--warning)" }}>In Progress · Internal R&amp;D: </strong>
                 Fokus pengembangan berada pada validasi alur transaksi dan ketahanan integrasi terhadap berbagai kondisi error.
               </p>

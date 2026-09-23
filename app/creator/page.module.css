@@ -1,0 +1,212 @@
+/* ══ CREATOR PAGE MODULE ══ */
+
+@media (min-width: 769px) {
+  .sidebar-offset {
+    margin-left: 210px;
+  }
+}
+
+.qa-chapter-divider {
+  height: 1px;
+  margin: clamp(48px, 6vw, 68px) 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+}
+
+/* Creator page: stats 3-col → 2-col → 1-col */
+.creator-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 64px;
+}
+@media (max-width: 900px) {
+  .creator-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .creator-stats-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
+}
+
+/* Creator page: campaigns 3-col → 2-col → 1-col */
+.creator-campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) {
+  .creator-campaigns-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .creator-campaigns-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
+
+
+.qa-project-overview {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(245, 240, 232, 0.62);
+  margin-bottom: 22px;
+}
+
+/* Restrained metadata strip */
+.qa-project-meta-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 800px) {
+  .qa-project-meta-strip {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   CREATOR MEDIA / CAMPAIGN PORTFOLIO (/creator)
+   Open, authored, editorial layout
+══════════════════════════════════════════ */
+.creator-media-header {
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.creator-profile-split {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(28px, 4.5vw, 52px);
+  align-items: start;
+  margin-bottom: clamp(44px, 6vw, 64px);
+}
+
+@media (max-width: 768px) {
+  .creator-profile-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.creator-profile-screenshot-frame {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65);
+  cursor: zoom-in;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+@media (max-width: 768px) {
+  .creator-profile-screenshot-frame {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+.creator-profile-screenshot-frame:hover {
+  transform: translateY(-2px);
+  border-color: #383733;
+}
+
+.creator-profile-screenshot-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Metrics as pure typography, NOT dashboard widgets */
+.creator-typography-metrics {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(24px, 4.5vw, 48px);
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.creator-type-metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.creator-type-metric-num {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  line-height: 1.05;
+}
+
+.creator-type-metric-label {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: monospace;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Featured Campaign 01: Strongest visual treatment */
+.creator-featured-moment {
+  position: relative;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.creator-epic-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: clamp(20px, 3.2vw, 32px);
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* Secondary campaigns: compact editorial rows separated by lines */
+.creator-editorial-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.creator-editorial-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 680px) {
+  .creator-editorial-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* Lightweight Creator Archive */
+.creator-archive-section {
+  position: relative;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}

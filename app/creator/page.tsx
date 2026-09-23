@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Lightbox, { type LightboxImage } from "../components/Lightbox";
+import styles from "./page.module.css";
 
 const v: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -29,14 +30,14 @@ export default function CreatorPage() {
       <div className="bg-scene" />
       <Navbar />
 
-      <main className="sidebar-offset" style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110 }}>
+      <main className={styles["sidebar-offset"]} style={{ paddingTop: "clamp(96px, 11vw, 140px)", paddingBottom: 110 }}>
         <div style={W}>
           {/* ── 01. COMPACT INTRO HEADER ── */}
           <motion.header
             initial="hidden"
             animate="show"
             variants={v}
-            className="creator-media-header"
+            className={styles["creator-media-header"]}
             style={{ marginBottom: 32 }}
           >
             <span className="eyebrow" style={{ marginBottom: 12 }}>
@@ -73,11 +74,11 @@ export default function CreatorPage() {
             whileInView="show"
             viewport={VP}
             variants={vScale}
-            className="creator-profile-split"
+            className={styles["creator-profile-split"]}
           >
             {/* Column 1: Real TikTok Profile Screenshot */}
             <div
-              className="creator-profile-screenshot-frame"
+              className={styles["creator-profile-screenshot-frame"]}
               onClick={() =>
                 setLightboxImg({
                   src: "/images/creator/profil.png",
@@ -94,7 +95,7 @@ export default function CreatorPage() {
                 alt="Tangkapan Layar Profil Resmi TikTok @scarawanderr"
                 width={800}
                 height={1600}
-                className="creator-profile-screenshot-img"
+                className={styles["creator-profile-screenshot-img"]}
                 priority
               />
             </div>
@@ -122,22 +123,22 @@ export default function CreatorPage() {
               </p>
 
               {/* Metrics as Pure Typography (Not dashboard widgets) */}
-              <div className="creator-typography-metrics" style={{ marginBottom: 24 }}>
-                <div className="creator-type-metric-item">
-                  <span className="creator-type-metric-num">3.8M+</span>
-                  <span className="creator-type-metric-label">Views</span>
+              <div className={styles["creator-typography-metrics"]} style={{ marginBottom: 24 }}>
+                <div className={styles["creator-type-metric-item"]}>
+                  <span className={styles["creator-type-metric-num"]}>3.8M+</span>
+                  <span className={styles["creator-type-metric-label"]}>Views</span>
                 </div>
-                <div className="creator-type-metric-item">
-                  <span className="creator-type-metric-num">245K+</span>
-                  <span className="creator-type-metric-label">Likes</span>
+                <div className={styles["creator-type-metric-item"]}>
+                  <span className={styles["creator-type-metric-num"]}>245K+</span>
+                  <span className={styles["creator-type-metric-label"]}>Likes</span>
                 </div>
-                <div className="creator-type-metric-item">
-                  <span className="creator-type-metric-num">2.1K</span>
-                  <span className="creator-type-metric-label">Followers</span>
+                <div className={styles["creator-type-metric-item"]}>
+                  <span className={styles["creator-type-metric-num"]}>2.1K</span>
+                  <span className={styles["creator-type-metric-label"]}>Followers</span>
                 </div>
-                <div className="creator-type-metric-item">
-                  <span className="creator-type-metric-num">50+</span>
-                  <span className="creator-type-metric-label">Videos</span>
+                <div className={styles["creator-type-metric-item"]}>
+                  <span className={styles["creator-type-metric-num"]}>50+</span>
+                  <span className={styles["creator-type-metric-label"]}>Videos</span>
                 </div>
               </div>
 
@@ -155,7 +156,7 @@ export default function CreatorPage() {
           </motion.section>
 
           {/* ── CHAPTER DIVIDER ── */}
-          <hr className="qa-chapter-divider" />
+          <hr className={styles["qa-chapter-divider"]} />
 
           {/* ══════════════════════════════════════════
               03. FEATURED CAMPAIGN: EPIC DEFEATED MOMENT
@@ -166,7 +167,7 @@ export default function CreatorPage() {
             whileInView="show"
             viewport={VP}
             variants={vScale}
-            className="creator-featured-moment"
+            className={styles["creator-featured-moment"]}
           >
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
@@ -185,13 +186,13 @@ export default function CreatorPage() {
                   Official HoK TikTok Community Challenge
                 </span>
               </div>
-              <p className="qa-project-overview" style={{ margin: 0, maxWidth: 660, fontSize: 15, lineHeight: 1.75 }}>
+              <p className={styles["qa-project-overview"]} style={{ margin: 0, maxWidth: 660, fontSize: 15, lineHeight: 1.75 }}>
                 Video kampanye resmi dengan struktur pacing agresif yang membalikkan ekspektasi penonton dari momen kekalahan dramatis menjadi aksi comeback epik. Dirancang khusus untuk memaksimalkan retensi 3 detik pertama pada algoritma FYP TikTok melalui sinkronisasi beat audio dan transisi layar dinamis.
               </p>
             </div>
 
             {/* Central Dominant Metric Banner (Visual Focal Point) */}
-            <div className="creator-epic-display">
+            <div className={styles["creator-epic-display"]}>
               <div>
                 <span style={{ fontSize: 11, fontWeight: 700, color: "var(--creator)", letterSpacing: ".12em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
                   Top Performing Video
@@ -215,7 +216,7 @@ export default function CreatorPage() {
             </div>
 
             {/* Editorial Metadata Strip */}
-            <div className="qa-project-meta-strip" style={{ maxWidth: 860 }}>
+            <div className={styles["qa-project-meta-strip"]} style={{ maxWidth: 860 }}>
               <div>
                 <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Objective
@@ -255,20 +256,20 @@ export default function CreatorPage() {
           </motion.article>
 
           {/* ── CHAPTER DIVIDER ── */}
-          <hr className="qa-chapter-divider" />
+          <hr className={styles["qa-chapter-divider"]} />
 
           {/* ══════════════════════════════════════════
               04. SECONDARY CAMPAIGNS (COMPACT EDITORIAL ROWS)
               Compact entries separated by thin lines · Zero fake thumbnails
           ══════════════════════════════════════════ */}
-          <div className="creator-editorial-rows">
+          <div className={styles["creator-editorial-rows"]}>
             {/* Campaign 02 */}
             <motion.article
               initial="hidden"
               whileInView="show"
               viewport={VP}
               variants={vScale}
-              className="creator-editorial-row"
+              className={styles["creator-editorial-row"]}
             >
               <div>
                 <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
@@ -308,7 +309,7 @@ export default function CreatorPage() {
               whileInView="show"
               viewport={VP}
               variants={vScale}
-              className="creator-editorial-row"
+              className={styles["creator-editorial-row"]}
             >
               <div>
                 <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
@@ -344,7 +345,7 @@ export default function CreatorPage() {
           </div>
 
           {/* ── CHAPTER DIVIDER ── */}
-          <hr className="qa-chapter-divider" />
+          <hr className={styles["qa-chapter-divider"]} />
 
           {/* ══════════════════════════════════════════
               05. CREATOR PRODUCTION MILESTONES ARCHIVE
@@ -355,7 +356,7 @@ export default function CreatorPage() {
             whileInView="show"
             viewport={VP}
             variants={v}
-            className="creator-archive-section"
+            className={styles["creator-archive-section"]}
           >
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>

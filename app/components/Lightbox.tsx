@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useCallback, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import styles from "./Lightbox.module.css";
 
 export interface LightboxImage {
   src: string;
@@ -105,7 +106,7 @@ export default function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={activeImage.caption || activeImage.alt || "Pratinjau gambar"}
-      className="lightbox-overlay"
+      className={styles["lightbox-overlay"]}
       onClick={(e) => {
         if (e.target === overlayRef.current) {
           onClose();
@@ -113,13 +114,13 @@ export default function Lightbox({
       }}
     >
       {/* Top Header Bar */}
-      <div className="lightbox-header">
+      <div className={styles["lightbox-header"]}>
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           {activeImage.caption && (
-            <span className="lightbox-caption">{activeImage.caption}</span>
+            <span className={styles["lightbox-caption"]}>{activeImage.caption}</span>
           )}
           {hasGallery && totalImages > 1 && (
-            <span className="lightbox-counter">
+            <span className={styles["lightbox-counter"]}>
               {currentNum} / {totalImages}
             </span>
           )}
@@ -127,7 +128,7 @@ export default function Lightbox({
         <button
           ref={closeBtnRef}
           onClick={onClose}
-          className="lightbox-close-btn"
+          className={styles["lightbox-close-btn"]}
           aria-label="Tutup pratinjau gambar (Esc)"
           title="Tutup (Esc)"
         >
@@ -136,14 +137,14 @@ export default function Lightbox({
       </div>
 
       {/* Image Stage - Clicking outside the image closes */}
-      <div className="lightbox-stage" onClick={onClose}>
+      <div className={styles["lightbox-stage"]} onClick={onClose}>
         {hasGallery && totalImages > 1 && (
           <button
             onClick={(e) => {
               e.stopPropagation();
               handlePrev();
             }}
-            className="lightbox-nav-btn lightbox-nav-prev"
+            className={`${styles["lightbox-nav-btn"]} ${styles["lightbox-nav-prev"]}`}
             aria-label="Gambar sebelumnya (Panah Kiri)"
             title="Sebelumnya (←)"
           >
@@ -155,7 +156,7 @@ export default function Lightbox({
         <img
           src={activeImage.src}
           alt={activeImage.alt}
-          className={`lightbox-img ${isPortrait ? "lightbox-img-portrait" : "lightbox-img-landscape"}`}
+          className={`${styles["lightbox-img"]} ${isPortrait ? styles["lightbox-img-portrait"] : styles["lightbox-img-landscape"]}`}
           onClick={(e) => e.stopPropagation()}
           onLoad={(e) => {
             const img = e.currentTarget;
@@ -169,7 +170,7 @@ export default function Lightbox({
               e.stopPropagation();
               handleNext();
             }}
-            className="lightbox-nav-btn lightbox-nav-next"
+            className={`${styles["lightbox-nav-btn"]} ${styles["lightbox-nav-next"]}`}
             aria-label="Gambar berikutnya (Panah Kanan)"
             title="Berikutnya (→)"
           >
