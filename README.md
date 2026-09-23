@@ -9,6 +9,7 @@ A modern, high-performance personal portfolio built with **Next.js 16**, **TypeS
 [![Website](https://img.shields.io/badge/🌐_Website-aprillio.pro-141413?style=for-the-badge&logoColor=white)](https://aprillio.pro)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![CSS Modules](https://img.shields.io/badge/CSS_Modules-Scoped-141413?style=for-the-badge&logo=css3&logoColor=1572B6)](https://nextjs.org/docs/app/building-your-application/styling/css-modules)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-FF0055?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion)
 
@@ -31,7 +32,9 @@ A modern, high-performance personal portfolio built with **Next.js 16**, **TypeS
 - **Duolingo Integration**: Real-time language learning streak, total XP, and active course progress fetched dynamically via custom API route.
 - **MonkeyType Performance Dashboard**: Typing speed (WPM), accuracy, consistency, test counts, and interactive SVG performance curves.
 
-### 🎨 Natural Editorial Design System
+### 🎨 Natural Editorial Design System & Modular CSS Architecture
+- **Scoped CSS Modules**: Every page (`/`, `/projects`, `/creator`) and component (`Navbar`, `HeroBento`, `Lightbox`, `CustomCursor`, `ParallaxScene`) encapsulates its own styles, eliminating global namespace collisions and stylesheet bloat.
+- **Single-Source Design Tokens (`globals.css`)**: Centralized CSS custom properties (`:root`) defining elevation surfaces, neutral borders, typography scales, accessibility rules (`prefers-reduced-motion`), and core button primitives.
 - **Curated Dark Palette**: Warm near-black background (`#0D0D0C`), surface elevation (`#141413`), subtle neutral borders (`#292824`), and refined typography (`#F1EEE8` / `#A5A19A` / `#6F6C66`).
 - **Accent Rhythm**: Signature Aprillio cyan accent (`#2EA8E6`) used with restraint for interactive focus.
 - **Zero Distractions**: No unnecessary neon glows, heavy glassmorphism, or artificial blur filters.
@@ -52,30 +55,38 @@ A modern, high-performance personal portfolio built with **Next.js 16**, **TypeS
 portfolio-aprillio/
 ├── app/
 │   ├── api/
-│   │   ├── duolingo/route.ts       # Duolingo API proxy (streak, XP, language courses)
-│   │   └── monkeytype/route.ts     # MonkeyType API proxy (WPM, accuracy, charts)
+│   │   ├── duolingo/route.ts        # Duolingo API proxy (streak, XP, language courses)
+│   │   └── monkeytype/route.ts      # MonkeyType API proxy (WPM, accuracy, charts)
 │   ├── components/
-│   │   ├── CustomCursor.tsx        # Subtle custom cursor
-│   │   ├── HeroBento.tsx           # Two-column hero with blended workspace visual
-│   │   ├── Lightbox.tsx            # Fullscreen modal image viewer for QA evidence
-│   │   ├── Navbar.tsx              # Sidebar (desktop) & drawer header (mobile)
-│   │   └── ParallaxScene.tsx       # Subtle background canvas elements
+│   │   ├── CustomCursor.tsx         # Subtle custom cursor
+│   │   ├── CustomCursor.module.css  # Scoped styles for custom cursor
+│   │   ├── HeroBento.tsx            # Two-column hero with blended workspace visual
+│   │   ├── HeroBento.module.css     # Scoped styles for Hero Bento grid
+│   │   ├── Lightbox.tsx             # Fullscreen modal image viewer for QA evidence
+│   │   ├── Lightbox.module.css      # Scoped styles for Lightbox modal
+│   │   ├── Navbar.tsx               # Sidebar (desktop) & drawer header (mobile)
+│   │   ├── Navbar.module.css        # Scoped styles for Navbar & mobile drawer
+│   │   ├── ParallaxScene.tsx        # Subtle background canvas elements
+│   │   └── ParallaxScene.module.css # Scoped styles for parallax canvas
 │   ├── creator/
-│   │   └── page.tsx                # Creator Media & esports showcase page
+│   │   ├── page.tsx                 # Creator Media & esports showcase page
+│   │   └── page.module.css          # Scoped styles for creator showcase
 │   ├── projects/
-│   │   └── page.tsx                # QA Projects & test documentation page
-│   ├── globals.css                 # Editorial design system, tokens & layouts
-│   ├── layout.tsx                  # Root layout, metadata & fonts
-│   └── page.tsx                    # Homepage (Hero, About, Exp, Edu, Personal, Contact, Footer)
+│   │   ├── page.tsx                 # QA Projects & test documentation page
+│   │   └── page.module.css          # Scoped styles for QA documentation
+│   ├── globals.css                  # Design tokens (:root), resets, background & shared utilities
+│   ├── layout.tsx                   # Root layout, metadata & fonts
+│   ├── page.tsx                     # Homepage (Hero, About, Exp, Edu, Personal, Contact, Footer)
+│   └── page.module.css              # Scoped styles for homepage sections
 ├── public/
 │   ├── images/
-│   │   ├── creator/                # Creator portfolio assets
-│   │   ├── hero/                   # Workspace photography
-│   │   ├── personal/               # Official Duolingo asset
-│   │   └── projects/               # QA test evidence & case study captures
-│   └── cert-*.pdf                  # Academic & professional certifications
-├── .env.local                      # API keys (local development)
-└── next.config.ts                  # Next.js configuration
+│   │   ├── creator/                 # Creator portfolio assets
+│   │   ├── hero/                    # Workspace photography
+│   │   ├── personal/                # Official Duolingo asset
+│   │   └── projects/                # QA test evidence & case study captures
+│   └── cert-*.pdf                   # Academic & professional certifications
+├── .env.local                       # API keys (local development)
+└── next.config.ts                   # Next.js configuration
 ```
 
 ---
@@ -131,7 +142,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 |---|---|
 | **Framework** | [Next.js 16](https://nextjs.org) (App Router) |
 | **Language** | [TypeScript 5](https://www.typescriptlang.org) |
-| **Styling** | [Tailwind CSS v4](https://tailwindcss.com) + Scoped Vanilla CSS Tokens |
+| **Styling** | Scoped [CSS Modules](https://nextjs.org/docs/app/building-your-application/styling/css-modules) + [Tailwind CSS v4](https://tailwindcss.com) & Shared Design Tokens |
 | **Motion** | [Framer Motion](https://www.framer.com/motion) |
 | **Icons** | [Lucide React](https://lucide.dev) & Custom Brand SVGs |
 | **Security** | [@marsidev/react-turnstile](https://github.com/marsidev/react-turnstile) (Cloudflare Turnstile) |
