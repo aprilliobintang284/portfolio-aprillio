@@ -10,7 +10,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--accent);
+    background: #F1EEE8;
     box-shadow: none !important;
     pointer-events: none;
     z-index: 9999;

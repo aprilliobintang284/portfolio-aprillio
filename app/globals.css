@@ -16,9 +16,9 @@
   --text-secondary: #A5A19A;
   --text-muted: #6F6C66;
 
-  /* ── PRIMARY BRAND ACCENT (Aprillio Identity) ── */
-  --accent: #2EA8E6;
-  --accent-hover: #48B7ED;
+  /* ── PRIMARY ACCENT (Monochrome Editorial) ── */
+  --accent: #F1EEE8;
+  --accent-hover: #FFFFFF;
 
   /* ── SEMANTIC STATUS ACCENTS ── */
   --success: #49A878;   /* Semantic success ONLY: Production Live, Verified, Completed */
@@ -26,13 +26,13 @@
   --creator: #E58A3A;   /* Warm Orange: Subtle Creator-specific campaign accents ONLY */
 
   /* ── COMPATIBILITY MAPPINGS FOR EXISTING SELECTORS ── */
-  --ac-1: 46, 168, 230;
-  --ac-2: 72, 183, 237;
-  --ac-3: 125, 211, 252;
+  --ac-1: 241, 238, 232;
+  --ac-2: 255, 255, 255;
+  --ac-3: 165, 161, 154;
   --ac-glow: none;
   --ac-hex-1: var(--accent);
   --ac-hex-2: var(--accent-hover);
-  --ac-hex-3: #7dd3fc;
+  --ac-hex-3: #A5A19A;
   --ac-text: var(--text-primary);
   --ac-text2: var(--text-secondary);
   --ac-grad: var(--accent);
@@ -41,8 +41,8 @@
   --ac-aura-2: transparent;
   --ac-aura-3: transparent;
   --scrollbar-thumb: #292824;
-  --scrollbar-thumb-hov: #48B7ED;
-  --selection-bg: rgba(46, 168, 230, 0.25);
+  --scrollbar-thumb-hov: #6F6C66;
+  --selection-bg: rgba(241, 238, 232, 0.15);
   --selection-fg: #F1EEE8;
 }
 
@@ -104,14 +104,14 @@
   text-decoration: none; position: relative; overflow: hidden; white-space: nowrap;
 }
 .btn-primary {
-  background: var(--accent);
+  background: #F1EEE8;
   color: #0D0D0C;
   font-weight: 700;
   border: 1px solid transparent;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: #FFFFFF;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.30);
 }
@@ -139,9 +139,9 @@
   transition: background .18s, color .2s, border-color .2s;
 }
 
-/* ── SOLID ACCENT TEXT (NO GLOW / NO GRADIENTS) ── */
+/* ── SOLID ACCENT TEXT (MONOCHROME — NO COLOR) ── */
 .grad-orange {
-  color: var(--accent);
+  color: var(--text-primary);
   background: none !important;
   -webkit-background-clip: initial !important;
   -webkit-text-fill-color: initial !important;
@@ -151,7 +151,7 @@
 /* ── EYEBROW ────────────────────────────── */
 .eyebrow {
   font-size: 10.5px; font-weight: 800;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--accent); opacity: .88;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); opacity: 1;
   display: block;
 }
 

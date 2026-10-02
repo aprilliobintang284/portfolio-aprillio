@@ -103,7 +103,7 @@ export default function CreatorPage() {
             {/* Column 2: Creator Information & Pure Typography Metrics */}
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--text-muted)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   CREATOR PROFILE
                 </span>
               </div>
@@ -218,7 +218,7 @@ export default function CreatorPage() {
             {/* Editorial Metadata Strip */}
             <div className={styles["qa-project-meta-strip"]} style={{ maxWidth: 860 }}>
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-muted)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Objective
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>
@@ -230,7 +230,7 @@ export default function CreatorPage() {
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-muted)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Format &amp; Platform
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>
@@ -242,7 +242,7 @@ export default function CreatorPage() {
               </div>
 
               <div>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--accent)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-muted)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 4 }}>
                   Production Role
                 </p>
                 <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>
@@ -272,7 +272,7 @@ export default function CreatorPage() {
               className={styles["creator-editorial-row"]}
             >
               <div>
-                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--text-muted)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
                   02 — ESPORTS CURATION
                 </span>
                 <h3 style={{ fontSize: "clamp(20px, 2.6vw, 26px)", fontWeight: 900, letterSpacing: "-.02em", color: "var(--text-primary)", margin: "0 0 8px" }}>
@@ -312,7 +312,7 @@ export default function CreatorPage() {
               className={styles["creator-editorial-row"]}
             >
               <div>
-                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 800, fontFamily: "monospace", color: "var(--text-muted)", letterSpacing: ".16em", textTransform: "uppercase", display: "block", marginBottom: 4 }}>
                   03 — SKIN RELEASE SPOTLIGHT
                 </span>
                 <h3 style={{ fontSize: "clamp(20px, 2.6vw, 26px)", fontWeight: 900, letterSpacing: "-.02em", color: "var(--text-primary)", margin: "0 0 8px" }}>
@@ -360,7 +360,7 @@ export default function CreatorPage() {
           >
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--accent)", letterSpacing: ".22em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, fontWeight: 900, fontFamily: "monospace", color: "var(--text-muted)", letterSpacing: ".22em", textTransform: "uppercase" }}>
                   04 — PRODUCTION MILESTONES
                 </span>
               </div>
@@ -408,7 +408,7 @@ export default function CreatorPage() {
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ padding: 6, borderRadius: 6, background: "rgba(46, 168, 230, 0.08)", color: "var(--accent)", flexShrink: 0 }}>
+                    <div style={{ padding: 6, borderRadius: 6, background: "rgba(255, 255, 255, 0.05)", color: "var(--text-secondary)", flexShrink: 0 }}>
                       <Video style={{ width: 14, height: 14 }} />
                     </div>
                     <div>

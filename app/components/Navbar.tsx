@@ -359,7 +359,7 @@ export default function Navbar() {
             priority
           />
           <span className={styles["mobile-logo-text"]}>
-            Aprillio<span style={{ color: "var(--accent)" }}>.</span>
+            Aprillio<span style={{ color: "var(--text-muted)" }}>.</span>
           </span>
         </button>
 
@@ -416,7 +416,7 @@ export default function Navbar() {
                     className={styles["mobile-logo-img"]}
                   />
                   <span className={styles["mobile-logo-text"]}>
-                    Aprillio<span style={{ color: "var(--accent)" }}>.</span>
+                    Aprillio<span style={{ color: "var(--text-muted)" }}>.</span>
                   </span>
                 </button>
 

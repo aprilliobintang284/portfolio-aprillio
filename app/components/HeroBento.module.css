@@ -1,222 +1,359 @@
-/* ── 1. FULL-BLEED WORKSPACE HERO (DESKTOP WORKSPACE / MOBILE TYPOGRAPHY) ── */
-.hero-fullbleed-container {
+/* ══════════════════════════════════════════
+   EDITORIAL HERO COMPOSITION
+   Exact match to screenshot:
+   - Flush left anchor with Tentang Saya
+   - 62–65% left / 35–38% right balance
+   - Precise vertical alignment
+   - Label lines extending full width (flex: 1)
+   - Vertical divider framed to right column
+   - Natural compact height
+   - Thin bottom structural divider
+══════════════════════════════════════════ */
+
+/* ── Section Container ── */
+.hero {
   position: relative;
-  overflow: hidden;
   width: 100%;
-  min-height: clamp(440px, 48vh, 540px);
-  display: flex;
-  align-items: center;
-  padding: clamp(48px, 6vh, 64px) clamp(24px, 4vw, 48px);
-  background: transparent;
+  box-sizing: border-box;
+  padding: clamp(38px, 5vh, 52px) clamp(24px, 4vw, 48px) clamp(36px, 4.8vh, 48px);
+  overflow: hidden;
 }
-.hero-fullbleed-container::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 180px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(13, 13, 12, 0.02) 20%,
-    rgba(13, 13, 12, 0.06) 38%,
-    rgba(13, 13, 12, 0.15) 54%,
-    rgba(13, 13, 12, 0.32) 68%,
-    rgba(13, 13, 12, 0.56) 80%,
-    rgba(13, 13, 12, 0.80) 90%,
-    rgba(13, 13, 12, 0.94) 96%,
-    #0D0D0C 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-.hero-fullbleed-bg {
+
+/* ── Subtle square grid background ── */
+.heroGridBg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
   pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 35% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 35% 40%, black 20%, transparent 80%);
 }
-.hero-fullbleed-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: right center;
-  display: block;
-}
-.hero-fullbleed-content {
+
+/* ══ MAIN TWO-COLUMN INNER ══ */
+.heroInner {
   position: relative;
-  z-index: 2;
-  max-width: 440px;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) auto minmax(0, 1fr);
+  align-items: center;
+  width: 100%;
+  max-width: 1240px;
 }
-.hero-eyebrow {
-  font-size: 10.5px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 12px;
+
+/* ══ LEFT COLUMN (62–65%) ══ */
+.left {
+  display: flex;
+  flex-direction: column;
 }
-.hero-name-heading {
-  font-size: clamp(34px, 4.2vw, 50px);
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  color: var(--text-primary);
-  margin-bottom: 12px;
+
+/* Heading: ~68-74px on desktop, very bold, tight line-height (1.0), off-white */
+.name {
+  font-size: clamp(48px, 5.4vw, 74px);
+  font-weight: 850;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: var(--text-primary, #F1EEE8);
+  margin: 0 0 14px;
 }
-.hero-role-heading {
-  font-size: clamp(14.5px, 1.8vw, 17.5px);
-  font-weight: 700;
+
+.nowrap {
+  white-space: nowrap;
+}
+
+/* Role */
+.role {
+  font-size: clamp(14.5px, 1.35vw, 16px);
+  font-weight: 600;
+  color: var(--text-secondary, #A5A19A);
+  margin: 0 0 12px;
   letter-spacing: -0.01em;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
 }
-.hero-intro-text {
-  font-size: clamp(13px, 1.4vw, 14.5px);
-  color: rgba(245, 240, 232, 0.68);
-  line-height: 1.68;
-  margin-bottom: 22px;
+
+/* Description: 3 lines matching screenshot */
+.desc {
+  font-size: 13.5px;
+  color: rgba(241, 238, 232, 0.65);
+  line-height: 1.6;
+  margin: 0 0 24px;
   max-width: 480px;
 }
-.hero-cta-group {
+
+/* CTAs */
+.ctas {
   display: flex;
+  align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-/* ── MOBILE: WORKSPACE HERO (INTEGRATED VISUAL LAYER, MATCHING REFERENCE) ── */
-@media (max-width: 768px) {
-  .hero-fullbleed-bg {
-    display: none !important;
-  }
-  .hero-fullbleed-container {
-    position: relative;
-    width: 100%;
-    /* Content-driven height ending naturally after workspace finishes, removing empty space */
-    min-height: clamp(500px, 62vh, 545px);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: clamp(70px, 9vh, 80px) 20px 0;
-    background: #0D0D0C;
-    overflow: hidden;
-  }
-  .hero-fullbleed-content {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    max-width: 100%;
-  }
-  .hero-eyebrow {
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    margin-bottom: 14px;
-    color: var(--text-muted);
-  }
-  .hero-name-heading {
-    font-size: clamp(28px, 7.8vw, 34px);
-    line-height: 1.14;
-    letter-spacing: -0.03em;
-    margin-bottom: 14px;
-  }
-  .hero-role-heading {
-    font-size: 14.5px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-  }
-  .hero-intro-text {
-    font-size: 13.5px;
-    line-height: 1.62;
-    color: rgba(245, 240, 232, 0.85);
-    margin-bottom: 22px;
-    max-width: 300px;
-  }
-  .hero-cta-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 0;
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  background: var(--text-primary, #F1EEE8);
+  color: var(--bg, #0D0D0C);
+  font-size: 13.5px;
+  font-weight: 600;
+  border: 1px solid var(--text-primary, #F1EEE8);
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btnPrimary:hover {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--text-primary, #F1EEE8);
+  font-size: 13.5px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btnGhost:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-1px);
+}
+
+.btnIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* ══ VERTICAL DIVIDER ══ */
+.divider {
+  width: 1px;
+  align-self: center;
+  height: 275px;
+  background: var(--border, #292824);
+  margin: 0 clamp(24px, 3.5vw, 48px);
+}
+
+/* ══ RIGHT COLUMN (35–38%) ══ */
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label row (FOCUS AREA / CURRENTLY + full-width line) */
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted, #6F6C66);
+  white-space: nowrap;
+}
+
+.labelLine {
+  display: block;
+  flex: 1;
+  height: 1px;
+  background: var(--border, #292824);
+}
+
+/* Focus Block */
+.focusBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.focusList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.focusItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.focusIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--surface, #141413);
+  border: 1px solid var(--border, #292824);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-secondary, #A5A19A);
+}
+
+.focusText {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary, #F1EEE8);
+  letter-spacing: -0.01em;
+}
+
+/* Horizontal separator across the right column */
+.hRule {
+  width: 100%;
+  height: 1px;
+  background: var(--border, #292824);
+  margin: 16px 0;
+}
+
+/* Currently Block */
+.currentlyBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.currentlyRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.currentlyDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-primary, #F1EEE8);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.currentlyTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.currentlyTitle {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary, #F1EEE8);
+  margin: 0;
+}
+
+.currentlySub {
+  font-size: 11.5px;
+  color: var(--text-muted, #6F6C66);
+  margin: 0;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+
+/* ══ STRUCTURAL BOTTOM SECTION DIVIDER ══ */
+.bottomDivider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--border, #292824);
+  z-index: 2;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE DESIGN
+══════════════════════════════════════════ */
+
+/* Tablet (<= 960px) */
+@media (max-width: 960px) {
+  .hero {
+    padding: clamp(36px, 5vh, 48px) 24px clamp(32px, 4vh, 40px);
   }
 
-  /* Full 1:1 Square Workspace Layer (Positioned higher, overlapping behind lower Hero content) */
-  .hero-mobile-visual {
-    display: block;
-    position: absolute;
-    top: clamp(120px, 15vh, 145px);
-    right: 0;
-    width: min(100vw, 390px);
-    aspect-ratio: 1 / 1;
-    z-index: 1;
-    pointer-events: none;
-    overflow: hidden;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-  }
-  .hero-mobile-square-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-  /* Strong, wide diagonal / slash fade from the left merging dark area into workspace */
-  .hero-mobile-visual::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: 
-      /* Top feather to seamlessly blend with upper dark hero */
-      linear-gradient(to bottom, #0D0D0C 0%, rgba(13, 13, 12, 0.85) 6%, transparent 18%),
-      /* Subtle bottom fade to dissolve the lower image boundary smoothly into #0D0D0C */
-      linear-gradient(to top, #0D0D0C 0%, rgba(13, 13, 12, 0.88) 14%, rgba(13, 13, 12, 0.45) 30%, transparent 48%),
-      /* Distinct, soft diagonal slash fade from left towards workspace */
-      linear-gradient(
-        115deg,
-        #0D0D0C 0%,
-        #0D0D0C 28%,
-        rgba(13, 13, 12, 0.96) 38%,
-        rgba(13, 13, 12, 0.82) 52%,
-        rgba(13, 13, 12, 0.45) 68%,
-        rgba(13, 13, 12, 0.12) 80%,
-        transparent 90%
-      );
-    pointer-events: none;
+  .heroInner {
+    grid-template-columns: 1fr;
   }
 
-  /* Extended, soft bottom transition moving seamlessly into #0D0D0C */
-  .hero-fullbleed-container::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(13, 13, 12, 0.08) 20%,
-      rgba(13, 13, 12, 0.28) 42%,
-      rgba(13, 13, 12, 0.62) 65%,
-      rgba(13, 13, 12, 0.88) 85%,
-      #0D0D0C 100%
-    );
-    pointer-events: none;
-    z-index: 3;
+  .left {
+    margin-bottom: 24px;
+  }
+
+  .divider {
+    display: none;
   }
 }
-@media (min-width: 769px) {
-  .hero-mobile-visual {
-    display: none !important;
+
+/* Mobile (<= 640px) */
+@media (max-width: 640px) {
+  .hero {
+    padding: clamp(32px, 5vh, 44px) 20px clamp(28px, 4vh, 36px);
+  }
+
+  .name {
+    font-size: clamp(32px, 9vw, 42px);
+    margin-bottom: 8px;
+  }
+
+  .role {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .desc {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .ctas {
+    gap: 10px;
+  }
+
+  .btnPrimary,
+  .btnGhost {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .focusIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+  }
+
+  .focusText {
+    font-size: 12.5px;
+  }
+
+  .focusList {
+    gap: 8px;
+  }
+
+  .hRule {
+    margin: 14px 0;
   }
 }

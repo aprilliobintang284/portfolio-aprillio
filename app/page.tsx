@@ -180,7 +180,7 @@ export default function Home() {
             chartData: d.chartData ?? null,
           });
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setMtLoading(false));
 
     fetch("/api/duolingo")
@@ -196,7 +196,7 @@ export default function Home() {
             longestStreak: d.longestStreak ?? d.streak,
           });
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setDuoLoading(false));
   }, []);
 
@@ -267,7 +267,7 @@ export default function Home() {
               <div className={styles["about-main-col"]}>
                 {/* Main Heading */}
                 <motion.h2 variants={v} className={styles["about-heading"]}>
-                  Tentang <span style={{ color: "#2EA8E6" }}>Saya.</span>
+                  Tentang <span style={{ color: "#F1EEE8" }}>Saya.</span>
                 </motion.h2>
 
                 {/* Personal Introduction Paragraphs */}
@@ -295,7 +295,7 @@ export default function Home() {
                   {/* Left: Quality Assurance & Testing */}
                   <div className={styles["about-feature-item"]}>
                     <div className={styles["about-feature-icon-box"]}>
-                      <Code2 style={{ width: 22, height: 22, color: "#2EA8E6" }} />
+                      <Code2 style={{ width: 22, height: 22, color: "#A5A19A" }} />
                     </div>
                     <div className={styles["about-feature-body"]}>
                       <h3 className={styles["about-feature-label"]}>QUALITY ASSURANCE &amp; TESTING</h3>
@@ -313,7 +313,7 @@ export default function Home() {
                   {/* Right: Konten Honor of Kings & Esports */}
                   <div className={styles["about-feature-item"]}>
                     <div className={styles["about-feature-icon-box"]}>
-                      <Video style={{ width: 22, height: 22, color: "#2EA8E6" }} />
+                      <Video style={{ width: 22, height: 22, color: "#A5A19A" }} />
                     </div>
                     <div className={styles["about-feature-body"]}>
                       <h3 className={styles["about-feature-label"]}>KONTEN HONOR OF KINGS &amp; ESPORTS</h3>
@@ -342,6 +342,9 @@ export default function Home() {
             </div>
           </motion.div>
         </section>
+
+        {/* ── Section Divider ── */}
+        <div className={styles["section-divider"]} aria-hidden />
 
         {/* ═══ 3. EXPERIENCE (PENGALAMAN) ═══ */}
         <section id="experience" className={styles["ref-doc-section"]}>
@@ -436,6 +439,9 @@ export default function Home() {
           </motion.div>
         </section>
 
+        {/* ── Section Divider ── */}
+        <div className={styles["section-divider"]} aria-hidden />
+
         {/* ═══ 4. EDUCATION & CERTIFICATIONS (PENDIDIKAN & SERTIFIKASI) ═══ */}
         <section id="education" className={styles["ref-doc-section"]}>
           <motion.div className={styles["ref-container-920"]} initial="hidden" whileInView="show" viewport={VP} variants={s}>
@@ -504,6 +510,9 @@ export default function Home() {
           </motion.div>
         </section>
 
+        {/* ── Section Divider ── */}
+        <div className={styles["section-divider"]} aria-hidden />
+
         {/* ═══ 5. PERSONAL (DUOLINGO & MONKEYTYPE) ═══ */}
         <section id="personal" className={styles["personal-section-wrap"]}>
           <motion.div className={styles["personal-wide-container"]} initial="hidden" whileInView="show" viewport={VP} variants={s}>
@@ -518,7 +527,7 @@ export default function Home() {
 
                   <motion.h2 variants={v} className={styles["personal-main-heading"]}>
                     Hal-hal kecil<br />
-                    yang <span style={{ color: "#2EA8E6" }}>berarti.</span>
+                    yang <span style={{ color: "#F1EEE8" }}>berarti.</span>
                   </motion.h2>
 
                   <motion.p variants={v} className={styles["personal-intro-desc"]}>
@@ -724,8 +733,11 @@ export default function Home() {
           </motion.div>
         </section>
 
+        {/* ── Section Divider ── */}
+        <div className={styles["section-divider"]} aria-hidden />
+
         {/* ═══ 6. CONTACT (KONTAK) — FINAL SECTION (NO FOOTER AFTER THIS) ═══ */}
-        <section id="contact" className={styles["ref-doc-section"]} style={{ paddingBottom: 80 }}>
+        <section id="contact" className={styles["ref-doc-section"]} style={{ paddingBottom: 48 }}>
           <motion.div className={styles["contact-wide-container"]} initial="hidden" whileInView="show" viewport={VP} variants={s}>
             <div className={styles["contact-reference-grid"]}>
               {/* Left Column: Info, Opportunities, Socials & Email */}
@@ -831,14 +843,14 @@ export default function Home() {
                 <div
                   className={styles["contact-direct-email-row"]}
                   onClick={() => {
-                    navigator.clipboard?.writeText("aprilliobintang284@gmail.com");
-                    alert("Email disalin: aprilliobintang284@gmail.com");
+                    navigator.clipboard?.writeText("aprilliobintang455@gmail.com");
+                    alert("Email disalin: aprilliobintang455@gmail.com");
                   }}
                   title="Klik untuk menyalin email"
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <Mail style={{ width: 16, height: 16, color: "#2EA8E6", flexShrink: 0 }} />
-                    <span className={styles["contact-email-text"]}>aprilliobintang284@gmail.com</span>
+                    <Mail style={{ width: 16, height: 16, color: "#A5A19A", flexShrink: 0 }} />
+                    <span className={styles["contact-email-text"]}>aprilliobintang455@gmail.com</span>
                   </div>
                   <ArrowRight style={{ width: 14, height: 14, color: "var(--text-muted)", flexShrink: 0 }} />
                 </div>
