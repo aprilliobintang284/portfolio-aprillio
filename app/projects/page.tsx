@@ -27,6 +27,29 @@ const paymentGatewayDashboardImage: LightboxImage = {
   height: 941,
 };
 
+const ZISWAF_DIR = "/images/projects/ziswaf-dashboard";
+const ZISWAF_TITLE = "Ziswaf Dashboard (Admin & Fundraiser)";
+
+const ziswafDashboardImage: LightboxImage = {
+  src: `${ZISWAF_DIR}/dashboard.png`,
+  alt: "Ziswaf Dashboard — Program",
+  caption: `${ZISWAF_TITLE} — Program: Ringkasan Gross, Net, dan Fee 3% per program`,
+  width: 1920,
+  height: 1200,
+};
+
+const ZISWAF_SCREENS = [
+  { file: "masuk", name: "Masuk", desc: "Halaman masuk Admin dan Fundraiser." },
+  { file: "daftar", name: "Daftar Akun", desc: "Registrasi fundraiser dua langkah dengan dokumen izin usaha." },
+  { file: "verifikasi-fundraiser", name: "Verifikasi Fundraiser", desc: "Admin meninjau data dan dokumen, lalu menyetujui atau menolak dengan alasan." },
+  { file: "detail-program", name: "Detail Program", desc: "Progres dana dan status persetujuan program." },
+  { file: "transaksi", name: "Transaksi", desc: "Riwayat donasi QRIS beserta statusnya." },
+  { file: "penarikan", name: "Penarikan Dana", desc: "Daftar pengajuan pencairan dan total pencairan." },
+] as const;
+
+// Index of the Ziswaf main image inside PROJECT_GALLERY (screens follow it)
+const ZISWAF_FIRST_INDEX = 17;
+
 const PROJECT_GALLERY: LightboxImage[] = [
   {
     src: "/images/projects/tenar-buyer/hero.png",
@@ -141,6 +164,14 @@ const PROJECT_GALLERY: LightboxImage[] = [
     width: 1024,
     height: 728,
   },
+  ziswafDashboardImage,
+  ...ZISWAF_SCREENS.map((sc) => ({
+    src: `${ZISWAF_DIR}/${sc.file}.png`,
+    alt: `${sc.name} — Ziswaf Dashboard`,
+    caption: `${ZISWAF_TITLE} — ${sc.name}: ${sc.desc}`,
+    width: 1280,
+    height: 800,
+  })),
 ];
 
 export default function ProjectsPage() {
@@ -1021,6 +1052,227 @@ export default function ProjectsPage() {
               <p className={styles["qa-gateway-status-desc"]}>
                 <strong style={{ color: "var(--warning)" }}>In Progress · Internal R&amp;D: </strong>
                 Fokus pengembangan berada pada validasi alur transaksi dan ketahanan integrasi terhadap berbagai kondisi error.
+              </p>
+            </div>
+          </motion.article>
+
+          {/* ── SUBSTANTIAL VERTICAL CHAPTER SEPARATION ── */}
+          <hr className={styles["qa-chapter-divider"]} />
+
+          {/* ══════════════════════════════════════════
+              ZISWAF DASHBOARD (ADMIN & FUNDRAISER)
+              Mirrors Payment Gateway MVP with the hero flipped: laptop left, info right.
+              Dashboard only; donor app is a later phase.
+          ══════════════════════════════════════════ */}
+          <motion.article
+            initial="hidden"
+            whileInView="show"
+            viewport={VP}
+            variants={vScale}
+            className={styles["qa-project-chapter"]}
+          >
+            <div className={styles["qa-ziswaf-hero-grid"]}>
+              {/* LEFT COLUMN: Laptop Mockup (Dashboard) */}
+              <div className={styles["qa-gateway-visual-col"]}>
+                <div
+                  className={styles["qa-laptop-container"]}
+                  onClick={() => setLightboxIndex(ZISWAF_FIRST_INDEX)}
+                  title="Klik untuk memperbesar screenshot Ziswaf Dashboard"
+                >
+                  <div className={styles["qa-laptop-frame"]}>
+                    <div className={styles["qa-laptop-lid"]}>
+                      <div className={styles["qa-laptop-camera-dot"]} />
+                      <div className={`${styles["qa-laptop-screen"]} ${styles["qa-laptop-screen--16-10"]}`}>
+                        <Image
+                          src={ziswafDashboardImage.src}
+                          alt={ziswafDashboardImage.alt}
+                          width={ziswafDashboardImage.width}
+                          height={ziswafDashboardImage.height}
+                          className={styles["qa-laptop-img"]}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <div className={styles["qa-laptop-base"]}>
+                      <div className={styles["qa-laptop-base-notch"]} />
+                    </div>
+                  </div>
+                  <div className={styles["qa-laptop-caption"]}>
+                    <span>Ziswaf Dashboard — Program Overview</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT COLUMN: Project Information & Horizontal Metadata */}
+              <div className={styles["qa-gateway-content-col"]}>
+                <div style={{ marginBottom: 18 }}>
+                  <h2 className={styles["qa-buyer-title"]} style={{ margin: "0 0 10px" }}>
+                    Ziswaf Dashboard <span className={styles["qa-buyer-title-accent"]}>(Admin &amp; Fundraiser)</span>
+                  </h2>
+                  <div className={styles["qa-buyer-subhead"]}>
+                    <span
+                      className="chip"
+                      style={{
+                        fontSize: 11,
+                        padding: "3px 10px",
+                        background: "rgba(197, 150, 58, 0.12)",
+                        borderColor: "rgba(197, 150, 58, 0.30)",
+                        color: "var(--warning)",
+                      }}
+                    >
+                      In Progress · Sprint 1
+                    </span>
+                    <span className={styles["qa-buyer-category"]}>
+                      Web Dashboard · Donasi QRIS · Admin &amp; Fundraiser
+                    </span>
+                  </div>
+                  <p className={styles["qa-buyer-desc"]} style={{ marginBottom: 20 }}>
+                    Dashboard untuk platform donasi ZISWAF (zakat, infak, sedekah, wakaf) berbasis QRIS. Admin memverifikasi fundraiser serta menyetujui program dan penarikan dana. Fundraiser membuat program donasi, memantau transaksi, dan mengajukan pencairan. Tahap ini baru mencakup dashboard; aplikasi donatur menyusul di tahap berikutnya.
+                  </p>
+                </div>
+
+                {/* Horizontal Metadata Row */}
+                <div className={styles["qa-buyer-meta-row"]} style={{ maxWidth: "100%", marginBottom: 0 }}>
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>QA Role</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Quality Assurance Specialist</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Menganalisis PRD dan desain, menyusun test case end-to-end, dan membuat prototipe klik untuk memvalidasi alur sebelum development selesai.</span>
+                  </div>
+
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>Tools &amp; Metode</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Google Sheets · Figma · Swagger/Postman · React (Vite + TS)</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Test case terstruktur positive &amp; negative, review desain vs PRD, dan uji API.</span>
+                  </div>
+
+                  <div className={styles["qa-buyer-meta-col"]}>
+                    <span className={styles["qa-buyer-meta-label"]}>Fokus</span>
+                    <span className={styles["qa-buyer-meta-val"]}>Registrasi, Verifikasi, Program, Transaksi &amp; Penarikan</span>
+                    <span className={styles["qa-buyer-meta-sub"]}>Hak akses Admin vs Fundraiser, validasi form, serta perhitungan dana dan fee 3%.</span>
+                  </div>
+                </div>
+
+                {/* Highlight numbers */}
+                <div className={styles["qa-ziswaf-stats"]}>
+                  {[
+                    { n: "700+", l: "test case di 5 modul" },
+                    { n: "49", l: "pertanyaan klarifikasi ke PM dan desainer" },
+                    { n: "30", l: "catatan perbedaan desain vs PRD" },
+                  ].map((st) => (
+                    <div key={st.l} className={styles["qa-ziswaf-stat"]}>
+                      <strong className={styles["qa-ziswaf-stat-num"]}>{st.n}</strong>
+                      <span className={styles["qa-ziswaf-stat-label"]}>{st.l}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <div className={styles["qa-buyer-cta"]} style={{ marginTop: 22 }}>
+                  <a
+                    href="https://aprilliobintang284.github.io/ziswaf-prototype/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Lihat Prototipe <ArrowUpRight style={{ width: 14, height: 14 }} />
+                  </a>
+                  <span className={styles["qa-live-meta-url"]}>Dashboard · Belum rilis</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Layar Produk: 3-Column x 2-Row Compact Editorial Grid */}
+            <div className={styles["qa-gateway-gallery-section"]}>
+              <h3 className={styles["qa-buyer-gallery-title"]}>Layar Produk</h3>
+              <p className={styles["qa-ziswaf-gallery-note"]}>
+                Tampilan diambil dari prototipe klik yang kubuat dari desain Hifi untuk validasi alur; semua data dummy.
+              </p>
+
+              <div className={styles["qa-gateway-gallery-3col"]}>
+                {ZISWAF_SCREENS.map((sc, i) => (
+                  <div
+                    key={sc.file}
+                    className={styles["qa-gateway-gallery-card"]}
+                    onClick={() => setLightboxIndex(ZISWAF_FIRST_INDEX + 1 + i)}
+                    title={`Klik untuk memperbesar ${sc.name}`}
+                  >
+                    <div className={styles["qa-gateway-gallery-thumb"]}>
+                      <Image
+                        src={`${ZISWAF_DIR}/${sc.file}.png`}
+                        alt={`${sc.name} — Ziswaf Dashboard`}
+                        width={1280}
+                        height={800}
+                        className={styles["qa-gateway-gallery-img"]}
+                        loading="lazy"
+                      />
+                      <div className={styles["qa-gateway-gallery-fade"]} aria-hidden="true" />
+                    </div>
+                    <div className={styles["qa-gateway-gallery-meta"]}>
+                      <strong className={styles["qa-gateway-gallery-title"]}>{sc.name}</strong>
+                      <p className={styles["qa-gateway-gallery-desc"]}>{sc.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 3. Yang Diuji */}
+            <div className={styles["qa-gateway-scenarios"]}>
+              <h3 className={styles["qa-buyer-gallery-title"]}>Yang Diuji</h3>
+
+              <div className={styles["qa-gateway-scenarios-grid"]}>
+                {[
+                  {
+                    num: "01",
+                    title: "Registrasi & Verifikasi Fundraiser",
+                    desc: "Validasi tiap field (termasuk teks hasil copy-paste dan karakter tak terlihat), upload dokumen izin usaha, persetujuan/penolakan oleh Admin, dan email notifikasi.",
+                  },
+                  {
+                    num: "02",
+                    title: "Autentikasi & Sesi",
+                    desc: "Masuk, lupa dan atur ulang password dengan tautan kedaluwarsa, keluar otomatis saat tidak ada aktivitas, dan sesi di beberapa tab.",
+                  },
+                  {
+                    num: "03",
+                    title: "Program & Perhitungan Dana",
+                    desc: "Siklus status program (Draf, Menunggu Persetujuan, Aktif, Ditolak, Selesai), aturan edit per status, serta fee 3% dan dana bersih.",
+                  },
+                  {
+                    num: "04",
+                    title: "Transaksi & Penarikan Dana",
+                    desc: "Status pembayaran QRIS, batas dana yang dapat ditarik, persetujuan Admin, dan export Excel.",
+                  },
+                  {
+                    num: "05",
+                    title: "Hak Akses & Keamanan",
+                    desc: "Data Admin dan Fundraiser terpisah lewat UI, URL, maupun API; uji XSS dan injeksi rumus di file export.",
+                  },
+                  {
+                    num: "06",
+                    title: "Analisis PRD vs Desain",
+                    desc: "Mencatat perbedaan dan pertanyaan, lalu mengawal keputusan PM dan desainer sampai masuk ke test case.",
+                  },
+                ].map((scenario) => (
+                  <div key={scenario.num} className={styles["qa-gateway-scenario-item"]}>
+                    <span className={styles["qa-gateway-scenario-num"]}>{scenario.num}</span>
+                    <div className={styles["qa-gateway-scenario-content"]}>
+                      <strong className={styles["qa-gateway-scenario-title"]}>
+                        {scenario.title}
+                      </strong>
+                      <p className={styles["qa-gateway-scenario-desc"]}>
+                        {scenario.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 4. Status */}
+            <div className={styles["qa-gateway-status-result"]}>
+              <p className={styles["qa-gateway-status-desc"]}>
+                <strong style={{ color: "var(--warning)" }}>In Progress · Sprint 1: </strong>
+                pengujian saat ini fokus di dashboard Admin &amp; Fundraiser. Aplikasi donatur (web mobile untuk berdonasi via QRIS) menyusul di tahap berikutnya.
               </p>
             </div>
           </motion.article>

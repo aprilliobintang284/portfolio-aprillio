@@ -535,6 +535,10 @@
   aspect-ratio: 16 / 9;
 }
 
+.qa-laptop-screen--16-10 {
+  aspect-ratio: 16 / 10;
+}
+
 .qa-laptop-img {
   width: 100%;
   height: 100%;
@@ -1289,4 +1293,63 @@
   line-height: 1.6;
   color: var(--text-secondary);
   max-width: 600px;
+}
+
+/* ── ZISWAF DASHBOARD ──────────────────── */
+.qa-ziswaf-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: clamp(32px, 4.5vw, 56px);
+  align-items: center;
+  margin-bottom: clamp(36px, 4.5vw, 52px);
+}
+
+@media (max-width: 1024px) {
+  .qa-ziswaf-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.qa-ziswaf-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 560px) {
+  .qa-ziswaf-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+.qa-ziswaf-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qa-ziswaf-stat-num {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--warning);
+  line-height: 1.2;
+}
+
+.qa-ziswaf-stat-label {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: rgba(245, 240, 232, 0.55);
+}
+
+.qa-ziswaf-gallery-note {
+  margin: -12px 0 clamp(18px, 2.4vw, 26px);
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(245, 240, 232, 0.45);
 }
