@@ -436,7 +436,7 @@ export default function CreatorPage() {
 
       <footer style={{ padding: "32px 24px", textAlign: "center", borderTop: "1px solid var(--border)", background: "var(--surface)" }}>
         <p style={{ fontSize: 11, color: "var(--text-muted)", fontWeight: 500, letterSpacing: ".06em" }}>
-          © 2026 Aprillio Bintang Perdana · QA Specialist &amp; Content Creator
+          © 2026 Aprillio Bintang Perdana · Software QA &amp; Content Creator
         </p>
       </footer>
     </div>
