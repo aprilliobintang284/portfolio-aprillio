@@ -1,174 +1,139 @@
 <div align="center">
 
-# ✦ Aprillio Bintang — Portfolio
+<!-- Header Banner -->
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0D0D0C,100:141413&height=160&section=header&text=✦%20Aprillio%20Bintang&fontSize=42&fontColor=F1EEE8&fontAlignY=42&desc=QA%20Specialist%20%E2%80%A2%20Gaming%20Content%20Creator&descSize=16&descColor=2EA8E6&descAlignY=68&animation=fadeIn" width="100%" alt="Aprillio Bintang Portfolio Banner" />
 
-**QA Specialist & Gaming Content Creator**
+<!-- Animated Subtitle -->
+<a href="https://aprillio.pro">
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=500&size=15&duration=3200&pause=1000&color=A5A19A&center=true&vCenter=true&width=620&lines=Modern+Editorial+Dark+Portfolio+built+with+Next.js+16;Quality+Assurance+Case+Studies+%26+Bug+Documentation;Honor+of+Kings+Content+Hub+%26+Live+Performance+Metrics" alt="Typing SVG" />
+</a>
 
-A modern, high-performance personal portfolio built with **Next.js 16**, **TypeScript**, **Framer Motion**, and a custom natural editorial dark design system.
+<br />
 
-[![Website](https://img.shields.io/badge/🌐_Website-aprillio.pro-141413?style=for-the-badge&logoColor=white)](https://aprillio.pro)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![CSS Modules](https://img.shields.io/badge/CSS_Modules-Scoped-141413?style=for-the-badge&logo=css3&logoColor=1572B6)](https://nextjs.org/docs/app/building-your-application/styling/css-modules)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-FF0055?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion)
+<!-- Primary CTA & Unified Dark Tech Badges -->
+[![Live Portfolio](https://img.shields.io/badge/🌐_Visit_Portfolio-aprillio.pro-2EA8E6?style=for-the-badge&logoColor=white)](https://aprillio.pro)
+[![Next.js](https://img.shields.io/badge/Next.js_16-141413?style=for-the-badge&logo=next.js&logoColor=F1EEE8)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript_5-141413?style=for-the-badge&logo=typescript&logoColor=3178C6)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-141413?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC)](https://tailwindcss.com)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion_12-141413?style=for-the-badge&logo=framer&logoColor=FF0055)](https://www.framer.com/motion)
+[![CSS Modules](https://img.shields.io/badge/CSS_Modules-141413?style=for-the-badge&logo=css3&logoColor=2EA8E6)](https://nextjs.org/docs/app/building-your-application/styling/css-modules)
+
+<br />
+
+<!-- Quick Navigation -->
+<sub>
+  <a href="#-core-features">Core Features</a> •
+  <a href="#-design-system">Design System</a> •
+  <a href="#-architecture--security">Architecture</a> •
+  <a href="#-project-structure">Project Structure</a> •
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-deployment">Deployment</a>
+</sub>
 
 </div>
 
+<br />
+
 ---
 
-## ✨ Overview & Key Features
+## ✨ Core Features
 
-### 🧪 Quality Assurance & Manual Testing Showcase (`/projects`)
-- **Real-world Case Studies**: Comprehensive QA test documentation for web applications (e.g., *Tenar Event Platform*).
-- **Test Artifacts**: Test scenarios, positive/negative test matrix, and categorized bug reports (P1/P2/P3 severity).
-- **Interactive Evidence Lightbox**: Full-resolution preview of test runs, step-by-step reproduction steps, and system limitations.
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🧪 QA & Manual Testing (<code>/projects</code>)</h3>
+      <ul>
+        <li><b>Real-world Case Studies:</b> Comprehensive QA test documentation for web applications (e.g., <i>Tenar Event Platform</i>).</li>
+        <li><b>Test Artifacts:</b> Test scenarios, positive/negative test matrix, and categorized bug reports (P1/P2/P3 severity).</li>
+        <li><b>Interactive Evidence Lightbox:</b> Full-resolution preview of test runs, step-by-step reproduction steps, and system limitations.</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🎮 Esports & Creator Hub (<code>/creator</code>)</h3>
+      <ul>
+        <li><b>Content Media Hub:</b> Video highlights, tournament news, and gameplay clips centered around <i>Honor of Kings</i> (HOK) and competitive esports.</li>
+        <li><b>Audience Metrics:</b> Engagement stats, follower growth, and cross-platform channels (TikTok, Instagram, YouTube).</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>⚡ Live Performance Modules</h3>
+      <ul>
+        <li><b>Duolingo Integration:</b> Real-time language learning streak, total XP, and active course progress fetched dynamically via custom API route.</li>
+        <li><b>MonkeyType Dashboard:</b> Typing speed (WPM), accuracy, consistency, test counts, and interactive SVG performance curves.</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🧭 Navigation & Security</h3>
+      <ul>
+        <li><b>Precision Layout:</b> Fixed desktop sidebar with active-section tracking & responsive mobile slide-out drawer.</li>
+        <li><b>Editorial 4-Column Footer:</b> Identity, navigation anchors, social brand icons, and smooth back-to-top control.</li>
+        <li><b>Cloudflare Turnstile:</b> Bot verification protecting the contact form endpoint against spam and automated abuse.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-### 🎮 Esports & Gaming Content Creation (`/creator`)
-- **Content Media Hub**: Video highlights, tournament news, and gameplay clips centered around *Honor of Kings* (HOK) and competitive esports.
-- **Audience Metrics**: Engagement stats, follower metrics, and cross-platform channels (TikTok, Instagram, YouTube).
+---
 
-### ⚡ Live Personal Performance Modules
-- **Duolingo Integration**: Real-time language learning streak, total XP, and active course progress fetched dynamically via custom API route.
-- **MonkeyType Performance Dashboard**: Typing speed (WPM), accuracy, consistency, test counts, and interactive SVG performance curves.
+## 🎨 Design System
 
-### 🎨 Natural Editorial Design System & Modular CSS Architecture
-- **Scoped CSS Modules**: Every page (`/`, `/projects`, `/creator`) and component (`Navbar`, `HeroBento`, `Lightbox`, `CustomCursor`, `ParallaxScene`) encapsulates its own styles, eliminating global namespace collisions and stylesheet bloat.
-- **Single-Source Design Tokens (`globals.css`)**: Centralized CSS custom properties (`:root`) defining elevation surfaces, neutral borders, typography scales, accessibility rules (`prefers-reduced-motion`), and core button primitives.
-- **Curated Dark Palette**: Warm near-black background (`#0D0D0C`), surface elevation (`#141413`), subtle neutral borders (`#292824`), and refined typography (`#F1EEE8` / `#A5A19A` / `#6F6C66`).
-- **Accent Rhythm**: Signature Aprillio cyan accent (`#2EA8E6`) used with restraint for interactive focus.
-- **Zero Distractions**: No unnecessary neon glows, heavy glassmorphism, or artificial blur filters.
+Built around a **Natural Editorial Dark** philosophy with **Zero Distractions** — avoiding unnecessary neon glows, heavy glassmorphism, or artificial blur filters.
 
-### 🧭 Precision Navigation & Layout
-- **Desktop Sidebar / Rail**: Fixed desktop sidebar with active section tracking and smooth anchor navigation.
-- **Mobile Drawer**: Responsive top bar with animated slide-out navigation menu.
-- **Editorial 4-Column Footer**: Balanced closing statement featuring identity, navigation anchors, external social links with brand icons, and a smooth back-to-top control.
+| Token | Role | Hex | Preview |
+| :--- | :--- | :---: | :---: |
+| **Background** | Warm near-black canvas | `#0D0D0C` | ![#0D0D0C](https://img.shields.io/badge/%20-0D0D0C?style=flat-square) |
+| **Surface** | Elevated cards & containers | `#141413` | ![#141413](https://img.shields.io/badge/%20-141413?style=flat-square) |
+| **Border** | Subtle neutral dividers | `#292824` | ![#292824](https://img.shields.io/badge/%20-292824?style=flat-square) |
+| **Text Primary** | Editorial warm white | `#F1EEE8` | ![#F1EEE8](https://img.shields.io/badge/%20-F1EEE8?style=flat-square) |
+| **Text Muted** | Secondary copy & labels | `#A5A19A` | ![#A5A19A](https://img.shields.io/badge/%20-A5A19A?style=flat-square) |
+| **Text Subtle** | Captions & metadata | `#6F6C66` | ![#6F6C66](https://img.shields.io/badge/%20-6F6C66?style=flat-square) |
+| **Accent** | Signature Aprillio Cyan | `#2EA8E6` | ![#2EA8E6](https://img.shields.io/badge/%20-2EA8E6?style=flat-square) |
 
-### 🔒 Secure Contact Form
-- Integrated **Cloudflare Turnstile** bot verification to protect the messaging endpoint against spam and automated abuse.
+---
+
+## 🏗️ Architecture & Security
+
+<details>
+<summary><b>Click to expand Modular CSS & Security Architecture</b></summary>
+<br />
+
+- **Scoped CSS Modules:** Every page (`/`, `/projects`, `/creator`) and component (`Navbar`, `HeroBento`, `Lightbox`, `CustomCursor`, `ParallaxScene`) encapsulates its own styles, eliminating global namespace collisions and stylesheet bloat.
+- **Single-Source Design Tokens (`globals.css`):** Centralized CSS custom properties (`:root`) defining elevation surfaces, neutral borders, typography scales, accessibility rules (`prefers-reduced-motion`), and core button primitives.
+- **Protected Messaging Endpoint:** Integrated **Cloudflare Turnstile** bot verification to secure the contact form against automated spam without degrading user experience.
+
+</details>
 
 ---
 
 ## 🗂️ Project Structure
 
-```
+```text
 portfolio-aprillio/
 ├── app/
 │   ├── api/
 │   │   ├── duolingo/route.ts        # Duolingo API proxy (streak, XP, language courses)
-│   │   └── monkeytype/route.ts      # MonkeyType API proxy (WPM, accuracy, charts)
+│   │   ├── monkeytype/route.ts      # MonkeyType API proxy (WPM, accuracy, charts)
+│   │   └── contact/route.ts         # Contact endpoint with Cloudflare Turnstile verification
 │   ├── components/
 │   │   ├── CustomCursor.tsx         # Subtle custom cursor
 │   │   ├── CustomCursor.module.css  # Scoped styles for custom cursor
-│   │   ├── HeroBento.tsx            # Two-column hero with blended workspace visual
-│   │   ├── HeroBento.module.css     # Scoped styles for Hero Bento grid
-│   │   ├── Lightbox.tsx             # Fullscreen modal image viewer for QA evidence
-│   │   ├── Lightbox.module.css      # Scoped styles for Lightbox modal
-│   │   ├── Navbar.tsx               # Sidebar (desktop) & drawer header (mobile)
-│   │   ├── Navbar.module.css        # Scoped styles for Navbar & mobile drawer
-│   │   ├── ParallaxScene.tsx        # Subtle background canvas elements
-│   │   └── ParallaxScene.module.css # Scoped styles for parallax canvas
+│   │   ├── HeroBento.tsx            # Bento-grid hero section
+│   │   ├── Lightbox.tsx             # Interactive QA evidence lightbox
+│   │   ├── Navbar.tsx               # Desktop sidebar rail & mobile slide-out drawer
+│   │   ├── ParallaxScene.tsx        # Motion-aware parallax wrapper
+│   │   └── Footer.tsx               # Editorial 4-column footer
 │   ├── creator/
-│   │   ├── page.tsx                 # Creator Media & esports showcase page
-│   │   └── page.module.css          # Scoped styles for creator showcase
+│   │   ├── page.tsx                 # Esports & HOK Content Creator Hub
+│   │   └── creator.module.css
 │   ├── projects/
-│   │   ├── page.tsx                 # QA Projects & test documentation page
-│   │   └── page.module.css          # Scoped styles for QA documentation
-│   ├── globals.css                  # Design tokens (:root), resets, background & shared utilities
-│   ├── layout.tsx                   # Root layout, metadata & fonts
-│   ├── page.tsx                     # Homepage (Hero, About, Exp, Edu, Personal, Contact, Footer)
-│   └── page.module.css              # Scoped styles for homepage sections
-├── public/
-│   ├── images/
-│   │   ├── creator/                 # Creator portfolio assets
-│   │   ├── hero/                    # Workspace photography
-│   │   ├── personal/                # Official Duolingo asset
-│   │   └── projects/                # QA test evidence & case study captures
-│   └── cert-*.pdf                   # Academic & professional certifications
-├── .env.local                       # API keys (local development)
-└── next.config.ts                   # Next.js configuration
-```
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/aprilliobintang284/portfolio-aprillio.git
-cd portfolio-aprillio
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Configure environment variables
-
-Create a `.env.local` file in the root directory:
-
-```env
-# MonkeyType ApeKey (Settings → Ape Keys on monkeytype.com)
-MONKEYTYPE_APE_KEY=your_monkeytype_ape_key_here
-```
-
-### 4. Run the development server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the portfolio.
-
----
-
-## 📡 API Routes & Live Data
-
-| Route | Method | Description | Cache / Fallback |
-|---|---|---|---|
-| `/api/duolingo` | `GET` | Fetches active streak, XP, and active languages | In-memory ISR cache + static fallback |
-| `/api/monkeytype` | `GET` | Fetches all-time best WPM, accuracy, consistency, and typing charts | ApeKey auth + static fallback |
-
-*Both routes include automatic error handling and static fallback data so the interface renders reliably even during network or API downtime.*
-
----
-
-## 🧰 Tech Stack
-
-| Domain | Technology |
-|---|---|
-| **Framework** | [Next.js 16](https://nextjs.org) (App Router) |
-| **Language** | [TypeScript 5](https://www.typescriptlang.org) |
-| **Styling** | Scoped [CSS Modules](https://nextjs.org/docs/app/building-your-application/styling/css-modules) + [Tailwind CSS v4](https://tailwindcss.com) & Shared Design Tokens |
-| **Motion** | [Framer Motion](https://www.framer.com/motion) |
-| **Icons** | [Lucide React](https://lucide.dev) & Custom Brand SVGs |
-| **Security** | [@marsidev/react-turnstile](https://github.com/marsidev/react-turnstile) (Cloudflare Turnstile) |
-| **Deployment** | [Vercel](https://vercel.com) |
-
----
-
-## 🌐 Deployment
-
-The project is configured for continuous deployment with **Vercel**:
-
-1. Push your repository to GitHub.
-2. Import the project in the [Vercel Dashboard](https://vercel.com/new).
-3. Add your `MONKEYTYPE_APE_KEY` in **Settings → Environment Variables**.
-4. Deploy!
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-<div align="center">
-
-Crafted with care by **Aprillio Bintang Perdana** • 2026
-
-</div>
+│   │   ├── page.tsx                 # QA Case Studies & Bug Reports showcase
+│   │   └── projects.module.css
+│   ├── globals.css                  # Single-source design tokens & base styles
+│   ├── layout.tsx                   # Root layout & metadata
+│   └── page.tsx                     # Home page
+├── public/                          # Static assets, icons & QA screenshots
+├── next.config.ts                   # Next.js configuration
+├── tsconfig.json                    # TypeScript configuration
+└── package.json
